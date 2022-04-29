@@ -1,0 +1,108 @@
+.usi-flex {
+  align-items: flex-start;
+  display: flex;
+  height: 100%;
+  flex-wrap: wrap;
+  gap: 24px;
+
+  @media only screen and (max-width: 767px) {
+    gap: 20px;
+  }
+
+  @media only screen and (max-width: 576px) {
+    gap: 16px;
+  }
+
+  // Align items
+  &.usi-flex--align-initial {
+    align-items: initial;
+  }
+
+  &.usi-flex--align-inherit {
+    align-items: inherit;
+  }
+
+  &.usi-flex--align-unset {
+    align-items: unset;
+  }
+
+  &.usi-flex--align-start {
+    align-items: flex-start;
+  }
+
+  &.usi-flex--align-center {
+    align-items: center;
+  }
+
+  &.usi-flex--align-end {
+    align-items: flex-end;
+  }
+
+  &.usi-flex--align-baseline {
+    align-items: baseline;
+  }
+
+  &.usi-flex--align-stretch {
+    align-items: stretch;
+  }
+
+  // Justify content
+  &.usi-flex--justify-initial {
+    justify-content: initial;
+  }
+
+  &.usi-flex--justify-inherit {
+    justify-content: inherit;
+  }
+
+  &.usi-flex--justify-unset {
+    justify-content: unset;
+  }
+
+  &.usi-flex--justify-start {
+    justify-content: flex-start;
+  }
+
+  &.usi-flex--justify-center {
+    justify-content: center;
+  }
+
+  &.usi-flex--justify-end {
+    justify-content: flex-end;
+  }
+
+  &.usi-flex--justify-around {
+    justify-content: space-around;
+  }
+
+  &.usi-flex--justify-between {
+    justify-content: space-between;
+  }
+
+  &.usi-flex--justify-evenly {
+    justify-content: space-evenly;
+  }
+
+  // Direction
+  &.usi-flex--direction-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &.usi-flex--direction-column {
+    flex-direction: column;
+  }
+
+  &.usi-flex--direction-column-reverse {
+    flex-direction: column-reverse;
+  }
+
+  // Grow
+  ::ng-deep &.usi-flex--grow > * {
+    flex-grow: 1;
+  }
+
+  // Wrap
+  &.usi-flex--no-wrap {
+    flex-wrap: nowrap;
+  }
+}

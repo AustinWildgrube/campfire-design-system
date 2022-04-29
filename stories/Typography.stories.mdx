@@ -1,0 +1,241 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Design/Typography" />
+
+<style>{`
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+  .title {
+    display: block;
+    color: #292829;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin-bottom: 48px;
+  }
+
+  .description {
+    color: #292829;
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: .875rem;
+    margin-bottom: 38px;
+  }
+
+  .opensans {
+    color: #292829;
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5625rem;
+    margin-bottom: 12px;
+  }
+
+  .opensans--light {
+    font-weight: 300;
+  }
+
+  .opensans--semibold {
+    font-weight: 600;
+  }
+
+  .opensans--bold {
+    font-weight: 700;
+  }
+
+  .headings {
+    margin-top: 64px;
+  }
+
+  .headings__heading {
+    align-items: center;
+    border-bottom: 1px solid #D8D9DA;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .headings__heading {
+      align-items: initial;
+      flex-direction: column;
+    }
+  }
+
+  .headings__heading:last-child {
+    border-bottom: none;
+  }
+
+  .display {
+    color: #292829;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    width: 50%;
+  }
+
+  .h1 {
+    border: none;
+    color: #292829;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 39px;
+    width: 50%;
+  }
+
+  .h2  {
+    border: none;
+    color: #292829;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5625rem;
+    font-weight: 600;
+    line-height: 30px;
+    width: 50%;
+  }
+
+  .h3  {
+    border: none;
+    color: #292829;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.3125rem;
+    font-weight: 600;
+    line-height: 24px;
+    width: 50%;
+  }
+
+  .h4  {
+    border: none;
+    color: #292829;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 21px;
+    width: 50%;
+  }
+
+  .h5  {
+    border: none;
+    color: #292829;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 19px;
+    width: 50%;
+  }
+
+  .h6  {
+    border: none;
+    color: #292829;
+    font-family: 'Open Sans', sans-serif;
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 17px;
+    width: 50%;
+  }
+
+  .paragraph {
+    color: #292829;
+    font-family: 'Open Sans', sans-serif;
+    font-size: .875rem;
+    line-height: 22px;
+    margin-bottom: 24px;
+  }
+
+  .paragraph--small {
+    color: #292829;
+    font-family: 'Open Sans', sans-serif;
+    font-size: .75rem;
+    line-height: 22px;
+    margin-bottom: 24px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .display,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    .paragraph,
+    .paragraph--small {
+      margin-bottom: 12px;
+      width: 100%;
+    }
+  }
+`}</style>
+
+<span className="title">Typography</span>
+<span className="opensans opensans--semibold">Open Sans</span>
+<span className="description">The official font used for Ungerboeck public facing applications is the Google Web Font Open Sans</span>
+
+<span className="opensans opensans--light">Open Sans Light</span>
+<span className="opensans">Open Sans Regular</span>
+<span className="opensans opensans--semibold">Open Sans Semibold</span>
+<span className="opensans opensans--bold">Open Sans Bold</span>
+
+<div className="headings">
+  <div className="headings__heading">
+    <span className="display">Display</span>
+    <span className="display">Open Sans Semibold 40px<br />Line-height 52px #292829</span>
+  </div>
+
+  <div className="headings__heading">
+    <h1 className="h1">Heading 1 / Main Heading</h1>
+    <span className="h1">Open Sans Semibold 30px<br />Line-height 39px #292829</span>
+  </div>
+
+  <div className="headings__heading">
+    <h2 className="h2">Heading 2 / Main Heading</h2>
+    <span className="h2">Open Sans Semibold 25px<br />Line-Height 30px #292829</span>
+  </div>
+
+  <div className="headings__heading">
+    <h3  className="h3">Heading 3 / Main Heading</h3>
+    <span className="h3">Open Sans Semibold 21px<br />Line-Height 24px #292829</span>
+  </div>
+
+  <div className="headings__heading">
+    <h4 className="h4">Heading 4 / Main Heading</h4>
+    <span className="h4">Open Sans Semibold 18px<br />Line-height 21px #292829</span>
+  </div>
+
+  <div className="headings__heading">
+    <h5 className="h5">Heading 5 / Main Heading</h5>
+    <span className="h5">Open Sans Semibold 16px<br />Line-height 19px #292829</span>
+  </div>
+
+  <div className="headings__heading">
+    <h6 className="h6">Heading 6 / Main Heading</h6>
+    <span className="h6">Open Sans Semibold 14px<br />Line-height 17px #292829</span>
+  </div>
+</div>
+
+<p className="paragraph">Paragraph Open Sans Regular 14px, Leading 22px</p>
+
+<p className="paragraph">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+  occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis
+  unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+  illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
+  voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+  nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
+  numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+</p>
+
+<p className="paragraph paragraph--small">Minimum Size Open Sans Regular 12px, Leading 22px</p>
+
+<p className="paragraph paragraph--small">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+  occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis
+  unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+  illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
+  voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+  nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
+  numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+</p>

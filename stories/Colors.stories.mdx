@@ -1,0 +1,285 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Design/Colors" />
+
+<style>{`
+  .title {
+    color: #292729;
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin-bottom: 32px;
+  }
+
+  .sub-title {
+    border: none;
+    color: #292729;
+    font-size: 1.5626rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .container__row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .container__row {
+      flex-direction: column;
+    }
+  }
+
+  .color__bg {
+    border: 1px solid #D8D9DA;
+    border-radius: 3px;
+    display: inline-block;
+    height: 59px;
+    margin-bottom: 8px;
+    width: 208px;
+  }
+
+  .color__name {
+    color: #292729;
+    font-size: .875rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .color__hex {
+    color: #292729;
+    font-size: .875rem;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .color__bg,
+    .color__name,
+    .color__hex {
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
+  }
+`}</style>
+
+<h1 className="title">
+  Colors
+</h1>
+
+<h2 className="sub-title">
+  Primary
+</h2>
+
+<div className="container">
+  <div className="container__row">
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#246FF2' }} />
+      <h3 className="color__name">Ungerboeck Blue</h3>
+      <span className="color__hex">#246FF2</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#246FF2' }} />
+      <h3 className="color__name">Ungerboeck Blue</h3>
+      <span className="color__hex">#246FF2</span>
+    </div>
+  </div>
+
+  <div className="container__row">
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#FFFFFF' }} />
+      <h3 className="color__name">White</h3>
+      <span className="color__hex">#FFFFFF</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#F5F5F5' }} />
+      <h3 className="color__name">White</h3>
+      <span className="color__hex">#F5F5F5</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#EBEAEB' }} />
+      <h3 className="color__name">White</h3>
+      <span className="color__hex">#EBEAEB</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#D8D9DA' }} />
+      <h3 className="color__name">White</h3>
+      <span className="color__hex">#D8D9DA</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#ADADAE' }} />
+      <h3 className="color__name">White</h3>
+      <span className="color__hex">#ADADAE</span>
+    </div>
+  </div>
+
+  <div className="container__row">
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#717073' }} />
+      <h3 className="color__name">Gray</h3>
+      <span className="color__hex">#717073</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#515152' }} />
+      <h3 className="color__name">Gray</h3>
+      <span className="color__hex">#515152</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#333234' }} />
+      <h3 className="color__name">Gray</h3>
+      <span className="color__hex">#333234</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#292829' }} />
+      <h3 className="color__name">Gray</h3>
+      <span className="color__hex">#292829</span>
+    </div>
+  </div>
+</div>
+
+<h2 className="sub-title">
+  Secondary
+</h2>
+
+<div className="container">
+  <div className="container__row">
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#EBFAFF' }} />
+      <h3 className="color__name">Blue</h3>
+      <span className="color__hex">#EBFAFF</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#D6F4FF' }} />
+      <h3 className="color__name">Blue</h3>
+      <span className="color__hex">#D6F4FF</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#85DEFF' }} />
+      <h3 className="color__name">Blue</h3>
+      <span className="color__hex">#85DEFF</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#00A5E0' }} />
+      <h3 className="color__name">Blue</h3>
+      <span className="color__hex">#00A5E0</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#0078A3' }} />
+      <h3 className="color__name">Blue</h3>
+      <span className="color__hex">#0078A3</span>
+    </div>
+  </div>
+
+  <div className="container__row">
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#FEF3EC' }} />
+      <h3 className="color__name">Orange</h3>
+      <span className="color__hex">#FEF3EC</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#FCDBC5' }} />
+      <h3 className="color__name">Orange</h3>
+      <span className="color__hex">#FCDBC5</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#F8AB77' }} />
+      <h3 className="color__name">Orange</h3>
+      <span className="color__hex">#F8AB77</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#F37520' }} />
+      <h3 className="color__name">Orange</h3>
+      <span className="color__hex">#F8AB77</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#C2540A' }} />
+      <h3 className="color__name">Orange</h3>
+      <span className="color__hex">#C2540A</span>
+    </div>
+  </div>
+
+  <div className="container__row">
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#DFF6F4' }} />
+      <h3 className="color__name">Turquoise</h3>
+      <span className="color__hex">#DFF6F4</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#9EE5DD' }} />
+      <h3 className="color__name">Turquoise</h3>
+      <span className="color__hex">#9EE5DD</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#3ECCBB' }} />
+      <h3 className="color__name">Turquoise</h3>
+      <span className="color__hex">#3ECCBB</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#2A9D8F' }} />
+      <h3 className="color__name">Turquoise</h3>
+      <span className="color__hex">#2A9D8F</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#228176' }} />
+      <h3 className="color__name">Turquoise</h3>
+      <span className="color__hex">#228176</span>
+    </div>
+  </div>
+
+  <div className="container__row">
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#F3F1F9' }} />
+      <h3 className="color__name">Purple</h3>
+      <span className="color__hex">#F3F1F9</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#C2B9DF' }} />
+      <h3 className="color__name">Purple</h3>
+      <span className="color__hex">#C2B9DF</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#9181C5' }} />
+      <h3 className="color__name">Purple</h3>
+      <span className="color__hex">#9181C5</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#6C57B2' }} />
+      <h3 className="color__name">Purple</h3>
+      <span className="color__hex">#6C57B2</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#54428E' }} />
+      <h3 className="color__name">Purple</h3>
+      <span className="color__hex">#54428E</span>
+    </div>
+  </div>
+</div>
+
+<h2 className="sub-title">
+  Feedback
+</h2>
+
+<div className="container">
+  <div className="container__row">
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#06843F' }} />
+      <h3 className="color__name">Success</h3>
+      <span className="color__hex">#06843F</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#D83A2C' }} />
+      <h3 className="color__name">Error</h3>
+      <span className="color__hex">#D83A2C</span>
+    </div>
+    <div className="color">
+      <span className="color__bg" style={{ 'background': '#E9C80C' }} />
+      <h3 className="color__name">Warning</h3>
+      <span className="color__hex">#E9C80C</span>
+    </div>
+  </div>
+</div>

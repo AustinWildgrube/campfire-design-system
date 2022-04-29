@@ -1,0 +1,97 @@
+```ts
+import { UsiAvatarModule } from '@ungerboeck/usi-avatar';
+```
+
+# Avatars
+An avatar is a visual representation of a user or group. Use of an avatar can help people efficiently identify another
+person or company within the platform. Where appropriate, link the avatar to a context-specific view of that individual
+or company such as a settings page or a profile page.
+
+```html
+<usi-avatar></usi-avatar>
+```
+
+## Types
+There are three main types of content that can be embedded into an avatar: image, icon, text. It is best practice using
+an image within an avatar. When that is not possible text would be the second most desirable option leaving an icon
+as the last option.
+
+### Image
+The image is the most common type of avatar. The Campfire avatar can take an image from a relative path or a URL. It is
+usually best to use a headshot of a person or the logo of a company. Keep in mind that avatars are limited in size so
+it is best to keep the image to a minimum.
+
+> When using an image it is best to pair it with an alt text that describes the image.
+
+```html
+<usi-avatar usiSrc="https://via.placeholder.com/150" usiAlt="150x150 gray placeholder"></usi-avatar>
+```
+
+### Text
+When there is no personal photo to show, use initials. Because personal names differ around the world, consider avoiding
+using initials that may not represent an individual accurately. We tend to use the first letter of each space-separated
+word for initials. You may need to resize the initials text for more than 4 names.
+
+```html
+<usi-avatar usiText="ES"></usi-avatar>
+```
+
+### Icons
+If neither an image nor text is available it is appropriate to use an icon as a placeholder. Right now the only icons
+that can be used with Campfire Design System is **FontAwesome**.
+
+```html
+<usi-avatar usiIcon="user"></usi-avatar>
+```
+
+## Sizes
+Campfire Design System provides a set of sizes for avatars. The default size is `md` and the available sizes are: `xs`,
+`sm`, `md`, `lg`, `xl`.
+
+```html
+<usi-avatar usiSize="xs"></usi-avatar>
+<usi-avatar usiSize="sm"></usi-avatar>
+<usi-avatar></usi-avatar>
+<usi-avatar usiSize="lg"></usi-avatar>
+<usi-avatar usiSize="xl"></usi-avatar>
+<usi-avatar usiSize="xxl"></usi-avatar>
+```
+
+## Loading
+An avatar can use ghost loading which should ***only*** occur on the pages initial load into the DOM. Ghosting uses
+Angular object binding. For dynamic loading times the square bracket syntax is required. If the avatar is to load
+indefinitely it can be called as a boolean value.
+
+```ts
+let isGhosting = true;
+
+// Avatar will load for 5 seconds
+setTimeout(() => {
+  isGhosting = false;
+}, 5000);
+```
+
+```html
+<usi-avatar [usiGhost]="isGhosting" usiText="ES">
+  Ghosting Button
+</usi-avatar>
+```
+
+## Customization
+Campfire avatars were made to be easily customizable. Styling an avatar is as simple as just adding a class onto the tag
+or overriding our CSS variables in the root selector. The list of overridable variables are as follows:
+
+```css
+:root {
+  --avatar-background-color: var(--white);
+  --avatar-text-color: #003052;
+  --avatar-icon-text-color: var(--gray);
+  --avatar-shadow: 0 1px 3px rgba(0, 0, 0, .32);
+
+  --avatar-corner-radius--square: 3px;
+}
+```
+
+```html
+<usi-avatar class="custom-avatar" usiText="ES"></usi-avatar>
+```

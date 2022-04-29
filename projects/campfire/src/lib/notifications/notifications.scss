@@ -1,0 +1,54 @@
+::ng-deep .usi-overlay-container {
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+::ng-deep .usi-overlay-notifications {
+  pointer-events: auto;
+}
+
+::ng-deep .usi-notification {
+  position: fixed;
+}
+
+::ng-deep .usi-notification--top-left {
+  left: var(--notification-position);
+  top: 16px;
+}
+
+::ng-deep .usi-notification--top-center {
+  left: 50%;
+  top: var(--notification-position);
+  transform: translate(-50%, 0%);
+}
+
+::ng-deep .usi-notification--top-right {
+  right: var(--notification-position);
+  top: var(--notification-position);
+}
+
+::ng-deep .usi-notification--center-center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+::ng-deep .usi-notification--bottom-left {
+  bottom: var(--notification-position);
+  left: var(--notification-position);
+}
+
+::ng-deep .usi-notification--bottom-center {
+  bottom: var(--notification-position);
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+::ng-deep .usi-notification--bottom-right {
+  bottom: var(--notification-position);
+  right: var(--notification-position);
+}

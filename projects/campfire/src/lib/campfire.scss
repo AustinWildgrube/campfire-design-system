@@ -1,0 +1,204 @@
+:root {
+  --font-family: Open Sans, sans-serif;
+
+  --primary: #0067b1;
+  --gray: #717073;
+  --white: #fff;
+  --black: #292829;
+  --success: #06843F;
+  --warning: #E9C80C;
+  --error: #D93E20;
+  --info: #00477A;
+
+  // Ghosting
+  --ghost-line-color: rgba(228, 228, 228, 0.863);
+  --ghost-color: var(--gray);
+  --ghost-animation-duration: 3s;
+
+  // Buttons
+  --button-background-color: var(--primary);
+  --button-border-color: var(--primary);
+  --button-corner-radius: 3px;
+  --button-text-color: var(--white);
+
+  --button-background-color--hover: #00477A;
+  --button-border-color--hover: #00477A;
+  --button-text-color--hover: #00477A;
+
+  --button-background-color--active: #003052;
+  --button-border-color--active: #003052;
+  --button-text-color--active: #003052;
+
+  --button-shadow--focus: 0 0 10px rgba(0, 103, 177, 1);
+
+  --button-text-color--visited: var(--white);
+  --button-text-color--visited--secondary: var(--primary);
+
+  --button-background-color--disabled: #EBEAEB;
+  --button-border-color--disabled: #EBEAEB;
+  --button-text-color--disabled: #515152;
+  --button-background-color--disabled--submit: #D8D9DA;
+  --button-border-color--disabled--submit: #D8D9DA;
+
+  --button-text-color--white: var(--primary);
+
+  --button-text-color--secondary: var(--primary);
+  --button-border-color--secondary--disabled: #ADADAE;
+  --button-text-color--secondary--disabled: #515152;
+
+  --button-text-color--transparent: var(--primary);
+  --button-border-color--hover--transparent: #00477A;
+
+  // Notifications
+  --notification-position: 16px;
+  --notification-zindex: 1010;
+
+  // Inline notifications
+  --inline-background-color: var(--white);
+  --inline-border-color: var(--black);
+  --inline-title-color: var(--black);
+  --inline-message-color: var(--black);
+
+  --inline-border-color--success: var(--success);
+  --inline-text-color--success: var(--success);
+
+  --inline-border-color--warning: var(--warning);
+  --inline-text-color--warning: var(--warning);
+
+  --inline-border-color--error: var(--error);
+  --inline-text-color--error: var(--error);
+
+  --inline-border-color--info: var(--info);
+  --inline-text-color--info: var(--info);
+
+  // Snackbar notifications
+  --snackbar-background-color: var(--black);
+  --snackbar-text-color: var(--white);
+  --snackbar-icon-color: var(--snackbar-text-color);
+  --snackbar-action-color: var(--snackbar-text-color);
+
+  --snackbar-background-color--success: var(--success);
+  --snackbar-background-color--error: var(--error);
+  --snackbar-background-color--info: var(--info);
+
+  // Toast notifications
+  --toast-background-color: rgba(255, 255, 255, .85);
+  --toast-title-color: var(--black);
+  --toast-message-color: var(--black);
+  --toast-close-button-color: var(--gray);
+
+  --toast-icon-color--success: var(--success);
+  --toast-icon-color--warning: var(--warning);
+  --toast-icon-color--error: var(--error);
+  --toast-icon-color--info: var(--info);
+
+  // Tables
+  --table-background-color: var(--white);
+  --table-background-color--even: #F5F5F5;
+  --table-background-color--hover: #F5F5F5;
+
+  --table-label-text-color: var(--gray);
+  --tabel-label-text-color--mobile: var(--gray);
+  --table-label-text-casing: uppercase;
+  --table-label-border-bottom: 1px solid #B7B7B7;
+
+  --table-data-border-bottom: 1px solid #f0f0f0;
+  --table-data-text-color: var(--black);
+
+  --table-card-shadow--mobile: 0 1px 3px rgba(0, 0, 0, .32);
+
+  --table-sort-icon-color: var(--gray);
+
+  // Modals
+  --modal-background-color: var(--white);
+  --modal-box-shadow: 2px 0 24px rgba(0, 0, 0, 0.32);
+  --modal-underlay-color: rgba(0, 0, 0, 0.5);
+  --modal-width: 734px;
+
+  --modal-close-button-color: var(--gray);
+  --modal-icon-color--success: var(--success);
+  --modal-icon-color--warning: var(--warning);
+  --modal-icon-color--error: var(--error);
+
+  --modal-title-color: var(--black);
+  --modal-message-color: var(--black);
+
+  // Inputs
+  --input-min-width: 135px;
+  --input-background-color: var(--white);
+  --input-border: 1px solid var(--gray);
+  --input-corner-radius: 3px;
+  --input-text-color: var(--black);
+
+  --input-background--disabled: #f5f5f5;
+  --input-border-color--disabled: #717073;
+  --input-text-color--disabled: #515152;
+
+  --input-outline-color--focus: var(--primary);
+
+  --input-border-color--error: var(--error);
+  --input-outline-color--error: var(--error);
+
+  --input-placeholder-color: var(--gray);
+
+  --input-label-background-color--focus: var(--white);
+  --input-label-text-color--focus: var(--primary);
+  --input-label-text-color--focus--error: var(--error);
+
+  --input-label-background-color--filled: var(--white);
+  --input-label-text-color--filled: var(--gray);
+  --input-label-text-color--filled--error: var(--error);
+
+  --input-label-text-color: var(--gray);
+  --input-label-text-color--error: var(--error);
+
+  --input-icon-text-color: #515152;
+
+  --input-hint-text-color: var(--gray);
+  --input-hint-text-color--error: var(--error);
+
+  // Checkboxes
+  --checkbox-border-color: var(--gray);
+  --checkbox-label-text-color: var(--black);
+
+  --checkbox-background-color--checked: var(--primary);
+  --checkbox-border-color--checked: var(--primary);
+  --checkbox-check-color--checked: var(--white);
+
+  --checkbox-border-color--hover: var(--primary);
+
+  --checkbox-background-color--disabled: #dfdfe3;
+  --checkbox-check-color--disabled: var(--gray);
+  --checkbox-label-text-color--disabled: var(--gray);
+
+  // Radio buttons
+  --radio-border-color: var(--gray);
+  --radio-label-text-color: var(--black);
+
+  --radio-border-color--checked: var(--primary);
+  --radio-background-color--checked: var(--primary);
+
+  --radio-border-color--checked--disabled: var(--gray);
+  --radio-background-color--checked--disabled: var(--gray);
+
+  --radio-border-color--hover: var(--primary);
+
+  --radio-background-color--disabled: #dfdfe3;
+  --radio-label-text-color--disabled: var(--gray);
+
+  // Avatars
+  --avatar-background-color: var(--white);
+  --avatar-text-color: #003052;
+  --avatar-icon-text-color: var(--gray);
+  --avatar-shadow: 0 1px 3px rgba(0, 0, 0, .32);
+
+  --avatar-corner-radius--square: 3px;
+
+  // Titles
+  --title-text-color: var(--black);
+  --title-font-weight: 600;
+
+  // Text
+  --text-base-color: var(--black);
+}
+

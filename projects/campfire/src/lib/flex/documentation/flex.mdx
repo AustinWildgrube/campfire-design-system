@@ -1,0 +1,83 @@
+```ts
+import { UsiFlexModule } from '@ungerboeck/usi-flex';
+```
+
+# Flex
+The Campfire flex component is an HTML implementation of the flex layout system. It is based on the
+[Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) and
+[Flexbox Layout](https://css-tricks.com/snippets/css/a-guide-to-flexbox-layout/) specifications. This component was added
+to the Campfire Design System to provide a flexible and extensible flex layout system without having to repeat the same
+CSS properties over and over again.
+
+```html
+<usi-flex>
+  <app-child-component></app-child-component>
+</usi-flex>
+```
+
+## Align
+Align sets the [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) CSS property. The default is
+`start` but the other options are: `initial`, `inherit`, `unset`, `start`, `center`, `end`, `baseline`, `stretch`.
+
+```html
+<usi-flex [usiAlign]="center">
+  <app-child-component></app-child-component>
+</usi-flex>
+```
+
+## Direction
+Direction determines the [direction](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction) in which the flex
+items are laid out. The default direction is `row` but the normal flex directions can be used as well: `row-reverse`,
+`column`, `column-reverse`.
+
+```html
+<usi-flex [usiDirection]="column">
+  <app-child-component></app-child-component>
+</usi-flex>
+```
+
+## Grow
+Grow will stretch the flex child to fill the available space; this is applied to all the children in the flex container.
+The width will need to be set on the parent otherwise it is assumed the flex container is 100% width.
+
+```html
+<usi-flex usiGrow>
+  <app-child-component></app-child-component>
+</usi-flex>
+```
+
+## Justify
+Justify sets the [justify-content](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content) CSS property. There
+is no default value for justify. The other options are: `initial`, `inherit`, `unset`, `start`, `center`, `end`,
+`between`, `around`, `evenly`.
+
+```html
+<usi-flex [usiJustify]="center">
+  <app-child-component></app-child-component>
+</usi-flex>
+```
+
+## Wrap
+Wrap determines the [flex-wrap](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap) CSS property. By default the
+children will wrap once they fill the available space. The `usiNoWrap` boolean property will prevent the children from
+wrapping, therefore they will overflow.
+
+```html
+<usi-flex usiNoWrap>
+  <app-child-component></app-child-component>
+</usi-flex>
+```
+
+## Spacing
+Spacing will set the [gap](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) between the flex children. The Campfire
+default is `24px` between children for desktop layouts, `20px` for tablet layouts and `16px` for mobile layouts. The
+spacing can be set to any value if the defaults are not preferred. The spacing will be the same for all the children in
+the flex container.
+
+> It is assumed that the value provided to `usiSpacing` is a `px` value.
+
+```html
+<usi-flex [usiSpacing]="98">
+  <app-child-component></app-child-component>
+</usi-flex>
+```

@@ -1,0 +1,188 @@
+@import '../../campfire';
+
+.usi-input-group {
+  display: inline-block;
+  font-family: var(--font-family);
+  min-width: var(--input-min-width);
+  position: relative;
+
+  .usi-input-group__input {
+    background-color: var(--input-background-color);
+    border: var(--input-border);
+    border-radius: var(--input-corner-radius);
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    color: var(--input-text-color);
+    font-size: .875rem;
+    height: 38px;
+    padding: 9px 12px;
+    width: 100%;
+
+    &:disabled {
+      background-color: var(--input-background--disabled);
+      border-color: var(--input-border-color--disabled);
+      color: var(--input-text-color--disabled);
+      cursor: not-allowed;
+    }
+
+    &:focus {
+      outline-color: var(--input-outline-color--focus);
+    }
+
+    &:not(:focus) {
+      &::placeholder {
+        color: transparent;
+      }
+    }
+
+    &.usi-input-group__input--prefix {
+      padding-left: 36px;
+    }
+
+    &.usi-input-group__input--suffix {
+      padding-right: 36px;
+    }
+
+
+    &.usi-input-group__input--error {
+      border-color: var(--input-border-color--error);
+      outline-color: var(--input-outline-color--error);
+    }
+  }
+}
+
+/* Loading Animations */
+.usi-input-group__input--ghost {
+  animation: ghost-lines var(--ghost-animation-duration) infinite linear;
+  background-color: #EBEAEB;
+  background-image: linear-gradient(90deg, var(--ghost-line-color) 0px, var(--ghost-color) 40px, var(--ghost-line-color) 80px);
+  background-size: 80vw;
+  border-color: #EBEAEB;
+  cursor: not-allowed;
+  height: 100%;
+  overflow: hidden;
+
+  &:hover {
+    background-color: #EBEAEB;
+    border-color: #EBEAEB;
+  }
+
+  &:active {
+    background-color: #EBEAEB;
+    border-color: #EBEAEB;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  @keyframes ghost-lines {
+    0% {
+      background-position: -100px;
+    }
+
+    40% {
+      background-position: 40vw;
+    }
+
+    100% {
+      background-position: 60vw;
+    }
+  }
+}
+
+.usi-input-group__input:focus::placeholder {
+  color: var(--input-placeholder-color);
+}
+
+.usi-input-group__input:focus ~ .usi-input-group__label {
+  background-color: var(--input-label-background-color--focus);
+  color: var(--input-label-text-color--focus);
+  font-size: 0.625rem;
+  height: min-content;
+  left: 12px;
+  padding: 0 2px;
+  top: -7px;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  &.usi-input-group__label--error {
+    color: var(--input-label-text-color--focus--error);
+  }
+}
+
+.usi-input-group__input--filled ~ .usi-input-group__label {
+  background-color: var(--input-label-background-color--filled);
+  color: var(--input-label-text-color--filled);
+  font-size: 0.625rem;
+  height: min-content;
+  left: 12px;
+  padding: 0 2px;
+  top: -7px;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  &.usi-input-group__label--error {
+    color: var(--input-label-text-color--filled--error);
+  }
+}
+
+.usi-input-group__label {
+  color: var(--input-label-text-color);
+  font-size: .875rem;
+  left: 12px;
+  pointer-events: none;
+  position: absolute;
+  top: 9px;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  &.usi-input-group__label--prefix {
+    left: 34px;
+  }
+
+  &.usi-input-group__label--error {
+    color: var(--input-label-text-color--error);
+  }
+}
+
+.usi-input-group__prefix {
+  color: var(--input-icon-text-color);
+  font-size: 1.125rem;
+  left: 12px;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.usi-input-group__suffix {
+  color: var(--input-icon-text-color);
+  font-size: 1.125rem;
+  right: 12px;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.usi-input-group__suffix--password {
+  cursor: pointer;
+}
+
+.usi-input-group__hint {
+  color: var(--input-icon-text-color);
+  display: block;
+  font-size: 0.625rem;
+  left: 12px;
+  margin-top: 4px;
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - 8px);
+}
+
+.usi-input-group__hint--error {
+  color: var(--input-hint-text-color--error);
+}

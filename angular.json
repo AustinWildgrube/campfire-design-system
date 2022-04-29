@@ -1,0 +1,146 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "campfire": {
+      "projectType": "library",
+      "root": "projects/campfire",
+      "sourceRoot": "projects/campfire/src",
+      "prefix": "usi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/campfire/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/campfire/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/campfire/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/campfire/src/test.ts",
+            "tsConfig": "projects/campfire/tsconfig.spec.json",
+            "karmaConfig": "projects/campfire/karma.conf.js"
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "tsConfig": "projects/campfire/tsconfig.lib.json",
+            "styles": ["projects/campfire/src/lib/campfire.scss"]
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "tsConfig": "projects/campfire/tsconfig.lib.json",
+            "styles": ["projects/campfire/src/lib/campfire.scss"]
+          }
+        }
+      }
+    },
+    "campfire-tester": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/campfire-tester",
+      "sourceRoot": "projects/campfire-tester/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/campfire-tester",
+            "index": "projects/campfire-tester/src/index.html",
+            "main": "projects/campfire-tester/src/main.ts",
+            "polyfills": "projects/campfire-tester/src/polyfills.ts",
+            "tsConfig": "projects/campfire-tester/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["projects/campfire-tester/src/favicon.ico", "projects/campfire-tester/src/assets"],
+            "styles": ["projects/campfire-tester/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5mb",
+                  "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "10kb",
+                  "maximumError": "12kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/campfire-tester/src/environments/environment.ts",
+                  "with": "projects/campfire-tester/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "campfire-tester:build:production"
+            },
+            "development": {
+              "browserTarget": "campfire-tester:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "campfire-tester:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/campfire-tester/src/test.ts",
+            "polyfills": "projects/campfire-tester/src/polyfills.ts",
+            "tsConfig": "projects/campfire-tester/tsconfig.spec.json",
+            "karmaConfig": "projects/campfire-tester/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": ["projects/campfire-tester/src/favicon.ico", "projects/campfire-tester/src/assets"],
+            "styles": ["projects/campfire-tester/src/styles.scss"],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "campfire-tester"
+}

@@ -1,0 +1,2640 @@
+{
+  "pipes": [],
+  "interfaces": [],
+  "injectables": [],
+  "guards": [],
+  "interceptors": [],
+  "classes": [],
+  "directives": [],
+  "components": [],
+  "modules": [],
+  "miscellaneous": {
+    "variables": [
+      {
+        "name": "Aligned",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/text/Text.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Block",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Clamped",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/text/Text.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Colored",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/text/Text.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Column",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/flex/Flex.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/inline/Inline.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/snackbar/Snackbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/toast/Toast.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "DefaultValue",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/input/Input.stories.tsx",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Disabled",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Disabled",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/checkbox/Checkbox.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Disabled",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/radio-button/RadioButton.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Disabled",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/radio-group/RadioGroup.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Display",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/title/Title.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Error",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/inline/Inline.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Error",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/snackbar/Snackbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Error",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/toast/Toast.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Error",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/validation-modal/Validation.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Errors",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/input/Input.stories.tsx",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "ErrorTemplate.bind({})"
+      },
+      {
+        "name": "ErrorTemplate",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/input/Input.stories.tsx",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiInputComponent>",
+        "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [type]=\"type\"\n      [placeholder]=\"placeholder\"\n      [usiError]=\"error\"\n      [disabled]=\"disabled\"\n      [required]=\"required\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [value]=\"value\"\n    ></usi-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
+      },
+      {
+        "name": "Ghost",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Ghost",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/input/Input.stories.tsx",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Ghost",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/radio-button/RadioButton.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Ghost",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/radio-group/RadioGroup.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Grow",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/flex/Flex.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Headless",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/table/Table.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Hints",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/input/Input.stories.tsx",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Icon",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/avatar/Avatar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "IconWithoutText",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "IconWithoutTextTemplate.bind({})"
+      },
+      {
+        "name": "IconWithoutTextTemplate",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiButtonComponent>",
+        "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button usi-button>\n    <fa-icon [icon]=\"['fal', 'coffee']\" aria-label=\"Icon button\" role=\"button\"></fa-icon>\n  </button>`,\n})"
+      },
+      {
+        "name": "IconWithText",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "IconWithTextTemplate.bind({})"
+      },
+      {
+        "name": "IconWithTextTemplate",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiButtonComponent>",
+        "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button usi-button>\n    <fa-icon [icon]=\"['fal', 'coffee']\"></fa-icon> Icon Button\n  </button>`,\n})"
+      },
+      {
+        "name": "Info",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/inline/Inline.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Info",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/snackbar/Snackbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Info",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/toast/Toast.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Justify",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/flex/Flex.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Loading",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Normal",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/avatar/Avatar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Normal",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Normal",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/checkbox/Checkbox.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Normal",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/dialog-modal/Dialog.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Normal",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/input/Input.stories.tsx",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Normal",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/radio-button/RadioButton.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Normal",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/radio-group/RadioGroup.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Normal",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/table/Table.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Normal",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/text/Text.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Normal",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/title/Title.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Password",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/input/Input.stories.tsx",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Prefix",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/input/Input.stories.tsx",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Required",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/checkbox/Checkbox.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Secondary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Sized",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/avatar/Avatar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Sized",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Sized",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/text/Text.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Spacing",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/flex/Flex.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Square",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/avatar/Avatar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Success",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/inline/Inline.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Success",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/snackbar/Snackbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Success",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/toast/Toast.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Success",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/validation-modal/Validation.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Suffix",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/input/Input.stories.tsx",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/avatar/Avatar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiAvatarComponent>",
+        "defaultValue": "(args: UsiAvatarComponent) => ({\n  props: args,\n  template: `\n  <usi-avatar\n    [usiGhost]=\"usiGhost\"\n    [usiSrc]=\"usiSrc\"\n    [usiAlt]=\"usiAlt\"\n    [usiText]=\"usiText\"\n    [usiIcon]=\"usiIcon\"\n    [usiShape]=\"usiShape\"\n    [usiSize]=\"usiSize\"\n  ></usi-avatar>`,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiButtonComponent>",
+        "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiGhost]=\"usiGhost\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/checkbox/Checkbox.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiCheckboxComponent>",
+        "defaultValue": "(args: UsiCheckboxComponent) => ({\n  props: args,\n  template: `\n    <label\n      [checked]=\"checked\"\n      [required]=\"required\"\n      [disabled]=\"disabled\"\n      usi-checkbox\n    >\n      Checkbox Label\n    </label>`,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/dialog-modal/Dialog.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiDialogModalComponent>",
+        "defaultValue": "(args: UsiDialogModalComponent) => ({\n  props: args,\n  template: `\n    <usi-dialog-modal [dialog]=\"dialog\"></usi-dialog-modal>\n  `\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/flex/Flex.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiFlexComponent>",
+        "defaultValue": "(args: UsiFlexComponent) => ({\n  props: args,\n  template: `\n    <div style=\"background-color: #f3f3f3; width: 50vw; height: 50vh;\">\n      <usi-flex\n        [usiAlign]=\"usiAlign\"\n        [usiDirection]=\"usiDirection\"\n        [usiGrow]=\"usiGrow\"\n        [usiJustify]=\"usiJustify\"\n        [usiNoWrap]=\"usiNoWrap\"\n        [usiSpacing]=\"usiSpacing\"\n      >\n        <div style=\"height: 25px; width: 100px; background-color: #25CED1;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #FF8A5B;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #EA526F;\"></div>\n      </usi-flex>\n    </div>\n  `,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/inline/Inline.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiInlineComponent>",
+        "defaultValue": "(args: UsiInlineComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/input/Input.stories.tsx",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiInputComponent>",
+        "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [type]=\"type\"\n      [placeholder]=\"placeholder\"\n      [usiError]=\"usiError\"\n      [disabled]=\"disabled\"\n      [required]=\"required\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [value]=\"value\"\n    ></usi-input>\n  `,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/radio-button/RadioButton.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiRadioButtonComponent>",
+        "defaultValue": "(args: UsiRadioButtonComponent) => ({\n  props: args,\n  template: `<label usiValue=\"one\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\" usi-radio>One</label>`,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/radio-group/RadioGroup.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiRadioGroupComponent>",
+        "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\" [usiGhost]=\"usiGhost\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/snackbar/Snackbar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiSnackbarComponent>",
+        "defaultValue": "(args: UsiSnackbarComponent) => ({\n  props: args,\n  template: `\n    <usi-snackbar [snackbar]=\"snackbar\"></usi-snackbar>\n  `\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/table/Table.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiTableComponent>",
+        "defaultValue": "(args: UsiTableComponent) => ({\n  props: args,\n  template: `\n    <style>\n      .file-icon {\n        color: #D93E2D;\n        font-size: 30px;\n      }\n\n      .file-icon--word {\n        color: #0067B1;\n      }\n    </style>\n\n    <usi-table #EPDocuments [usiData]=\"usiData\" usiPagination [usiHeadless]=\"usiHeadless\">\n      <thead>\n      <tr>\n        <th usiAlign=\"center\">File Type</th>\n        <th usiSortKey=\"name\">File Name</th>\n        <th>Category</th>\n        <th usiSortKey=\"lastUpdated\">Last Updated</th>\n      </tr>\n      </thead>\n\n      <tbody>\n\n      <tr *ngFor=\"let data of EPDocuments.usiData\">\n        <td usiMobileLabel=\"fileType\" usiAlign=\"center\">\n          <fa-icon *ngIf=\"data.type === 'word'\" class=\"file-icon file-icon--word\" [icon]=\"['fal', 'file-word']\"></fa-icon>\n          <fa-icon *ngIf=\"data.type === 'pdf'\" class=\"file-icon\" [icon]=\"['fal', 'file-pdf']\"></fa-icon>\n        </td>\n\n        <td usiMobileLabel=\"File Name\">\n          {{ data.name }}\n        </td>\n\n        <td usiMobileLabel=\"Category\">\n          {{ data.category }}\n        </td>\n\n        <td usiMobileLabel=\"Last Updated\">\n          {{ data.lastUpdated }}\n        </td>\n      </tr>\n      </tbody>\n    </usi-table>\n  `,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/text/Text.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiTextComponent>",
+        "defaultValue": "(args: UsiTextComponent) => ({\n  props: args,\n  template: `\n    <p\n      [usiAlign]=\"usiAlign\"\n      [usiColor]=\"usiColor\"\n      [usiInherit]=\"usiInherit\"\n      [usiInline]=\"usiInline\"\n      [usiLineClamp]=\"usiLineClamp\"\n      [usiSize]=\"usiSize\"\n      [usiTransform]=\"usiTransform\"\n      [usiUnderline]=\"usiUnderline\"\n      [usiWeight]=\"usiWeight\"\n      usi-text\n    >\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore\n      magna aliqua. Tellus pellentesque eu tincidunt tortor. Velit laoreet id donec ultrices. Id diam maecenas\n      ultricies mi eget. Diam sollicitudin tempor id eu nisl nunc mi. Sed pulvinar proin gravida hendrerit lectus.\n      Etiam sit amet nisl purus in. Erat nam at lectus urna. Velit sed ullamcorper morbi tincidunt ornare massa eget\n      egestas. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Tristique risus nec feugiat in fermentum\n      posuere urna. Non pulvinar neque laoreet suspendisse interdum consectetur. Tellus in metus vulputate eu\n      scelerisque felis. Risus quis varius quam quisque id diam vel quam elementum. Felis eget velit aliquet sagittis\n      id consectetur.\n\n      Nulla facilisi morbi tempus iaculis. Eu feugiat pretium nibh ipsum consequat. Iaculis at erat pellentesque\n      adipiscing commodo. Pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Donec ac odio\n      tempor orci dapibus ultrices in. Amet est placerat in egestas erat imperdiet sed. Molestie ac feugiat sed lectus.\n      Turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Nec ullamcorper sit amet risus.\n      Vulputate eu scelerisque felis imperdiet proin fermentum. Sit amet porttitor eget dolor morbi non arcu. Est lorem\n      ipsum dolor sit amet consectetur adipiscing elit pellentesque. Tincidunt ornare massa eget egestas purus. Urna\n      neque viverra justo nec ultrices dui. At erat pellentesque adipiscing commodo elit. A pellentesque sit amet\n      porttitor eget dolor morbi non. Ligula ullamcorper malesuada proin libero nunc consequat.\n    </p>\n  `,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/toast/Toast.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiToastComponent>",
+        "defaultValue": "(args: UsiToastComponent) => ({\n  props: args,\n  template: `\n    <usi-toast [toast]=\"toast\"></usi-toast>\n  `\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/title/Title.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiTitleComponent>",
+        "defaultValue": "(args: UsiTitleComponent) => ({\n  props: args,\n  template: `\n    <h1 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h1>\n\n    <h2 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h2>\n\n    <h3 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h3>\n\n    <h4 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h4>\n\n    <h5 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h5>\n\n    <h6 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h6>\n  `,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/validation-modal/Validation.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<UsiValidationModalComponent>",
+        "defaultValue": "(args: UsiValidationModalComponent) => ({\n  props: args,\n  template: `\n    <usi-validation-modal [validation]=\"validation\"></usi-validation-modal>\n  `\n})"
+      },
+      {
+        "name": "Text",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/avatar/Avatar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Transformed",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/text/Text.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Transparent",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/button/Button.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Types",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/input/Input.stories.tsx",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Underlined",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/text/Text.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Vertical",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/radio-group/RadioGroup.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Warning",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/inline/Inline.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Warning",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/toast/Toast.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Warning",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/validation-modal/Validation.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Weighted",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "stories/text/Text.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      }
+    ],
+    "functions": [],
+    "typealiases": [],
+    "enumerations": [],
+    "groupedVariables": {
+      "stories/text/Text.stories.ts": [
+        {
+          "name": "Aligned",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/text/Text.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Clamped",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/text/Text.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Colored",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/text/Text.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Normal",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/text/Text.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Sized",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/text/Text.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/text/Text.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiTextComponent>",
+          "defaultValue": "(args: UsiTextComponent) => ({\n  props: args,\n  template: `\n    <p\n      [usiAlign]=\"usiAlign\"\n      [usiColor]=\"usiColor\"\n      [usiInherit]=\"usiInherit\"\n      [usiInline]=\"usiInline\"\n      [usiLineClamp]=\"usiLineClamp\"\n      [usiSize]=\"usiSize\"\n      [usiTransform]=\"usiTransform\"\n      [usiUnderline]=\"usiUnderline\"\n      [usiWeight]=\"usiWeight\"\n      usi-text\n    >\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore\n      magna aliqua. Tellus pellentesque eu tincidunt tortor. Velit laoreet id donec ultrices. Id diam maecenas\n      ultricies mi eget. Diam sollicitudin tempor id eu nisl nunc mi. Sed pulvinar proin gravida hendrerit lectus.\n      Etiam sit amet nisl purus in. Erat nam at lectus urna. Velit sed ullamcorper morbi tincidunt ornare massa eget\n      egestas. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Tristique risus nec feugiat in fermentum\n      posuere urna. Non pulvinar neque laoreet suspendisse interdum consectetur. Tellus in metus vulputate eu\n      scelerisque felis. Risus quis varius quam quisque id diam vel quam elementum. Felis eget velit aliquet sagittis\n      id consectetur.\n\n      Nulla facilisi morbi tempus iaculis. Eu feugiat pretium nibh ipsum consequat. Iaculis at erat pellentesque\n      adipiscing commodo. Pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Donec ac odio\n      tempor orci dapibus ultrices in. Amet est placerat in egestas erat imperdiet sed. Molestie ac feugiat sed lectus.\n      Turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Nec ullamcorper sit amet risus.\n      Vulputate eu scelerisque felis imperdiet proin fermentum. Sit amet porttitor eget dolor morbi non arcu. Est lorem\n      ipsum dolor sit amet consectetur adipiscing elit pellentesque. Tincidunt ornare massa eget egestas purus. Urna\n      neque viverra justo nec ultrices dui. At erat pellentesque adipiscing commodo elit. A pellentesque sit amet\n      porttitor eget dolor morbi non. Ligula ullamcorper malesuada proin libero nunc consequat.\n    </p>\n  `,\n})"
+        },
+        {
+          "name": "Transformed",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/text/Text.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Underlined",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/text/Text.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Weighted",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/text/Text.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        }
+      ],
+      "stories/button/Button.stories.ts": [
+        {
+          "name": "Block",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Disabled",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Ghost",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "IconWithoutText",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "IconWithoutTextTemplate.bind({})"
+        },
+        {
+          "name": "IconWithoutTextTemplate",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiButtonComponent>",
+          "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button usi-button>\n    <fa-icon [icon]=\"['fal', 'coffee']\" aria-label=\"Icon button\" role=\"button\"></fa-icon>\n  </button>`,\n})"
+        },
+        {
+          "name": "IconWithText",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "IconWithTextTemplate.bind({})"
+        },
+        {
+          "name": "IconWithTextTemplate",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiButtonComponent>",
+          "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button usi-button>\n    <fa-icon [icon]=\"['fal', 'coffee']\"></fa-icon> Icon Button\n  </button>`,\n})"
+        },
+        {
+          "name": "Loading",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Normal",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Secondary",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Sized",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiButtonComponent>",
+          "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiGhost]=\"usiGhost\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
+        },
+        {
+          "name": "Transparent",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/button/Button.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        }
+      ],
+      "stories/flex/Flex.stories.ts": [
+        {
+          "name": "Column",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/flex/Flex.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Grow",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/flex/Flex.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Justify",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/flex/Flex.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Spacing",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/flex/Flex.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/flex/Flex.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiFlexComponent>",
+          "defaultValue": "(args: UsiFlexComponent) => ({\n  props: args,\n  template: `\n    <div style=\"background-color: #f3f3f3; width: 50vw; height: 50vh;\">\n      <usi-flex\n        [usiAlign]=\"usiAlign\"\n        [usiDirection]=\"usiDirection\"\n        [usiGrow]=\"usiGrow\"\n        [usiJustify]=\"usiJustify\"\n        [usiNoWrap]=\"usiNoWrap\"\n        [usiSpacing]=\"usiSpacing\"\n      >\n        <div style=\"height: 25px; width: 100px; background-color: #25CED1;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #FF8A5B;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #EA526F;\"></div>\n      </usi-flex>\n    </div>\n  `,\n})"
+        }
+      ],
+      "stories/inline/Inline.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/inline/Inline.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Error",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/inline/Inline.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Info",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/inline/Inline.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Success",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/inline/Inline.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/inline/Inline.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiInlineComponent>",
+          "defaultValue": "(args: UsiInlineComponent) => ({\n  props: args,\n})"
+        },
+        {
+          "name": "Warning",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/inline/Inline.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        }
+      ],
+      "stories/snackbar/Snackbar.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/snackbar/Snackbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Error",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/snackbar/Snackbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Info",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/snackbar/Snackbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Success",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/snackbar/Snackbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/snackbar/Snackbar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiSnackbarComponent>",
+          "defaultValue": "(args: UsiSnackbarComponent) => ({\n  props: args,\n  template: `\n    <usi-snackbar [snackbar]=\"snackbar\"></usi-snackbar>\n  `\n})"
+        }
+      ],
+      "stories/toast/Toast.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/toast/Toast.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Error",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/toast/Toast.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Info",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/toast/Toast.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Success",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/toast/Toast.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/toast/Toast.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiToastComponent>",
+          "defaultValue": "(args: UsiToastComponent) => ({\n  props: args,\n  template: `\n    <usi-toast [toast]=\"toast\"></usi-toast>\n  `\n})"
+        },
+        {
+          "name": "Warning",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/toast/Toast.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        }
+      ],
+      "stories/input/Input.stories.tsx": [
+        {
+          "name": "DefaultValue",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/input/Input.stories.tsx",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Errors",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/input/Input.stories.tsx",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "ErrorTemplate.bind({})"
+        },
+        {
+          "name": "ErrorTemplate",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/input/Input.stories.tsx",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiInputComponent>",
+          "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [type]=\"type\"\n      [placeholder]=\"placeholder\"\n      [usiError]=\"error\"\n      [disabled]=\"disabled\"\n      [required]=\"required\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [value]=\"value\"\n    ></usi-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
+        },
+        {
+          "name": "Ghost",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/input/Input.stories.tsx",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Hints",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/input/Input.stories.tsx",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Normal",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/input/Input.stories.tsx",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Password",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/input/Input.stories.tsx",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Prefix",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/input/Input.stories.tsx",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Suffix",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/input/Input.stories.tsx",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/input/Input.stories.tsx",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiInputComponent>",
+          "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [type]=\"type\"\n      [placeholder]=\"placeholder\"\n      [usiError]=\"usiError\"\n      [disabled]=\"disabled\"\n      [required]=\"required\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [value]=\"value\"\n    ></usi-input>\n  `,\n})"
+        },
+        {
+          "name": "Types",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/input/Input.stories.tsx",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        }
+      ],
+      "stories/checkbox/Checkbox.stories.ts": [
+        {
+          "name": "Disabled",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/checkbox/Checkbox.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Normal",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/checkbox/Checkbox.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Required",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/checkbox/Checkbox.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/checkbox/Checkbox.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiCheckboxComponent>",
+          "defaultValue": "(args: UsiCheckboxComponent) => ({\n  props: args,\n  template: `\n    <label\n      [checked]=\"checked\"\n      [required]=\"required\"\n      [disabled]=\"disabled\"\n      usi-checkbox\n    >\n      Checkbox Label\n    </label>`,\n})"
+        }
+      ],
+      "stories/radio-button/RadioButton.stories.ts": [
+        {
+          "name": "Disabled",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/radio-button/RadioButton.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Ghost",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/radio-button/RadioButton.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Normal",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/radio-button/RadioButton.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/radio-button/RadioButton.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiRadioButtonComponent>",
+          "defaultValue": "(args: UsiRadioButtonComponent) => ({\n  props: args,\n  template: `<label usiValue=\"one\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\" usi-radio>One</label>`,\n})"
+        }
+      ],
+      "stories/radio-group/RadioGroup.stories.ts": [
+        {
+          "name": "Disabled",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/radio-group/RadioGroup.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Ghost",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/radio-group/RadioGroup.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Normal",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/radio-group/RadioGroup.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/radio-group/RadioGroup.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiRadioGroupComponent>",
+          "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\" [usiGhost]=\"usiGhost\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
+        },
+        {
+          "name": "Vertical",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/radio-group/RadioGroup.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        }
+      ],
+      "stories/title/Title.stories.ts": [
+        {
+          "name": "Display",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/title/Title.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Normal",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/title/Title.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/title/Title.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiTitleComponent>",
+          "defaultValue": "(args: UsiTitleComponent) => ({\n  props: args,\n  template: `\n    <h1 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h1>\n\n    <h2 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h2>\n\n    <h3 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h3>\n\n    <h4 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h4>\n\n    <h5 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h5>\n\n    <h6 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h6>\n  `,\n})"
+        }
+      ],
+      "stories/validation-modal/Validation.stories.ts": [
+        {
+          "name": "Error",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/validation-modal/Validation.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Success",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/validation-modal/Validation.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/validation-modal/Validation.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiValidationModalComponent>",
+          "defaultValue": "(args: UsiValidationModalComponent) => ({\n  props: args,\n  template: `\n    <usi-validation-modal [validation]=\"validation\"></usi-validation-modal>\n  `\n})"
+        },
+        {
+          "name": "Warning",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/validation-modal/Validation.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        }
+      ],
+      "stories/table/Table.stories.ts": [
+        {
+          "name": "Headless",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/table/Table.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Normal",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/table/Table.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/table/Table.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiTableComponent>",
+          "defaultValue": "(args: UsiTableComponent) => ({\n  props: args,\n  template: `\n    <style>\n      .file-icon {\n        color: #D93E2D;\n        font-size: 30px;\n      }\n\n      .file-icon--word {\n        color: #0067B1;\n      }\n    </style>\n\n    <usi-table #EPDocuments [usiData]=\"usiData\" usiPagination [usiHeadless]=\"usiHeadless\">\n      <thead>\n      <tr>\n        <th usiAlign=\"center\">File Type</th>\n        <th usiSortKey=\"name\">File Name</th>\n        <th>Category</th>\n        <th usiSortKey=\"lastUpdated\">Last Updated</th>\n      </tr>\n      </thead>\n\n      <tbody>\n\n      <tr *ngFor=\"let data of EPDocuments.usiData\">\n        <td usiMobileLabel=\"fileType\" usiAlign=\"center\">\n          <fa-icon *ngIf=\"data.type === 'word'\" class=\"file-icon file-icon--word\" [icon]=\"['fal', 'file-word']\"></fa-icon>\n          <fa-icon *ngIf=\"data.type === 'pdf'\" class=\"file-icon\" [icon]=\"['fal', 'file-pdf']\"></fa-icon>\n        </td>\n\n        <td usiMobileLabel=\"File Name\">\n          {{ data.name }}\n        </td>\n\n        <td usiMobileLabel=\"Category\">\n          {{ data.category }}\n        </td>\n\n        <td usiMobileLabel=\"Last Updated\">\n          {{ data.lastUpdated }}\n        </td>\n      </tr>\n      </tbody>\n    </usi-table>\n  `,\n})"
+        }
+      ],
+      "stories/avatar/Avatar.stories.ts": [
+        {
+          "name": "Icon",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/avatar/Avatar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Normal",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/avatar/Avatar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Sized",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/avatar/Avatar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Square",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/avatar/Avatar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/avatar/Avatar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiAvatarComponent>",
+          "defaultValue": "(args: UsiAvatarComponent) => ({\n  props: args,\n  template: `\n  <usi-avatar\n    [usiGhost]=\"usiGhost\"\n    [usiSrc]=\"usiSrc\"\n    [usiAlt]=\"usiAlt\"\n    [usiText]=\"usiText\"\n    [usiIcon]=\"usiIcon\"\n    [usiShape]=\"usiShape\"\n    [usiSize]=\"usiSize\"\n  ></usi-avatar>`,\n})"
+        },
+        {
+          "name": "Text",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/avatar/Avatar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        }
+      ],
+      "stories/dialog-modal/Dialog.stories.ts": [
+        {
+          "name": "Normal",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/dialog-modal/Dialog.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "stories/dialog-modal/Dialog.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<UsiDialogModalComponent>",
+          "defaultValue": "(args: UsiDialogModalComponent) => ({\n  props: args,\n  template: `\n    <usi-dialog-modal [dialog]=\"dialog\"></usi-dialog-modal>\n  `\n})"
+        }
+      ]
+    },
+    "groupedFunctions": {},
+    "groupedEnumerations": {},
+    "groupedTypeAliases": {}
+  },
+  "routes": [],
+  "coverage": {
+    "count": 0,
+    "status": "low",
+    "files": [
+      {
+        "filePath": "stories/avatar/Avatar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Icon",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/avatar/Avatar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Normal",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/avatar/Avatar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Sized",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/avatar/Avatar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Square",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/avatar/Avatar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/avatar/Avatar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Text",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Block",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Disabled",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Ghost",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "IconWithoutText",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "IconWithoutTextTemplate",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "IconWithText",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "IconWithTextTemplate",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Loading",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Normal",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Secondary",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Sized",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/button/Button.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Transparent",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/checkbox/Checkbox.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Disabled",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/checkbox/Checkbox.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Normal",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/checkbox/Checkbox.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Required",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/checkbox/Checkbox.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/dialog-modal/Dialog.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Normal",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/dialog-modal/Dialog.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/flex/Flex.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Column",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/flex/Flex.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Grow",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/flex/Flex.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Justify",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/flex/Flex.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Spacing",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/flex/Flex.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/inline/Inline.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/inline/Inline.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Error",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/inline/Inline.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Info",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/inline/Inline.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Success",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/inline/Inline.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/inline/Inline.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Warning",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/input/Input.stories.tsx",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "DefaultValue",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/input/Input.stories.tsx",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Errors",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/input/Input.stories.tsx",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "ErrorTemplate",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/input/Input.stories.tsx",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Ghost",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/input/Input.stories.tsx",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Hints",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/input/Input.stories.tsx",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Normal",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/input/Input.stories.tsx",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Password",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/input/Input.stories.tsx",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Prefix",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/input/Input.stories.tsx",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Suffix",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/input/Input.stories.tsx",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/input/Input.stories.tsx",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Types",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/radio-button/RadioButton.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Disabled",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/radio-button/RadioButton.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Ghost",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/radio-button/RadioButton.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Normal",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/radio-button/RadioButton.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/radio-group/RadioGroup.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Disabled",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/radio-group/RadioGroup.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Ghost",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/radio-group/RadioGroup.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Normal",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/radio-group/RadioGroup.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/radio-group/RadioGroup.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Vertical",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/snackbar/Snackbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/snackbar/Snackbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Error",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/snackbar/Snackbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Info",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/snackbar/Snackbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Success",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/snackbar/Snackbar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/table/Table.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Headless",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/table/Table.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Normal",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/table/Table.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/text/Text.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Aligned",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/text/Text.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Clamped",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/text/Text.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Colored",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/text/Text.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Normal",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/text/Text.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Sized",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/text/Text.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/text/Text.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Transformed",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/text/Text.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Underlined",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/text/Text.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Weighted",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/title/Title.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Display",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/title/Title.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Normal",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/title/Title.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/toast/Toast.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/toast/Toast.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Error",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/toast/Toast.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Info",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/toast/Toast.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Success",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/toast/Toast.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/toast/Toast.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Warning",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/validation-modal/Validation.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Error",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/validation-modal/Validation.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Success",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/validation-modal/Validation.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "stories/validation-modal/Validation.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Warning",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      }
+    ]
+  }
+}

@@ -1,0 +1,224 @@
+```ts
+import { UsiSnackbarModule } from 'campfire/notifications';
+```
+
+# Snackbar Notifications
+Snackbars inform users of a process that an app has performed or will perform. They appear temporarily, towards the
+bottom of the screen. They shouldn't interrupt the user experience, and usually don't require user input to disappear.
+Snackbar notification have a default show time of 4 seconds which proves enough time to comprehend the message and act
+on it.
+
+USI snackbar notifications are called via a service. The service will first need to be injected into the component on
+which the snackbar will be used. It can then be called using various methods.
+
+```ts
+import { UsiSnackbarConfig, UsiSnackbarService } from 'campfire/notifications';
+
+constructor(private usiSnackbarService: UsiSnackbarService) { }
+
+const globalSnackbarConfig: UsiSnackbarConfig = {
+  usiTitle: 'Title',
+  usiLimit: 10,
+  usiTimeout: 10000,
+  usiPosition: 'bottom-center',
+  usiButtonText: 'Custom Action',
+  usiOnAction: () => {
+    console.log('snackbar action');
+  },
+  usiOnAdd: () => {
+    console.log('added snackbar');
+  },
+  usiOnRemove: () => {
+    console.log('removed snackbar');
+  },
+};
+
+this.usiSnackbarService.default(globalSnackbarConfig);
+
+this.usiSnackbarService.success('Title', { })
+```
+
+## Snackbar Notification Types
+There are four different snackbar notification types: `success`, `error`, `info`, `default`. Snackbar notifications
+should typically only be shown one at a time as to not obstruct view of the content. Order snackbar notifications by the
+urgency in which the user needs to pay attention to: error, warning, info, then success. In the case there are multiple
+of each type, all of them are shown before another type is reached.
+
+### Success
+Reserved to provide to a static persistent success message.
+
+```ts
+this.usiSnackbarService.success('Title');
+```
+
+### Error
+Reserved for errors, malfunctions, as well as critical issues like license expiration.
+
+```ts
+this.usiSnackbarService.error('Title');
+```
+
+### Info
+Reserved for non-critical information that can be used to assist the user.
+
+```ts
+this.usiSnackbarService.info('Title');
+```
+
+### Default
+Reserved for custom inline notifications.
+
+> While using the default inline notification it is best to use the icon property to help convey the custom message.
+
+```ts
+this.usiSnackbarService.default('Title', { usiIcon: 'alien' });
+```
+
+## Snackbar Notification Custom Methods
+Snackbars have 5 methods which can be used in various ways.
+
+### usiOnAdd()
+The on add method is called right when the snackbar is added to the dom. This could be useful for when preforming an
+action in sync with the addition of a notification.
+
+```ts
+const globalSnackbarConfig: UsiSnackbarConfig = {
+  usiTitle: 'Title',
+  usiOnAdd: () => {
+    console.log('added snackbar');
+  },
+}
+
+this.usiSnackbarService.success(globalSnackbarConfig);
+```
+
+```ts
+function addSnackbarCallback(): void {
+  console.log('added snackbar');
+}
+
+const GlobalSnackbarConfig: UsiSnackbarConfig = {
+  usiTitle: 'Title',
+  usiOnAdd: addSnackbarCallback(),
+};
+
+this.usiSnackbarService.success(globalSnackbarConfig);
+```
+
+### usiOnRemove()
+The on remove method is called right when the snackbar is removed from the dom. This could be useful for when preforming
+an action in sync with the removal of a notification.
+
+```ts
+const globalSnackbarConfig: UsiSnackbarConfig = {
+  usiTitle: 'Title',
+  usiOnRemove: () => {
+    console.log('removed snackbar');
+  },
+}
+
+this.usiSnackbarService.success(globalSnackbarConfig);
+```
+
+```ts
+function removeSnackbarCallback(): void {
+  console.log('removed snackbar');
+}
+
+const GlobalSnackbarConfig: UsiSnackbarConfig = {
+  usiTitle: 'Title',
+  usiOnRemove: removeSnackbarCallback(),
+};
+
+this.usiSnackbarService.success(globalSnackbarConfig);
+```
+
+### usiOnAction()
+A custom action can be preformed upon the pressing of the button.
+
+```ts
+const globalSnackbarConfig: UsiSnackbarConfig = {
+  usiTitle: 'Title',
+  usiOnAction: () => {
+    console.log('action clicked');
+  },
+}
+
+this.usiSnackbarService.success(globalSnackbarConfig);
+```
+
+```ts
+function actionSnackbarCallback(): void {
+  console.log('action clicked');
+}
+
+const GlobalSnackbarConfig: UsiSnackbarConfig = {
+  usiTitle: 'Title',
+  usiOnRemove: actionSnackbarCallback(),
+};
+
+this.usiSnackbarService.success(globalSnackbarConfig);
+```
+
+### clear(id: number)
+Snackbar notifications return an id once it has been added to the DOM and after the usiOnAdd method has been called.
+This allows the user to call the clear method if they would like to close the snackbar message according to their
+process.
+
+```ts
+const snackbarId = this.usiSnackbarService.success('Title');
+this.usiSnackbarService.clear(snackbarId);
+```
+
+### clearAll()
+A clear all method is provided that will close all snackbar notifications that are currently displayed in the DOM.
+
+```ts
+this.usiSnackbarService.clearAll();
+```
+
+## Snackbar Notification Positioning
+By default, snackbar notifications are displayed in the bottom center of the screen. There are 7 different positions a
+snackbar can be shown at: `top-left`, `top-center`, `top-right`, `center-center`, `bottom-left`, `bottom-center`,
+`bottom-right`.
+
+```ts
+const globalSnackbarConfig: UsiSnackbarConfig = {
+  usiTitle: 'Title',
+  usiPosition: 'top-left',
+};
+
+this.usiSnackbarService.success(globalSnackbarConfig);
+```
+
+## Custom Snackbar Notification Icons
+Icons can be used inside snackbar notifications to decorate the call-to-action with a visual indicator. Icons should be
+used alongside text that clearly indicates what the interaction is expected to do.
+
+> FontAwesome is currently the ***only*** icon library Breakfast supports.
+
+```ts
+this.usiSnackbarService.default('Title', { usiIcon: 'alien' });
+```
+
+## Snackbar Notification Customization
+USI snackbar notifications were made to be easily customizable. Styling an inline notification is as simple as just
+overriding our CSS variables in the root selector. The list of overridable variables are as follows:
+
+```css
+:root {
+  // Notifications
+  --notification-position: 16px;
+  --notification-zindex: 1010;
+
+  // Snackbar notifications
+  --snackbar-background-color: var(--black);
+  --snackbar-text-color: var(--white);
+  --snackbar-icon-color: var(--snackbar-text-color);
+  --snackbar-action-color: var(--snackbar-text-color);
+
+  --snackbar-background-color--success: var(--success);
+  --snackbar-background-color--error: var(--error);
+  --snackbar-background-color--info: var(--info);
+}
+```

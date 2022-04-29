@@ -1,0 +1,222 @@
+@import '../../campfire';
+
+::ng-deep.usi-table {
+  border-collapse: separate;
+  border-radius: 2px 2px 0 0;
+  border-spacing: 0;
+  display: table;
+  font-family: var(--font-family);
+  position: relative;
+  table-layout: auto;
+  text-align: left;
+  width: 100%;
+
+  @media only screen and (max-width: 767px) {
+    display: block;
+  }
+}
+
+:host.usi-table--ghost {
+  animation: ghost-lines var(--ghost-animation-duration) infinite linear;
+  background-color: #EBEAEB;
+  background-image: linear-gradient(90deg, var(--ghost-line-color) 0px, var(--ghost-color) 40px, var(--ghost-line-color) 80px);
+  background-size: 80vw;
+  border-color: #EBEAEB;
+  border-radius: 3px;
+  cursor: default;
+  height: 300px;
+  overflow: hidden;
+  width: 100%;
+  z-index: 10;
+
+  &:hover {
+    background-color: #EBEAEB;
+    border-color: #EBEAEB;
+  }
+
+  &:active {
+    background-color: #EBEAEB;
+    border-color: #EBEAEB;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  span, ::ng-deep fa-icon {
+    visibility: hidden;
+  }
+
+  @keyframes ghost-lines {
+    0% {
+      background-position: -100px;
+    }
+
+    40% {
+      background-position: 40vw;
+    }
+
+    100% {
+      background-position: 60vw;
+    }
+  }
+}
+
+// Only apply table classes if it is not headless
+:not(.usi-table--headless) {
+  ::ng-deep.usi-table__head {
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
+
+    ::ng-deep.usi-table__row {
+      &:hover {
+        background-color: initial;
+      }
+    }
+  }
+
+  ::ng-deep.usi-table__row {
+    background-color: var(--table-background-color);
+
+    &:hover {
+      background-color: var(--table-background-color--hover);
+    }
+
+    &:nth-child(even) {
+      background-color: var(--table-background-color--even);
+    }
+
+    @media only screen and (min-width: 576px) and (max-width: 767px) {
+      border-radius: 3px;
+      box-sizing: border-box;
+      box-shadow: var(--table-card-shadow--mobile);
+      display: inline-block;
+      margin-left: 20px;
+      margin-top: 0;
+      padding: 20px;
+      width: calc(50% - 10px);
+
+      &:nth-child(odd) {
+        margin-left: 0;
+      }
+
+      // Todo: change maybe?
+      &:nth-child(3n) {
+        margin-top: 14px;
+      }
+
+      &:nth-child(4n) {
+        margin-top: 14px;
+      }
+
+      &:hover {
+        background-color: initial;
+      }
+
+      &:nth-child(even) {
+        background-color: initial;
+      }
+    }
+
+    @media only screen and (max-width: 576px) {
+      border-radius: 3px;
+      box-sizing: border-box;
+      box-shadow: var(--table-card-shadow--mobile);
+      display: inline-block;
+      margin-top: 14px;
+      padding: 20px;
+      width: 100%;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:hover {
+        background-color: initial;
+      }
+
+      &:nth-child(even) {
+        background-color: initial;
+      }
+    }
+  }
+
+  ::ng-deep.usi-table__label {
+    border-bottom: var(--table-label-border-bottom);
+    color: var(--table-label-text-color);
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1;
+    padding: 12px 21px;
+    text-transform: var(--table-label-text-casing);
+    transition: background .3s;
+    white-space: nowrap;
+  }
+
+  ::ng-deep.usi-table__body {
+    @media only screen and (max-width: 767px) {
+      display: block;
+    }
+  }
+
+  ::ng-deep.usi-table__data {
+    border-bottom: var(--table-data-border-bottom);
+    box-sizing: border-box;
+    color: var(--table-data-text-color);
+    font-size: .875rem;
+    height: 53px;
+    line-height: 1;
+    padding: 16px 21px;
+    transition: background .3s;
+
+    @media only screen and (max-width: 767px) {
+      border: none;
+      display: block;
+      height: initial;
+      margin-bottom: 16px;
+      padding: 0;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.usi-table__pagination {
+  align-items: center;
+  display: flex;
+  font-family: var(--font-family);
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding-right: 16px;
+}
+
+.usi-table__pagination-arrow {
+  color: #292829;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 16px;
+}
+
+.usi-table__page-label {
+  color: #717073;
+  font-size: .75rem;
+  margin-right: 16px;
+}
+
+.usi-table__page-size {
+  border: none;
+  border-bottom: 1px solid #717073;
+  color: #292829;
+}
+
+.usi-table__pagination-info {
+  align-items: flex-end;
+  color: #717073;
+  display: flex;
+  font-size: .75rem;
+  height: 22px;
+  margin-left: 16px;
+}
