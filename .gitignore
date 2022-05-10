@@ -40,6 +40,7 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+/projects/campfire-tester
 
 # System files
 .DS_Store
