@@ -9,6 +9,7 @@ import { UsiInputModule } from './input/input.module';
 import { UsiNotificationsModule } from './notifications/notifications.module';
 import { UsiRadioModule } from './radio/radio.module';
 import { UsiTableModule } from './table/table.module';
+import { UsiTabsModule } from './tabs/tabs.module';
 import { UsiTextModule } from './text/text.module';
 import { UsiTitleModule } from './title/title.module';
 
@@ -27,6 +28,7 @@ import { UsiTableService } from './table/table.service';
     UsiNotificationsModule,
     UsiRadioModule,
     UsiTableModule,
+    UsiTabsModule,
     UsiTextModule,
     UsiTitleModule,
   ],
@@ -39,6 +41,7 @@ import { UsiTableService } from './table/table.service';
     UsiNotificationsModule,
     UsiRadioModule,
     UsiTableModule,
+    UsiTabsModule,
     UsiTextModule,
     UsiTitleModule,
   ],

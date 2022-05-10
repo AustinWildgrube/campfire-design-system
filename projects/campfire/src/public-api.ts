@@ -29,6 +29,9 @@ export * from './lib/radio/radio.module';
 // Table
 export * from './lib/table/table.module';
 
+// Tabs
+export * from './lib/tabs/tabs.module';
+
 // Text
 export * from './lib/text/text.module';
 
