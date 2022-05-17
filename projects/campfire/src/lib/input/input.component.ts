@@ -13,7 +13,7 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
       <fa-icon *ngIf="usiSuffix && !usiPassword" class="usi-input-group__suffix" [icon]="['fal', usiSuffix]"></fa-icon>
 
       <fa-icon
-        *ngIf="usiPassword === true && type === 'password'"
+        *ngIf="usiPassword === true && usiType === 'password'"
         class="usi-input-group__suffix usi-input-group__suffix--password"
         (click)="revealPassword()"
         [icon]="['fas', 'eye-slash']"
@@ -21,7 +21,7 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
       </fa-icon>
 
       <fa-icon
-        *ngIf="usiPassword && type !== 'password'"
+        *ngIf="usiPassword && usiType !== 'password'"
         class="usi-input-group__suffix usi-input-group__suffix--password"
         (click)="revealPassword()"
         [icon]="['fas', 'eye']"
@@ -37,11 +37,11 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
           'usi-input-group__input--suffix': usiSuffix || usiPassword,
           'usi-input-group__input--ghost': usiGhost
         }"
-        [placeholder]="placeholder"
-        [disabled]="disabled == true || usiGhost"
-        [type]="type"
-        [value]="value"
-        [required]="required"
+        [placeholder]="usiPlaceholder"
+        [disabled]="usiDisabled == true || usiGhost"
+        [type]="usiType"
+        [value]="usiValue"
+        [required]="usiRequired"
         (input)="onChange($any($event).target.value)"
         (keyup)="checkValidations($any($event).target.value)"
         (blur)="onTouched()"
@@ -57,7 +57,7 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
           'usi-input-group__label--error': hasError || usiForceError
         }"
       >
-        {{ usiLabel }} <span *ngIf="required">*</span>
+        {{ usiLabel }} <span *ngIf="usiRequired">*</span>
       </label>
 
       <span *ngIf="usiHint && !hasError && !usiForceError" class="usi-input-group__hint">
@@ -80,21 +80,21 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
 })
 export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
   @Input()
-  type: 'text' | 'email' | 'password' | 'number' = 'text';
+  usiType: 'text' | 'email' | 'password' | 'number' = 'text';
 
   @Input()
-  placeholder: string = '';
+  usiPlaceholder: string = '';
 
   @Input()
   usiError: TemplateRef<any> | null = null;
 
   @Input()
   @InputBoolean()
-  disabled?: BooleanInput = false;
+  usiDisabled?: BooleanInput = false;
 
   @Input()
   @InputBoolean()
-  required?: BooleanInput = false;
+  usiRequired?: BooleanInput = false;
 
   @Input()
   @InputBoolean()
@@ -121,15 +121,15 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
   usiGhost?: BooleanInput;
 
   @Input()
-  get value(): any {
+  get usiValue(): any {
     return this.innerValue;
   }
 
-  set value(v: any) {
+  set usiValue(v: any) {
     if (v !== this.innerValue && v !== '' && v !== null) {
       this.innerValue = v;
       this.registerOnChange(v);
-      this.checkValidations(this.value);
+      this.checkValidations(this.usiValue);
       this.touched = true;
     }
   }
@@ -167,7 +167,7 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
    */
   public writeValue(value: any): void {
     this.onTouched();
-    this.value = value;
+    this.usiValue = value;
   }
 
   /**
@@ -207,7 +207,7 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
    * @return
    */
   public setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.usiDisabled = isDisabled;
   }
 
   /**
@@ -233,6 +233,6 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
    * @return
    */
   public revealPassword(): void {
-    this.type === 'password' ? (this.type = 'text') : (this.type = 'password');
+    this.usiType === 'password' ? (this.usiType = 'text') : (this.usiType = 'password');
   }
 }

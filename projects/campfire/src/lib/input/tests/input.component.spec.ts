@@ -32,7 +32,7 @@ describe('UsiInputComponent', () => {
   });
 
   it('input should have value', () => {
-    component.value = 'test';
+    component.usiValue = 'test';
     fixture.detectChanges();
 
     const input = debugElement.query(By.css('.usi-input-group__input'));
@@ -40,15 +40,15 @@ describe('UsiInputComponent', () => {
   });
 
   it('should disable input', () => {
-    component.disabled = true;
+    component.usiDisabled = true;
     fixture.detectChanges();
 
     const input = debugElement.query(By.css('.usi-input-group__input'));
     expect(input.nativeElement.disabled).toBeTruthy();
   });
 
-  it('should add required state', () => {
-    component.required = true;
+  it('should add usiRequired state', () => {
+    component.usiRequired = true;
     fixture.detectChanges();
 
     const input = debugElement.query(By.css('.usi-input-group__input'));
@@ -58,40 +58,40 @@ describe('UsiInputComponent', () => {
   it('should add the correct type', () => {
     const input = debugElement.query(By.css('.usi-input-group__input'));
 
-    component.type = 'text';
+    component.usiType = 'text';
     fixture.detectChanges();
 
     expect(input.nativeElement.type).toBe('text');
 
-    component.type = 'email';
+    component.usiType = 'email';
     fixture.detectChanges();
 
     expect(input.nativeElement.type).toBe('email');
 
-    component.type = 'password';
+    component.usiType = 'password';
     fixture.detectChanges();
 
     expect(input.nativeElement.type).toBe('password');
 
-    component.type = 'number';
+    component.usiType = 'number';
     fixture.detectChanges();
 
     expect(input.nativeElement.type).toBe('number');
   });
 
   it('should add the correct placeholder', () => {
-    component.placeholder = 'test';
+    component.usiPlaceholder = 'test';
     fixture.detectChanges();
 
     expect(debugElement.query(By.css('.usi-input-group__input')).nativeElement.placeholder).toBe('test');
   });
 
   it('should show password when icon is clicked', () => {
-    component.type = 'password';
+    component.usiType = 'password';
     component.usiPassword = true;
     fixture.detectChanges();
 
-    expect(component.type).toBe('password');
+    expect(component.usiType).toBe('password');
 
     const input = debugElement.query(By.css('.usi-input-group__input'));
     expect(input.nativeElement.classList).toContain('usi-input-group__input--suffix');
@@ -104,7 +104,7 @@ describe('UsiInputComponent', () => {
     suffix.nativeElement.click();
     fixture.detectChanges();
 
-    expect(component.type).toBe('text');
+    expect(component.usiType).toBe('text');
   });
 
   it('should have a prefix and suffix icon', () => {

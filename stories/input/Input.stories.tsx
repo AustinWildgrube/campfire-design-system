@@ -21,9 +21,9 @@ export default {
     },
   },
   argTypes: {
-    disabled: {
-      name: 'disabled',
-      description: 'The size of the button can change depending on the use case.',
+    usiDisabled: {
+      name: 'usiDisabled',
+      description: 'Disables the input so nothing can be entered.',
       defaultValue: false,
       type: {
         name: 'boolean',
@@ -35,49 +35,6 @@ export default {
         type: { summary: 'boolean' },
       },
       control: { type: 'boolean' },
-    },
-    placeholder: {
-      name: 'placeholder',
-      description: 'The placeholder text to display.',
-      defaultValue: '',
-      type: {
-        name: 'string',
-        required: false,
-      },
-      table: {
-        category: 'Attributes',
-        defaultValue: { summary: 'placeholder' },
-      },
-      control: { type: 'text' },
-    },
-    required: {
-      name: 'required',
-      description: 'Makes the input required and will invalidate the form if left empty.',
-      defaultValue: false,
-      type: {
-        name: 'boolean',
-        required: false,
-      },
-      table: {
-        category: 'Attributes',
-        defaultValue: { summary: 'false' },
-      },
-      control: { type: 'boolean' },
-    },
-    type: {
-      name: 'type',
-      description: 'Determines the type of the input.',
-      defaultValue: 'text',
-      type: {
-        name: 'string',
-        required: false,
-      },
-      table: {
-        category: 'Attributes',
-        defaultValue: { summary: 'text' },
-      },
-      control: { type: 'select' },
-      options: ['text', 'email', 'password', 'number'],
     },
     usiError: {
       name: 'usiError',
@@ -173,6 +130,34 @@ export default {
         defaultValue: { summary: '' },
       },
     },
+    usiPlaceholder: {
+      name: 'usiPlaceholder',
+      description: 'The placeholder text to display.',
+      defaultValue: '',
+      type: {
+        name: 'string',
+        required: false,
+      },
+      table: {
+        category: 'Attributes',
+        defaultValue: { summary: 'placeholder' },
+      },
+      control: { type: 'text' },
+    },
+    usiRequired: {
+      name: 'usiRequired',
+      description: 'Makes the input required and will invalidate the form if left empty.',
+      defaultValue: false,
+      type: {
+        name: 'boolean',
+        required: false,
+      },
+      table: {
+        category: 'Attributes',
+        defaultValue: { summary: 'false' },
+      },
+      control: { type: 'boolean' },
+    },
     usiSuffix: {
       name: 'usiSuffix',
       description: 'Will add a FontAwesome suffix icon to the end of the input.',
@@ -186,8 +171,23 @@ export default {
         defaultValue: { summary: '' },
       },
     },
-    value: {
-      name: 'value',
+    usiType: {
+      name: 'usiType',
+      description: 'Determines the type of the input.',
+      defaultValue: 'text',
+      type: {
+        name: 'string',
+        required: false,
+      },
+      table: {
+        category: 'Attributes',
+        defaultValue: { summary: 'text' },
+      },
+      control: { type: 'select' },
+      options: ['text', 'email', 'password', 'number'],
+    },
+    usiValue: {
+      name: 'usiValue',
       description: 'Sets a default value for the input.',
       defaultValue: '',
       type: {
@@ -206,11 +206,11 @@ const Template: Story<UsiInputComponent> = (args: UsiInputComponent) => ({
   props: args,
   template: `
     <usi-input
-      [type]="type"
-      [placeholder]="placeholder"
+      [usiType]="usiType"
+      [usiPlaceholder]="usiPlaceholder"
       [usiError]="usiError"
-      [disabled]="disabled"
-      [required]="required"
+      [usiDisabled]="usiDisabled"
+      [usiRequired]="usiRequired"
       [usiForceError]="usiForceError"
       [usiPassword]="usiPassword"
       [usiPrefix]="usiPrefix"
@@ -218,7 +218,7 @@ const Template: Story<UsiInputComponent> = (args: UsiInputComponent) => ({
       [usiHint]="usiHint"
       [usiLabel]="usiLabel"
       [usiGhost]="usiGhost"
-      [value]="value"
+      [usiValue]="usiValue"
     ></usi-input>
   `,
 });
@@ -227,11 +227,11 @@ const ErrorTemplate: Story<UsiInputComponent> = (args: UsiInputComponent) => ({
   props: args,
   template: `
     <usi-input
-      [type]="type"
-      [placeholder]="placeholder"
+      [usiType]="usiType"
+      [usiPlaceholder]="usiusiPlaceholder"
       [usiError]="error"
-      [disabled]="disabled"
-      [required]="required"
+      [usiDisabled]="usiDisabled"
+      [usiRequired]="usiRequired"
       [usiForceError]="usiForceError"
       [usiPassword]="usiPassword"
       [usiPrefix]="usiPrefix"
@@ -239,7 +239,7 @@ const ErrorTemplate: Story<UsiInputComponent> = (args: UsiInputComponent) => ({
       [usiHint]="usiHint"
       [usiLabel]="usiLabel"
       [usiGhost]="usiGhost"
-      [value]="value"
+      [usiValue]="usiValue"
     ></usi-input>
 
     <ng-template #error>
@@ -250,11 +250,11 @@ const ErrorTemplate: Story<UsiInputComponent> = (args: UsiInputComponent) => ({
 
 export const DefaultValue = Template.bind({});
 DefaultValue.args = {
-  type: 'text',
-  placeholder: 'Placeholder',
+  usiType: 'text',
+  usiPlaceholder: 'Placeholder',
   usiError: undefined,
-  disabled: undefined,
-  required: undefined,
+  usiDisabled: undefined,
+  usiRequired: undefined,
   usiForceError: undefined,
   usiPassword: undefined,
   usiPrefix: undefined,
@@ -262,15 +262,15 @@ DefaultValue.args = {
   usiHint: undefined,
   usiLabel: 'Label',
   usiGhost: undefined,
-  value: 'Default Value',
+  usiValue: 'Default Value',
 };
 
 export const Errors = ErrorTemplate.bind({});
 Errors.args = {
-  type: 'text',
-  placeholder: 'Placeholder',
-  disabled: undefined,
-  required: undefined,
+  usiType: 'text',
+  usiPlaceholder: 'Placeholder',
+  usiDisabled: undefined,
+  usiRequired: undefined,
   usiForceError: true,
   usiPassword: undefined,
   usiPrefix: undefined,
@@ -278,16 +278,16 @@ Errors.args = {
   usiHint: undefined,
   usiLabel: 'Label',
   usiGhost: undefined,
-  value: '',
+  usiValue: '',
 };
 
 export const Ghost = Template.bind({});
 Ghost.args = {
-  type: 'text',
-  placeholder: 'Placeholder',
+  usiType: 'text',
+  usiPlaceholder: 'Placeholder',
   usiError: undefined,
-  disabled: undefined,
-  required: undefined,
+  usiDisabled: undefined,
+  usiRequired: undefined,
   usiForceError: undefined,
   usiPassword: undefined,
   usiPrefix: undefined,
@@ -295,16 +295,16 @@ Ghost.args = {
   usiHint: undefined,
   usiLabel: 'Label',
   usiGhost: true,
-  value: '',
+  usiValue: '',
 };
 
 export const Hints = Template.bind({});
 Hints.args = {
-  type: 'text',
-  placeholder: 'Placeholder',
+  usiType: 'text',
+  usiPlaceholder: 'Placeholder',
   usiError: undefined,
-  disabled: undefined,
-  required: undefined,
+  usiDisabled: undefined,
+  usiRequired: undefined,
   usiForceError: undefined,
   usiPassword: undefined,
   usiPrefix: undefined,
@@ -312,16 +312,16 @@ Hints.args = {
   usiHint: 'This is a hint',
   usiLabel: 'Label',
   usiGhost: undefined,
-  value: '',
+  usiValue: '',
 };
 
 export const Normal = Template.bind({});
 Normal.args = {
-  type: 'text',
-  placeholder: 'Placeholder',
+  usiType: 'text',
+  usiPlaceholder: 'Placeholder',
   usiError: undefined,
-  disabled: undefined,
-  required: undefined,
+  usiDisabled: undefined,
+  usiRequired: undefined,
   usiForceError: undefined,
   usiPassword: undefined,
   usiPrefix: undefined,
@@ -329,16 +329,16 @@ Normal.args = {
   usiHint: undefined,
   usiLabel: 'Label',
   usiGhost: undefined,
-  value: '',
+  usiValue: '',
 };
 
 export const Password = Template.bind({});
 Password.args = {
-  type: 'password',
-  placeholder: 'Placeholder',
+  usiType: 'password',
+  usiPlaceholder: 'Placeholder',
   usiError: undefined,
-  disabled: undefined,
-  required: undefined,
+  usiDisabled: undefined,
+  usiRequired: undefined,
   usiForceError: undefined,
   usiPassword: true,
   usiPrefix: undefined,
@@ -346,16 +346,16 @@ Password.args = {
   usiHint: undefined,
   usiLabel: 'Label',
   usiGhost: undefined,
-  value: '',
+  usiValue: '',
 };
 
 export const Prefix = Template.bind({});
 Prefix.args = {
-  type: 'text',
-  placeholder: 'Placeholder',
+  usiType: 'text',
+  usiPlaceholder: 'Placeholder',
   usiError: undefined,
-  disabled: undefined,
-  required: undefined,
+  usiDisabled: undefined,
+  usiRequired: undefined,
   usiForceError: undefined,
   usiPassword: undefined,
   usiPrefix: 'alien',
@@ -363,16 +363,16 @@ Prefix.args = {
   usiHint: undefined,
   usiLabel: 'Label',
   usiGhost: undefined,
-  value: '',
+  usiValue: '',
 };
 
 export const Suffix = Template.bind({});
 Suffix.args = {
-  type: 'text',
-  placeholder: 'Placeholder',
+  usiType: 'text',
+  usiPlaceholder: 'Placeholder',
   usiError: undefined,
-  disabled: undefined,
-  required: undefined,
+  usiDisabled: undefined,
+  usiRequired: undefined,
   usiForceError: undefined,
   usiPassword: undefined,
   usiPrefix: undefined,
@@ -380,16 +380,16 @@ Suffix.args = {
   usiHint: undefined,
   usiLabel: 'Label',
   usiGhost: undefined,
-  value: '',
+  usiValue: '',
 };
 
 export const Types = Template.bind({});
 Types.args = {
-  type: 'email',
-  placeholder: 'Placeholder',
+  usiType: 'email',
+  usiPlaceholder: 'Placeholder',
   usiError: undefined,
-  disabled: undefined,
-  required: undefined,
+  usiDisabled: undefined,
+  usiRequired: undefined,
   usiForceError: undefined,
   usiPassword: undefined,
   usiPrefix: undefined,
@@ -397,5 +397,5 @@ Types.args = {
   usiHint: undefined,
   usiLabel: 'Label',
   usiGhost: undefined,
-  value: '',
+  usiValue: '',
 };
