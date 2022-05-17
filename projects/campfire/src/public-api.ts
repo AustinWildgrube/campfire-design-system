@@ -35,5 +35,8 @@ export * from './lib/tabs/tabs.module';
 // Text
 export * from './lib/text/text.module';
 
+// Time Input
+export * from './lib/time-input/time-input.module';
+
 // Title
 export * from './lib/title/title.module';

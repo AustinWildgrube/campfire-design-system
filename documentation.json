@@ -114,7 +114,7 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/checkbox/Checkbox.stories.ts",
+                "file": "stories/button/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -124,7 +124,7 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/checkbox/Checkbox.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -145,6 +145,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/radio-group/RadioGroup.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Disabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/time-input/TimeInput.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -254,6 +264,16 @@
                 "name": "Ghost",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/input/Input.stories.tsx",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Ghost",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/radio-button/RadioButton.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -274,7 +294,7 @@
                 "name": "Ghost",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/input/Input.stories.tsx",
+                "file": "stories/time-input/TimeInput.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -444,6 +464,16 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/button/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/avatar/Avatar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -464,7 +494,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/dialog-modal/Dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -474,7 +504,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/dialog-modal/Dialog.stories.ts",
+                "file": "stories/input/Input.stories.tsx",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -504,27 +534,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/input/Input.stories.tsx",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Normal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/table/Table.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Normal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/text/Text.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -544,7 +554,27 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/text/Text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/title/Title.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/time-input/TimeInput.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -581,6 +611,16 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "Required",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/time-input/TimeInput.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "Secondary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -594,7 +634,7 @@
                 "name": "Sized",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/avatar/Avatar.stories.ts",
+                "file": "stories/button/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -604,7 +644,7 @@
                 "name": "Sized",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/avatar/Avatar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -704,6 +744,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/button/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiButtonComponent>",
+                "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiGhost]=\"usiGhost\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/avatar/Avatar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -724,51 +774,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiButtonComponent>",
-                "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiGhost]=\"usiGhost\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/dialog-modal/Dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiDialogModalComponent>",
                 "defaultValue": "(args: UsiDialogModalComponent) => ({\n  props: args,\n  template: `\n    <usi-dialog-modal [dialog]=\"dialog\"></usi-dialog-modal>\n  `,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/radio-button/RadioButton.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiRadioButtonComponent>",
-                "defaultValue": "(args: UsiRadioButtonComponent) => ({\n  props: args,\n  template: `<label usiValue=\"one\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\" usi-radio>One</label>`,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/radio-group/RadioGroup.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiRadioGroupComponent>",
-                "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\" [usiGhost]=\"usiGhost\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/flex/Flex.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiFlexComponent>",
-                "defaultValue": "(args: UsiFlexComponent) => ({\n  props: args,\n  template: `\n    <div style=\"background-color: #f3f3f3; width: 50vw; height: 50vh;\">\n      <usi-flex\n        [usiAlign]=\"usiAlign\"\n        [usiDirection]=\"usiDirection\"\n        [usiGrow]=\"usiGrow\"\n        [usiJustify]=\"usiJustify\"\n        [usiNoWrap]=\"usiNoWrap\"\n        [usiSpacing]=\"usiSpacing\"\n      >\n        <div style=\"height: 25px; width: 100px; background-color: #25CED1;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #FF8A5B;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #EA526F;\"></div>\n      </usi-flex>\n    </div>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -784,11 +794,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/snackbar/Snackbar.stories.ts",
+                "file": "stories/flex/Flex.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiSnackbarComponent>",
-                "defaultValue": "(args: UsiSnackbarComponent) => ({\n  props: args,\n  template: `\n    <usi-snackbar [snackbar]=\"snackbar\"></usi-snackbar>\n  `,\n})"
+                "type": "Story<UsiFlexComponent>",
+                "defaultValue": "(args: UsiFlexComponent) => ({\n  props: args,\n  template: `\n    <div style=\"background-color: #f3f3f3; width: 50vw; height: 50vh;\">\n      <usi-flex\n        [usiAlign]=\"usiAlign\"\n        [usiDirection]=\"usiDirection\"\n        [usiGrow]=\"usiGrow\"\n        [usiJustify]=\"usiJustify\"\n        [usiNoWrap]=\"usiNoWrap\"\n        [usiSpacing]=\"usiSpacing\"\n      >\n        <div style=\"height: 25px; width: 100px; background-color: #25CED1;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #FF8A5B;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #EA526F;\"></div>\n      </usi-flex>\n    </div>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -804,6 +814,36 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/radio-button/RadioButton.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiRadioButtonComponent>",
+                "defaultValue": "(args: UsiRadioButtonComponent) => ({\n  props: args,\n  template: `<label usiValue=\"one\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\" usi-radio>One</label>`,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/snackbar/Snackbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiSnackbarComponent>",
+                "defaultValue": "(args: UsiSnackbarComponent) => ({\n  props: args,\n  template: `\n    <usi-snackbar [snackbar]=\"snackbar\"></usi-snackbar>\n  `,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/radio-group/RadioGroup.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiRadioGroupComponent>",
+                "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\" [usiGhost]=\"usiGhost\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/table/Table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -814,21 +854,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/text/Text.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiTextComponent>",
-                "defaultValue": "(args: UsiTextComponent) => ({\n  props: args,\n  template: `\n    <p\n      [usiAlign]=\"usiAlign\"\n      [usiColor]=\"usiColor\"\n      [usiInherit]=\"usiInherit\"\n      [usiInline]=\"usiInline\"\n      [usiLineClamp]=\"usiLineClamp\"\n      [usiSize]=\"usiSize\"\n      [usiTransform]=\"usiTransform\"\n      [usiUnderline]=\"usiUnderline\"\n      [usiWeight]=\"usiWeight\"\n      usi-text\n    >\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore\n      magna aliqua. Tellus pellentesque eu tincidunt tortor. Velit laoreet id donec ultrices. Id diam maecenas\n      ultricies mi eget. Diam sollicitudin tempor id eu nisl nunc mi. Sed pulvinar proin gravida hendrerit lectus.\n      Etiam sit amet nisl purus in. Erat nam at lectus urna. Velit sed ullamcorper morbi tincidunt ornare massa eget\n      egestas. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Tristique risus nec feugiat in fermentum\n      posuere urna. Non pulvinar neque laoreet suspendisse interdum consectetur. Tellus in metus vulputate eu\n      scelerisque felis. Risus quis varius quam quisque id diam vel quam elementum. Felis eget velit aliquet sagittis\n      id consectetur.\n\n      Nulla facilisi morbi tempus iaculis. Eu feugiat pretium nibh ipsum consequat. Iaculis at erat pellentesque\n      adipiscing commodo. Pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Donec ac odio\n      tempor orci dapibus ultrices in. Amet est placerat in egestas erat imperdiet sed. Molestie ac feugiat sed lectus.\n      Turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Nec ullamcorper sit amet risus.\n      Vulputate eu scelerisque felis imperdiet proin fermentum. Sit amet porttitor eget dolor morbi non arcu. Est lorem\n      ipsum dolor sit amet consectetur adipiscing elit pellentesque. Tincidunt ornare massa eget egestas purus. Urna\n      neque viverra justo nec ultrices dui. At erat pellentesque adipiscing commodo elit. A pellentesque sit amet\n      porttitor eget dolor morbi non. Ligula ullamcorper malesuada proin libero nunc consequat.\n    </p>\n  `,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/tabs/Tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiTabsComponent | UsiTabComponent>",
                 "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\" [usiActive]=\"usiActive\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/text/Text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiTextComponent>",
+                "defaultValue": "(args: UsiTextComponent) => ({\n  props: args,\n  template: `\n    <p\n      [usiAlign]=\"usiAlign\"\n      [usiColor]=\"usiColor\"\n      [usiInherit]=\"usiInherit\"\n      [usiInline]=\"usiInline\"\n      [usiLineClamp]=\"usiLineClamp\"\n      [usiSize]=\"usiSize\"\n      [usiTransform]=\"usiTransform\"\n      [usiUnderline]=\"usiUnderline\"\n      [usiWeight]=\"usiWeight\"\n      usi-text\n    >\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore\n      magna aliqua. Tellus pellentesque eu tincidunt tortor. Velit laoreet id donec ultrices. Id diam maecenas\n      ultricies mi eget. Diam sollicitudin tempor id eu nisl nunc mi. Sed pulvinar proin gravida hendrerit lectus.\n      Etiam sit amet nisl purus in. Erat nam at lectus urna. Velit sed ullamcorper morbi tincidunt ornare massa eget\n      egestas. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Tristique risus nec feugiat in fermentum\n      posuere urna. Non pulvinar neque laoreet suspendisse interdum consectetur. Tellus in metus vulputate eu\n      scelerisque felis. Risus quis varius quam quisque id diam vel quam elementum. Felis eget velit aliquet sagittis\n      id consectetur.\n\n      Nulla facilisi morbi tempus iaculis. Eu feugiat pretium nibh ipsum consequat. Iaculis at erat pellentesque\n      adipiscing commodo. Pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Donec ac odio\n      tempor orci dapibus ultrices in. Amet est placerat in egestas erat imperdiet sed. Molestie ac feugiat sed lectus.\n      Turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Nec ullamcorper sit amet risus.\n      Vulputate eu scelerisque felis imperdiet proin fermentum. Sit amet porttitor eget dolor morbi non arcu. Est lorem\n      ipsum dolor sit amet consectetur adipiscing elit pellentesque. Tincidunt ornare massa eget egestas purus. Urna\n      neque viverra justo nec ultrices dui. At erat pellentesque adipiscing commodo elit. A pellentesque sit amet\n      porttitor eget dolor morbi non. Ligula ullamcorper malesuada proin libero nunc consequat.\n    </p>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -849,6 +889,16 @@
                 "deprecationMessage": "",
                 "type": "Story<UsiToastComponent>",
                 "defaultValue": "(args: UsiToastComponent) => ({\n  props: args,\n  template: `\n    <usi-toast [toast]=\"toast\"></usi-toast>\n  `,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/time-input/TimeInput.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiTimeInputComponent>",
+                "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiGhost]=\"usiGhost\"\n      [usiRequired]=\"usiRequired\"\n      [usiLabel]=\"usiLabel\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -1755,6 +1805,58 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
+                }
+            ],
+            "stories/time-input/TimeInput.stories.ts": [
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/time-input/TimeInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Ghost",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/time-input/TimeInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Normal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/time-input/TimeInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Required",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/time-input/TimeInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/time-input/TimeInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<UsiTimeInputComponent>",
+                    "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiGhost]=\"usiGhost\"\n      [usiRequired]=\"usiRequired\"\n      [usiLabel]=\"usiLabel\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n  `,\n})"
                 }
             ],
             "stories/title/Title.stories.ts": [
@@ -2773,6 +2875,56 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Weighted",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/time-input/TimeInput.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/time-input/TimeInput.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Ghost",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/time-input/TimeInput.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Normal",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/time-input/TimeInput.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Required",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/time-input/TimeInput.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

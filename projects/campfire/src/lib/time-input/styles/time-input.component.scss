@@ -1,0 +1,38 @@
+@import '../../campfire';
+
+.usi-input-group__input {
+  &::-webkit-datetime-edit-ampm-field {
+    border: 1px solid #D8D9DA;
+    border-radius: 3px;
+    color: var(--black);
+    font-family: var(--font-family);
+    font-size: .875rem;
+    padding: 4px 9px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    background: none;
+    z-index: 99;
+  }
+
+  &::-webkit-clear-button {
+    appearance: none;
+    margin: -10px;
+  }
+
+  &:not(:focus) {
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}
+

@@ -11,6 +11,7 @@ import { UsiRadioModule } from './radio/radio.module';
 import { UsiTableModule } from './table/table.module';
 import { UsiTabsModule } from './tabs/tabs.module';
 import { UsiTextModule } from './text/text.module';
+import { UsiTimeInputModule } from './time-input/time-input.module';
 import { UsiTitleModule } from './title/title.module';
 
 import { UsiNotificationService } from './notifications/notifications.service';
@@ -30,6 +31,7 @@ import { UsiTableService } from './table/table.service';
     UsiTableModule,
     UsiTabsModule,
     UsiTextModule,
+    UsiTimeInputModule,
     UsiTitleModule,
   ],
   exports: [
@@ -43,6 +45,7 @@ import { UsiTableService } from './table/table.service';
     UsiTableModule,
     UsiTabsModule,
     UsiTextModule,
+    UsiTimeInputModule,
     UsiTitleModule,
   ],
   providers: [UsiNotificationService, UsiTableService],
