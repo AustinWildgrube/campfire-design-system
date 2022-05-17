@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, TemplateRef, forwardRef, Injector, AfterViewInit } from '@angular/core';
+import { Component, Input, TemplateRef, forwardRef, Injector, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
@@ -45,12 +45,12 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
         (input)="onChange($any($event).target.value)"
         (keyup)="checkValidations($any($event).target.value)"
         (blur)="onTouched()"
-        aria-labelledby="usiLabel"
+        [attr.aria-labelledby]="uuid"
       />
 
       <label
         *ngIf="!usiGhost"
-        id="usiLabel"
+        [id]="uuid"
         class="usi-input-group__label"
         [ngClass]="{
           'usi-input-group__label--prefix': usiPrefix,
@@ -137,6 +137,7 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
   private innerValue: any = '';
   private control: FormControl = new FormControl();
 
+  uuid: string = (Math.random() + 1).toString(36).substring(7);
   inputEmpty: boolean = false;
   hasError: boolean | null = false;
   touched: boolean | null = false;
