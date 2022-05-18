@@ -1,5 +1,5 @@
 ```ts
-import { UsiFlexModule } from '@ungerboeck/usi-flex';
+import { UsiFlexModule } from '@campfire/flex';
 ```
 
 # Flex
@@ -20,7 +20,7 @@ Align sets the [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/al
 `start` but the other options are: `initial`, `inherit`, `unset`, `start`, `center`, `end`, `baseline`, `stretch`.
 
 ```html
-<usi-flex [usiAlign]="center">
+<usi-flex usiAlign="center">
   <app-child-component></app-child-component>
 </usi-flex>
 ```
@@ -31,7 +31,7 @@ items are laid out. The default direction is `row` but the normal flex direction
 `column`, `column-reverse`.
 
 ```html
-<usi-flex [usiDirection]="column">
+<usi-flex usiDirection="column">
   <app-child-component></app-child-component>
 </usi-flex>
 ```
@@ -52,7 +52,7 @@ is no default value for justify. The other options are: `initial`, `inherit`, `u
 `between`, `around`, `evenly`.
 
 ```html
-<usi-flex [usiJustify]="center">
+<usi-flex usiJustify="center">
   <app-child-component></app-child-component>
 </usi-flex>
 ```

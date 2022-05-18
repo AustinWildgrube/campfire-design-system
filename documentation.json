@@ -114,7 +114,7 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/checkbox/Checkbox.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -124,7 +124,7 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/checkbox/Checkbox.stories.ts",
+                "file": "stories/button/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -241,6 +241,16 @@
                 "defaultValue": "ErrorTemplate.bind({})"
             },
             {
+                "name": "Errors",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/time-input/TimeInput.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "ErrorTemplate.bind({})"
+            },
+            {
                 "name": "ErrorTemplate",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -248,7 +258,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiInputComponent>",
-                "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [type]=\"type\"\n      [placeholder]=\"placeholder\"\n      [usiError]=\"error\"\n      [disabled]=\"disabled\"\n      [required]=\"required\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [value]=\"value\"\n    ></usi-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
+                "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiusiPlaceholder\"\n      [usiError]=\"error\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
+            },
+            {
+                "name": "ErrorTemplate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/time-input/TimeInput.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiTimeInputComponent>",
+                "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiError]=\"error\"\n      [usiForceError]=\"usiForceError\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiRequired]=\"usiRequired\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
             },
             {
                 "name": "Ghost",
@@ -291,16 +311,6 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "Ghost",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/time-input/TimeInput.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
                 "name": "Grow",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -335,6 +345,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/input/Input.stories.tsx",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Hints",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/time-input/TimeInput.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -464,7 +484,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/avatar/Avatar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -474,7 +494,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/avatar/Avatar.stories.ts",
+                "file": "stories/dialog-modal/Dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -494,7 +514,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/dialog-modal/Dialog.stories.ts",
+                "file": "stories/button/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -534,26 +554,6 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/table/Table.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Normal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/tabs/Tabs.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Normal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/text/Text.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -564,7 +564,27 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/table/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/title/Title.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/tabs/Tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -634,7 +654,7 @@
                 "name": "Sized",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/avatar/Avatar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -644,7 +664,7 @@
                 "name": "Sized",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/avatar/Avatar.stories.ts",
+                "file": "stories/button/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -744,31 +764,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiButtonComponent>",
-                "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiGhost]=\"usiGhost\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/avatar/Avatar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiAvatarComponent>",
                 "defaultValue": "(args: UsiAvatarComponent) => ({\n  props: args,\n  template: `\n  <usi-avatar\n    [usiGhost]=\"usiGhost\"\n    [usiSrc]=\"usiSrc\"\n    [usiAlt]=\"usiAlt\"\n    [usiText]=\"usiText\"\n    [usiIcon]=\"usiIcon\"\n    [usiShape]=\"usiShape\"\n    [usiSize]=\"usiSize\"\n  ></usi-avatar>`,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/checkbox/Checkbox.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiCheckboxComponent>",
-                "defaultValue": "(args: UsiCheckboxComponent) => ({\n  props: args,\n  template: `\n    <label\n      [checked]=\"checked\"\n      [required]=\"required\"\n      [disabled]=\"disabled\"\n      usi-checkbox\n    >\n      Checkbox Label\n    </label>`,\n})"
             },
             {
                 "name": "Template",
@@ -784,11 +784,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/inline/Inline.stories.ts",
+                "file": "stories/checkbox/Checkbox.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiInlineComponent>",
-                "defaultValue": "(args: UsiInlineComponent) => ({\n  props: args,\n})"
+                "type": "Story<UsiCheckboxComponent>",
+                "defaultValue": "(args: UsiCheckboxComponent) => ({\n  props: args,\n  template: `\n    <label\n      [checked]=\"checked\"\n      [required]=\"required\"\n      [disabled]=\"disabled\"\n      usi-checkbox\n    >\n      Checkbox Label\n    </label>`,\n})"
             },
             {
                 "name": "Template",
@@ -804,11 +804,31 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/button/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiButtonComponent>",
+                "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiGhost]=\"usiGhost\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/inline/Inline.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiInlineComponent>",
+                "defaultValue": "(args: UsiInlineComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/input/Input.stories.tsx",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiInputComponent>",
-                "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [type]=\"type\"\n      [placeholder]=\"placeholder\"\n      [usiError]=\"usiError\"\n      [disabled]=\"disabled\"\n      [required]=\"required\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [value]=\"value\"\n    ></usi-input>\n  `,\n})"
+                "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiPlaceholder\"\n      [usiError]=\"usiError\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -824,16 +844,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/snackbar/Snackbar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiSnackbarComponent>",
-                "defaultValue": "(args: UsiSnackbarComponent) => ({\n  props: args,\n  template: `\n    <usi-snackbar [snackbar]=\"snackbar\"></usi-snackbar>\n  `,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/radio-group/RadioGroup.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -844,21 +854,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/table/Table.stories.ts",
+                "file": "stories/snackbar/Snackbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiTableComponent>",
-                "defaultValue": "(args: UsiTableComponent) => ({\n  props: args,\n  template: `\n    <style>\n      .file-icon {\n        color: #D93E2D;\n        font-size: 30px;\n      }\n\n      .file-icon--word {\n        color: #0067B1;\n      }\n    </style>\n\n    <usi-table #EPDocuments [usiData]=\"usiData\" usiPagination [usiHeadless]=\"usiHeadless\">\n      <thead>\n      <tr>\n        <th usiAlign=\"center\">File Type</th>\n        <th usiSortKey=\"name\">File Name</th>\n        <th>Category</th>\n        <th usiSortKey=\"lastUpdated\">Last Updated</th>\n      </tr>\n      </thead>\n\n      <tbody>\n\n      <tr *ngFor=\"let data of EPDocuments.usiData\">\n        <td usiMobileLabel=\"fileType\" usiAlign=\"center\">\n          <fa-icon *ngIf=\"data.type === 'word'\" class=\"file-icon file-icon--word\" [icon]=\"['fal', 'file-word']\"></fa-icon>\n          <fa-icon *ngIf=\"data.type === 'pdf'\" class=\"file-icon\" [icon]=\"['fal', 'file-pdf']\"></fa-icon>\n        </td>\n\n        <td usiMobileLabel=\"File Name\">\n          {{ data.name }}\n        </td>\n\n        <td usiMobileLabel=\"Category\">\n          {{ data.category }}\n        </td>\n\n        <td usiMobileLabel=\"Last Updated\">\n          {{ data.lastUpdated }}\n        </td>\n      </tr>\n      </tbody>\n    </usi-table>\n  `,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/tabs/Tabs.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiTabsComponent | UsiTabComponent>",
-                "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\" [usiActive]=\"usiActive\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
+                "type": "Story<UsiSnackbarComponent>",
+                "defaultValue": "(args: UsiSnackbarComponent) => ({\n  props: args,\n  template: `\n    <usi-snackbar [snackbar]=\"snackbar\"></usi-snackbar>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -874,6 +874,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/table/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiTableComponent>",
+                "defaultValue": "(args: UsiTableComponent) => ({\n  props: args,\n  template: `\n    <style>\n      .file-icon {\n        color: #D93E2D;\n        font-size: 30px;\n      }\n\n      .file-icon--word {\n        color: #0067B1;\n      }\n    </style>\n\n    <usi-table #EPDocuments [usiData]=\"usiData\" usiPagination [usiHeadless]=\"usiHeadless\">\n      <thead>\n      <tr>\n        <th usiAlign=\"center\">File Type</th>\n        <th usiSortKey=\"name\">File Name</th>\n        <th>Category</th>\n        <th usiSortKey=\"lastUpdated\">Last Updated</th>\n      </tr>\n      </thead>\n\n      <tbody>\n\n      <tr *ngFor=\"let data of EPDocuments.usiData\">\n        <td usiMobileLabel=\"fileType\" usiAlign=\"center\">\n          <fa-icon *ngIf=\"data.type === 'word'\" class=\"file-icon file-icon--word\" [icon]=\"['fal', 'file-word']\"></fa-icon>\n          <fa-icon *ngIf=\"data.type === 'pdf'\" class=\"file-icon\" [icon]=\"['fal', 'file-pdf']\"></fa-icon>\n        </td>\n\n        <td usiMobileLabel=\"File Name\">\n          {{ data.name }}\n        </td>\n\n        <td usiMobileLabel=\"Category\">\n          {{ data.category }}\n        </td>\n\n        <td usiMobileLabel=\"Last Updated\">\n          {{ data.lastUpdated }}\n        </td>\n      </tr>\n      </tbody>\n    </usi-table>\n  `,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/title/Title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -884,11 +894,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/toast/Toast.stories.ts",
+                "file": "stories/tabs/Tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiToastComponent>",
-                "defaultValue": "(args: UsiToastComponent) => ({\n  props: args,\n  template: `\n    <usi-toast [toast]=\"toast\"></usi-toast>\n  `,\n})"
+                "type": "Story<UsiTabsComponent | UsiTabComponent>",
+                "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\" [usiActive]=\"usiActive\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -898,7 +908,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiTimeInputComponent>",
-                "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiGhost]=\"usiGhost\"\n      [usiRequired]=\"usiRequired\"\n      [usiLabel]=\"usiLabel\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n  `,\n})"
+                "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiError]=\"error\"\n      [usiForceError]=\"usiForceError\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiRequired]=\"usiRequired\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n  `,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/toast/Toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiToastComponent>",
+                "defaultValue": "(args: UsiToastComponent) => ({\n  props: args,\n  template: `\n    <usi-toast [toast]=\"toast\"></usi-toast>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -1496,7 +1516,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<UsiInputComponent>",
-                    "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [type]=\"type\"\n      [placeholder]=\"placeholder\"\n      [usiError]=\"error\"\n      [disabled]=\"disabled\"\n      [required]=\"required\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [value]=\"value\"\n    ></usi-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
+                    "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiusiPlaceholder\"\n      [usiError]=\"error\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
                 },
                 {
                     "name": "Ghost",
@@ -1566,7 +1586,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<UsiInputComponent>",
-                    "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [type]=\"type\"\n      [placeholder]=\"placeholder\"\n      [usiError]=\"usiError\"\n      [disabled]=\"disabled\"\n      [required]=\"required\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [value]=\"value\"\n    ></usi-input>\n  `,\n})"
+                    "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiPlaceholder\"\n      [usiError]=\"usiError\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n  `,\n})"
                 },
                 {
                     "name": "Types",
@@ -1819,7 +1839,27 @@
                     "defaultValue": "Template.bind({})"
                 },
                 {
-                    "name": "Ghost",
+                    "name": "Errors",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/time-input/TimeInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "ErrorTemplate.bind({})"
+                },
+                {
+                    "name": "ErrorTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/time-input/TimeInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<UsiTimeInputComponent>",
+                    "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiError]=\"error\"\n      [usiForceError]=\"usiForceError\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiRequired]=\"usiRequired\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
+                },
+                {
+                    "name": "Hints",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/time-input/TimeInput.stories.ts",
@@ -1856,7 +1896,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<UsiTimeInputComponent>",
-                    "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiGhost]=\"usiGhost\"\n      [usiRequired]=\"usiRequired\"\n      [usiLabel]=\"usiLabel\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n  `,\n})"
+                    "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiError]=\"error\"\n      [usiForceError]=\"usiForceError\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiRequired]=\"usiRequired\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n  `,\n})"
                 }
             ],
             "stories/title/Title.stories.ts": [
@@ -2894,7 +2934,27 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Ghost",
+                "name": "Errors",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/time-input/TimeInput.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ErrorTemplate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/time-input/TimeInput.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Hints",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
