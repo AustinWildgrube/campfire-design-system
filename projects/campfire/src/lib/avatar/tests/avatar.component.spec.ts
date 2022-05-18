@@ -5,7 +5,7 @@ import { UsiAvatarComponent } from '../avatar.component';
 import { UsiSharedModule } from '../../shared/shared.module';
 
 @Component({
-  template: ` <usi-avatar [usiText]="usiText" [usiIcon]="usiIcon" [usiSrc]="usiSrc" [usiAlt]="usiAlt" [usiGhost]="usiGhost"></usi-avatar> `,
+  template: ` <usi-avatar [usiText]="usiText" [usiIcon]="usiIcon" [usiSrc]="usiSrc" [usiAlt]="usiAlt"></usi-avatar> `,
 })
 class TestComponent extends UsiAvatarComponent {}
 
@@ -86,12 +86,5 @@ describe('UsiAvatarComponent', () => {
 
     expect(debugElement.nativeElement.querySelector('img').getAttribute('src')).toBe('https://via.placeholder.com/150');
     expect(debugElement.nativeElement.querySelector('img').getAttribute('alt')).toBe('placeholder');
-  });
-
-  it('should add ghosting state to the avatar', () => {
-    component.usiGhost = true;
-    fixture.detectChanges();
-
-    expect(debugElement.nativeElement.className).toContain('usi-avatar--ghost');
   });
 });

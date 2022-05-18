@@ -145,13 +145,4 @@ describe('UsiInputComponent', () => {
     expect(label).toBeDefined();
     expect(label).not.toBeNull();
   });
-
-  it('should add ghosting state to input', () => {
-    component.usiGhost = true;
-    fixture.detectChanges();
-
-    const input = debugElement.query(By.css('.usi-input-group__input'));
-    expect(input.nativeElement.classList).toContain('usi-input-group__input--ghost');
-    expect(input.nativeElement.disabled).toBeTruthy();
-  });
 });

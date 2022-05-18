@@ -12,49 +12,6 @@
   }
 }
 
-/* Loading Animations */
-.usi-radio-button--ghost {
-  animation: ghost-lines var(--ghost-animation-duration) infinite linear;
-  background-color: #EBEAEB;
-  background-image: linear-gradient(90deg, var(--ghost-line-color) 0px, var(--ghost-color) 40px, var(--ghost-line-color) 80px);
-  background-size: 80vw;
-  border-color: #EBEAEB;
-  cursor: not-allowed;
-  height: 20px;
-  min-width: 120px;
-  overflow: hidden;
-  position: relative;
-  width: max-content;
-
-  &:hover {
-    background-color: #EBEAEB;
-    border-color: #EBEAEB;
-  }
-
-  &:active {
-    background-color: #EBEAEB;
-    border-color: #EBEAEB;
-  }
-
-  &:focus {
-    box-shadow: none;
-  }
-
-  @keyframes ghost-lines {
-    0% {
-      background-position: -100px;
-    }
-
-    40% {
-      background-position: 40vw;
-    }
-
-    100% {
-      background-position: 60vw;
-    }
-  }
-}
-
 .usi-radio-button__input {
   align-items: center;
   appearance: none;

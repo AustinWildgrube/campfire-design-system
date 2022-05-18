@@ -34,11 +34,10 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
           'usi-input-group__input--error': hasError || usiForceError,
           'usi-input-group__input--filled': inputEmpty,
           'usi-input-group__input--prefix': usiPrefix,
-          'usi-input-group__input--suffix': usiSuffix || usiPassword,
-          'usi-input-group__input--ghost': usiGhost
+          'usi-input-group__input--suffix': usiSuffix || usiPassword
         }"
         [placeholder]="usiPlaceholder"
-        [disabled]="usiDisabled == true || usiGhost"
+        [disabled]="usiDisabled == true"
         [type]="usiType"
         [value]="usiValue"
         [required]="usiRequired"
@@ -49,7 +48,6 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
       />
 
       <label
-        *ngIf="!usiGhost"
         [id]="uuid"
         class="usi-input-group__label"
         [ngClass]="{
@@ -115,10 +113,6 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
 
   @Input()
   usiLabel?: string;
-
-  @Input()
-  @InputBoolean()
-  usiGhost?: BooleanInput;
 
   @Input()
   get usiValue(): any {

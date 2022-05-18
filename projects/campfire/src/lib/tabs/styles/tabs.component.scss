@@ -23,58 +23,6 @@
   justify-content: flex-end;
 }
 
-/* Loading Animations */
-.usi-tab-group--ghost {
-  animation: ghost-lines var(--ghost-animation-duration) infinite linear;
-  background-color: #ebeaeb;
-  background-image: linear-gradient(
-      90deg,
-      var(--ghost-line-color) 0px,
-      var(--ghost-color) 40px,
-      var(--ghost-line-color) 80px
-  );
-  background-size: 80vw;
-  border-color: #ebeaeb;
-  cursor: default;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-
-  &:hover {
-    background-color: #ebeaeb;
-    border-color: #ebeaeb;
-  }
-
-  &:active {
-    background-color: #ebeaeb;
-    border-color: #ebeaeb;
-  }
-
-  &:focus {
-    box-shadow: none;
-  }
-
-  span,
-  ::ng-deep fa-icon {
-    visibility: hidden;
-  }
-
-  @keyframes ghost-lines {
-    0% {
-      background-position: -100px;
-    }
-
-    40% {
-      background-position: 40vw;
-    }
-
-    100% {
-      background-position: 60vw;
-    }
-  }
-}
-
 .usi-tab-group__line {
   background-color: var(--tab-group-border-color--active);
   bottom: 0;

@@ -53,20 +53,6 @@ export default {
       control: { type: 'select' },
       options: ['horizontal', 'vertical'],
     },
-    usiGhost: {
-      name: 'usiGhost',
-      description: 'Applies the ghosting state to all the children.',
-      defaultValue: 'false',
-      type: {
-        name: 'boolean',
-        required: false,
-      },
-      table: {
-        category: 'Attributes',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'true | false' },
-      },
-    },
     usiDisabled: {
       name: 'usiDisabled',
       description: 'Disables every radio button in the group.',
@@ -123,7 +109,7 @@ export default {
 const Template: Story<UsiRadioGroupComponent> = (args: UsiRadioGroupComponent) => ({
   props: args,
   template: `
-    <usi-radio-group [usiDisabled]="usiDisabled" [usiDirection]="usiDirection" [usiGhost]="usiGhost">
+    <usi-radio-group [usiDisabled]="usiDisabled" [usiDirection]="usiDirection">
       <label usiValue="one" usi-radio>One</label>
       <label usiValue="two" usi-radio>Two</label>
       <label usiValue="three" usi-radio>Three</label>
@@ -135,7 +121,6 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   usiName: undefined,
   usiDirection: undefined,
-  usiGhost: undefined,
   usiDisabled: true,
 };
 
@@ -143,7 +128,6 @@ export const Ghost = Template.bind({});
 Ghost.args = {
   usiName: undefined,
   usiDirection: undefined,
-  usiGhost: true,
   usiDisabled: undefined,
 };
 
@@ -151,7 +135,6 @@ export const Normal = Template.bind({});
 Normal.args = {
   usiName: undefined,
   usiDirection: undefined,
-  usiGhost: false,
   usiDisabled: false,
 };
 
@@ -159,6 +142,5 @@ export const Vertical = Template.bind({});
 Vertical.args = {
   usiName: undefined,
   usiDirection: 'vertical',
-  usiGhost: undefined,
   usiDisabled: undefined,
 };

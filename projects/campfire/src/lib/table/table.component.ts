@@ -78,15 +78,6 @@ export class UsiTableComponent implements AfterViewInit, OnChanges, OnInit {
   @Input()
   usiPageSize?: number = 5;
 
-  @Input()
-  @InputBoolean()
-  usiGhost?: BooleanInput;
-
-  @HostBinding('class.usi-table--ghost')
-  public get isGhost(): BooleanInput {
-    return this.usiGhost;
-  }
-
   constructor(private elementRef: ElementRef, private renderer: Renderer2, private usiTableService: UsiTableService) {}
 
   ngOnInit(): void {

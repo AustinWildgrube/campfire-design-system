@@ -8,7 +8,7 @@ import { UsiRadioModule } from '../../radio.module';
 
 @Component({
   template: `
-    <usi-radio-group [usiName]="usiName" [usiDisabled]="usiDisabled" [usiDirection]="usiDirection" [usiGhost]="usiGhost">
+    <usi-radio-group [usiName]="usiName" [usiDisabled]="usiDisabled" [usiDirection]="usiDirection">
       <label usiValue="one" usi-radio>One</label>
       <label usiValue="two" usi-radio>Two</label>
       <label usiValue="three" usi-radio>Three</label>
@@ -47,13 +47,6 @@ describe('UsiRadioGroupComponent', () => {
     fixture.detectChanges();
 
     expect(component.usiName).toBeTruthy();
-  });
-
-  it('should ghost the radio button', () => {
-    component.usiGhost = true;
-    fixture.detectChanges();
-
-    expect(component.usiGhost).toBeTruthy();
   });
 
   it('should disable radio button', () => {

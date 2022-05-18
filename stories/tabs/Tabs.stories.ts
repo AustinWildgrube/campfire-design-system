@@ -69,20 +69,6 @@ export default {
       control: { type: 'select' },
       options: ['left', 'center', 'right'],
     },
-    usiGhost: {
-      name: 'usiGhost',
-      description: 'Shows the ghosting state when loading.',
-      defaultValue: 'false',
-      type: {
-        name: 'boolean',
-        required: false,
-      },
-      table: {
-        category: 'Tab Group Attributes',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'true | false' },
-      },
-    },
     usiLabel: {
       name: 'usiLabel',
       description: 'Specifies a label for the tab.',
@@ -134,7 +120,7 @@ export default {
 const Template: Story<UsiTabsComponent | UsiTabComponent> = (args: UsiTabsComponent | UsiTabComponent) => ({
   props: args,
   template: `
-    <usi-tab-group [usiGrow]="usiGrow" [usiTabPosition]="usiTabPosition" [usiDisabled]="usiDisabled" [usiGhost]="usiGhost">
+    <usi-tab-group [usiGrow]="usiGrow" [usiTabPosition]="usiTabPosition" [usiDisabled]="usiDisabled">
       <usi-tab [usiLabel]="usiLabel" [usiDisabled]="usiDisabled" [usiActive]="usiActive">
         <p style="font-size: 150px; font-weight: 900; margin: 0; text-align: center;">1</p>
       </usi-tab>
@@ -153,7 +139,6 @@ Normal.args = {
   usiGrow: undefined,
   usiTabPosition: undefined,
   usiDisabled: undefined,
-  usiGhost: undefined,
   usiLabel: 'Tab 1',
   usiActive: undefined,
 };
@@ -163,7 +148,6 @@ Grow.args = {
   usiGrow: true,
   usiTabPosition: undefined,
   usiDisabled: undefined,
-  usiGhost: undefined,
   usiLabel: 'Tab 1',
   usiActive: undefined,
 };
@@ -173,7 +157,6 @@ TabPosition.args = {
   usiGrow: undefined,
   usiTabPosition: 'center',
   usiDisabled: undefined,
-  usiGhost: undefined,
   usiLabel: 'Tab 1',
   usiActive: undefined,
 };
@@ -183,7 +166,6 @@ DisableAll.args = {
   usiGrow: undefined,
   usiTabPosition: undefined,
   usiDisabled: true,
-  usiGhost: undefined,
   usiLabel: 'Tab 1',
   usiActive: undefined,
 };
@@ -191,7 +173,7 @@ DisableAll.args = {
 const DisabledTemplate: Story<UsiTabsComponent | UsiTabComponent> = (args: UsiTabsComponent | UsiTabComponent) => ({
   props: args,
   template: `
-    <usi-tab-group [usiGrow]="usiGrow" [usiTabPosition]="usiTabPosition" [usiGhost]="usiGhost">
+    <usi-tab-group [usiGrow]="usiGrow" [usiTabPosition]="usiTabPosition">
       <usi-tab [usiLabel]="usiLabel" [usiDisabled]="usiDisabled" [usiActive]="usiActive">
         <p style="font-size: 150px; font-weight: 900; margin: 0; text-align: center;">1</p>
       </usi-tab>
@@ -210,7 +192,6 @@ DisableTab.args = {
   usiGrow: undefined,
   usiTabPosition: undefined,
   usiDisabled: false,
-  usiGhost: undefined,
   usiLabel: 'Tab 1',
   usiActive: undefined,
 };
@@ -218,7 +199,7 @@ DisableTab.args = {
 const InitialActiveTabTemplate: Story<UsiTabsComponent | UsiTabComponent> = (args: UsiTabsComponent | UsiTabComponent) => ({
   props: args,
   template: `
-    <usi-tab-group [usiGrow]="usiGrow" [usiTabPosition]="usiTabPosition" [usiDisabled]="usiDisabled" [usiGhost]="usiGhost">
+    <usi-tab-group [usiGrow]="usiGrow" [usiTabPosition]="usiTabPosition" [usiDisabled]="usiDisabled">
       <usi-tab [usiLabel]="usiLabel" [usiDisabled]="usiDisabled">
         <p style="font-size: 150px; font-weight: 900; margin: 0; text-align: center;">1</p>
       </usi-tab>
@@ -237,7 +218,6 @@ InitialActiveTab.args = {
   usiGrow: undefined,
   usiTabPosition: undefined,
   usiDisabled: undefined,
-  usiGhost: undefined,
   usiLabel: 'Tab 1',
   usiActive: undefined,
 };

@@ -10,13 +10,12 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
     <div
       class="usi-tab-group"
       [ngClass]="{
-        'usi-tab-group--ghost': usiGhost,
         'usi-tab-group--center': usiTabPosition === 'center',
         'usi-tab-group--right': usiTabPosition === 'right'
       }"
     >
       <ul class="usi-tab-group__container" [ngClass]="{ 'usi-tab-group__container--disabled': usiDisabled }" [ngStyle]="{ width: usiGrow ? '100%' : 'auto' }">
-        <ng-container *ngIf="!usiGhost">
+        <ng-container>
           <li
             *ngFor="let tab of tabs; let i = index"
             class="usi-tab-group__tab"
@@ -34,7 +33,7 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
           </li>
         </ng-container>
 
-        <li *ngIf="!usiGhost" class="usi-tab-group__line" [style.left.px]="selectedWidth[selectedTab]" [style.width.px]="selectedWidthReal[selectedTab]"></li>
+        <li class="usi-tab-group__line" [style.left.px]="selectedWidth[selectedTab]" [style.width.px]="selectedWidthReal[selectedTab]"></li>
       </ul>
     </div>
 
@@ -56,10 +55,6 @@ export class UsiTabsComponent implements AfterViewInit {
   @Input()
   @InputBoolean()
   usiGrow?: BooleanInput;
-
-  @Input()
-  @InputBoolean()
-  usiGhost?: BooleanInput;
 
   @Input()
   usiTabPosition?: 'left' | 'center' | 'right';

@@ -43,13 +43,6 @@ describe('UsiRadioButtonComponent', () => {
     expect(component.usiDisabled).toBeTruthy();
   });
 
-  it('should ghost the radio button', () => {
-    component.usiGhost = true;
-    fixture.detectChanges();
-
-    expect(component.usiGhost).toBeTruthy();
-  });
-
   it('should have a value', () => {
     component.usiValue = 'test';
     fixture.detectChanges();

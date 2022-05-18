@@ -57,26 +57,6 @@ Campfire Design System provides a set of sizes for avatars. The default size is 
 <usi-avatar usiSize="xxl"></usi-avatar>
 ```
 
-## Loading
-An avatar can use ghost loading which should ***only*** occur on the pages initial load into the DOM. Ghosting uses
-Angular object binding. For dynamic loading times the square bracket syntax is required. If the avatar is to load
-indefinitely it can be called as a boolean value.
-
-```ts
-let isGhosting = true;
-
-// Avatar will load for 5 seconds
-setTimeout(() => {
-  isGhosting = false;
-}, 5000);
-```
-
-```html
-<usi-avatar [usiGhost]="isGhosting" usiText="ES">
-  Ghosting Button
-</usi-avatar>
-```
-
 ## Customization
 Campfire avatars were made to be easily customizable. Styling an avatar is as simple as just adding a class onto the tag
 or overriding our CSS variables in the root selector. The list of overridable variables are as follows:

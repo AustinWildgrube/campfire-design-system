@@ -105,20 +105,6 @@ export default {
       control: { type: 'select' },
       options: ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
     },
-    usiGhost: {
-      name: 'usiGhost',
-      description: 'Shows the ghosting state when loading.',
-      defaultValue: 'false',
-      type: {
-        name: 'boolean',
-        required: false,
-      },
-      table: {
-        category: 'Attributes',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'true | false' },
-      },
-    },
     true: {
       table: { disable: true },
     },
@@ -132,7 +118,6 @@ const Template: Story<UsiAvatarComponent> = (args: UsiAvatarComponent) => ({
   props: args,
   template: `
   <usi-avatar
-    [usiGhost]="usiGhost"
     [usiSrc]="usiSrc"
     [usiAlt]="usiAlt"
     [usiText]="usiText"
@@ -144,7 +129,6 @@ const Template: Story<UsiAvatarComponent> = (args: UsiAvatarComponent) => ({
 
 export const Normal = Template.bind({});
 Normal.args = {
-  usiGhost: undefined,
   usiSrc:
     'https://images.unsplash.com/photo-1570641963303-92ce4845ed4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
   usiAlt: 'random mountains',
@@ -156,7 +140,6 @@ Normal.args = {
 
 export const Text = Template.bind({});
 Text.args = {
-  usiGhost: undefined,
   usiSrc: undefined,
   usiAlt: undefined,
   usiText: 'ES',
@@ -167,7 +150,6 @@ Text.args = {
 
 export const Icon = Template.bind({});
 Icon.args = {
-  usiGhost: undefined,
   usiSrc: undefined,
   usiAlt: undefined,
   usiText: undefined,
@@ -178,7 +160,6 @@ Icon.args = {
 
 export const Square = Template.bind({});
 Square.args = {
-  usiGhost: undefined,
   usiSrc:
     'https://images.unsplash.com/photo-1570641963303-92ce4845ed4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
   usiAlt: 'random mountains',
@@ -190,7 +171,6 @@ Square.args = {
 
 export const Sized = Template.bind({});
 Sized.args = {
-  usiGhost: undefined,
   usiSrc:
     'https://images.unsplash.com/photo-1570641963303-92ce4845ed4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
   usiAlt: 'random mountains',

@@ -38,13 +38,6 @@ describe('UsiButtonComponent', () => {
     expect(debugElement.nativeElement.className).toContain('usi-button--loading');
   });
 
-  it('should add the ghosting state', () => {
-    component.usiGhost = true;
-    fixture.detectChanges();
-
-    expect(debugElement.nativeElement.className).toContain('usi-button--ghost');
-  });
-
   it('should be a block element', () => {
     component.usiBlock = true;
     fixture.detectChanges();

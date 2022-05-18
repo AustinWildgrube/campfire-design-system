@@ -36,20 +36,6 @@ export default {
         defaultValue: { summary: '' },
       },
     },
-    usiGhost: {
-      name: 'usiGhost',
-      description: 'Allows for a ghosting state while loading.',
-      defaultValue: 'false',
-      type: {
-        name: 'boolean',
-        required: false,
-      },
-      table: {
-        category: 'Attributes',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'true | false' },
-      },
-    },
     usiDisabled: {
       name: 'usiDisabled',
       description: 'Disables the radio button.',
@@ -102,23 +88,20 @@ export default {
 
 const Template: Story<UsiRadioButtonComponent> = (args: UsiRadioButtonComponent) => ({
   props: args,
-  template: `<label usiValue="one" [usiDisabled]="usiDisabled" [usiGhost]="usiGhost" usi-radio>One</label>`,
+  template: `<label usiValue="one" [usiDisabled]="usiDisabled" usi-radio>One</label>`,
 });
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   usiDisabled: true,
-  usiGhost: undefined,
 };
 
 export const Ghost = Template.bind({});
 Ghost.args = {
   usiDisabled: undefined,
-  usiGhost: true,
 };
 
 export const Normal = Template.bind({});
 Normal.args = {
   usiDisabled: undefined,
-  usiGhost: undefined,
 };

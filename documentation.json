@@ -114,16 +114,6 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/checkbox/Checkbox.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Disabled",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/button/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -134,7 +124,7 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/radio-button/RadioButton.stories.ts",
+                "file": "stories/checkbox/Checkbox.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -145,6 +135,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/radio-group/RadioGroup.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Disabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/radio-button/RadioButton.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -168,7 +168,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiTabsComponent | UsiTabComponent>",
-                "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiGhost]=\"usiGhost\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\" [usiActive]=\"usiActive\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\" usiDisabled>\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
+                "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\" [usiActive]=\"usiActive\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\" usiDisabled>\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
             },
             {
                 "name": "DisableTab",
@@ -258,7 +258,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiInputComponent>",
-                "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiusiPlaceholder\"\n      [usiError]=\"error\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
+                "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiusiPlaceholder\"\n      [usiError]=\"error\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
             },
             {
                 "name": "ErrorTemplate",
@@ -294,7 +294,7 @@
                 "name": "Ghost",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/radio-button/RadioButton.stories.ts",
+                "file": "stories/radio-group/RadioGroup.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -304,7 +304,7 @@
                 "name": "Ghost",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/radio-group/RadioGroup.stories.ts",
+                "file": "stories/radio-button/RadioButton.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -458,7 +458,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiTabsComponent | UsiTabComponent>",
-                "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\" usiActive>\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
+                "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiDisabled]=\"usiDisabled\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\" usiActive>\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
             },
             {
                 "name": "Justify",
@@ -494,7 +494,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/dialog-modal/Dialog.stories.ts",
+                "file": "stories/button/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -514,7 +514,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/dialog-modal/Dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -534,27 +534,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/radio-button/RadioButton.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Normal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/radio-group/RadioGroup.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Normal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/text/Text.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -574,7 +554,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/title/Title.stories.ts",
+                "file": "stories/radio-button/RadioButton.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -594,7 +574,27 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/text/Text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/time-input/TimeInput.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/title/Title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -768,17 +768,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiAvatarComponent>",
-                "defaultValue": "(args: UsiAvatarComponent) => ({\n  props: args,\n  template: `\n  <usi-avatar\n    [usiGhost]=\"usiGhost\"\n    [usiSrc]=\"usiSrc\"\n    [usiAlt]=\"usiAlt\"\n    [usiText]=\"usiText\"\n    [usiIcon]=\"usiIcon\"\n    [usiShape]=\"usiShape\"\n    [usiSize]=\"usiSize\"\n  ></usi-avatar>`,\n})"
+                "defaultValue": "(args: UsiAvatarComponent) => ({\n  props: args,\n  template: `\n  <usi-avatar\n    [usiSrc]=\"usiSrc\"\n    [usiAlt]=\"usiAlt\"\n    [usiText]=\"usiText\"\n    [usiIcon]=\"usiIcon\"\n    [usiShape]=\"usiShape\"\n    [usiSize]=\"usiSize\"\n  ></usi-avatar>`,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/dialog-modal/Dialog.stories.ts",
+                "file": "stories/button/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiDialogModalComponent>",
-                "defaultValue": "(args: UsiDialogModalComponent) => ({\n  props: args,\n  template: `\n    <usi-dialog-modal [dialog]=\"dialog\"></usi-dialog-modal>\n  `,\n})"
+                "type": "Story<UsiButtonComponent>",
+                "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
             },
             {
                 "name": "Template",
@@ -794,21 +794,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/flex/Flex.stories.ts",
+                "file": "stories/dialog-modal/Dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiFlexComponent>",
-                "defaultValue": "(args: UsiFlexComponent) => ({\n  props: args,\n  template: `\n    <div style=\"background-color: #f3f3f3; width: 50vw; height: 50vh;\">\n      <usi-flex\n        [usiAlign]=\"usiAlign\"\n        [usiDirection]=\"usiDirection\"\n        [usiGrow]=\"usiGrow\"\n        [usiJustify]=\"usiJustify\"\n        [usiNoWrap]=\"usiNoWrap\"\n        [usiSpacing]=\"usiSpacing\"\n      >\n        <div style=\"height: 25px; width: 100px; background-color: #25CED1;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #FF8A5B;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #EA526F;\"></div>\n      </usi-flex>\n    </div>\n  `,\n})"
+                "type": "Story<UsiDialogModalComponent>",
+                "defaultValue": "(args: UsiDialogModalComponent) => ({\n  props: args,\n  template: `\n    <usi-dialog-modal [dialog]=\"dialog\"></usi-dialog-modal>\n  `,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/flex/Flex.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiButtonComponent>",
-                "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiGhost]=\"usiGhost\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
+                "type": "Story<UsiFlexComponent>",
+                "defaultValue": "(args: UsiFlexComponent) => ({\n  props: args,\n  template: `\n    <div style=\"background-color: #f3f3f3; width: 50vw; height: 50vh;\">\n      <usi-flex\n        [usiAlign]=\"usiAlign\"\n        [usiDirection]=\"usiDirection\"\n        [usiGrow]=\"usiGrow\"\n        [usiJustify]=\"usiJustify\"\n        [usiNoWrap]=\"usiNoWrap\"\n        [usiSpacing]=\"usiSpacing\"\n      >\n        <div style=\"height: 25px; width: 100px; background-color: #25CED1;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #FF8A5B;\"></div>\n        <div style=\"height: 25px; width: 100px; background-color: #EA526F;\"></div>\n      </usi-flex>\n    </div>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -828,17 +828,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiInputComponent>",
-                "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiPlaceholder\"\n      [usiError]=\"usiError\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n  `,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/radio-button/RadioButton.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiRadioButtonComponent>",
-                "defaultValue": "(args: UsiRadioButtonComponent) => ({\n  props: args,\n  template: `<label usiValue=\"one\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\" usi-radio>One</label>`,\n})"
+                "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiPlaceholder\"\n      [usiError]=\"usiError\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -848,7 +838,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiRadioGroupComponent>",
-                "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\" [usiGhost]=\"usiGhost\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
+                "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
             },
             {
                 "name": "Template",
@@ -864,16 +854,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/text/Text.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiTextComponent>",
-                "defaultValue": "(args: UsiTextComponent) => ({\n  props: args,\n  template: `\n    <p\n      [usiAlign]=\"usiAlign\"\n      [usiColor]=\"usiColor\"\n      [usiInherit]=\"usiInherit\"\n      [usiInline]=\"usiInline\"\n      [usiLineClamp]=\"usiLineClamp\"\n      [usiSize]=\"usiSize\"\n      [usiTransform]=\"usiTransform\"\n      [usiUnderline]=\"usiUnderline\"\n      [usiWeight]=\"usiWeight\"\n      usi-text\n    >\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore\n      magna aliqua. Tellus pellentesque eu tincidunt tortor. Velit laoreet id donec ultrices. Id diam maecenas\n      ultricies mi eget. Diam sollicitudin tempor id eu nisl nunc mi. Sed pulvinar proin gravida hendrerit lectus.\n      Etiam sit amet nisl purus in. Erat nam at lectus urna. Velit sed ullamcorper morbi tincidunt ornare massa eget\n      egestas. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Tristique risus nec feugiat in fermentum\n      posuere urna. Non pulvinar neque laoreet suspendisse interdum consectetur. Tellus in metus vulputate eu\n      scelerisque felis. Risus quis varius quam quisque id diam vel quam elementum. Felis eget velit aliquet sagittis\n      id consectetur.\n\n      Nulla facilisi morbi tempus iaculis. Eu feugiat pretium nibh ipsum consequat. Iaculis at erat pellentesque\n      adipiscing commodo. Pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Donec ac odio\n      tempor orci dapibus ultrices in. Amet est placerat in egestas erat imperdiet sed. Molestie ac feugiat sed lectus.\n      Turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Nec ullamcorper sit amet risus.\n      Vulputate eu scelerisque felis imperdiet proin fermentum. Sit amet porttitor eget dolor morbi non arcu. Est lorem\n      ipsum dolor sit amet consectetur adipiscing elit pellentesque. Tincidunt ornare massa eget egestas purus. Urna\n      neque viverra justo nec ultrices dui. At erat pellentesque adipiscing commodo elit. A pellentesque sit amet\n      porttitor eget dolor morbi non. Ligula ullamcorper malesuada proin libero nunc consequat.\n    </p>\n  `,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/table/Table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -884,11 +864,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/title/Title.stories.ts",
+                "file": "stories/radio-button/RadioButton.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiTitleComponent>",
-                "defaultValue": "(args: UsiTitleComponent) => ({\n  props: args,\n  template: `\n    <h1 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h1>\n\n    <h2 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h2>\n\n    <h3 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h3>\n\n    <h4 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h4>\n\n    <h5 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h5>\n\n    <h6 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h6>\n  `,\n})"
+                "type": "Story<UsiRadioButtonComponent>",
+                "defaultValue": "(args: UsiRadioButtonComponent) => ({\n  props: args,\n  template: `<label usiValue=\"one\" [usiDisabled]=\"usiDisabled\" usi-radio>One</label>`,\n})"
             },
             {
                 "name": "Template",
@@ -898,7 +878,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiTabsComponent | UsiTabComponent>",
-                "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\" [usiActive]=\"usiActive\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
+                "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiDisabled]=\"usiDisabled\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\" [usiActive]=\"usiActive\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/text/Text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiTextComponent>",
+                "defaultValue": "(args: UsiTextComponent) => ({\n  props: args,\n  template: `\n    <p\n      [usiAlign]=\"usiAlign\"\n      [usiColor]=\"usiColor\"\n      [usiInherit]=\"usiInherit\"\n      [usiInline]=\"usiInline\"\n      [usiLineClamp]=\"usiLineClamp\"\n      [usiSize]=\"usiSize\"\n      [usiTransform]=\"usiTransform\"\n      [usiUnderline]=\"usiUnderline\"\n      [usiWeight]=\"usiWeight\"\n      usi-text\n    >\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore\n      magna aliqua. Tellus pellentesque eu tincidunt tortor. Velit laoreet id donec ultrices. Id diam maecenas\n      ultricies mi eget. Diam sollicitudin tempor id eu nisl nunc mi. Sed pulvinar proin gravida hendrerit lectus.\n      Etiam sit amet nisl purus in. Erat nam at lectus urna. Velit sed ullamcorper morbi tincidunt ornare massa eget\n      egestas. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Tristique risus nec feugiat in fermentum\n      posuere urna. Non pulvinar neque laoreet suspendisse interdum consectetur. Tellus in metus vulputate eu\n      scelerisque felis. Risus quis varius quam quisque id diam vel quam elementum. Felis eget velit aliquet sagittis\n      id consectetur.\n\n      Nulla facilisi morbi tempus iaculis. Eu feugiat pretium nibh ipsum consequat. Iaculis at erat pellentesque\n      adipiscing commodo. Pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Donec ac odio\n      tempor orci dapibus ultrices in. Amet est placerat in egestas erat imperdiet sed. Molestie ac feugiat sed lectus.\n      Turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Nec ullamcorper sit amet risus.\n      Vulputate eu scelerisque felis imperdiet proin fermentum. Sit amet porttitor eget dolor morbi non arcu. Est lorem\n      ipsum dolor sit amet consectetur adipiscing elit pellentesque. Tincidunt ornare massa eget egestas purus. Urna\n      neque viverra justo nec ultrices dui. At erat pellentesque adipiscing commodo elit. A pellentesque sit amet\n      porttitor eget dolor morbi non. Ligula ullamcorper malesuada proin libero nunc consequat.\n    </p>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -919,6 +909,16 @@
                 "deprecationMessage": "",
                 "type": "Story<UsiToastComponent>",
                 "defaultValue": "(args: UsiToastComponent) => ({\n  props: args,\n  template: `\n    <usi-toast [toast]=\"toast\"></usi-toast>\n  `,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/title/Title.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiTitleComponent>",
+                "defaultValue": "(args: UsiTitleComponent) => ({\n  props: args,\n  template: `\n    <h1 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h1>\n\n    <h2 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h2>\n\n    <h3 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h3>\n\n    <h4 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h4>\n\n    <h5 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h5>\n\n    <h6 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h6>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -1246,7 +1246,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<UsiButtonComponent>",
-                    "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiGhost]=\"usiGhost\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
+                    "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
                 },
                 {
                     "name": "Transparent",
@@ -1516,7 +1516,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<UsiInputComponent>",
-                    "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiusiPlaceholder\"\n      [usiError]=\"error\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
+                    "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiusiPlaceholder\"\n      [usiError]=\"error\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n\n    <ng-template #error>\n        <span>This is an error</span>\n    </ng-template>\n  `,\n})"
                 },
                 {
                     "name": "Ghost",
@@ -1586,7 +1586,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<UsiInputComponent>",
-                    "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiPlaceholder\"\n      [usiError]=\"usiError\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiGhost]=\"usiGhost\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n  `,\n})"
+                    "defaultValue": "(args: UsiInputComponent) => ({\n  props: args,\n  template: `\n    <usi-input\n      [usiType]=\"usiType\"\n      [usiPlaceholder]=\"usiPlaceholder\"\n      [usiError]=\"usiError\"\n      [usiDisabled]=\"usiDisabled\"\n      [usiRequired]=\"usiRequired\"\n      [usiForceError]=\"usiForceError\"\n      [usiPassword]=\"usiPassword\"\n      [usiPrefix]=\"usiPrefix\"\n      [usiSuffix]=\"usiSuffix\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiValue]=\"usiValue\"\n    ></usi-input>\n  `,\n})"
                 },
                 {
                     "name": "Types",
@@ -1618,7 +1618,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<UsiTabsComponent | UsiTabComponent>",
-                    "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiGhost]=\"usiGhost\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\" [usiActive]=\"usiActive\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\" usiDisabled>\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
+                    "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\" [usiActive]=\"usiActive\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\" usiDisabled>\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
                 },
                 {
                     "name": "DisableTab",
@@ -1658,7 +1658,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<UsiTabsComponent | UsiTabComponent>",
-                    "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\" usiActive>\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
+                    "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiDisabled]=\"usiDisabled\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\" usiActive>\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
                 },
                 {
                     "name": "Normal",
@@ -1688,7 +1688,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<UsiTabsComponent | UsiTabComponent>",
-                    "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\" [usiActive]=\"usiActive\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
+                    "defaultValue": "(args: UsiTabsComponent | UsiTabComponent) => ({\n  props: args,\n  template: `\n    <usi-tab-group [usiGrow]=\"usiGrow\" [usiTabPosition]=\"usiTabPosition\" [usiDisabled]=\"usiDisabled\">\n      <usi-tab [usiLabel]=\"usiLabel\" [usiDisabled]=\"usiDisabled\" [usiActive]=\"usiActive\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">1</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 2\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">2</p>\n      </usi-tab>\n      <usi-tab usiLabel=\"Tab 3\">\n        <p style=\"font-size: 150px; font-weight: 900; margin: 0; text-align: center;\">3</p>\n      </usi-tab>\n    </usi-tab-group>\n  `,\n})"
                 }
             ],
             "stories/checkbox/Checkbox.stories.ts": [
@@ -1733,48 +1733,6 @@
                     "defaultValue": "(args: UsiCheckboxComponent) => ({\n  props: args,\n  template: `\n    <label\n      [checked]=\"checked\"\n      [required]=\"required\"\n      [disabled]=\"disabled\"\n      usi-checkbox\n    >\n      Checkbox Label\n    </label>`,\n})"
                 }
             ],
-            "stories/radio-button/RadioButton.stories.ts": [
-                {
-                    "name": "Disabled",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/radio-button/RadioButton.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Ghost",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/radio-button/RadioButton.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Normal",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/radio-button/RadioButton.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/radio-button/RadioButton.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<UsiRadioButtonComponent>",
-                    "defaultValue": "(args: UsiRadioButtonComponent) => ({\n  props: args,\n  template: `<label usiValue=\"one\" [usiDisabled]=\"usiDisabled\" [usiGhost]=\"usiGhost\" usi-radio>One</label>`,\n})"
-                }
-            ],
             "stories/radio-group/RadioGroup.stories.ts": [
                 {
                     "name": "Disabled",
@@ -1814,7 +1772,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<UsiRadioGroupComponent>",
-                    "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\" [usiGhost]=\"usiGhost\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
+                    "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
                 },
                 {
                     "name": "Vertical",
@@ -1825,6 +1783,48 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
+                }
+            ],
+            "stories/radio-button/RadioButton.stories.ts": [
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/radio-button/RadioButton.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Ghost",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/radio-button/RadioButton.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Normal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/radio-button/RadioButton.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/radio-button/RadioButton.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<UsiRadioButtonComponent>",
+                    "defaultValue": "(args: UsiRadioButtonComponent) => ({\n  props: args,\n  template: `<label usiValue=\"one\" [usiDisabled]=\"usiDisabled\" usi-radio>One</label>`,\n})"
                 }
             ],
             "stories/time-input/TimeInput.stories.ts": [
@@ -2054,7 +2054,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<UsiAvatarComponent>",
-                    "defaultValue": "(args: UsiAvatarComponent) => ({\n  props: args,\n  template: `\n  <usi-avatar\n    [usiGhost]=\"usiGhost\"\n    [usiSrc]=\"usiSrc\"\n    [usiAlt]=\"usiAlt\"\n    [usiText]=\"usiText\"\n    [usiIcon]=\"usiIcon\"\n    [usiShape]=\"usiShape\"\n    [usiSize]=\"usiSize\"\n  ></usi-avatar>`,\n})"
+                    "defaultValue": "(args: UsiAvatarComponent) => ({\n  props: args,\n  template: `\n  <usi-avatar\n    [usiSrc]=\"usiSrc\"\n    [usiAlt]=\"usiAlt\"\n    [usiText]=\"usiText\"\n    [usiIcon]=\"usiIcon\"\n    [usiShape]=\"usiShape\"\n    [usiSize]=\"usiSize\"\n  ></usi-avatar>`,\n})"
                 },
                 {
                     "name": "Text",

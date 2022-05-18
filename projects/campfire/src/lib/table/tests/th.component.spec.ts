@@ -9,7 +9,7 @@ import { UsiTableService } from '../table.service';
 
 @Component({
   template: `
-    <usi-table [usiData]="usiData" usiPagination usiHeadless usiGhost #testData>
+    <usi-table [usiData]="usiData" usiPagination usiHeadless #testData>
       <thead>
         <tr>
           <th usiAlign="center" usiSortKey="id"></th>

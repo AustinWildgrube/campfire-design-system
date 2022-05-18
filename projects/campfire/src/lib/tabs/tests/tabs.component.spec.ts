@@ -6,7 +6,7 @@ import { UsiTabComponent } from '../tab/tab.component';
 
 @Component({
   template: `
-    <usi-tab-group [usiDisabled]="usiDisabled" [usiGrow]="usiGrow" [usiTabPosition]="usiTabPosition" [usiGhost]="usiGhost">
+    <usi-tab-group [usiDisabled]="usiDisabled" [usiGrow]="usiGrow" [usiTabPosition]="usiTabPosition">
       <usi-tab usiLabel="Tab 1">
         <p>Tab 1 content</p>
       </usi-tab>
@@ -71,12 +71,5 @@ describe('UsiTabsComponent', () => {
     fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelector('.usi-tab-group--right')).toBeTruthy();
-  });
-
-  it('should ghost the tab group', () => {
-    component.usiGhost = true;
-    fixture.detectChanges();
-
-    expect(debugElement.nativeElement.querySelector('.usi-tab-group--ghost')).toBeTruthy();
   });
 });

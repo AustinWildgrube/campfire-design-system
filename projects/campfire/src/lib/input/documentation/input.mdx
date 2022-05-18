@@ -116,24 +116,6 @@ In Campfire a hint will not be displayed if the input is invalid.
 <usi-input placeholder="placeholder" usiLabel="label" usiHint="hint"></usi-input>
 ```
 
-## Loading
-An input can use ghost loading which should ***only*** occur on the pages initial load into the DOM. Ghosting uses
-Angular object binding. For dynamic loading times the square bracket syntax is required. If the input is to load
-indefinitely it can be called as a boolean value.
-
-```ts
-let isGhosting = true;
-
-// Avatar will load for 5 seconds
-setTimeout(() => {
-  isGhosting = false;
-}, 5000);
-```
-
-```html
-<usi-input placeholder="placeholder" usiLabel="label" [usiGhost]="isGhosting"></usi-input>
-```
-
 ## Default Values
 A lot of the time inputs already have had information provided to them. This is common when a user is to edit some
 information they have previously provided. This is done by setting the `usiDefault` attribute. If an input is connected

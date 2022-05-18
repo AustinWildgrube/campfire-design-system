@@ -21,15 +21,6 @@ export class UsiButtonComponent {
 
   @Input()
   @InputBoolean()
-  usiGhost: BooleanInput = false;
-
-  @HostBinding('class.usi-button--ghost')
-  public get isGhost(): BooleanInput {
-    return this.usiGhost;
-  }
-
-  @Input()
-  @InputBoolean()
   usiBlock: BooleanInput = false;
 
   @HostBinding('class.usi-button--block')

@@ -109,32 +109,6 @@ displayed to the user as to why they are all disabled.
 </usi-radio-group>
 ```
 
-## Radio Button Loading
-When the page is being initially loaded into the DOM a radio button can take advantage of ghost loading. This feature
-takes advantage of Angular object binding. For dynamic loading times the square bracket syntax is required. If a radio
-button is to load indefinitely it can be called as a boolean value.
-
-Instead of individually ghosting all radio buttons on the page the `usiGhost` attribute can be used on the group.
-
-```ts
-let isGhosting = true;
-
-// The radio buttons will load for 5 seconds
-setTimeout(() => {
-  isGhosting = false;
-}, 5000);
-```
-
-```html
-<label ngModel [usiGhost]="isGhosting" usi-radio>Radio Button Text</label>
-
-<usi-radio-group [usiGhost]="isGhosting">
-  <label usiValue="one" usi-radio>Option One</label>
-  <label usiValue="two" usi-radio>Option Two</label>
-  <label usiValue="three" usi-radio>Option Three</label>
-</usi-radio-group>
-```
-
 ## Radio Button Customization
 Usi radio buttons were made to be easily customizable. Styling a radio button is as simple as just overriding our
 CSS variables in the root selector. The list of overridable variables are as follows:

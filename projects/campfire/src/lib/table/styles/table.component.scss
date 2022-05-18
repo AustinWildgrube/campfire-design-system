@@ -16,52 +16,6 @@
   }
 }
 
-:host.usi-table--ghost {
-  animation: ghost-lines var(--ghost-animation-duration) infinite linear;
-  background-color: #EBEAEB;
-  background-image: linear-gradient(90deg, var(--ghost-line-color) 0px, var(--ghost-color) 40px, var(--ghost-line-color) 80px);
-  background-size: 80vw;
-  border-color: #EBEAEB;
-  border-radius: 3px;
-  cursor: default;
-  height: 300px;
-  overflow: hidden;
-  width: 100%;
-  z-index: 10;
-
-  &:hover {
-    background-color: #EBEAEB;
-    border-color: #EBEAEB;
-  }
-
-  &:active {
-    background-color: #EBEAEB;
-    border-color: #EBEAEB;
-  }
-
-  &:focus {
-    box-shadow: none;
-  }
-
-  span, ::ng-deep fa-icon {
-    visibility: hidden;
-  }
-
-  @keyframes ghost-lines {
-    0% {
-      background-position: -100px;
-    }
-
-    40% {
-      background-position: 40vw;
-    }
-
-    100% {
-      background-position: 60vw;
-    }
-  }
-}
-
 // Only apply table classes if it is not headless
 :not(.usi-table--headless) {
   ::ng-deep.usi-table__head {

@@ -8,7 +8,7 @@ import { UsiSharedModule } from '../../shared/shared.module';
 
 @Component({
   template: `
-    <usi-table [usiData]="usiData" usiPagination usiHeadless usiGhost #testData>
+    <usi-table [usiData]="usiData" usiPagination usiHeadless #testData>
       <thead>
         <tr>
           <th></th>
@@ -64,10 +64,6 @@ describe('UsiTableComponent', () => {
 
   it('should be headless', () => {
     expect(debugElement.nativeElement.querySelector('.usi-table--headless')).toBeTruthy();
-  });
-
-  it('should ghost the table', () => {
-    expect(debugElement.nativeElement.querySelector('.usi-table--ghost')).toBeTruthy();
   });
 
   it('should be paginated', () => {

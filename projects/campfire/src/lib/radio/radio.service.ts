@@ -8,7 +8,6 @@ export class UsiRadioService {
   touched = new Subject<void>();
   name = new ReplaySubject<string>(1);
   selected = new ReplaySubject<any>(1);
-  ghost = new ReplaySubject<BooleanInput>(1);
   disabled = new ReplaySubject<BooleanInput>(1);
 
   /**
@@ -41,14 +40,5 @@ export class UsiRadioService {
    */
   public setName(value: string): void {
     this.name.next(value);
-  }
-
-  /**
-   * Emits to each radio button if the radio group has been ghosted.
-   * @return
-   */
-  public setGhost(value: BooleanInput): void {
-    this.ghost.next(value);
-    this.disabled.next(value);
   }
 }

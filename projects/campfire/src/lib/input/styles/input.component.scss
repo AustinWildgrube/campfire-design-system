@@ -51,46 +51,6 @@
   }
 }
 
-/* Loading Animations */
-.usi-input-group__input--ghost {
-  animation: ghost-lines var(--ghost-animation-duration) infinite linear;
-  background-color: #EBEAEB;
-  background-image: linear-gradient(90deg, var(--ghost-line-color) 0px, var(--ghost-color) 40px, var(--ghost-line-color) 80px);
-  background-size: 80vw;
-  border-color: #EBEAEB;
-  cursor: not-allowed;
-  height: 100%;
-  overflow: hidden;
-
-  &:hover {
-    background-color: #EBEAEB;
-    border-color: #EBEAEB;
-  }
-
-  &:active {
-    background-color: #EBEAEB;
-    border-color: #EBEAEB;
-  }
-
-  &:focus {
-    box-shadow: none;
-  }
-
-  @keyframes ghost-lines {
-    0% {
-      background-position: -100px;
-    }
-
-    40% {
-      background-position: 40vw;
-    }
-
-    100% {
-      background-position: 60vw;
-    }
-  }
-}
-
 .usi-input-group__input:focus::placeholder {
   color: var(--input-placeholder-color);
 }

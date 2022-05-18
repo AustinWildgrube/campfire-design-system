@@ -84,21 +84,6 @@ export default {
       },
       control: { type: 'boolean' },
     },
-    usiGhost: {
-      name: 'usiGhost',
-      description: 'The size of the button can change depending on the use case.',
-      defaultValue: false,
-      type: {
-        name: 'boolean',
-        required: false,
-      },
-      table: {
-        category: 'Attributes',
-        defaultValue: { summary: false },
-        type: { summary: 'boolean' },
-      },
-      control: { type: 'boolean' },
-    },
     usiLoading: {
       name: 'usiLoading',
       description: 'The size of the button can change depending on the use case.',
@@ -150,7 +135,6 @@ const Template: Story<UsiButtonComponent> = (args: UsiButtonComponent) => ({
     [disabled]="disabled"
     [usiSize]="usiSize"
     [usiType]="usiType"
-    [usiGhost]="usiGhost"
     [usiLoading]="usiLoading"
     usi-button
     >
@@ -164,7 +148,6 @@ Block.args = {
   disabled: false,
   usiSize: undefined,
   usiType: 'primary',
-  usiGhost: undefined,
   usiLoading: undefined,
   usiBlock: true,
 };
@@ -175,7 +158,6 @@ Disabled.args = {
   disabled: true,
   usiSize: undefined,
   usiType: 'primary',
-  usiGhost: undefined,
   usiLoading: undefined,
   usiBlock: undefined,
 };
@@ -186,7 +168,6 @@ Ghost.args = {
   disabled: undefined,
   usiSize: undefined,
   usiType: 'primary',
-  usiGhost: true,
   usiLoading: undefined,
   usiBlock: undefined,
 };
@@ -197,7 +178,6 @@ Loading.args = {
   disabled: undefined,
   usiSize: undefined,
   usiType: 'primary',
-  usiGhost: undefined,
   usiLoading: true,
   usiBlock: undefined,
 };
@@ -208,7 +188,6 @@ Normal.args = {
   disabled: undefined,
   usiSize: undefined,
   usiType: 'primary',
-  usiGhost: undefined,
   usiLoading: undefined,
   usiBlock: undefined,
 };
@@ -219,7 +198,6 @@ Secondary.args = {
   disabled: undefined,
   usiSize: undefined,
   usiType: 'secondary',
-  usiGhost: undefined,
   usiLoading: undefined,
   usiBlock: undefined,
 };
@@ -230,7 +208,6 @@ Sized.args = {
   disabled: undefined,
   usiSize: 'small',
   usiType: 'primary',
-  usiGhost: undefined,
   usiLoading: undefined,
   usiBlock: undefined,
 };
@@ -241,7 +218,6 @@ Transparent.args = {
   disabled: undefined,
   usiSize: undefined,
   usiType: 'transparent',
-  usiGhost: undefined,
   usiLoading: undefined,
   usiBlock: undefined,
 };
@@ -260,7 +236,6 @@ IconWithText.args = {
   disabled: undefined,
   usiSize: undefined,
   usiType: 'primary',
-  usiGhost: undefined,
   usiLoading: undefined,
   usiBlock: undefined,
 };
@@ -279,7 +254,6 @@ IconWithoutText.args = {
   disabled: undefined,
   usiSize: undefined,
   usiType: 'primary',
-  usiGhost: undefined,
   usiLoading: undefined,
   usiBlock: undefined,
 };

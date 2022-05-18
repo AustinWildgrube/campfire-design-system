@@ -10,18 +10,17 @@ import { BooleanInput, InputBoolean } from '../../utils/convert';
 @Component({
   selector: 'label[usi-radio]',
   template: `
-    <span class="usi-radio-button" [ngClass]="{ 'usi-radio-button--ghost': usiGhost }">
+    <span class="usi-radio-button">
       <input
-        *ngIf="!usiGhost"
         [id]="uuid"
         class="usi-radio-button__input"
         [ngClass]="{ 'usi-radio-button__input--checked': isChecked }"
         [name]="name"
         [checked]="isChecked"
-        [disabled]="usiDisabled == true || usiGhost"
+        [disabled]="usiDisabled == true"
         type="radio"
       />
-      <span *ngIf="!usiGhost" class="usi-radio-button__label" [ngClass]="{ 'usi-radio-button--disabled': usiDisabled }">
+      <span class="usi-radio-button__label" [ngClass]="{ 'usi-radio-button--disabled': usiDisabled }">
         <ng-content></ng-content>
       </span>
     </span>
@@ -38,10 +37,6 @@ import { BooleanInput, InputBoolean } from '../../utils/convert';
 export class UsiRadioButtonComponent implements ControlValueAccessor, OnInit {
   @Input()
   usiValue: string = '';
-
-  @Input()
-  @InputBoolean()
-  usiGhost?: BooleanInput;
 
   @Input()
   @InputBoolean()
@@ -66,13 +61,6 @@ export class UsiRadioButtonComponent implements ControlValueAccessor, OnInit {
       this.usiRadioService.disabled.subscribe((disabled) => {
         if (disabled) {
           this.usiDisabled = disabled;
-          this.cdr.markForCheck();
-        }
-      });
-
-      this.usiRadioService.ghost.subscribe((ghost) => {
-        if (ghost) {
-          this.usiGhost = ghost;
           this.cdr.markForCheck();
         }
       });

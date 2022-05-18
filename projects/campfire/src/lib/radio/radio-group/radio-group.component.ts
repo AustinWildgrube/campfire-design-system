@@ -25,10 +25,6 @@ export class UsiRadioGroupComponent implements ControlValueAccessor, OnInit {
 
   @Input()
   @InputBoolean()
-  usiGhost?: BooleanInput;
-
-  @Input()
-  @InputBoolean()
   usiDisabled?: BooleanInput;
 
   @Input()
@@ -56,11 +52,10 @@ export class UsiRadioGroupComponent implements ControlValueAccessor, OnInit {
     });
 
     this.usiRadioService.setDisabled(this.usiDisabled);
-    this.usiRadioService.setGhost(this.usiGhost);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { usiDisabled, usiName, usiGhost } = changes;
+    const { usiDisabled, usiName } = changes;
 
     if (usiDisabled) {
       this.usiRadioService.setDisabled(this.usiDisabled);
@@ -68,11 +63,6 @@ export class UsiRadioGroupComponent implements ControlValueAccessor, OnInit {
 
     if (usiName) {
       this.usiRadioService.setName(this.usiName!);
-    }
-
-    if (usiGhost) {
-      this.usiRadioService.setGhost(this.usiGhost);
-      this.usiRadioService.setDisabled(this.usiGhost);
     }
   }
 

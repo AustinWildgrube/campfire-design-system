@@ -145,29 +145,19 @@ USI buttons are disabled the sam way a normal button would be disabled by using 
 ```
 
 ## Button Loading
-In Breakfast, there are two types of loading a button can take on. The first is ghosting which should ***only*** occur
-on the pages initial load into the DOM. For buttons that communicate an action is being performed should use the spinner
-style loading.
-
-Both types of loading use Angular object binding. For dynamic loading times the square bracket syntax is required. If
-the button is to load indefinitely it can be called as a boolean value.
+For buttons that communicate an action is being performed the spinner style loading should be used. Spinner style loading uses Angular object binding. For dynamic
+loading times the square bracket syntax is required. If the button is to load indefinitely it can be called as a boolean value.
 
 ```ts
 let isLoading = true;
-let isGhosting = true;
 
-// Both buttons will load for 5 seconds
+// The button will load for 5 seconds
 setTimeout(() => {
   isLoading = false;
-  isGhosting = false;
 }, 5000);
 ```
 
 ```html
-<button [usiGhost]="isGhosting" usi-button>
-  Ghosting Button
-</button>
-
 <button [usiLoading]="isLoading" usi-button>
   Loading Button
 </button>

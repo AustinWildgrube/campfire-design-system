@@ -62,21 +62,6 @@ export default {
       },
       control: { type: 'boolean' },
     },
-    usiGhost: {
-      name: 'usiGhost',
-      description: 'Allows for a ghosting state while loading.',
-      defaultValue: 'false',
-      type: {
-        name: 'boolean',
-        required: false,
-      },
-      table: {
-        category: 'Attributes',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'true | false' },
-      },
-      control: { type: 'boolean' },
-    },
     usiHint: {
       name: 'usiHint',
       description: 'Sometimes extra context is required for an input.',
@@ -217,7 +202,6 @@ const Template: Story<UsiInputComponent> = (args: UsiInputComponent) => ({
       [usiSuffix]="usiSuffix"
       [usiHint]="usiHint"
       [usiLabel]="usiLabel"
-      [usiGhost]="usiGhost"
       [usiValue]="usiValue"
     ></usi-input>
   `,
@@ -238,7 +222,6 @@ const ErrorTemplate: Story<UsiInputComponent> = (args: UsiInputComponent) => ({
       [usiSuffix]="usiSuffix"
       [usiHint]="usiHint"
       [usiLabel]="usiLabel"
-      [usiGhost]="usiGhost"
       [usiValue]="usiValue"
     ></usi-input>
 
@@ -261,7 +244,6 @@ DefaultValue.args = {
   usiSuffix: undefined,
   usiHint: undefined,
   usiLabel: 'Label',
-  usiGhost: undefined,
   usiValue: 'Default Value',
 };
 
@@ -277,7 +259,6 @@ Errors.args = {
   usiSuffix: undefined,
   usiHint: undefined,
   usiLabel: 'Label',
-  usiGhost: undefined,
   usiValue: '',
 };
 
@@ -294,7 +275,6 @@ Ghost.args = {
   usiSuffix: undefined,
   usiHint: undefined,
   usiLabel: 'Label',
-  usiGhost: true,
   usiValue: '',
 };
 
@@ -311,7 +291,6 @@ Hints.args = {
   usiSuffix: undefined,
   usiHint: 'This is a hint',
   usiLabel: 'Label',
-  usiGhost: undefined,
   usiValue: '',
 };
 
@@ -328,7 +307,6 @@ Normal.args = {
   usiSuffix: undefined,
   usiHint: undefined,
   usiLabel: 'Label',
-  usiGhost: undefined,
   usiValue: '',
 };
 
@@ -345,7 +323,6 @@ Password.args = {
   usiSuffix: undefined,
   usiHint: undefined,
   usiLabel: 'Label',
-  usiGhost: undefined,
   usiValue: '',
 };
 
@@ -362,7 +339,6 @@ Prefix.args = {
   usiSuffix: undefined,
   usiHint: undefined,
   usiLabel: 'Label',
-  usiGhost: undefined,
   usiValue: '',
 };
 
@@ -379,7 +355,6 @@ Suffix.args = {
   usiSuffix: 'coffee',
   usiHint: undefined,
   usiLabel: 'Label',
-  usiGhost: undefined,
   usiValue: '',
 };
 
@@ -396,6 +371,5 @@ Types.args = {
   usiSuffix: undefined,
   usiHint: undefined,
   usiLabel: 'Label',
-  usiGhost: undefined,
   usiValue: '',
 };
