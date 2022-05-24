@@ -14,6 +14,9 @@ export * from './lib/checkbox/checkbox.module';
 // Flex
 export * from './lib/flex/flex.module';
 
+// Ghost
+export * from './lib/ghost/ghost.module';
+
 // Input
 export * from './lib/input/input.module';
 

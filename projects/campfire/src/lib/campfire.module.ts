@@ -5,6 +5,7 @@ import { UsiAvatarModule } from './avatar/avatar.module';
 import { UsiButtonModule } from './button/button.module';
 import { UsiCheckboxModule } from './checkbox/checkbox.module';
 import { UsiFlexModule } from './flex/flex.module';
+import { UsiGhostModule } from './ghost/ghost.module';
 import { UsiInputModule } from './input/input.module';
 import { UsiNotificationsModule } from './notifications/notifications.module';
 import { UsiRadioModule } from './radio/radio.module';
@@ -25,6 +26,7 @@ import { UsiTableService } from './table/table.service';
     UsiButtonModule,
     UsiCheckboxModule,
     UsiFlexModule,
+    UsiGhostModule,
     UsiInputModule,
     UsiNotificationsModule,
     UsiRadioModule,
@@ -39,6 +41,7 @@ import { UsiTableService } from './table/table.service';
     UsiButtonModule,
     UsiCheckboxModule,
     UsiFlexModule,
+    UsiGhostModule,
     UsiInputModule,
     UsiNotificationsModule,
     UsiRadioModule,
