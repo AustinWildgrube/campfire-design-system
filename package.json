@@ -1,6 +1,8 @@
 {
   "name": "campfire",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "Campfire - Ungerboecks first design system!",
+  "author": "Austin Wildgrube <austin.wildgrube@ungerboeck.com>",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,6 +12,9 @@
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "ng run campfire:storybook",
     "build-storybook": "ng run campfire:build-storybook",
+    "build_lib": "ng build campfire",
+    "npm_pack": "cd dist/campfire && npm pack",
+    "package": "npm run build_lib && npm run npm_pack",
     "pretty": "prettier --write \"./**/*.{ts,tsx,js,jsx,json}\"",
     "format:fix": "pretty-quick --staged",
     "precommit": "run-s format:fix lint",
