@@ -21,13 +21,13 @@
   --button-corner-radius: 3px;
   --button-text-color: var(--white);
 
-  --button-background-color--hover: #00477A;
-  --button-border-color--hover: #00477A;
-  --button-text-color--hover: #00477A;
+  --button-background-color--hover: #1339B5;
+  --button-border-color--hover: #1339B5;
+  --button-text-color--hover: #1339B5;
 
-  --button-background-color--active: #003052;
-  --button-border-color--active: #003052;
-  --button-text-color--active: #003052;
+  --button-background-color--active: #0C2678;
+  --button-border-color--active: #0C2678;
+  --button-text-color--active: #0C2678;
 
   --button-shadow--focus: 0 0 10px rgba(0, 103, 177, 1);
 
@@ -47,7 +47,7 @@
   --button-text-color--secondary--disabled: #515152;
 
   --button-text-color--transparent: var(--primary);
-  --button-border-color--hover--transparent: #00477A;
+  --button-border-color--hover--transparent: #1339B5;
 
   /* Notifications */
   --notification-position: 16px;
