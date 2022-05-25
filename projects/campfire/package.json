@@ -4,8 +4,8 @@
   "description": "Campfire - Ungerboecks first design system!",
   "author": "Austin Wildgrube <austin.wildgrube@ungerboeck.com>",
   "exports": {
-    ".": {
-      "sass": "./lib/campfire.scss"
+    "./styles": {
+      "sass": "./styles/campfire.css"
     }
   },
   "dependencies": {

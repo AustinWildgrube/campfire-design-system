@@ -10,12 +10,12 @@
   --error: #D93E20;
   --info: #00477A;
 
-  // Ghosting
+  /* Ghosting */
   --ghost-line-color: rgba(228, 228, 228, 0.863);
   --ghost-color: var(--gray);
   --ghost-animation-duration: 3s;
 
-  // Buttons
+  /* Buttons */
   --button-background-color: var(--primary);
   --button-border-color: var(--primary);
   --button-corner-radius: 3px;
@@ -49,11 +49,11 @@
   --button-text-color--transparent: var(--primary);
   --button-border-color--hover--transparent: #00477A;
 
-  // Notifications
+  /* Notifications */
   --notification-position: 16px;
   --notification-zindex: 1010;
 
-  // Inline notifications
+  /* Inline notifications */
   --inline-background-color: var(--white);
   --inline-border-color: var(--black);
   --inline-title-color: var(--black);
@@ -71,7 +71,7 @@
   --inline-border-color--info: var(--info);
   --inline-text-color--info: var(--info);
 
-  // Snackbar notifications
+  /* Snackbar notifications */
   --snackbar-background-color: var(--black);
   --snackbar-text-color: var(--white);
   --snackbar-icon-color: var(--snackbar-text-color);
@@ -81,7 +81,7 @@
   --snackbar-background-color--error: var(--error);
   --snackbar-background-color--info: var(--info);
 
-  // Toast notifications
+  /* Toast notifications */
   --toast-background-color: rgba(255, 255, 255, .85);
   --toast-title-color: var(--black);
   --toast-message-color: var(--black);
@@ -92,7 +92,7 @@
   --toast-icon-color--error: var(--error);
   --toast-icon-color--info: var(--info);
 
-  // Tables
+  /* Tables */
   --table-background-color: var(--white);
   --table-background-color--even: #F5F5F5;
   --table-background-color--hover: #F5F5F5;
@@ -109,7 +109,7 @@
 
   --table-sort-icon-color: var(--gray);
 
-  // Modals
+  /* Modals */
   --modal-background-color: var(--white);
   --modal-box-shadow: 2px 0 24px rgba(0, 0, 0, 0.32);
   --modal-underlay-color: rgba(0, 0, 0, 0.5);
@@ -123,7 +123,7 @@
   --modal-title-color: var(--black);
   --modal-message-color: var(--black);
 
-  // Inputs
+  /* Inputs */
   --input-min-width: 135px;
   --input-background-color: var(--white);
   --input-border: 1px solid var(--gray);
@@ -157,7 +157,7 @@
   --input-hint-text-color: var(--gray);
   --input-hint-text-color--error: var(--error);
 
-  // Checkboxes
+  /* Checkboxes */
   --checkbox-border-color: var(--gray);
   --checkbox-label-text-color: var(--black);
 
@@ -171,7 +171,7 @@
   --checkbox-check-color--disabled: var(--gray);
   --checkbox-label-text-color--disabled: var(--gray);
 
-  // Radio buttons
+  /* Radio buttons */
   --radio-border-color: var(--gray);
   --radio-label-text-color: var(--black);
 
@@ -186,7 +186,7 @@
   --radio-background-color--disabled: #dfdfe3;
   --radio-label-text-color--disabled: var(--gray);
 
-  // Avatars
+  /* Avatars */
   --avatar-background-color: var(--white);
   --avatar-text-color: #003052;
   --avatar-icon-text-color: var(--gray);
@@ -194,14 +194,14 @@
 
   --avatar-corner-radius--square: 3px;
 
-  // Titles
+  /* Titles */
   --title-text-color: var(--black);
   --title-font-weight: 600;
 
-  // Text
+  /* Text */
   --text-base-color: var(--black);
 
-  // Tabs
+  /* Tabs */
   --tab-group-border-color: #e6e6e6;
 
   --tab-group-border-color--active: var(--primary);
