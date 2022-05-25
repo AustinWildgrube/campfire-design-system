@@ -5,7 +5,7 @@
   "author": "Austin Wildgrube <austin.wildgrube@ungerboeck.com>",
   "exports": {
     "./styles": {
-      "sass": "./styles/campfire.css"
+      "sass": "./campfire.css"
     }
   },
   "dependencies": {
