@@ -2,6 +2,9 @@
  * Public API Surface of campfire
  */
 
+// All in one
+export * from './lib/campfire.module';
+
 // Avatar
 export * from './lib/avatar/avatar.module';
 export * from './lib/avatar/avatar.component';
