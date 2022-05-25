@@ -154,7 +154,7 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/time-input/TimeInput.stories.ts",
+                "file": "stories/radio-group/RadioGroup.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -164,7 +164,7 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/radio-group/RadioGroup.stories.ts",
+                "file": "stories/time-input/TimeInput.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -514,7 +514,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/avatar/Avatar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -524,7 +524,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/dialog-modal/Dialog.stories.ts",
+                "file": "stories/button/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -544,7 +544,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/avatar/Avatar.stories.ts",
+                "file": "stories/dialog-modal/Dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -575,6 +575,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/radio-button/RadioButton.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/radio-group/RadioGroup.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -615,16 +625,6 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/time-input/TimeInput.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Normal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/radio-group/RadioGroup.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -694,7 +694,7 @@
                 "name": "Sized",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/avatar/Avatar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -704,7 +704,7 @@
                 "name": "Sized",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/avatar/Avatar.stories.ts",
+                "file": "stories/button/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -804,21 +804,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/avatar/Avatar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiButtonComponent>",
-                "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
+                "type": "Story<UsiAvatarComponent>",
+                "defaultValue": "(args: UsiAvatarComponent) => ({\n  props: args,\n  template: `\n  <usi-avatar\n    [usiSrc]=\"usiSrc\"\n    [usiAlt]=\"usiAlt\"\n    [usiText]=\"usiText\"\n    [usiIcon]=\"usiIcon\"\n    [usiShape]=\"usiShape\"\n    [usiSize]=\"usiSize\"\n  ></usi-avatar>`,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/dialog-modal/Dialog.stories.ts",
+                "file": "stories/button/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiDialogModalComponent>",
-                "defaultValue": "(args: UsiDialogModalComponent) => ({\n  props: args,\n  template: `\n    <usi-dialog-modal [dialog]=\"dialog\"></usi-dialog-modal>\n  `,\n})"
+                "type": "Story<UsiButtonComponent>",
+                "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
             },
             {
                 "name": "Template",
@@ -834,11 +834,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/avatar/Avatar.stories.ts",
+                "file": "stories/dialog-modal/Dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiAvatarComponent>",
-                "defaultValue": "(args: UsiAvatarComponent) => ({\n  props: args,\n  template: `\n  <usi-avatar\n    [usiSrc]=\"usiSrc\"\n    [usiAlt]=\"usiAlt\"\n    [usiText]=\"usiText\"\n    [usiIcon]=\"usiIcon\"\n    [usiShape]=\"usiShape\"\n    [usiSize]=\"usiSize\"\n  ></usi-avatar>`,\n})"
+                "type": "Story<UsiDialogModalComponent>",
+                "defaultValue": "(args: UsiDialogModalComponent) => ({\n  props: args,\n  template: `\n    <usi-dialog-modal [dialog]=\"dialog\"></usi-dialog-modal>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -894,6 +894,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/radio-group/RadioGroup.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiRadioGroupComponent>",
+                "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/snackbar/Snackbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -939,16 +949,6 @@
                 "deprecationMessage": "",
                 "type": "Story<UsiTimeInputComponent>",
                 "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiError]=\"error\"\n      [usiForceError]=\"usiForceError\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiRequired]=\"usiRequired\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n  `,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/radio-group/RadioGroup.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiRadioGroupComponent>",
-                "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
             },
             {
                 "name": "Template",
@@ -1897,6 +1897,58 @@
                     "defaultValue": "(args: UsiRadioButtonComponent) => ({\n  props: args,\n  template: `<label usiValue=\"one\" [usiDisabled]=\"usiDisabled\" usi-radio>One</label>`,\n})"
                 }
             ],
+            "stories/radio-group/RadioGroup.stories.ts": [
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/radio-group/RadioGroup.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Ghost",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/radio-group/RadioGroup.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Normal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/radio-group/RadioGroup.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/radio-group/RadioGroup.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<UsiRadioGroupComponent>",
+                    "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
+                },
+                {
+                    "name": "Vertical",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/radio-group/RadioGroup.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                }
+            ],
             "stories/time-input/TimeInput.stories.ts": [
                 {
                     "name": "Disabled",
@@ -1967,58 +2019,6 @@
                     "deprecationMessage": "",
                     "type": "Story<UsiTimeInputComponent>",
                     "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiError]=\"error\"\n      [usiForceError]=\"usiForceError\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiRequired]=\"usiRequired\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n  `,\n})"
-                }
-            ],
-            "stories/radio-group/RadioGroup.stories.ts": [
-                {
-                    "name": "Disabled",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/radio-group/RadioGroup.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Ghost",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/radio-group/RadioGroup.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Normal",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/radio-group/RadioGroup.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/radio-group/RadioGroup.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<UsiRadioGroupComponent>",
-                    "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
-                },
-                {
-                    "name": "Vertical",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/radio-group/RadioGroup.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
                 }
             ],
             "stories/title/Title.stories.ts": [

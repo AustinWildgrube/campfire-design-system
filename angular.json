@@ -36,14 +36,14 @@
           "builder": "@storybook/angular:start-storybook",
           "options": {
             "tsConfig": "projects/campfire/tsconfig.lib.json",
-            "styles": ["projects/campfire/src/lib/campfire.scss"]
+            "styles": ["projects/campfire/campfire.css"]
           }
         },
         "build-storybook": {
           "builder": "@storybook/angular:build-storybook",
           "options": {
             "tsConfig": "projects/campfire/tsconfig.lib.json",
-            "styles": ["projects/campfire/src/lib/campfire.scss"]
+            "styles": ["projects/campfire/campfire.css"]
           }
         }
       }
