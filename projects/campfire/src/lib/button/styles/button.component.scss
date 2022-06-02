@@ -42,7 +42,7 @@
     background-color: var(--button-background-color--disabled);
     border-color: var(--button-border-color--disabled);
     color: var(--button-text-color--disabled);
-    cursor: default;
+    cursor: not-allowed;
   }
 
   &:disabled[type='submit'] {
