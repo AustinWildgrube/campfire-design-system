@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="215" height="143" viewBox="0 0 215 143">
+  <g id="sales" transform="translate(-969 -707)">
+    <rect id="Rectangle_21" data-name="Rectangle 21" width="215" height="143" transform="translate(969 707)" fill="#bad2fb"/>
+    <g id="Symbols" transform="translate(1093 762)">
+      <g id="Head_Front_Top" data-name="Head/Front/Top" transform="translate(-37 -16)">
+        <g id="Head" transform="translate(54 31)">
+          <path id="Path_4" data-name="Path 4" d="M8.262,34.49C3.654,29.081.536,22.453,1.057,15.025c1.5-21.4,31.292-16.693,37.087-5.892s5.106,38.2-2.383,40.13c-2.987.77-9.349-1.116-15.825-5.019L24,73H0Z" fill="#b28b67" fill-rule="evenodd"/>
+        </g>
+        <path id="Hair" d="M67,30.787c12.057-4.177,27.7.7,25.609,10.494-1.344,6.286-8.625,9.426-15.788,12.787A6.182,6.182,0,0,0,71.447,51a6.08,6.08,0,0,0-6.157,6,5.862,5.862,0,0,0,.974,3.24,12.326,12.326,0,0,0-4.521,7.891c-3.884,0-10.161-11.4-8.089-22.222A15.166,15.166,0,0,1,52,46,15,15,0,1,1,67,30.787Z" fill="#0e2958" fill-rule="evenodd"/>
+      </g>
+    </g>
+    <path id="Polygon_2" data-name="Polygon 2" d="M41,0,82,71H0Z" transform="translate(995 726)" fill="#80a7ea"/>
+  </g>
+</svg>

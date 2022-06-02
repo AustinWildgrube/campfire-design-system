@@ -124,7 +124,7 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/button/Button.stories.ts",
+                "file": "stories/checkbox/Checkbox.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -134,6 +134,7 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+<<<<<<< HEAD
                 "file": "stories/radio-group/RadioGroup.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -145,6 +146,9 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/checkbox/Checkbox.stories.ts",
+=======
+                "file": "stories/button/Button.stories.ts",
+>>>>>>> 4e13889 (feat: add a v1 of the Storybook welcome page)
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -244,7 +248,7 @@
                 "name": "Error",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/toast/Toast.stories.ts",
+                "file": "stories/validation-modal/Validation.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -254,7 +258,7 @@
                 "name": "Error",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/validation-modal/Validation.stories.ts",
+                "file": "stories/toast/Toast.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -544,17 +548,11 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+<<<<<<< HEAD
                 "file": "stories/dialog-modal/Dialog.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Normal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
+=======
                 "file": "stories/checkbox/Checkbox.stories.ts",
+>>>>>>> 4e13889 (feat: add a v1 of the Storybook welcome page)
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -564,17 +562,21 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/button/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+<<<<<<< HEAD
                 "file": "stories/radio-group/RadioGroup.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Normal",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
+=======
                 "file": "stories/ghost/Ghost.stories.ts",
+>>>>>>> 4e13889 (feat: add a v1 of the Storybook welcome page)
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -585,6 +587,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/input/Input.stories.tsx",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Normal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/dialog-modal/Dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -644,7 +656,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/time-input/TimeInput.stories.ts",
+                "file": "stories/title/Title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -654,7 +666,7 @@
                 "name": "Normal",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/title/Title.stories.ts",
+                "file": "stories/time-input/TimeInput.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -794,7 +806,7 @@
                 "name": "Success",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/toast/Toast.stories.ts",
+                "file": "stories/validation-modal/Validation.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -804,7 +816,7 @@
                 "name": "Success",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/validation-modal/Validation.stories.ts",
+                "file": "stories/toast/Toast.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -854,6 +866,7 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+<<<<<<< HEAD
                 "file": "stories/dialog-modal/Dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -864,6 +877,8 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+=======
+>>>>>>> 4e13889 (feat: add a v1 of the Storybook welcome page)
                 "file": "stories/checkbox/Checkbox.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -874,11 +889,19 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+<<<<<<< HEAD
                 "file": "stories/radio-group/RadioGroup.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiRadioGroupComponent>",
                 "defaultValue": "(args: UsiRadioGroupComponent) => ({\n  props: args,\n  template: `\n    <usi-radio-group [usiDisabled]=\"usiDisabled\" [usiDirection]=\"usiDirection\">\n      <label usiValue=\"one\" usi-radio>One</label>\n      <label usiValue=\"two\" usi-radio>Two</label>\n      <label usiValue=\"three\" usi-radio>Three</label>\n    </usi-radio-group>\n`,\n})"
+=======
+                "file": "stories/button/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiButtonComponent>",
+                "defaultValue": "(args: UsiButtonComponent) => ({\n  props: args,\n  template: `\n  <button\n    [usiBlock]=\"usiBlock\"\n    [usiColor]=\"usiColor\"\n    [disabled]=\"disabled\"\n    [usiSize]=\"usiSize\"\n    [usiType]=\"usiType\"\n    [usiLoading]=\"usiLoading\"\n    usi-button\n    >\n      Primary Button\n    </button>`,\n})"
+>>>>>>> 4e13889 (feat: add a v1 of the Storybook welcome page)
             },
             {
                 "name": "Template",
@@ -934,21 +957,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/radio-button/RadioButton.stories.ts",
+                "file": "stories/dialog-modal/Dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiRadioButtonComponent>",
-                "defaultValue": "(args: UsiRadioButtonComponent) => ({\n  props: args,\n  template: `<label usiValue=\"one\" [usiDisabled]=\"usiDisabled\" usi-radio>One</label>`,\n})"
+                "type": "Story<UsiDialogModalComponent>",
+                "defaultValue": "(args: UsiDialogModalComponent) => ({\n  props: args,\n  template: `\n    <usi-dialog-modal [dialog]=\"dialog\"></usi-dialog-modal>\n  `,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/snackbar/Snackbar.stories.ts",
+                "file": "stories/radio-button/RadioButton.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiSnackbarComponent>",
-                "defaultValue": "(args: UsiSnackbarComponent) => ({\n  props: args,\n  template: `\n    <usi-snackbar [snackbar]=\"snackbar\"></usi-snackbar>\n  `,\n})"
+                "type": "Story<UsiRadioButtonComponent>",
+                "defaultValue": "(args: UsiRadioButtonComponent) => ({\n  props: args,\n  template: `<label usiValue=\"one\" [usiDisabled]=\"usiDisabled\" usi-radio>One</label>`,\n})"
             },
             {
                 "name": "Template",
@@ -974,6 +997,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/snackbar/Snackbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiSnackbarComponent>",
+                "defaultValue": "(args: UsiSnackbarComponent) => ({\n  props: args,\n  template: `\n    <usi-snackbar [snackbar]=\"snackbar\"></usi-snackbar>\n  `,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/tabs/Tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -994,21 +1027,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/time-input/TimeInput.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<UsiTimeInputComponent>",
-                "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiError]=\"error\"\n      [usiForceError]=\"usiForceError\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiRequired]=\"usiRequired\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n  `,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/title/Title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<UsiTitleComponent>",
                 "defaultValue": "(args: UsiTitleComponent) => ({\n  props: args,\n  template: `\n    <h1 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h1>\n\n    <h2 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h2>\n\n    <h3 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h3>\n\n    <h4 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h4>\n\n    <h5 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h5>\n\n    <h6 [usiAlign]=\"usiAlign\" [usiDisplay]=\"usiDisplay\" usi-title>\n      This is a title\n    </h6>\n  `,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/validation-modal/Validation.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsiValidationModalComponent>",
+                "defaultValue": "(args: UsiValidationModalComponent) => ({\n  props: args,\n  template: `\n    <usi-validation-modal [validation]=\"validation\"></usi-validation-modal>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -1027,8 +1060,8 @@
                 "file": "stories/time-input/TimeInput.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UsiValidationModalComponent>",
-                "defaultValue": "(args: UsiValidationModalComponent) => ({\n  props: args,\n  template: `\n    <usi-validation-modal [validation]=\"validation\"></usi-validation-modal>\n  `,\n})"
+                "type": "Story<UsiTimeInputComponent>",
+                "defaultValue": "(args: UsiTimeInputComponent) => ({\n  props: args,\n  template: `\n    <usi-time-input\n      [usiDisabled]=\"usiDisabled\"\n      [usiError]=\"error\"\n      [usiForceError]=\"usiForceError\"\n      [usiHint]=\"usiHint\"\n      [usiLabel]=\"usiLabel\"\n      [usiRequired]=\"usiRequired\"\n      [usiValue]=\"usiValue\"\n    ></usi-time-input>\n  `,\n})"
             },
             {
                 "name": "Text",
@@ -1114,7 +1147,7 @@
                 "name": "Warning",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/toast/Toast.stories.ts",
+                "file": "stories/validation-modal/Validation.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1124,7 +1157,7 @@
                 "name": "Warning",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/validation-modal/Validation.stories.ts",
+                "file": "stories/toast/Toast.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",

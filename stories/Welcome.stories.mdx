@@ -1,0 +1,244 @@
+import { Meta } from '@storybook/addon-docs';
+
+import banner from './assets/welcome/header_image.png'
+import designers from './assets/welcome/designers.png';
+import developers from './assets/welcome/developers.png';
+import product_managers from './assets/welcome/product_manager.png';
+import sales from './assets/welcome/sales.png';
+import consultants from './assets/welcome/consultants.png';
+
+<Meta title="Welcome" />
+
+<style>{`
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+  .sbdocs {
+    font-family: var(--font-family);
+  }
+
+  .sbdocs-wrapper {
+    justify-content: initial;
+    padding: 32px 36px;
+  }
+
+  .sbdocs-content {
+    max-width: 100%;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container__row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .container__row {
+      flex-direction: column;
+    }
+  }
+
+  .banner {
+    align-items: end;
+    background-color: #000;
+    border-radius: 3px;
+    display: flex;
+    height: 264px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding: 24px;
+    position: relative;
+  }
+
+  .banner__image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .banner__title {
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  .banner__title--regular {
+    font-weight: initial;
+  }
+
+  .subtext {
+    color: #707173;
+    font-size: 1rem;
+    margin-bottom: 64px;
+    margin-top: 0;
+  }
+
+  .what {
+    margin-bottom: 44px;
+  }
+
+  .what__title {
+    border-bottom: none;
+    color: #292829;
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding-bottom: 0;
+  }
+
+  .what__description {
+    color: #292829;
+    font-size: .875rem;
+    margin: 0;
+  }
+
+  .users {
+    display: flex;
+    gap: 21px;
+    justify-content: space-between;
+  }
+
+   .users__image {
+    display: block;
+    margin-bottom: 21px;
+    width: 100%;
+  }
+
+  .users__user {
+    flex-basis: 20%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    max-width: calc(20% - 21px);
+  }
+
+  .users__title {
+    color: #292829;
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .users__description {
+   color: #292829;
+   font-size: 0.875rem;
+   margin: 0;
+  }
+
+  .wip {
+    display: flex;
+    margin-top: 64px;
+    position: relative;
+  }
+
+  .wip__bar {
+    background-color: #246FF2;
+    display: block;
+    flex: 0 0 10px;
+    height: 99px;
+    margin-right: 24px;
+    max-width: 10px;
+  }
+
+  .wip__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .wip__title, wip__description {
+    color: #292829;
+    display: inline;
+  }
+
+  .wip__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  .wip__description {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+`}</style>
+
+<div className="container">
+  <div className="banner">
+    <img className="banner__image" src={banner} alt="Blue campfire flame" />
+    <h1 className="banner__title">Welcome to the Campfire, <br />
+      <span className="banner__title banner__title--regular">Ungerboeck&apos;s first design system</span>
+    </h1>
+  </div>
+
+  <p className="subtext">
+    We can all remember a time when we joined our friends and family at a campfire under the night sky. It’s a time when stories are told and the feeling of
+    togetherness is stronger than ever. Our mission is to help our clients bring people together through their various events across the globe. Campfire is
+    representative of the bond that people feel when they are with others. Through the Campfire Design System, we hope to inspire this togetherness within our
+    peers and products alike.
+  </p>
+
+  <div className="what">
+    <h2 className="what__title">What is a Design System?</h2>
+    <p className="what__description">
+      Campfire is Ungerboeck&apos;s design language. It creates consistent user experiences within our products. Campfire&apos;s UI styles, patterns,
+      components, and other assets are all reusable. By creating these pre-produced elements, we can put more emphasis on use cases and business needs. Campfire
+      is flexible and is meant to help transform into a custom solution.
+    </p>
+  </div>
+
+  <div className="users">
+    <div className="users__user">
+      <img className="users__image" src={designers} alt="Vector image of a designer"/>
+      <h3 className="users__title">Designers</h3>
+      <p className="users__description">
+        If you are a visual designer or a UX designer, the design system can help you by providing existing patterns and give users a seamless experience.
+      </p>
+    </div>
+    <div className="users__user">
+      <img className="users__image" src={developers} alt="Vector image of a developer"/>
+      <h3 className="users__title">Developers</h3>
+      <p className="users__description">
+        Both Front-end developers and Software Engineers can utilize the design system to bring designs to life. More detailed instructions on how to get
+        started to come.
+      </p>
+    </div>
+    <div className="users__user">
+      <img className="users__image" src={product_managers} alt="Vector image of a product manager"/>
+      <h3 className="users__title">Product Managers</h3>
+      <p className="users__description">
+        As a Product Manager, you can use the design system to find existing patterns that solve customers’ needs.
+      </p>
+    </div>
+    <div className="users__user">
+      <img className="users__image" src={sales} alt="Vector image of a sales person"/>
+      <h3 className="users__title">Sales</h3>
+      <p className="users__description">
+        Are you going to demo one of our apps? You can quickly customize a demo by grabbing code snippets from our design system.
+      </p>
+    </div>
+    <div className="users__user">
+      <img className="users__image" src={consultants} alt="Vector image of a consultant"/>
+      <h3 className="users__title">Consultants</h3>
+      <p className="users__description">
+        Do you want to let your customers know how their extensions can be customized to reflect their brand? The design system will help you do just that.
+      </p>
+    </div>
+  </div>
+
+  <div className="wip">
+    <span className="wip__bar" />
+    <div className="wip__text">
+      <h4 className="wip__title">A Work in Progress</h4>
+      <p className="wip__description">
+        We would all be thrilled if a project such as this could be considered fully completed, but with the ever-changing needs of customers and business
+        requirements, design systems are meant to continuously evolve and improve. We strive to always provide solid and reliable solutions through this design
+        system. If you have any questions, please reach out to Mike Engelhardt, Austin Wildgrube, Olivia Saldaña or Taylor Nanney.
+      </p>
+    </div>
+  </div>
+</div>

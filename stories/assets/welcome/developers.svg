@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="215" height="143" viewBox="0 0 215 143">
+  <g id="developers" transform="translate(-497 -707)">
+    <rect id="Rectangle_17" data-name="Rectangle 17" width="215" height="143" transform="translate(497 707)" fill="#bad2fb"/>
+    <rect id="Rectangle_18" data-name="Rectangle 18" width="85" height="85" rx="42.5" transform="translate(533 719)" fill="#80a7ea"/>
+    <g id="Symbols" transform="translate(635.111 775)">
+      <g id="Head_Front_Short-Beard" data-name="Head/Front/Short-Beard" transform="translate(-53 -29)">
+        <g id="Head" transform="translate(54 31)">
+          <path id="Path_2" data-name="Path 2" d="M8.262,34.49C3.654,29.081.536,22.453,1.057,15.025c1.5-21.4,31.292-16.693,37.087-5.892s5.106,38.2-2.383,40.13c-2.987.77-9.349-1.116-15.825-5.019L24,73H0Z" fill="#be9672" fill-rule="evenodd"/>
+        </g>
+        <path id="Hair" d="M75.135,48.389q1.378,19.2,7.29,19.2c5.913,0,10.929-3.754,13.524-3.754,1.891,0,1.469,2.367.215,4.121C95.131,69.4,90.094,70.8,90.094,73.04s3.979.508,3.979,1.839c0,2.2.7,6.342-3.122,6.342-3.868,0-14.956-1.409-16.857-7.15q-1.84-5.557-2.379-23.029A6.061,6.061,0,0,0,71,51a6,6,0,0,0-4.192,10.292c-1.388,1.96-2.944,4.007-4.727,6.119-6.7-4.019-11.668-15.782-5.12-27.083,1.81-5.536,5.908-8.493,10.747-9.866a17.407,17.407,0,0,1,11.425-.842c6.734.578,12.747,2.631,14.451,3.85,0,6.375-1.235,8.267-11.786,8.1C79.2,42.94,77.211,45.3,75.135,48.389Z" fill="#0e2958" fill-rule="evenodd"/>
+      </g>
+    </g>
+  </g>
+</svg>
