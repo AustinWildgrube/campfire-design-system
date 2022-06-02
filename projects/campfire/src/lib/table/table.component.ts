@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 
 import { UsiTableService } from './table.service';
 import { BooleanInput, InputBoolean } from '../utils/convert';
@@ -49,7 +49,7 @@ interface Pagination {
   styleUrls: ['./styles/table.component.scss'],
   providers: [UsiTableService],
 })
-export class UsiTableComponent implements AfterViewInit, OnChanges, OnInit {
+export class UsiTableComponent implements AfterViewChecked, OnChanges, OnInit {
   data: any;
 
   pageData: Pagination = {
@@ -94,7 +94,7 @@ export class UsiTableComponent implements AfterViewInit, OnChanges, OnInit {
     }
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewChecked(): void {
     this.addTableClasses(this.renderer, this.usiHeadless);
   }
 

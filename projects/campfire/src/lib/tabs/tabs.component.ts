@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, ContentChildren, ElementRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
 
 import { UsiTabComponent } from './tab/tab.component';
 
@@ -41,7 +41,7 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
   `,
   styleUrls: ['./styles/tabs.component.scss'],
 })
-export class UsiTabsComponent implements AfterViewInit {
+export class UsiTabsComponent implements AfterViewChecked {
   @ContentChildren(UsiTabComponent)
   tabs: QueryList<UsiTabComponent> | undefined;
 
@@ -72,7 +72,7 @@ export class UsiTabsComponent implements AfterViewInit {
 
   constructor(private cdr: ChangeDetectorRef) {}
 
-  ngAfterViewInit(): void {
+  ngAfterViewChecked(): void {
     this.getTabWidths();
 
     let activeTabs = [];
