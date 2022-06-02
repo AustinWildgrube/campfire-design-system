@@ -262,22 +262,6 @@ Errors.args = {
   usiValue: '',
 };
 
-export const Ghost = Template.bind({});
-Ghost.args = {
-  usiType: 'text',
-  usiPlaceholder: 'Placeholder',
-  usiError: undefined,
-  usiDisabled: undefined,
-  usiRequired: undefined,
-  usiForceError: undefined,
-  usiPassword: undefined,
-  usiPrefix: undefined,
-  usiSuffix: undefined,
-  usiHint: undefined,
-  usiLabel: 'Label',
-  usiValue: '',
-};
-
 export const Hints = Template.bind({});
 Hints.args = {
   usiType: 'text',

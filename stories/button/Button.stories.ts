@@ -162,16 +162,6 @@ Disabled.args = {
   usiBlock: undefined,
 };
 
-export const Ghost = Template.bind({});
-Ghost.args = {
-  usiColor: 'usi',
-  disabled: undefined,
-  usiSize: undefined,
-  usiType: 'primary',
-  usiLoading: undefined,
-  usiBlock: undefined,
-};
-
 export const Loading = Template.bind({});
 Loading.args = {
   usiColor: 'usi',

@@ -124,13 +124,6 @@ Disabled.args = {
   usiDisabled: true,
 };
 
-export const Ghost = Template.bind({});
-Ghost.args = {
-  usiName: undefined,
-  usiDirection: undefined,
-  usiDisabled: undefined,
-};
-
 export const Normal = Template.bind({});
 Normal.args = {
   usiName: undefined,
