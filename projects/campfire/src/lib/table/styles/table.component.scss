@@ -47,21 +47,18 @@
       box-shadow: var(--table-card-shadow--mobile);
       display: inline-block;
       margin-left: 20px;
-      margin-top: 0;
+      margin-top: 14px;
       padding: 20px;
+      position: relative;
       width: calc(50% - 10px);
 
       &:nth-child(odd) {
         margin-left: 0;
       }
 
-      // Todo: change maybe?
-      &:nth-child(3n) {
-        margin-top: 14px;
-      }
-
-      &:nth-child(4n) {
-        margin-top: 14px;
+      &:nth-child(1),
+      &:nth-child(2) {
+        margin-top: 0;
       }
 
       &:hover {
@@ -80,6 +77,7 @@
       display: inline-block;
       margin-top: 14px;
       padding: 20px;
+      position: relative;
       width: 100%;
 
       &:first-child {
@@ -128,8 +126,7 @@
       border: none;
       display: block;
       height: initial;
-      margin-bottom: 16px;
-      padding: 0;
+      padding: 0 0 16px;
 
       &:last-of-type {
         margin-bottom: 0;
