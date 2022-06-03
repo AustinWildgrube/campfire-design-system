@@ -58,13 +58,20 @@
 .usi-input-group__input:focus ~ .usi-input-group__label {
   background-color: var(--input-label-background-color--focus);
   color: var(--input-label-text-color--focus);
+  display: -webkit-box;
   font-size: 0.625rem;
   height: min-content;
   left: 12px;
+  max-width: calc(100% - 28px);
+  overflow: hidden;
   padding: 0 2px;
+  text-overflow: ellipsis;
   top: -7px;
   transition-duration: .5s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 
   &.usi-input-group__label--error {
     color: var(--input-label-text-color--focus--error);
@@ -89,13 +96,20 @@
 
 .usi-input-group__label {
   color: var(--input-label-text-color);
+  display: -webkit-box;
   font-size: .875rem;
   left: 12px;
+  max-width: calc(100% - 28px);
+  overflow: hidden;
   pointer-events: none;
   position: absolute;
+  text-overflow: ellipsis;
   top: 9px;
   transition-duration: .5s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 
   &.usi-input-group__label--prefix {
     left: 34px;
