@@ -16,13 +16,13 @@ $ npm install usi-campfire
 ```
 Import the component modules you want to use into your `app.module.ts` file and [feature modules](https://angular.io/guide/feature-modules).
 
-```ts
-import { UsiAvatarModule, UsiButtonModule } from 'usi-campfire';
+```diff
++ import { UsiAvatarModule, UsiButtonModule } from 'usi-campfire';
 
 @NgModule({
   imports: [
-    UsiAvatarModule,
-    UsiButtonModule 
++   UsiAvatarModule,
++   UsiButtonModule 
   ],
 })
 export class AppModule {
