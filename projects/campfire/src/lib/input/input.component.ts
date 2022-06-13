@@ -16,7 +16,7 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
         *ngIf="usiPassword === true && usiType === 'password'"
         class="usi-input-group__suffix usi-input-group__suffix--password"
         (click)="revealPassword()"
-        [icon]="['fas', 'eye-slash']"
+        [icon]="['fal', 'eye-slash']"
       >
       </fa-icon>
 
@@ -24,7 +24,7 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
         *ngIf="usiPassword && usiType !== 'password'"
         class="usi-input-group__suffix usi-input-group__suffix--password"
         (click)="revealPassword()"
-        [icon]="['fas', 'eye']"
+        [icon]="['fal', 'eye']"
       >
       </fa-icon>
 
