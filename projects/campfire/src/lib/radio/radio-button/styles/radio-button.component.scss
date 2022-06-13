@@ -19,13 +19,13 @@
   border-radius: 50%;
   cursor: pointer;
   display: flex;
-  height: 20px;
+  height: 18px;
   justify-content: center;
   margin: 0;
   outline: 0;
   position: relative;
   transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
-  width: 20px;
+  width: 18px;
 
   &:hover:not(:disabled) {
     border-color: var(--radio-border-color--hover);
