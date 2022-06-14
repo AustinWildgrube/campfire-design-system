@@ -124,7 +124,7 @@
   --modal-message-color: var(--black);
 
   /* Inputs */
-  --input-min-width: 135px;
+  --input-min-width: 240px;
   --input-background-color: var(--white);
   --input-border: 1px solid var(--gray);
   --input-corner-radius: 3px;
