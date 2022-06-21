@@ -1,11 +1,11 @@
 {
   "name": "usi-campfire",
   "version": "0.0.2",
-  "description": "Campfire - Ungerboecks first design system!",
+  "description": "Campfire - Ungerboeck's first design system!",
   "author": "Austin Wildgrube <austin.wildgrube@ungerboeck.com>",
   "exports": {
-    "./styles": {
-      "sass": "./campfire.css"
+    ".": {
+      "style": "./campfire.css"
     }
   },
   "dependencies": {
