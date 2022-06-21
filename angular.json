@@ -72,7 +72,7 @@
             "tsConfig": "projects/campfire-tester/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["projects/campfire-tester/src/favicon.ico", "projects/campfire-tester/src/assets"],
-            "styles": ["projects/campfire-tester/src/styles.scss"],
+            "styles": ["projects/campfire-tester/src/styles.scss", "projects/campfire/campfire.css"],
             "scripts": []
           },
           "configurations": {
