@@ -1,4 +1,4 @@
-@import '../../../../campfire.css';
+@use '../../../../campfire';
 
 ::ng-deep.usi-table__sort {
   color: var(--table-sort-icon-color);
