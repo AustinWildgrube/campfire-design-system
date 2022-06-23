@@ -33,10 +33,6 @@
   ::ng-deep.usi-table__row {
     background-color: var(--table-background-color);
 
-    &:hover {
-      background-color: var(--table-background-color--hover);
-    }
-
     &:nth-child(even) {
       background-color: var(--table-background-color--even);
     }
@@ -61,10 +57,6 @@
         margin-top: 0;
       }
 
-      &:hover {
-        background-color: initial;
-      }
-
       &:nth-child(even) {
         background-color: initial;
       }
@@ -82,10 +74,6 @@
 
       &:first-child {
         margin-top: 0;
-      }
-
-      &:hover {
-        background-color: initial;
       }
 
       &:nth-child(even) {
