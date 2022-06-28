@@ -9,6 +9,7 @@ import { UsiGhostModule } from './ghost/ghost.module';
 import { UsiInputModule } from './input/input.module';
 import { UsiNotificationsModule } from './notifications/notifications.module';
 import { UsiRadioModule } from './radio/radio.module';
+import { UsiSelectModule } from './select/select.module';
 import { UsiTableModule } from './table/table.module';
 import { UsiTabsModule } from './tabs/tabs.module';
 import { UsiTextModule } from './text/text.module';
@@ -30,6 +31,7 @@ import { UsiTableService } from './table/table.service';
     UsiInputModule,
     UsiNotificationsModule,
     UsiRadioModule,
+    UsiSelectModule,
     UsiTableModule,
     UsiTabsModule,
     UsiTextModule,
@@ -45,6 +47,7 @@ import { UsiTableService } from './table/table.service';
     UsiInputModule,
     UsiNotificationsModule,
     UsiRadioModule,
+    UsiSelectModule,
     UsiTableModule,
     UsiTabsModule,
     UsiTextModule,
