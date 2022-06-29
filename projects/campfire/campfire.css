@@ -217,5 +217,23 @@
   --tab-label-text-color--disabled: var(--gray);
 
   --tab-background-color--hover: #f5f5f5;
+
+  /* Select */
+  --select-options-background-color: var(--white);
+  --select-options-corner-radius: var(--input-corner-radius);
+  --select-options-shadow: 0 1px 3px rgba(0, 0, 0, .32);
+  --select-options-z-index: 300;
+
+  --select-options-label-text-color: var(--gray);
+  --select-options-label-border: 1px solid #CED4DA;
+
+  --select-options-background-color--hover: #f5f5f5;
+  --select-options-border--hover: 2px solid var(--gray);
+
+  --select-options-background-color--active: #f5f5f5;
+  --select-options-border--active: 2px solid var(--primary);
+  --select-options-text-color--active: var(--black);
+
+  --select-options-text-color--disabled: var(--gray);
 }
 
