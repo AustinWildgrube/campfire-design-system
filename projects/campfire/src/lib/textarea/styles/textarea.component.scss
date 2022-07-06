@@ -1,0 +1,28 @@
+:host {
+  display: block;
+
+  .usi-input-group {
+    .usi-input-group__input {
+      box-sizing: border-box;
+      margin: 0;
+      max-width: 100%;
+      min-height: 100px;
+      resize: none;
+      transition: all 0.3s, height 0s;
+      vertical-align: middle;
+    }
+
+    .usi-input-group__input--resizeable {
+      resize: vertical;
+    }
+  }
+}
+
+.usi-textarea-autosize-measuring {
+  height: 38px !important;
+  // Having 2px top and bottom padding seems to fix a bug where Chrome gets an incorrect
+  // measurement. We just have to account for it later and subtract it off the final result.
+  padding: 2px 0 !important;
+  overflow: hidden !important;
+}
+

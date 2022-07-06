@@ -1,0 +1,81 @@
+```ts
+import { UsiTextarea } from 'campfire';
+```
+
+# Textareas
+Most HTML forms are composed of a parent form element, a handful of input elements, and one or more textareas. If you need form fields to accept email
+addresses, phone numbers, and other content that is easy to define, use the appropriate input type. However, when you need a field that can accept any
+combination and length of plain text letters, numbers, and symbols, `<textarea>` is the element you are looking for.
+
+The select component is a wrapper around the `<usi-input>` component. This means that attributes specified in the `<usi-input>` component are also available in
+the `<usi-textarea>` component. This includes the following attributes:
+
+  * `usiPlaceholder` - The placeholder text of the textarea component.
+  * `usiLabel` - The label text of the textarea component.
+  * `usiDisabled` - Whether the textarea component is disabled.
+  * `usiRequired` - Whether the textarea component is required.
+  * `usiError` - The error message to display when the select component is invalid.
+  * `usiForceError` - Whether to display the error message even when the textarea component is valid.
+  * `usiHint` - The hint text to display below the textarea component.
+  * `usiValue` - The default value of the textarea component.
+
+```html
+<usi-textarea usiPlaceholder="placeholder" usiLabel="label"></usi-textarea>
+```
+
+## Resizing
+By default, Campfire textareas are not resizable to keep design standards consistent. In instances where a user may type longer pieces of text it is beneficial
+to allow them to resize the textarea.
+
+```html
+<usi-textarea usiResizeable></usi-textarea>
+```
+
+## Auto-resizing
+Occasionally it is best to allow the textarea to be autosized. While doing so a minimum and maximum number of rows can be specified. If neither of these are
+specified then the textarea will resize to an infinite amount of rows.
+
+```html
+<usi-textarea usiAutosize></usi-textarea>
+<usi-textarea [usiAutosize]="{ minRows: 1, maxRows: 4 }"></usi-textarea>
+```
+
+## Customization
+Campfire textareas were made to be easily customizable. Styling a time input is as simple as just adding a class onto the tag or overriding our CSS variables
+in the root selector. Since textareas are just an extension of our normal input the list of overridable variables are the same:
+
+```css
+:root {
+  --input-min-width: 135px;
+  --input-background-color: var(--white);
+  --input-border: 1px solid var(--gray);
+  --input-corner-radius: 3px;
+  --input-text-color: var(--black);
+
+  --input-background--disabled: #f5f5f5;
+  --input-border-color--disabled: #717073;
+  --input-text-color--disabled: #515152;
+
+  --input-outline-color--focus: var(--primary);
+
+  --input-border-color--error: var(--error);
+  --input-outline-color--error: var(--error);
+
+  --input-placeholder-color: var(--gray);
+
+  --input-label-background-color--focus: var(--white);
+  --input-label-text-color--focus: var(--primary);
+  --input-label-text-color--focus--error: var(--error);
+
+  --input-label-background-color--filled: var(--white);
+  --input-label-text-color--filled: var(--gray);
+  --input-label-text-color--filled--error: var(--error);
+
+  --input-label-text-color: var(--gray);
+  --input-label-text-color--error: var(--error);
+}
+```
+
+```html
+<usi-textarea class="custom-textarea" usiLabel="Label" usiPlaceholder="Placeholder"></usi-textarea>
+```

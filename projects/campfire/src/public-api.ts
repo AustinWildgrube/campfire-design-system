@@ -78,6 +78,10 @@ export * from './lib/tabs/tab/tab.component';
 export * from './lib/text/text.module';
 export * from './lib/text/text.component';
 
+// Textarea
+export * from './lib/textarea/textarea.module';
+export * from './lib/textarea/textarea.component';
+
 // Time Input
 export * from './lib/time-input/time-input.module';
 export * from './lib/time-input/time-input.component';

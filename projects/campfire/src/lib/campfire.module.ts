@@ -13,6 +13,7 @@ import { UsiSelectModule } from './select/select.module';
 import { UsiTableModule } from './table/table.module';
 import { UsiTabsModule } from './tabs/tabs.module';
 import { UsiTextModule } from './text/text.module';
+import { UsiTextareaModule } from './textarea/textarea.module';
 import { UsiTimeInputModule } from './time-input/time-input.module';
 import { UsiTitleModule } from './title/title.module';
 
@@ -35,6 +36,7 @@ import { UsiTableService } from './table/table.service';
     UsiTableModule,
     UsiTabsModule,
     UsiTextModule,
+    UsiTextareaModule,
     UsiTimeInputModule,
     UsiTitleModule,
   ],
@@ -51,6 +53,7 @@ import { UsiTableService } from './table/table.service';
     UsiTableModule,
     UsiTabsModule,
     UsiTextModule,
+    UsiTextareaModule,
     UsiTimeInputModule,
     UsiTitleModule,
   ],
