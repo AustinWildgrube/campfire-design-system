@@ -41,6 +41,7 @@ yarn-error.log
 testem.log
 /typings
 /projects/campfire-tester
+documentation.json
 
 # System files
 .DS_Store
