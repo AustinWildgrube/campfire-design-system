@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { BooleanInput, InputBoolean } from '../../utils/convert';
 
@@ -7,7 +7,7 @@ import { BooleanInput, InputBoolean } from '../../utils/convert';
   template: `<div class="usi-tabs__content" [hidden]="!usiActive"><ng-content></ng-content></div>`,
   styleUrls: ['../styles/tab.component.scss'],
 })
-export class UsiTabComponent implements AfterViewInit {
+export class UsiTabComponent {
   @Input()
   usiLabel: string = '';
 
@@ -19,10 +19,5 @@ export class UsiTabComponent implements AfterViewInit {
   @InputBoolean()
   usiDisabled?: BooleanInput = false;
 
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  ngAfterViewInit(): void {
-    // Manually trigger change detection to fix NG0100 error
-    this.cdr.detectChanges();
-  }
+  constructor() {}
 }

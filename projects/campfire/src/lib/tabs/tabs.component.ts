@@ -1,4 +1,4 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, ContentChildren, ElementRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewChecked, Component, ContentChildren, ElementRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
 
 import { UsiTabComponent } from './tab/tab.component';
 
@@ -70,12 +70,24 @@ export class UsiTabsComponent implements AfterViewChecked {
   selectedWidth: number[] = [];
   selectedWidthReal: number[] = [];
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor() {}
 
   ngAfterViewChecked(): void {
-    this.getTabWidths();
+    // Fixes the NG0100 error
+    // setTimeout makes this asynchronous, so it is picked up on the next change detection check
+    setTimeout(() => {
+      this.getTabWidths();
+      this.getActiveTab();
+    }, 0);
+  }
 
+  /**
+   * Find if there are any active tabs
+   * @return
+   */
+  public async getActiveTab(): Promise<void> {
     let activeTabs = [];
+
     this.tabs?.forEach((tab: UsiTabComponent, index: number) => {
       if (tab.usiActive) {
         activeTabs.push(tab);
@@ -87,9 +99,6 @@ export class UsiTabsComponent implements AfterViewChecked {
     if (activeTabs?.length === 0 && this.tabs) {
       this.selectTab(this.tabs.first, 0);
     }
-
-    // Manually trigger change detection to fix NG0100 error
-    this.cdr.detectChanges();
   }
 
   /**
@@ -129,9 +138,7 @@ export class UsiTabsComponent implements AfterViewChecked {
       // set selectedTab property
       this.selectedTab = index;
 
-      setTimeout(() => {
-        this.getTabWidths();
-      }, 0);
+      this.getTabWidths();
     }
   }
 }
