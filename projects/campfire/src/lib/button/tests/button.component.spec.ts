@@ -46,10 +46,10 @@ describe('UsiButtonComponent', () => {
   });
 
   it('should disable button', () => {
-    component.disabled = true;
+    component.usiDisabled = true;
     fixture.detectChanges();
 
-    expect(component.disabled).toBeTruthy();
+    expect(component.usiDisabled).toBeTruthy();
   });
 
   it('should have the correct type styles', () => {

@@ -99,8 +99,8 @@ export default {
       },
       control: { type: 'boolean' },
     },
-    disabled: {
-      name: 'disabled',
+    usiDisabled: {
+      name: 'usiDisabled',
       description: 'The size of the button can change depending on the use case.',
       defaultValue: false,
       type: {
@@ -132,7 +132,7 @@ const Template: Story<UsiButtonComponent> = (args: UsiButtonComponent) => ({
   <button
     [usiBlock]="usiBlock"
     [usiColor]="usiColor"
-    [disabled]="disabled"
+    [usiDisabled]="usiDisabled"
     [usiSize]="usiSize"
     [usiType]="usiType"
     [usiLoading]="usiLoading"
@@ -145,7 +145,7 @@ const Template: Story<UsiButtonComponent> = (args: UsiButtonComponent) => ({
 export const Block = Template.bind({});
 Block.args = {
   usiColor: 'usi',
-  disabled: false,
+  usiDisabled: false,
   usiSize: undefined,
   usiType: 'primary',
   usiLoading: undefined,
@@ -155,7 +155,7 @@ Block.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   usiColor: 'usi',
-  disabled: true,
+  usiDisabled: true,
   usiSize: undefined,
   usiType: 'primary',
   usiLoading: undefined,
@@ -165,7 +165,7 @@ Disabled.args = {
 export const Loading = Template.bind({});
 Loading.args = {
   usiColor: 'usi',
-  disabled: undefined,
+  usiDisabled: undefined,
   usiSize: undefined,
   usiType: 'primary',
   usiLoading: true,
@@ -175,7 +175,7 @@ Loading.args = {
 export const Normal = Template.bind({});
 Normal.args = {
   usiColor: 'usi',
-  disabled: undefined,
+  usiDisabled: undefined,
   usiSize: undefined,
   usiType: 'primary',
   usiLoading: undefined,
@@ -185,7 +185,7 @@ Normal.args = {
 export const Secondary = Template.bind({});
 Secondary.args = {
   usiColor: 'usi',
-  disabled: undefined,
+  usiDisabled: undefined,
   usiSize: undefined,
   usiType: 'secondary',
   usiLoading: undefined,
@@ -195,7 +195,7 @@ Secondary.args = {
 export const Sized = Template.bind({});
 Sized.args = {
   usiColor: 'usi',
-  disabled: undefined,
+  usiDisabled: undefined,
   usiSize: 'small',
   usiType: 'primary',
   usiLoading: undefined,
@@ -205,7 +205,7 @@ Sized.args = {
 export const Transparent = Template.bind({});
 Transparent.args = {
   usiColor: 'usi',
-  disabled: undefined,
+  usiDisabled: undefined,
   usiSize: undefined,
   usiType: 'transparent',
   usiLoading: undefined,
@@ -223,7 +223,7 @@ const IconWithTextTemplate: Story<UsiButtonComponent> = (args: UsiButtonComponen
 export const IconWithText = IconWithTextTemplate.bind({});
 IconWithText.args = {
   usiColor: 'usi',
-  disabled: undefined,
+  usiDisabled: undefined,
   usiSize: undefined,
   usiType: 'primary',
   usiLoading: undefined,
@@ -241,7 +241,7 @@ const IconWithoutTextTemplate: Story<UsiButtonComponent> = (args: UsiButtonCompo
 export const IconWithoutText = IconWithoutTextTemplate.bind({});
 IconWithoutText.args = {
   usiColor: 'usi',
-  disabled: undefined,
+  usiDisabled: undefined,
   usiSize: undefined,
   usiType: 'primary',
   usiLoading: undefined,

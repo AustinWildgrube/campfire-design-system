@@ -30,11 +30,11 @@ export class UsiButtonComponent implements AfterViewInit {
 
   @Input()
   @InputBoolean()
-  disabled: BooleanInput = false;
+  usiDisabled: BooleanInput = false;
 
   @HostBinding(`attr.disabled`)
   public get isDisabled(): BooleanInput {
-    return this.disabled || null;
+    return this.usiDisabled || null;
   }
 
   @Input()
