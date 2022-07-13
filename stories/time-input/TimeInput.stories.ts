@@ -1,13 +1,13 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
 
-import { UsiTimeInputComponent } from '../../projects/campfire/src/lib/time-input/time-input.component';
+import { UsiTimePickerComponent } from '../../projects/campfire/src/lib/time-picker/time-picker.component';
 
-import documentation from '../../projects/campfire/src/lib/time-input/documentation/time-input.mdx';
+import documentation from '../../projects/campfire/src/lib/time-picker/documentation/time-picker.mdx';
 
 export default {
-  title: 'Forms/Time Input',
-  component: UsiTimeInputComponent,
+  title: 'Forms/Time Picker',
+  component: UsiTimePickerComponent,
   parameters: {
     docs: {
       page: documentation,
@@ -16,7 +16,7 @@ export default {
   argTypes: {
     usiDisabled: {
       name: 'usiDisabled',
-      description: 'Disables the time input field.',
+      description: 'Disables the time picker field.',
       defaultValue: false,
       type: {
         name: 'boolean',
@@ -43,7 +43,7 @@ export default {
     },
     usiForceError: {
       name: 'usiForceError',
-      description: 'Will mark the time input invalid before it loads to the DOM.',
+      description: 'Will mark the time picker invalid before it loads to the DOM.',
       defaultValue: false,
       type: {
         name: 'boolean',
@@ -57,7 +57,7 @@ export default {
     },
     usiHint: {
       name: 'usiHint',
-      description: 'Sometimes extra context is required for a time input.',
+      description: 'Sometimes extra context is required for a time picker.',
       defaultValue: '',
       type: {
         name: 'string',
@@ -70,7 +70,7 @@ export default {
     },
     usiLabel: {
       name: 'usiLabel',
-      description: 'The label of the time input.',
+      description: 'The label of the time picker.',
       defaultValue: '',
       type: {
         name: 'string',
@@ -97,7 +97,7 @@ export default {
     },
     usiValue: {
       name: 'usiValue',
-      description: 'The value in 24 hour time that the time input will have.',
+      description: 'The value in 24 hour time that the time picker will have.',
       defaultValue: '',
       type: {
         name: 'string',
@@ -111,7 +111,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<UsiTimeInputComponent> = (args: UsiTimeInputComponent) => ({
+const Template: Story<UsiTimePickerComponent> = (args: UsiTimePickerComponent) => ({
   props: args,
   template: `
     <usi-time-input
@@ -126,7 +126,7 @@ const Template: Story<UsiTimeInputComponent> = (args: UsiTimeInputComponent) => 
   `,
 });
 
-const ErrorTemplate: Story<UsiTimeInputComponent> = (args: UsiTimeInputComponent) => ({
+const ErrorTemplate: Story<UsiTimePickerComponent> = (args: UsiTimePickerComponent) => ({
   props: args,
   template: `
     <usi-time-input

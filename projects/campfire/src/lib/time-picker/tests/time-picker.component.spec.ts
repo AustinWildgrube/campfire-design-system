@@ -2,27 +2,27 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { UsiTimeInputComponent } from '../time-input.component';
+import { UsiTimePickerComponent } from '../time-picker.component';
 
-describe('UsiTimeInput', () => {
-  let component: UsiTimeInputComponent;
-  let fixture: ComponentFixture<UsiTimeInputComponent>;
+describe('UsiTimePicker', () => {
+  let component: UsiTimePickerComponent;
+  let fixture: ComponentFixture<UsiTimePickerComponent>;
   let debugElement: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsiTimeInputComponent],
+      declarations: [UsiTimePickerComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsiTimeInputComponent);
+    fixture = TestBed.createComponent(UsiTimePickerComponent);
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
     fixture.detectChanges();
   });
 
-  it('should create a time input', () => {
+  it('should create a time picker', () => {
     expect(component).toBeTruthy();
     expect(debugElement.nativeElement.querySelector('.usi-input-group')).toBeTruthy();
     expect(debugElement.nativeElement.querySelector('.usi-input-group__input--filled')).toBeTruthy();

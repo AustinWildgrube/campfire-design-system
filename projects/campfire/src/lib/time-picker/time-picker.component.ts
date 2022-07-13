@@ -4,7 +4,7 @@ import { FormControl, NG_VALUE_ACCESSOR, NgControl, ControlValueAccessor } from 
 import { BooleanInput, InputBoolean } from '../utils/convert';
 
 @Component({
-  selector: 'usi-time-input',
+  selector: 'usi-time-picker',
   template: `
     <div class="usi-input-group">
       <input
@@ -39,16 +39,16 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
       </div>
     </div>
   `,
-  styleUrls: ['./styles/time-input.component.scss', '../input/styles/input.component.scss'],
+  styleUrls: ['./styles/time-picker.component.scss', '../input/styles/input.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => UsiTimeInputComponent),
+      useExisting: forwardRef(() => UsiTimePickerComponent),
       multi: true,
     },
   ],
 })
-export class UsiTimeInputComponent implements AfterViewInit, ControlValueAccessor {
+export class UsiTimePickerComponent implements AfterViewInit, ControlValueAccessor {
   @Input()
   @InputBoolean()
   usiDisabled?: BooleanInput;

@@ -14,7 +14,7 @@ import { UsiTableModule } from './table/table.module';
 import { UsiTabsModule } from './tabs/tabs.module';
 import { UsiTextModule } from './text/text.module';
 import { UsiTextareaModule } from './textarea/textarea.module';
-import { UsiTimeInputModule } from './time-input/time-input.module';
+import { UsiTimePickerModule } from './time-picker/time-picker.module';
 import { UsiTitleModule } from './title/title.module';
 
 import { UsiNotificationService } from './notifications/notifications.service';
@@ -37,7 +37,7 @@ import { UsiTableService } from './table/table.service';
     UsiTabsModule,
     UsiTextModule,
     UsiTextareaModule,
-    UsiTimeInputModule,
+    UsiTimePickerModule,
     UsiTitleModule,
   ],
   exports: [
@@ -54,7 +54,7 @@ import { UsiTableService } from './table/table.service';
     UsiTabsModule,
     UsiTextModule,
     UsiTextareaModule,
-    UsiTimeInputModule,
+    UsiTimePickerModule,
     UsiTitleModule,
   ],
   providers: [UsiNotificationService, UsiTableService],

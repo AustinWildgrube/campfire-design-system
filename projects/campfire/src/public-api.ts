@@ -82,9 +82,9 @@ export * from './lib/text/text.component';
 export * from './lib/textarea/textarea.module';
 export * from './lib/textarea/textarea.component';
 
-// Time Input
-export * from './lib/time-input/time-input.module';
-export * from './lib/time-input/time-input.component';
+// Time Picker
+export * from './lib/time-picker/time-picker.module';
+export * from './lib/time-picker/time-picker.component';
 
 // Title
 export * from './lib/title/title.module';
