@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, Input, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer2 } from '@angular/core';
 
 import { BooleanInput, InputBoolean } from '../utils/convert';
 
@@ -7,7 +7,7 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
   template: ` <ng-content></ng-content> `,
   styleUrls: ['./styles/button.component.scss'],
 })
-export class UsiButtonComponent {
+export class UsiButtonComponent implements AfterViewInit {
   @HostBinding('class.usi-button') true = true;
 
   @Input()
