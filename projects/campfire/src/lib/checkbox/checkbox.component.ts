@@ -12,11 +12,13 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
         class="usi-checkbox__input"
         [(ngModel)]="value"
         (ngModelChange)="updateChanges()"
-        [disabled]="disabled == true"
-        [required]="required == true"
+        [disabled]="usiDisabled == true"
+        [required]="usiRequired == true"
         type="checkbox"
       />
-      <span class="usi-checkbox__label" [ngClass]="{ 'usi-checkbox--disabled': disabled }"> <ng-content></ng-content> <span *ngIf="required"> *</span> </span>
+      <span class="usi-checkbox__label" [ngClass]="{ 'usi-checkbox--disabled': usiDisabled }">
+        <ng-content></ng-content> <span *ngIf="usiRequired"> *</span>
+      </span>
     </span>
   `,
   styleUrls: ['./styles/checkbox.component.scss'],
@@ -31,15 +33,15 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
 export class UsiCheckboxComponent implements ControlValueAccessor, OnInit {
   @Input()
   @InputBoolean()
-  disabled?: BooleanInput;
+  usiDisabled?: BooleanInput;
 
   @Input()
   @InputBoolean()
-  checked?: BooleanInput;
+  usiChecked?: BooleanInput;
 
   @Input()
   @InputBoolean()
-  required?: BooleanInput;
+  usiRequired?: BooleanInput;
 
   value: boolean = false;
   uid: string = '';
@@ -50,7 +52,7 @@ export class UsiCheckboxComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit(): void {
-    if (this.checked) {
+    if (this.usiChecked) {
       this.value = true;
       this.updateChanges();
     }
