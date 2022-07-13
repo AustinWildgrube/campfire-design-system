@@ -2,6 +2,7 @@ import { AfterViewInit, Component, forwardRef, Injector, Input, TemplateRef } fr
 import { FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
 import { BooleanInput, InputBoolean } from '../utils/convert';
+import { UniqueId } from '../utils/unqiue-id';
 
 @Component({
   selector: 'usi-textarea',
@@ -95,13 +96,15 @@ export class UsiTextareaComponent implements AfterViewInit {
 
   private control: FormControl = new FormControl();
 
-  uid: string = (Math.random() + 1).toString(36).substring(7);
+  uid: string = '';
   innerValue: string = '';
   inputEmpty: boolean = false;
   hasError: boolean | null = false;
   touched: boolean | null = false;
 
-  constructor(private injector: Injector) {}
+  constructor(private injector: Injector) {
+    this.uid = UniqueId();
+  }
 
   // The form control is only set after initialization
   ngAfterViewInit(): void {

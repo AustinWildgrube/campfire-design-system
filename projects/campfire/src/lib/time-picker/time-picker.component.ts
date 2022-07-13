@@ -2,6 +2,7 @@ import { AfterViewInit, Component, forwardRef, Injector, Input, TemplateRef } fr
 import { FormControl, NG_VALUE_ACCESSOR, NgControl, ControlValueAccessor } from '@angular/forms';
 
 import { BooleanInput, InputBoolean } from '../utils/convert';
+import { UniqueId } from '../utils/unqiue-id';
 
 @Component({
   selector: 'usi-time-picker',
@@ -16,12 +17,12 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
         [required]="usiRequired"
         [disabled]="usiDisabled"
         [value]="usiValue || value"
-        [attr.aria-labelledby]="uuid"
+        [attr.aria-labelledby]="uid"
         type="time"
       />
 
       <label
-        [id]="uuid"
+        [id]="uid"
         class="usi-input-group__label"
         [ngClass]="{
           'usi-input-group__label--error': hasError || usiForceError
@@ -75,13 +76,15 @@ export class UsiTimePickerComponent implements AfterViewInit, ControlValueAccess
 
   private control: FormControl = new FormControl();
 
-  uuid: string = (Math.random() + 1).toString(36).substring(7);
+  uid: string = '';
   inputEmpty: boolean = false;
   hasError: boolean | null = false;
   touched: boolean | null = false;
   value: string = this.usiValue || '00:00';
 
-  constructor(private injector: Injector) {}
+  constructor(private injector: Injector) {
+    this.uid = UniqueId();
+  }
 
   // The form control is only set after initialization
   ngAfterViewInit(): void {

@@ -65,7 +65,7 @@ export default {
     onTouched: {
       table: { disable: true },
     },
-    uuid: {
+    uid: {
       table: { disable: true },
     },
     ngOnInit: {

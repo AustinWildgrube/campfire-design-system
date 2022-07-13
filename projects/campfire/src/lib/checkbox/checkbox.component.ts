@@ -2,21 +2,22 @@ import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { BooleanInput, InputBoolean } from '../utils/convert';
+import { UniqueId } from '../utils/unqiue-id';
 
 @Component({
   selector: 'label[usi-checkbox]',
   template: `
     <span class="usi-checkbox">
       <input
-        id="usi-checkbox-{{ uid }}"
         class="usi-checkbox__input"
         [(ngModel)]="value"
         (ngModelChange)="updateChanges()"
         [disabled]="usiDisabled == true"
         [required]="usiRequired == true"
+        [attr.aria-labelledby]="uid"
         type="checkbox"
       />
-      <span class="usi-checkbox__label" [ngClass]="{ 'usi-checkbox--disabled': usiDisabled }">
+      <span [id]="uid" class="usi-checkbox__label" [ngClass]="{ 'usi-checkbox--disabled': usiDisabled }">
         <ng-content></ng-content> <span *ngIf="usiRequired"> *</span>
       </span>
     </span>
@@ -47,8 +48,7 @@ export class UsiCheckboxComponent implements ControlValueAccessor, OnInit {
   uid: string = '';
 
   constructor() {
-    // Generate random name so we don't have matching ids
-    this.uid = (Math.random() + 1).toString(36).substring(7);
+    this.uid = UniqueId();
   }
 
   ngOnInit(): void {

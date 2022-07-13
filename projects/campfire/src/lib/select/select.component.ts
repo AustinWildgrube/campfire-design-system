@@ -2,6 +2,7 @@ import { Component, forwardRef, HostListener, Input, OnChanges, OnInit, SimpleCh
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { BooleanInput, InputBoolean } from '../utils/convert';
+import { UniqueId } from '../utils/unqiue-id';
 
 export interface SelectDataInterface {
   value: string | number | any[];
@@ -28,6 +29,7 @@ export interface SelectDataInterface {
           [disabled]="usiDisabled == true"
           [value]="realValue ? realValue.label : ''"
           [readonly]="!usiSearchable"
+          [attr.aria-labelledby]="uid"
         />
 
         <fa-icon
@@ -149,7 +151,7 @@ export class UsiSelectComponent implements OnChanges, OnInit {
 
   constructor() {
     // Generate random name so we don't have matching ids
-    this.uid = (Math.random() + 1).toString(36).substring(7);
+    this.uid = UniqueId();
   }
 
   ngOnInit(): void {

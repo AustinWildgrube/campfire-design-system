@@ -4,6 +4,7 @@ import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
 import { BooleanInput, InputBoolean } from '../utils/convert';
+import { UniqueId } from '../utils/unqiue-id';
 
 @Component({
   selector: 'usi-input',
@@ -44,11 +45,11 @@ import { BooleanInput, InputBoolean } from '../utils/convert';
         (input)="onChange($any($event).target.value)"
         (keyup)="checkValidations($any($event).target.value)"
         (blur)="onTouched()"
-        [attr.aria-labelledby]="uuid"
+        [attr.aria-labelledby]="uid"
       />
 
       <label
-        [id]="uuid"
+        [id]="uid"
         class="usi-input-group__label"
         [ngClass]="{
           'usi-input-group__label--prefix': usiPrefix,
@@ -131,14 +132,14 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
   private innerValue: any = '';
   private control: FormControl = new FormControl();
 
-  uuid: string = (Math.random() + 1).toString(36).substring(7);
+  uid: string = '';
   inputEmpty: boolean = false;
   hasError: boolean | null = false;
   touched: boolean | null = false;
 
-  constructor(private injector: Injector) {}
-
-  ngOnInit(): void {}
+  constructor(private injector: Injector) {
+    this.uid = UniqueId();
+  }
 
   // The form control is only set after initialization
   ngAfterViewInit(): void {

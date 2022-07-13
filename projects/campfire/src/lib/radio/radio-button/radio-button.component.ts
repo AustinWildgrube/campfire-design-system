@@ -6,21 +6,22 @@ import { fromEvent } from 'rxjs';
 import { UsiRadioService } from '../radio.service';
 
 import { BooleanInput, InputBoolean } from '../../utils/convert';
+import { UniqueId } from '../../utils/unqiue-id';
 
 @Component({
   selector: 'label[usi-radio]',
   template: `
     <span class="usi-radio-button">
       <input
-        [id]="uuid"
         class="usi-radio-button__input"
         [ngClass]="{ 'usi-radio-button__input--checked': isChecked }"
         [name]="name"
         [checked]="isChecked"
         [disabled]="usiDisabled == true"
+        [attr.aria-labelledby]="uid"
         type="radio"
       />
-      <span class="usi-radio-button__label" [ngClass]="{ 'usi-radio-button--disabled': usiDisabled }">
+      <span [id]="uid" class="usi-radio-button__label" [ngClass]="{ 'usi-radio-button--disabled': usiDisabled }">
         <ng-content></ng-content>
       </span>
     </span>
@@ -44,7 +45,7 @@ export class UsiRadioButtonComponent implements ControlValueAccessor, OnInit {
 
   private isNgModel: boolean = false;
 
-  uuid: string = (Math.random() + 1).toString(36).substring(7);
+  uid: string = '';
   isChecked: boolean = false;
   name: string = '';
 
@@ -55,6 +56,8 @@ export class UsiRadioButtonComponent implements ControlValueAccessor, OnInit {
     @Optional() @Inject(UsiRadioService) private usiRadioService: UsiRadioService | null
   ) {
     // Generate random name so we don't have matching ids
+    this.uid = UniqueId();
+
     if (this.usiRadioService) {
       this.usiRadioService?.setName((Math.random() + 1).toString(36).substring(7));
 

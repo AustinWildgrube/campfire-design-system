@@ -5,7 +5,7 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { fal } from '@fortawesome/pro-light-svg-icons';
 import { fas } from '@fortawesome/pro-solid-svg-icons';
 
-import { ClickOutsideDirective } from '../utils/click-outside.directive';
+import { ClickOutsideDirective } from '../utils/directives/click-outside.directive';
 
 @NgModule({
   imports: [CommonModule, FontAwesomeModule],
