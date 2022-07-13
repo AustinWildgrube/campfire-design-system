@@ -41,17 +41,17 @@ describe('CheckboxComponent', () => {
   });
 
   it('should be required', () => {
-    component.required = true;
+    component.usiRequired = true;
     fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelector('.usi-checkbox__input').required).toBeTruthy();
   });
 
   it('should disable checkbox', () => {
-    component.disabled = true;
+    component.usiDisabled = true;
     fixture.detectChanges();
 
-    expect(component.disabled).toBeTruthy();
+    expect(component.usiDisabled).toBeTruthy();
 
     fixture.detectChanges();
     expect(component.value).toBe(false);
