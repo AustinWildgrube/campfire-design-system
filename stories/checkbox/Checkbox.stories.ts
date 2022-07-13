@@ -22,8 +22,8 @@ export default {
     },
   },
   argTypes: {
-    value: {
-      name: 'checked',
+    usiChecked: {
+      name: 'usiChecked',
       description: 'Sets the default value to true.',
       defaultValue: 'false',
       type: {
@@ -36,8 +36,8 @@ export default {
         type: { summary: 'true | false' },
       },
     },
-    disabled: {
-      name: 'disabled',
+    usiDisabled: {
+      name: 'usiDisabled',
       description: 'Disables the checkbox.',
       defaultValue: 'false',
       type: {
@@ -50,8 +50,8 @@ export default {
         type: { summary: 'true | false' },
       },
     },
-    required: {
-      name: 'required',
+    usiRequired: {
+      name: 'usiRequired',
       description: 'Requires the checkbox in a form.',
       defaultValue: 'false',
       type: {
@@ -64,7 +64,7 @@ export default {
         type: { summary: 'true | false' },
       },
     },
-    checked: {
+    value: {
       table: { disable: true },
     },
     onChange: {
@@ -101,9 +101,9 @@ const Template: Story<UsiCheckboxComponent> = (args: UsiCheckboxComponent) => ({
   props: args,
   template: `
     <label
-      [checked]="checked"
-      [required]="required"
-      [disabled]="disabled"
+      [usiChecked]="usiChecked"
+      [usiRequired]="usiRequired"
+      [usiDisabled]="usiDisabled"
       usi-checkbox
     >
       Checkbox Label
@@ -112,21 +112,21 @@ const Template: Story<UsiCheckboxComponent> = (args: UsiCheckboxComponent) => ({
 
 export const Normal = Template.bind({});
 Normal.args = {
-  checked: undefined,
-  disabled: undefined,
-  required: undefined,
+  usiChecked: undefined,
+  usiDisabled: undefined,
+  usiRequired: undefined,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  checked: false,
-  disabled: true,
-  required: undefined,
+  usiChecked: false,
+  usiDisabled: true,
+  usiRequired: undefined,
 };
 
 export const Required = Template.bind({});
 Required.args = {
-  checked: false,
-  disabled: undefined,
-  required: true,
+  usiChecked: false,
+  usiDisabled: undefined,
+  usiRequired: true,
 };
