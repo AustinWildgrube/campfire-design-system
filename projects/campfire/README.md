@@ -14,10 +14,12 @@ Install the component library.
 ```bash
 $ npm install usi-campfire
 ```
-Import the component modules you want to use into your `app.module.ts` file and [feature modules](https://angular.io/guide/feature-modules).
+Import the component modules you want to use into your `app.module.ts` file and [feature modules](https://angular.io/guide/feature-modules). Campfire uses
+secondary entry points for all of its components and omits a primary entry point, meaning each component will need to be imported from its respective folder.
 
 ```diff
-+ import { UsiAvatarModule, UsiButtonModule } from 'usi-campfire';
++ import { UsiAvatarModule } from 'usi-campfire/avatar';
++ import { UsiButtonModule } from 'usi-campfire/button';
 
 @NgModule({
   imports: [
@@ -108,6 +110,17 @@ in the component library.
 fix(release): need to depend on latest rxjs and zone.js
 
 The version in our package.json gets copied to the one we publish, and users need the latest of these.
+```
+
+### Breaking Changes
+If the commit introduces a breaking change, it should include a `!` in the header after the scope. The commit must also include a body describing the breaking
+change and what needs to be fixed to accommodate it.
+
+```
+feat(button)!: add secondary entry point
+
+The button component needed a secondary entry point to reduce the size of the module. Instead of the button being 
+imported from the shared module, it will now be imported from the button folder.
 ```
 
 ### Revert
