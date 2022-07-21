@@ -2,10 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiSnackbarComponent } from '../../projects/campfire/src/lib/notifications/snackbar/snackbar.component';
-import { UsiSharedModule } from '../../projects/campfire/src/lib/shared/shared.module';
+import { UsiSnackbarComponent } from 'usi-campfire/snackbar';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/notifications/snackbar/documentation/snackbar.mdx';
+import documentation from '../../projects/campfire/snackbar/documentation/snackbar.mdx';
 
 export default {
   title: 'Feedback/Snackbar Notifications',
@@ -216,14 +216,14 @@ export default {
     success: {
       name: 'success',
       description: 'Create snackbar of success type.',
-      defaultValue: '(options: UsiSnackbarConfig | string) => void',
+      defaultValue: '(options: UsiSnackbarInterface | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiSnackbarConfig | string) => void' },
+        defaultValue: { summary: '(options: UsiSnackbarInterface | string) => void' },
       },
       control: {
         type: null,
@@ -232,14 +232,14 @@ export default {
     error: {
       name: 'error',
       description: 'Create snackbar of error type.',
-      defaultValue: '(options: UsiSnackbarConfig | string) => void',
+      defaultValue: '(options: UsiSnackbarInterface | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiSnackbarConfig | string) => void' },
+        defaultValue: { summary: '(options: UsiSnackbarInterface | string) => void' },
       },
       control: {
         type: null,
@@ -248,14 +248,14 @@ export default {
     info: {
       name: 'info',
       description: 'Create snackbar of info type.',
-      defaultValue: '(options: UsiSnackbarConfig | string) => void',
+      defaultValue: '(options: UsiSnackbarInterface | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiSnackbarConfig | string) => void' },
+        defaultValue: { summary: '(options: UsiSnackbarInterface | string) => void' },
       },
       control: {
         type: null,
@@ -264,14 +264,14 @@ export default {
     default: {
       name: 'default',
       description: 'Create snackbar of default type.',
-      defaultValue: '(options: UsiSnackbarConfig | string) => void',
+      defaultValue: '(options: UsiSnackbarInterface | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiSnackbarConfig | string) => void' },
+        defaultValue: { summary: '(options: UsiSnackbarInterface | string) => void' },
       },
       control: {
         type: null,
@@ -321,7 +321,7 @@ export default {
       table: {
         category: 'Configuration',
         defaultValue: { summary: '' },
-        type: { summary: 'UsiSnackbarConfig' },
+        type: { summary: 'UsiSnackbarInterface' },
       },
       control: {
         type: 'array',

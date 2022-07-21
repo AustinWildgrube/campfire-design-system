@@ -2,10 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiValidationModalComponent } from '../../projects/campfire/src/lib/modals/validation/validation.component';
-import { UsiModalsModule } from '../../projects/campfire/src/lib/modals/modals.module';
+import { UsiValidationModalComponent } from 'usi-campfire/validation';
+import { UsiModalsModule } from 'usi-campfire/modals';
 
-import documentation from '../../projects/campfire/src/lib/modals/validation/documentation/validation.mdx';
+import documentation from '../../projects/campfire/validation/documentation/validation.mdx';
 
 export default {
   title: 'Feedback/Validation Modals',

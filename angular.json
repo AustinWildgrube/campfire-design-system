@@ -5,8 +5,8 @@
   "projects": {
     "campfire": {
       "projectType": "library",
-      "root": "projects/campfire",
-      "sourceRoot": "projects/campfire/src",
+      "root": "campfire",
+      "sourceRoot": "campfire",
       "prefix": "usi",
       "architect": {
         "build": {
@@ -27,7 +27,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/campfire/src/test.ts",
+            "main": "projects/campfire/test.ts",
             "tsConfig": "projects/campfire/tsconfig.spec.json",
             "karmaConfig": "projects/campfire/karma.conf.js"
           }
@@ -142,5 +142,5 @@
       }
     }
   },
-  "defaultProject": "campfire-tester"
+  "defaultProject": "campfire"
 }

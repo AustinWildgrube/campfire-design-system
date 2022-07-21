@@ -2,10 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiGhostComponent } from 'projects/campfire/src/lib/ghost/ghost.component';
-import { UsiSharedModule } from '../../projects/campfire/src/lib/shared/shared.module';
+import { UsiGhostComponent } from 'projects/campfire/ghost';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/avatar/documentation/avatar.mdx';
+import documentation from '../../projects/campfire/ghost/documentation/ghost.mdx';
 
 export default {
   title: 'Feedback/Ghost Loading',

@@ -16,9 +16,7 @@
     "@angular/common": "^13.0.3",
     "@angular/core": "^13.0.3",
     "@fortawesome/angular-fontawesome": "^0.10.2",
-    "@fortawesome/fontawesome-pro": "^6.1.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
-    "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/pro-light-svg-icons": "^6.1.1",
     "@fortawesome/pro-regular-svg-icons": "^6.1.1",
     "@fortawesome/pro-solid-svg-icons": "^6.1.1"

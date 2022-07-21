@@ -1,0 +1,292 @@
+```ts
+import { UsiTableModule } from 'usi-campfire/table';
+```
+
+# Tables
+A table displays information in a grid of rows and columns providing a method of organizing information in way that
+facilitates comparisons to discover patterns and insights. Use the table styles wherever you need to present static data
+in a tabular format. Tables also provide ways to sort and filter data as needed.
+
+To keep semantic meaning, USI tables are simply
+[W3C Standard HTML tables](https://www.w3.org/TR/html401/struct/tables.html) wrapped in the `usi-table` tag.
+
+The standard USI table is used like:
+
+```html
+<usi-table>
+  <thead>
+    <tr>
+      <th>Header One</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>Data One</td>
+    </tr>
+  </tbody>
+</usi-table>
+```
+
+## Table Features
+USI tables come with a number of features for styling, sorting, filtering, and paginating data. Sorting and filtering
+can be done using attributes on the table, or they can be done using the USI table service.
+
+> Parent tags in the following examples may be omitted for brevity.
+
+## Data Manipulation
+To use sorting and filtering in a USI table data must be provided to the `usiData` attribute. This allows us to
+manipulate the data and display it in the desired format. Once the data has been processed it is exported using
+Angular's [Template Context](https://angular.io/guide/template-syntax#statement-context). An `*ngFor` can then be used
+to render the data.
+
+```typescript
+let exampleData = [
+  {
+    key: '1',
+    type: 'pdf',
+    name: 'document-name-here.PDF',
+    category: 'Sales',
+    lastUpdated: '10/10/2021'
+  },
+  {
+    key: '2',
+    type: 'word',
+    name: 'NRL Telstra Premiership Finals Series - Melborne Storm V Paramatta.DOC',
+    category: 'Event Operations',
+    lastUpdated: '10/10/2021'
+  },
+  {
+    key: '3',
+    type: 'word',
+    name: 'document-name-here.PDF',
+    category: 'Sales',
+    lastUpdated: '10/10/2021'
+  },
+]
+```
+
+```html
+<usi-table #basicTable [usiData]="exampleData">
+  <thead>...</thead>
+  <tbody>
+    <tr *ngFor="let myVar of basicTable.data">
+      <td>{{ data.name }}</td>
+    </tr>
+  </tbody>
+</usi-table>
+```
+
+## Sorting
+After we have passed our data to the `usiData` attribute, we are able to start sorting it. Sorting is implemented on a
+row by row basis, therefore some rows can be sorted while others stay static if desired. To start sorting the
+`usiSortKey` attribute needs to be set on the `th` tag. This allows the backend to know which column to sort. Once the
+`usiSortKey` attribute has been added the sort arrows will appear to the right of the table header.
+
+```html
+<usi-table #basicTable [usiData]="exampleData">
+  <thead>
+    <tr>
+      <th usiSortKey="name">Document Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>...</tr>
+  </tbody>
+</usi-table>
+```
+
+### Custom Sorting
+Sometimes there is a use case for sorting that doesn't adhere to the traditional `ascending`, `descending`, and
+`unsorted` methods; in this case a custom sorting method can be used. This must be used along with the `usiSortKey`
+attribute.
+
+```ts
+public myCustomSortFn(a: any, b: any) {
+  // Custom logic
+}
+```
+
+```html
+<usi-table #basicTable [usiData]="exampleData">
+  <thead>
+    <tr>
+      <th [usiSortFn]="myCustomSortFn" usiSortKey="name">Document Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>...</tr>
+  </tbody>
+</usi-table>
+```
+
+### Alternative Sorting
+Using an icon in the head of a table is not always ideal. Occasionally the click action will need to occur outside of
+the tables DOM. To do this `UsiTablesService` will need to be injected into the constructor.
+
+After injection the `sortData(sortMethod: SortMethodsInterface, sortKey: string, sortFunction?: Function): void` method
+will be made available. `sortData` takes two parameters and one optional parameter. The first parameter pertains to which
+directions the data should be sorted. The three values it takes is `ascending`, `descending`, and `unsorted`. The second
+parameter is which piece of data is being sorted and lastly, the third parameter is where a custom sort function may be
+specified.
+
+```ts
+import { UsiTablesService } from 'ungerboeck/table';
+
+constructor(private usiTablesService: UsiTablesService) { }
+
+public customSortButton(): void {
+  this.usiTablesService.sortData('ascending', 'name');
+}
+```
+
+```html
+<button (click)="customSortButton()">Sort with me!</button>
+
+<usi-table #basicTable [usiData]="exampleData">
+  <thead>
+    <tr>...</tr>
+  </thead>
+  <tbody>
+    <tr>...</tr>
+  </tbody>
+</usi-table>
+```
+
+## Filtering
+Todo
+
+## Pagination
+Pagination is a user interface pattern that divides content into separate pages. Pagination is good when the user is
+searching for something specific within the list of results, not just browsing the content. This is specifically useful
+for tables that are displaying a large quantity of data.
+
+To use pagination with USI tables the boolean attribute `usiPagination` will need to be included on the `usi-table` tag
+along with `[usiData]`.
+
+```html
+<usi-table #basicTable [usiData]="exampleData" usiPagination>
+  <thead>
+    <tr>...</tr>
+  </thead>
+  <tbody>
+    <tr>...</tr>
+  </tbody>
+</usi-table>
+```
+
+### Aligning Table Content
+Table content doesn't always need to be left aligned. This is usually the case when there are action buttons or icons
+presented within the table. To align content, the `usiAlign` attribute will need to be set on the `th` or `td` tag. The
+`usiAlign` attribute takes the values `left`, `center`, and `right`.
+
+> All data becomes left aligned when the viewport is `< 768px`.
+
+```html
+<usi-table #basicTable [usiData]="exampleData">
+  <thead>
+    <tr>
+      <th usiAlign="center">Document Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let myVar of basicTable.data">>
+      <td usiAlign="center">{{ myVar.name }}</td>
+    </tr>
+  </tbody>
+</usi-table>
+```
+
+### Mobile Styling
+USI tables only visually represent a table when the viewport is `> 767px`. After this break point the tables are
+made to look like cards. Although the table is still semantically a table the underlying CSS goes through a
+transformation.
+
+The decision to make tables look like cards for mobile devices provides for a better user experience. When a table is
+able to scroll along the y-axis data it becomes difficult to analyze the data that is being presented. Because of this,
+USI tables have a few built in attributes to make the transition from a table to a card easier.
+
+#### Mobile Labels
+Because of the complexity that goes into changing a semantic table to a card, table headers cannot be directly changed
+into card headers. The best approach to this situation is to use an extra attribute on the `td` tag. The `usiMobileLabel`
+attribute takes a string that will be used as the card header for that piece of data.
+
+```html
+<usi-table #basicTable [usiData]="exampleData">
+  <thead>
+    <tr>...</tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let myVar of basicTable.data">>
+      <td usiMobileLabel="Document Name">{{ myVar.name }}</td>
+    </tr>
+  </tbody>
+</usi-table>
+```
+
+## Styling
+Since USI tables don't change the semantics of an HTML table traditional methods to style tables still remain. Styling a
+table is as simple as just adding a class onto the tags or overriding our CSS variables in the root selector. The list
+of overridable variables are as follows:
+
+```css
+:root {
+  --table-background-color: var(--white);
+  --table-background-color--even: #F5F5F5;
+  --table-background-color--hover: #F5F5F5;
+
+  --table-label-text-color: var(--gray);
+  --tabel-label-text-color--mobile: var(--gray);
+  --table-label-text-casing: uppercase;
+  --table-label-border-bottom: 1px solid #B7B7B7;
+
+  --table-data-border-bottom: 1px solid #f0f0f0;
+  --table-data-text-color: var(--black);
+
+  --table-card-shadow--mobile: 0 1px 3px rgba(0, 0, 0, .32);
+
+  --table-sort-icon-color: var(--gray);
+}
+```
+
+```html
+<usi-table #basicTable [usiData]="exampleData">
+  <thead>
+    <tr>
+      <th class="custom-table">Document Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>...</tr>
+  </tbody>
+</usi-table>
+```
+
+## Headless Tables
+Since the design of a table varies greatly from app to app there is a workaround for the types of tables that are just a
+bit different from the design presented in Campfire. The boolean input `usiHeadless` will provide a style-less table all
+the while still providing the functionality listed above. Predetermined classes are still applied to the table just
+without the CSS to make any changes to provide an easy way to style the table to your specifications.
+
+```html
+<usi-table #basicTable [usiData]="exampleData" usiHeadless>
+  <thead>
+    <tr>...</tr>
+  </thead>
+  <tbody>
+    <tr>...</tr>
+  </tbody>
+</usi-table>
+```
+
+The classes to override are as follows:
+
+```css
+.usi-table { }
+.usi-table__head { }
+.usi-table__label { }
+.usi-table__mobile-label { }
+.usi-table__body { }
+.usi-table__row { }
+.usi-table__data { }
+```

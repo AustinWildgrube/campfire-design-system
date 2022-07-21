@@ -1,0 +1,45 @@
+@use '../../../campfire.css';
+
+:host.usi-radio-group {
+  display: flex;
+
+  ::ng-deep.usi-radio-button {
+    margin-right: 1rem;
+  }
+}
+
+:host.usi-radio-button--vertical {
+  flex-direction: column;
+
+  ::ng-deep.usi-radio-button {
+    margin-bottom: 1rem;
+    margin-right: initial;
+  }
+}
+
+:host.usi-radio-button--disabled {
+  ::ng-deep.usi-radio-button {
+    color: #717073;
+    cursor: not-allowed;
+  }
+
+  ::ng-deep.usi-radio-button__input {
+    &:disabled {
+      background: var(--checkbox-background-color--disabled);
+      cursor: not-allowed;
+
+      &.usi-radio-button__input--checked {
+        border-color: #717073;
+
+        &:before {
+          background-color: #717073;
+          border-radius: 50%;
+          content: "";
+          height: 10px;
+          opacity: 1;
+          width: 10px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,171 @@
+```ts
+import { UsiInputModule } from 'usi-campfire/input';
+```
+
+# Inputs
+Inputs are a way to allow the user to enter a value associated with a key, such as entering their name in a field
+labeled name. Attributes that can be used on normal inputs do not contain the `usi` prefix.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiLabel="label"></usi-input>
+```
+
+## Inputs in Forms
+Inputs will almost always be used in forms. Campfire inputs can be used in reactive forms as well as in
+template driven forms via the methods below.
+
+```ts
+inputNgModel: boolean = false;
+inputFormGroup: FormGroup;
+
+constructor(private formBuilder: FormBuilder) {
+  this.inputFormGroup = this.formBuilder.group({
+    inputOne: ['']
+  });
+}
+```
+
+```html
+<usi-input [(ngModel)]="inputNgModel" usiPlaceholder="placeholder" usiLabel="label"></usi-input>
+
+<form [formGroup]="inputFormGroup">
+  <usi-input formControlName="inputOne" usiPlaceholder="placeholder" usiLabel="label"></usi-input>
+</form>
+```
+
+## Label
+The label attribute is used to provide a label for the input. When a Campfire input is being focused the label will float
+above the input. Labels are required as they provide crucial information to the users.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiLabel="label"></usi-input>
+```
+
+## Placeholder
+The placeholder attribute is used to provide a hint to the user of what can be entered in the input. Placeholders are
+required as they provide crucial information to the users.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiLabel="label"></usi-input>
+```
+
+## Types
+Campfire inputs only take a few types that a native input can take. This is because there are other Campfire components
+that cover the other types. The included types are `text`, `number`, `email`, and `password`.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiType="email" usiLabel="label"></usi-input>
+```
+
+## Password Control
+Although type is used to determine the type of input, Campfire inputs can also take the `usiPassword` attribute. This
+allows the input to use custom controls for passwords that are baked into Campfire.
+
+> `type="password"` can be used with `usiPassword` but the inverse is not true.
+
+```html
+<usi-input usiLabel="label" usiPassword usiPlaceholder="placeholder" usiType="password"></usi-input>
+```
+
+## Required Inputs
+The required attribute is used to indicate that the input must be filled out before submitting the form. If it does not
+contain a value the input will be marked as invalid.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiLabel="label" usiRequired></usi-input>
+```
+
+## Error Handling
+Campfire inputs can have custom error templates. This is done by providing the `usiError` attribute with an
+[Angular template](https://angular.io/api/core/ng-template). The template will be rendered when the input is invalid.
+It is up to the developer to provide the correct error message.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiLabel="label" usiError="errorTemplate"></usi-input>
+
+<ng-template #errorTemplate>
+  <p *ngIf="tooShort">Input is too short</p>
+  <p *ngIf="tooLong">Input is too long</p>
+</ng-template>
+```
+
+Errors can be forced by setting the `usiError` attribute. This will display the error message in the input even if the
+input is not touched by the user. If an error template is not provided the input will only display the default error
+color and omit a message.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiForceError usiLabel="label"></usi-input>
+```
+
+## Using Icons
+Icons are commonly used in inputs to quickly convey the purpose of the input to the user. Usually the icon is used in
+addition to a label and a placeholder. Icons can be used as prefixes, meaning they are placed before the input, but they
+can also be used as suffixes, meaning they are placed after the input.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiLabel="label" usiPrefix="user"></usi-input>
+<usi-input usiPlaceholder="placeholder" usiLabel="label" usiSuffix="user"></usi-input>
+```
+
+## Hints
+Sometimes when the label and placeholder are not enough to convey the purpose of the input to the user, hints are
+commonly used. Hints are displayed below the input and are not required. A hint is different from an error message though.
+In Campfire a hint will not be displayed if the input is invalid.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiLabel="label" usiHint="hint"></usi-input>
+```
+
+## Default Values
+A lot of the time inputs already have had information provided to them. This is common when a user is to edit some
+information they have previously provided. This is done by setting the `usiDefault` attribute. If an input is connected
+to a form the value will be set there as well.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiValue="default" usiLabel="label"></usi-input>
+```
+
+## Customization
+Inputs were made to be easily customizable. Styling an input is as simple as just adding a class onto the tag or
+overriding our CSS variables in the root selector. The list of overridable variables are as follows:
+
+```css
+:root {
+--input-min-width: 135px;
+  --input-background-color: var(--white);
+  --input-border: 1px solid var(--gray);
+  --input-corner-radius: 3px;
+  --input-text-color: var(--black);
+
+  --input-background--disabled: #f5f5f5;
+  --input-border-color--disabled: #717073;
+  --input-text-color--disabled: #515152;
+
+  --input-outline-color--focus: var(--primary);
+
+  --input-border-color--error: var(--error);
+  --input-outline-color--error: var(--error);
+
+  --input-placeholder-color: var(--gray);
+
+  --input-label-background-color--focus: var(--white);
+  --input-label-text-color--focus: var(--primary);
+  --input-label-text-color--focus--error: var(--error);
+
+  --input-label-background-color--filled: var(--white);
+  --input-label-text-color--filled: var(--gray);
+  --input-label-text-color--filled--error: var(--error);
+
+  --input-label-text-color: var(--gray);
+  --input-label-text-color--error: var(--error);
+
+  --input-icon-text-color: #515152;
+
+  --input-hint-text-color: var(--gray);
+  --input-hint-text-color--error: var(--error);
+}
+```
+
+```html
+<usi-input class="custom-input" usiPlaceholder="placeholder" usiLabel="label"></usi-input>
+```

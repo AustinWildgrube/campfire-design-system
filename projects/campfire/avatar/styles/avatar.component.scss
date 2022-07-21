@@ -1,0 +1,117 @@
+@use '../../campfire.css';
+
+:host.usi-avatar {
+  align-items: center;
+  background-color: var(--avatar-background-color);
+  border-radius: 50%;
+  box-shadow: var(--avatar-shadow);
+  box-sizing: border-box;
+  color: var(--avatar-text-color);
+  display: inline-flex;
+  font-family: var(--font-family);
+  font-size: 2.1875rem;
+  height: 85px;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  text-transform: uppercase;
+  width: 85px;
+
+  fa-icon {
+    color: var(--avatar-icon-text-color);
+  }
+}
+
+:host.usi-avatar--text {
+  padding: 8px;
+}
+
+/* Shape */
+:host.usi-avatar--square {
+  border-radius: var(--avatar-corner-radius--square);
+  height: 85px;
+  padding: 8px;
+  width: 150px;
+
+  /* Sizes */
+  &.usi-avatar--xs {
+    font-size: 1.3125rem;
+    height: 50px;
+    width: 88px;
+  }
+
+  &.usi-avatar--sm {
+    font-size: 1.875rem;
+    height: 75px;
+    width: 133px;
+  }
+
+  &.usi-avatar--lg {
+    font-size: 2.5rem;
+    height: 100px;
+    width: 177px;
+  }
+
+  &.usi-avatar--xl {
+    font-size: 3.125rem;
+    height: 125px;
+    width: 223px;
+  }
+
+  &.usi-avatar--xxl {
+    font-size: 4.0625rem;
+    height: 125px;
+    width: 223px;
+  }
+
+  .usi-avatar__image {
+    height: 100%;
+    object-fit: contain;
+    padding: 8px;
+    width: 100%;
+  }
+}
+
+/* Type */
+.usi-avatar__image {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.usi-avatar__text {
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
+}
+
+/* Sizes */
+:host.usi-avatar--xs {
+  font-size: 1.3125rem;
+  height: 50px;
+  width: 50px;
+}
+
+:host.usi-avatar--sm {
+  font-size: 1.875rem;
+  height: 75px;
+  width: 75px;
+}
+
+:host.usi-avatar--lg {
+  font-size: 2.5rem;
+  height: 100px;
+  width: 100px;
+}
+
+:host.usi-avatar--xl {
+  font-size: 3.125rem;
+  height: 125px;
+  width: 125px;
+}
+
+:host.usi-avatar--xxl {
+  font-size: 4.0625rem;
+  height: 175px;
+  width: 175px;
+}

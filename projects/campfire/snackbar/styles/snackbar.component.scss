@@ -1,0 +1,75 @@
+@use '../../campfire.css';
+
+::ng-deep usi-snackbar-container {
+  position: fixed;
+  z-index: var(--notification-zindex);
+}
+
+.usi-snackbar {
+  align-items: center;
+  background-color: var(--snackbar-background-color);
+  border-radius: 3px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .32);
+  box-sizing: border-box;
+  color: var(--snackbar-text-color);
+  display: flex;
+  font-family: var(--font-family);
+  min-height: 44px;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  max-width: 33vw;
+  min-width: 307px;
+  padding: 12px 20px 11px;
+  position: relative;
+  width: fit-content;
+
+  @media only screen and (max-width: 767px) {
+    max-width: 100%;
+    min-width: 100%;
+    width: calc(100vw - 32px);
+  }
+}
+
+.usi-snackbar--success {
+  background-color: var(--snackbar-background-color--success);
+}
+
+.usi-snackbar--error {
+  background-color: var(--snackbar-background-color--error);
+}
+
+.usi-snackbar--info {
+  background-color: var(--snackbar-background-color--info);
+}
+
+.usi-snackbar__text {
+  align-items: center;
+  display: flex;
+}
+
+.usi-snackbar__icon {
+  color: var(--snackbar-icon-color);
+  font-size: 1.125rem;
+  line-height: 1;
+  margin-right: 12px;
+}
+
+.usi-snackbar__title {
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1;
+  margin: 0;
+}
+
+.usi-snackbar__action {
+  background: transparent;
+  border: none;
+  color: var(--snackbar-text-color);
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1;
+  margin-left: 12px;
+  padding: 0;
+}

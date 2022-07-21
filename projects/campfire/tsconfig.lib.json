@@ -2,13 +2,21 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/lib",
+    "outDir": "../../out-tsc",
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
     "types": [],
     "allowSyntheticDefaultImports": true
   },
-  "include": ["../../stories/**/*", "../../.storybook/*", "src/**/*.d.ts"],
-  "exclude": ["src/test.ts", "**/*.spec.ts"]
+  "include": [
+    "../../stories/**/*",
+    "../../.storybook/*",
+    "./globals.d.ts",
+    "utils/types/globals.ts"
+  ],
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
 }

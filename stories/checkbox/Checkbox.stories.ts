@@ -2,11 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiCheckboxComponent } from '../../projects/campfire/src/lib/checkbox/checkbox.component';
-import { UsiCheckboxModule } from '../../projects/campfire/src/lib/checkbox/checkbox.module';
-import { UsiSharedModule } from '../../projects/campfire/src/lib/shared/shared.module';
+import { UsiCheckboxComponent, UsiCheckboxModule } from 'usi-campfire/checkbox';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/checkbox/documentation/checkbox.mdx';
+import documentation from '../../projects/campfire/checkbox/documentation/checkbox.mdx';
 
 export default {
   title: 'Forms/Checkboxes',

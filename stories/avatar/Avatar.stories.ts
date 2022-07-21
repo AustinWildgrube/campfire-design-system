@@ -2,10 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiAvatarComponent } from '../../projects/campfire/src/lib/avatar/avatar.component';
-import { UsiSharedModule } from '../../projects/campfire/src/lib/shared/shared.module';
+import { UsiAvatarComponent } from 'usi-campfire/avatar';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/avatar/documentation/avatar.mdx';
+import documentation from '../../projects/campfire/avatar/documentation/avatar.mdx';
 
 export default {
   title: 'Data Display/Avatars',

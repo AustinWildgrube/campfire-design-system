@@ -1,0 +1,76 @@
+@use '../../../campfire.css';
+
+.usi-radio-button {
+  align-items: center;
+  display: flex;
+  position: relative;
+  width: max-content;
+
+  .usi-radio-button--disabled {
+    color: var(--radio-label-text-color--disabled);
+    cursor: not-allowed;
+  }
+}
+
+.usi-radio-button__input {
+  align-items: center;
+  appearance: none;
+  border: 2px solid var(--radio-border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  height: 18px;
+  justify-content: center;
+  margin: 0;
+  outline: 0;
+  position: relative;
+  transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+  width: 18px;
+
+  &:hover:not(:disabled) {
+    border-color: var(--radio-border-color--hover);
+  }
+
+  &:disabled {
+    background: var(--radio-background-color--disabled);
+    cursor: not-allowed;
+
+    &.usi-radio-button__input--checked {
+      border-color: var(--radio-border-color--checked--disabled);
+
+      &:before {
+        background-color: var(--radio-background-color--checked--disabled);
+        border-radius: 50%;
+        content: "";
+        height: 10px;
+        opacity: 1;
+        width: 10px;
+      }
+    }
+  }
+
+  &.usi-radio-button__input--checked:not(:disabled) {
+    border-color: var(--radio-border-color--checked);
+
+    &:before {
+      background-color: var(--radio-background-color--checked);
+      border-radius: 50%;
+      content: "";
+      height: 10px;
+      opacity: 1;
+      width: 10px;
+    }
+  }
+}
+
+.usi-radio-button__label {
+  color: var(--radio-label-text-color);
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: .75rem;
+  font-weight: 400;
+  height: 16px;
+  margin-left: 8px;
+  position: relative;
+  user-select: none;
+}

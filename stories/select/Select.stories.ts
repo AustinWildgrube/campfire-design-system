@@ -2,10 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiSelectComponent } from 'projects/campfire/src/lib/select/select.component';
-import { UsiSharedModule } from '../../projects/campfire/src/lib/shared/shared.module';
+import { UsiSelectComponent } from 'usi-campfire/select';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/select/documentation/select.mdx';
+import documentation from '../../projects/campfire/select/documentation/select.mdx';
 
 export default {
   title: 'Forms/Select',

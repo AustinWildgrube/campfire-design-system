@@ -1,9 +1,9 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
 
-import { UsiFlexComponent } from 'projects/campfire/src/lib/flex/flex.component';
+import { UsiFlexComponent } from 'projects/campfire/flex';
 
-import documentation from '../../projects/campfire/src/lib/flex/documentation/flex.mdx';
+import documentation from '../../projects/campfire/flex/documentation/flex.mdx';
 
 export default {
   title: 'Layout/Flex',

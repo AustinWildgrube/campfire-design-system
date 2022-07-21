@@ -2,10 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiToastComponent } from '../../projects/campfire/src/lib/notifications/toast/toast.component';
-import { UsiSharedModule } from '../../projects/campfire/src/lib/shared/shared.module';
+import { UsiToastComponent } from 'usi-campfire/toast';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/notifications/toast/documentation/toast.mdx';
+import documentation from '../../projects/campfire/toast/documentation/toast.mdx';
 
 export default {
   title: 'Feedback/Toast Notifications',
@@ -214,14 +214,14 @@ export default {
     success: {
       name: 'success',
       description: 'Create toast of success type.',
-      defaultValue: '(options: UsiToastConfig | string) => void',
+      defaultValue: '(options: UsiToastInterface | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiToastConfig | string) => void' },
+        defaultValue: { summary: '(options: UsiToastInterface | string) => void' },
       },
       control: {
         type: null,
@@ -230,14 +230,14 @@ export default {
     warning: {
       name: 'warning',
       description: 'Create toast of warning type.',
-      defaultValue: '(options: UsiToastConfig | string) => void',
+      defaultValue: '(options: UsiToastInterface | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiToastConfig | string) => void' },
+        defaultValue: { summary: '(options: UsiToastInterface | string) => void' },
       },
       control: {
         type: null,
@@ -246,14 +246,14 @@ export default {
     error: {
       name: 'error',
       description: 'Create toast of error type.',
-      defaultValue: '(options: UsiToastConfig | string) => void',
+      defaultValue: '(options: UsiToastInterface | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiToastConfig | string) => void' },
+        defaultValue: { summary: '(options: UsiToastInterface | string) => void' },
       },
       control: {
         type: null,
@@ -262,14 +262,14 @@ export default {
     info: {
       name: 'info',
       description: 'Create toast of info type.',
-      defaultValue: '(options: UsiToastConfig | string) => void',
+      defaultValue: '(options: UsiToastInterface | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiToastConfig | string) => void' },
+        defaultValue: { summary: '(options: UsiToastInterface | string) => void' },
       },
       control: {
         type: null,
@@ -278,14 +278,14 @@ export default {
     default: {
       name: 'default',
       description: 'Create toast of default type.',
-      defaultValue: '(options: UsiToastConfig | string) => void',
+      defaultValue: '(options: UsiToastInterface | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiToastConfig | string) => void' },
+        defaultValue: { summary: '(options: UsiToastInterface | string) => void' },
       },
       control: {
         type: null,

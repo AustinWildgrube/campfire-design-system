@@ -1,9 +1,9 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
 
-import { UsiTitleComponent } from '../../projects/campfire/src/lib/title/title.component';
+import { UsiTitleComponent } from 'usi-campfire/title';
 
-import documentation from '../../projects/campfire/src/lib/title/documentation/title.mdx';
+import documentation from '../../projects/campfire/title/documentation/title.mdx';
 
 export default {
   title: 'Typography/Titles',

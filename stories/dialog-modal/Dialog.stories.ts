@@ -2,10 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiDialogModalComponent } from '../../projects/campfire/src/lib/modals/dialog/dialog.component';
-import { UsiModalsModule } from '../../projects/campfire/src/lib/modals/modals.module';
+import { UsiDialogModalComponent } from 'usi-campfire/dialog';
+import { UsiModalsModule } from 'usi-campfire/modals';
 
-import documentation from '../../projects/campfire/src/lib/modals/dialog/documentation/dialog.mdx';
+import documentation from '../../projects/campfire/dialog/documentation/dialog.mdx';
 
 export default {
   title: 'Feedback/Dialog Modals',

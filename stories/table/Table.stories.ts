@@ -2,12 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiTableComponent } from '../../projects/campfire/src/lib/table/table.component';
-import { UsiThComponent } from '../../projects/campfire/src/lib/table/th/th.component';
-import { UsiTdComponent } from '../../projects/campfire/src/lib/table/td/td.component';
-import { UsiSharedModule } from 'projects/campfire/src/lib/shared/shared.module';
+import { UsiTableComponent, UsiTdComponent, UsiThComponent } from 'usi-campfire/table';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/table/documentation/table.mdx';
+import documentation from '../../projects/campfire/table/documentation/table.mdx';
 
 export default {
   title: 'Data Display/Tables',

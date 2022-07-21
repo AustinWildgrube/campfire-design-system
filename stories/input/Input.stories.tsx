@@ -2,10 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiInputComponent } from 'projects/campfire/src/lib/input/input.component';
-import { UsiSharedModule } from '../../projects/campfire/src/lib/shared/shared.module';
+import { UsiInputComponent } from 'projects/campfire/input';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/input/documentation/input.mdx';
+import documentation from '../../projects/campfire/input/documentation/input.mdx';
 
 export default {
   title: 'Forms/Inputs',

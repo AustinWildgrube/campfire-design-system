@@ -1,0 +1,101 @@
+@use '../../campfire.css';
+
+.usi-select {
+  display: inline-block;
+  font-family: var(--font-family);
+  min-width: var(--input-min-width);
+  position: relative;
+  width: 100%;
+
+  .usi-input-group__input {
+    cursor: pointer;
+  }
+}
+
+.usi-select__options {
+  background-color: var(--select-options-background-color);
+  border-radius: var(--select-options-corner-radius);
+  box-shadow: var(--select-options-shadow);
+  list-style: none;
+  margin-bottom: 0;
+  margin-right: 0;
+  margin-top: 4px;
+  max-height: 150px;
+  min-width: var(--input-min-width);
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 4px;
+  position: absolute;
+  width: 100%;
+  z-index: var(--select-options-z-index);
+}
+
+.usi-select__group-label {
+  align-items: center;
+  color: var(--select-options-label-text-color);
+  display: flex;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  margin-top: 2px;
+  text-decoration: none;
+
+  &:before {
+    border-top: var(--select-options-label-border);
+    content: "";
+    flex: 1 1 0;
+    height: 1px;
+    margin-right: 10px;
+  }
+
+  &:after {
+    border-top: var(--select-options-label-border);
+    content: "";
+    flex: 1 1 0;
+    margin-left: 10px;
+  }
+}
+
+.usi-select__no-result {
+  color: var(--select-options-label-text-color);
+  font-size: 0.875rem;
+  padding: 8px;
+  text-align: center;
+}
+
+.usi-select__group-divider {
+  border-top: var(--select-options-label-border);
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.usi-select__option {
+  cursor: pointer;
+  font-size: .875rem;
+  margin: 4px 0;
+  padding: 16px 20px;
+
+  &:hover:not(.usi-select__option--active):not(.usi-select__option--disabled) {
+    background-color: var(--select-options-background-color--hover);
+    border-left: var(--select-options-border--hover);
+  }
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.usi-select__option--active {
+  background-color: var(--select-options-background-color--active);
+  border-left: var(--select-options-border--active);
+  color: var(--select-options-text-color--active);
+  font-weight: 600;
+}
+
+.usi-select__option--disabled {
+  color: var(--select-options-text-color--disabled);
+  cursor: not-allowed;
+}

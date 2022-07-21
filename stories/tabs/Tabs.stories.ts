@@ -2,12 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiTabsComponent } from 'projects/campfire/src/lib/tabs/tabs.component';
-import { UsiTabComponent } from 'projects/campfire/src/lib/tabs/tab/tab.component';
-import { UsiSharedModule } from '../../projects/campfire/src/lib/shared/shared.module';
-import { UsiTabsModule } from '../../projects/campfire/src/lib/tabs/tabs.module';
+import { UsiTabComponent, UsiTabsComponent, UsiTabsModule } from 'usi-campfire/tabs';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/tabs/documentation/tabs.mdx';
+import documentation from '../../projects/campfire/tabs/documentation/tabs.mdx';
 
 export default {
   title: 'Data Display/Tabs',

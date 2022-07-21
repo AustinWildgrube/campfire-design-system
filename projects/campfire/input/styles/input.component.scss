@@ -1,0 +1,163 @@
+@use '../../campfire.css';
+
+.usi-input-group {
+  display: inline-block;
+  font-family: var(--font-family);
+  min-width: var(--input-min-width);
+  position: relative;
+  width: 100%;
+
+  .usi-input-group__input {
+    background-color: var(--input-background-color);
+    border: var(--input-border);
+    border-radius: var(--input-corner-radius);
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    color: var(--input-text-color);
+    font-size: .875rem;
+    height: 38px;
+    padding: 8px 12px;
+    width: 100%;
+
+    &:disabled {
+      background-color: var(--input-background--disabled);
+      border-color: var(--input-border-color--disabled);
+      color: var(--input-text-color--disabled);
+      cursor: not-allowed;
+    }
+
+    &:focus {
+      outline-color: var(--input-outline-color--focus);
+    }
+
+    &:not(:focus) {
+      &::placeholder {
+        color: transparent;
+      }
+    }
+
+    &.usi-input-group__input--prefix {
+      padding-left: 36px;
+    }
+
+    &.usi-input-group__input--suffix {
+      padding-right: 36px;
+    }
+
+
+    &.usi-input-group__input--error {
+      border-color: var(--input-border-color--error);
+      outline-color: var(--input-outline-color--error);
+    }
+  }
+}
+
+.usi-input-group__input:focus::placeholder {
+  color: var(--input-placeholder-color);
+}
+
+.usi-input-group__input:focus ~ .usi-input-group__label {
+  background-color: var(--input-label-background-color--focus);
+  color: var(--input-label-text-color--focus);
+  display: -webkit-box;
+  font-size: 0.625rem;
+  height: min-content;
+  left: 12px;
+  max-width: calc(100% - 28px);
+  overflow: hidden;
+  padding: 0 2px;
+  text-overflow: ellipsis;
+  top: -7px;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+
+  &.usi-input-group__label--error {
+    color: var(--input-label-text-color--focus--error);
+  }
+}
+
+.usi-input-group__input--filled ~ .usi-input-group__label {
+  background-color: var(--input-label-background-color--filled);
+  color: var(--input-label-text-color--filled);
+  font-size: 0.625rem;
+  height: min-content;
+  left: 12px;
+  padding: 0 2px;
+  top: -7px;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  &.usi-input-group__label--error {
+    color: var(--input-label-text-color--filled--error);
+  }
+}
+
+.usi-input-group__label {
+  color: var(--input-label-text-color);
+  display: -webkit-box;
+  font-size: .875rem;
+  left: 12px;
+  max-width: calc(100% - 28px);
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  text-overflow: ellipsis;
+  top: 9px;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+
+  &.usi-input-group__label--prefix {
+    left: 34px;
+  }
+
+  &.usi-input-group__label--error {
+    color: var(--input-label-text-color--error);
+  }
+}
+
+.usi-input-group__prefix {
+  color: var(--input-icon-text-color);
+  font-size: 1.125rem;
+  left: 12px;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.usi-input-group__suffix {
+  color: var(--input-icon-text-color);
+  font-size: 1.125rem;
+  right: 12px;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.usi-input-group__suffix--password {
+  cursor: pointer;
+}
+
+.usi-input-group__hint {
+  color: var(--input-icon-text-color);
+  display: block;
+  font-size: 0.625rem;
+  left: 12px;
+  margin-top: 4px;
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - 8px);
+}
+
+.usi-input-group__hint--error {
+  color: var(--input-hint-text-color--error);
+}

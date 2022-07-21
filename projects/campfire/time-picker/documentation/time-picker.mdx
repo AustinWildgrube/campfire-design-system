@@ -1,0 +1,90 @@
+```ts
+import { UsiTimePickerModule } from 'usi-campfire/time-picker';
+```
+
+# Time Picker
+The Time Picker is an input field which accepts a value in HH:mm format. Currently, the Time Picker is built on top of the HTML time picker, using an input field
+with type="time", which comes with some inherent limitations. In order to release a functional and stable Time Picker for immediate use, we decided to work
+within these limitations with the intention of updating this module to a custom Time Picker in a future release. The current API was designed to avoid any
+breaking changes with future versions of the Time Picker.
+
+## Browser Support
+Because browsers' implementations of the native time picker vary, this component may not be fully accessible in all cases. Chrome/Edge, Safari and Firefox all
+support the Time Picker, but the user experience differs browser-to-browser.
+
+```html
+<usi-time-picker usiLabel="Start Time"></usi-time-picker>
+```
+
+## Disabled Time Pickers
+Time Pickers may be disabled to indicate to a user that the current action is unavailable. It should be clear to the user why a Time Picker is disabled, however,
+and users should be directed how enable the input if that is possible. Campfire Time Pickers are disabled by using the `usiDisabled` attribute.
+
+```html
+<usi-time-picker usiLabel="Start Time" usiDisabled></usi-time-picker>
+```
+
+## Required Time Pickers
+Time Pickers can be required by adding the `usiRequired` attribute to the `usi-time-picker` element. This will ensure that the user provides a value before
+submitting the form.
+
+```html
+<usi-time-picker usiLabel="Start Time" usiRequired></usi-time-picker>
+```
+
+## Label
+The `usiLabel` attribute is used to provide a label for the Time Picker. When a Campfire Time Picker is being focused the label will float
+above like our traditional inputs. Labels are required as they provide crucial information to the users.
+
+```html
+<usi-time-picker usiLabel="Start Time"></usi-time-picker>
+```
+
+## Default Values
+A lot of the time pickers already have had information provided to them. This is common when a user is to edit some information they have previously provided.
+This is done by setting the `usiValue` attribute. If the Time Picker is connected to a form the value will be set there as well. The value must be provided in a
+valid 24-hour format (HH:mm).
+
+```html
+<usi-time-picker usiLabel="Start Time" usiValue="14:35"></usi-time-picker>
+```
+
+## Customization
+Campfire time pickers were made to be easily customizable. Styling a time picker is as simple as just adding a class onto the tag or overriding our CSS variables
+in the root selector. Since time pickers are just an extension of our normal input the list of overridable variables are the same:
+
+```css
+:root {
+  --input-min-width: 135px;
+  --input-background-color: var(--white);
+  --input-border: 1px solid var(--gray);
+  --input-corner-radius: 3px;
+  --input-text-color: var(--black);
+
+  --input-background--disabled: #f5f5f5;
+  --input-border-color--disabled: #717073;
+  --input-text-color--disabled: #515152;
+
+  --input-outline-color--focus: var(--primary);
+
+  --input-border-color--error: var(--error);
+  --input-outline-color--error: var(--error);
+
+  --input-placeholder-color: var(--gray);
+
+  --input-label-background-color--focus: var(--white);
+  --input-label-text-color--focus: var(--primary);
+  --input-label-text-color--focus--error: var(--error);
+
+  --input-label-background-color--filled: var(--white);
+  --input-label-text-color--filled: var(--gray);
+  --input-label-text-color--filled--error: var(--error);
+
+  --input-label-text-color: var(--gray);
+  --input-label-text-color--error: var(--error);
+}
+```
+
+```html
+<usi-time-picker class="custom-time-input" usiLabel="Start Time"></usi-time-picker>
+```

@@ -1,13 +1,17 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "paths": {
-      "campfire": ["dist/campfire/campfire", "dist/campfire"]
+      "usi-campfire/*": [
+        "projects/campfire/*"
+      ],
+      "usi-campfire": [
+        "projects/campfire"
+      ]
     },
-    "jsx": "react",
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
@@ -22,8 +26,18 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
-    "lib": ["es2020", "dom"],
-    "typeRoots": ["node_modules/@types", ".storybook/typings.d.ts", "./globals.d.ts"]
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      ".storybook/typings.d.ts",
+      "./globals.d.ts"
+    ],
+    "types": [
+      "mdx"
+    ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

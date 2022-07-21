@@ -1,0 +1,152 @@
+@use '../../campfire.css';
+
+:host.usi-text {
+    color: var(--text-base-color);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    line-height: 1.2;
+    margin: 0;
+
+    // Alignment
+    &.usi-text--center {
+        text-align: center;
+    }
+
+    &.usi-text--right {
+        text-align: right;
+    }
+
+    &.usi-text--justify {
+        text-align: justify;
+    }
+
+    // Parent states
+    &.usi-text--inherit {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+    }
+
+    &.usi-text--inline {
+        line-height: 1;
+    }
+
+    // Transformations
+    &.usi-text--lowercase {
+        text-transform: lowercase;
+    }
+
+    &.usi-text--uppercase {
+        text-transform: uppercase;
+    }
+
+    &.usi-text--capitalize {
+        text-transform: capitalize;
+    }
+
+    &.usi-text--underline {
+        text-decoration: underline;
+    }
+
+    &.usi-text--none {
+        text-decoration: none;
+    }
+
+    // Font weights
+    &.usi-text--100 {
+        font-weight: 100;
+    }
+
+    &.usi-text--200,
+    &.usi-text--light {
+        font-weight: 200;
+    }
+
+    &.usi-text--300,
+    &.usi-text--lighter {
+        font-weight: 300;
+    }
+
+    &.usi-text--400 {
+        font-weight: 400;
+    }
+
+    &.usi-text--500,
+    &.usi-text--bolder{
+        font-weight: 500;
+    }
+
+    &.usi-text--600,
+    &.usi-text--semibold {
+        font-weight: 600;
+    }
+
+    &.usi-text--700,
+    &.usi-text--bold {
+        font-weight: 700;
+    }
+
+    &.usi-text--800 {
+        font-weight: 800;
+    }
+
+    &.usi-text--900 {
+        font-weight: 900;
+    }
+
+    // Line clamping
+    &.usi-text--line-clamp {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+    }
+
+    // Colors
+    &.usi-text--primary {
+        color: var(--primary);
+    }
+
+    &.usi-test--gray {
+        color: var(--gray);
+    }
+
+    &.usi-text--white {
+        color: var(--white);
+    }
+
+    &.usi-text--success {
+        color: var(--success);
+    }
+
+    &.usi-text--warning {
+        color: var(--warning);
+    }
+
+    &.usi-text--error {
+        color: var(--error);
+    }
+
+    &.usi-text--info {
+        color: var(--info);
+    }
+
+    // Font sizes
+    &.usi-text--xs {
+        font-size: 0.75rem;
+    }
+
+    &.usi-text--sm {
+        font-size: 0.875rem;
+    }
+
+    &.usi-text--lg {
+        font-size: 1.125rem;
+    }
+
+    &.usi-text--xl {
+        font-size: 1.25rem;
+    }
+}
+

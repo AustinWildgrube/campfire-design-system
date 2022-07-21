@@ -2,10 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiInlineComponent } from '../../projects/campfire/src/lib/notifications/inline/inline.component';
-import { UsiSharedModule } from 'projects/campfire/src/lib/shared/shared.module';
+import { UsiInlineComponent } from 'usi-campfire/inline';
+import { UsiSharedModule } from 'projects/campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/notifications/inline/documentation/inline.mdx';
+import documentation from '../../projects/campfire/inline/documentation/inline.mdx';
 
 export default {
   title: 'Feedback/Inline Notifications',

@@ -1,9 +1,9 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
 
-import { UsiTextComponent } from '../../projects/campfire/src/lib/text/text.component';
+import { UsiTextComponent } from 'usi-campfire/text';
 
-import documentation from '../../projects/campfire/src/lib/text/documentation/text.mdx';
+import documentation from '../../projects/campfire/text/documentation/text.mdx';
 
 export default {
   title: 'Typography/Text',

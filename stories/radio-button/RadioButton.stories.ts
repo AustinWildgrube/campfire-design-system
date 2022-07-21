@@ -2,11 +2,9 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiRadioButtonComponent } from '../../projects/campfire/src/lib/radio/radio-button/radio-button.component';
-import { UsiRadioService } from '../../projects/campfire/src/lib/radio/radio.service';
-import { UsiRadioModule } from '../../projects/campfire/src/lib/radio/radio.module';
+import { UsiRadioButtonComponent, UsiRadioModule, UsiRadioService } from 'usi-campfire/radio';
 
-import documentation from '../../projects/campfire/src/lib/radio/radio-button/documentation/radio-button.mdx';
+import documentation from '../../projects/campfire/radio/radio-button/documentation/radio-button.mdx';
 
 export default {
   title: 'Forms/Radio Buttons',

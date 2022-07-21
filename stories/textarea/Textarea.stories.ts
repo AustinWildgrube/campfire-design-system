@@ -2,12 +2,11 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiTextareaComponent } from '../../projects/campfire/src/lib/textarea/textarea.component';
-import { UsiTextareaModule } from '../../projects/campfire/src/lib/textarea/textarea.module';
-import { UsiSharedModule } from '../../projects/campfire/src/lib/shared/shared.module';
+import { UsiTextareaComponent, UsiTextareaModule } from 'usi-campfire/textarea';
+import { UsiAutosizeDirective } from 'usi-campfire/utils';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/textarea/documentation/textarea.mdx';
-import { UsiAutosizeDirective } from '../../projects/campfire/src/lib/utils/directives/autosize.directive';
+import documentation from '../../projects/campfire/textarea/documentation/textarea.mdx';
 
 export default {
   title: 'Forms/Textarea',

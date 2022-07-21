@@ -2,10 +2,10 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiButtonComponent } from '../../projects/campfire/src/lib/button/button.component';
-import { UsiSharedModule } from '../../projects/campfire/src/lib/shared/shared.module';
+import { UsiButtonComponent } from 'usi-campfire/button';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
-import documentation from '../../projects/campfire/src/lib/button/documentation/button.mdx';
+import documentation from '../../projects/campfire/button/documentation/button.mdx';
 
 export default {
   title: 'Forms/Buttons',

@@ -1,0 +1,227 @@
+```ts
+import { UsiModalModule } from '@campfire/modals';
+```
+
+# Validation Modals
+A modal is a web page element that displays in front of and deactivates all other page content. To return to the main
+content, the user must engage with the modal by completing an action or by closing it. Modals are often used to direct
+users' attention to an important action or piece of information on a website or application.
+
+```ts
+import { UsiModalInterface, UsiModalsService } from "./modals.service";
+
+constructor(private usiModalService: UsiModalsService) { }
+
+const globalModalConfig: UsiModalInterface = {
+  usiButtonText: 'Okay',
+  usiCancelText: 'Cancel',
+  usiId: 0,
+  usiLimit: 1,
+  usiModalType: 'dialog',
+  usiOnAction: () => {
+    console.log('action');
+  },
+  usiOnAdd: () => {
+    console.log('add');
+  },
+  usiOnRemove: () => {
+    console.log('remove');
+  },
+  usiMessage: '',
+  usiPosition: 'center-center',
+  usiTitle: '',
+  usiTimeout: 0,
+  usiValidationType: 'success',
+};
+
+this.usiModalService.add(globalModalConfig);
+```
+
+## Button Text
+Although the modal has generic button text, it is recommended that you use the button text to indicate the correct
+action that needs to be taken. Because of the `usiOnAction` the modal may not always close when clicking the action
+button.
+
+```ts
+const globalModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+  usiButtonText: 'Go to Step 3',
+  usiCancelText: 'Go to Step 1',
+};
+
+this.usiModalService.add(globalModalConfig);
+```
+
+## ID's
+By default, modals are assigned a random numeric ID. This ID is returned after calling the `.add()` method. If you need
+to reference a modal by ID before it is added to the DOM, you can use the `usiId` property.
+
+```ts
+const globalModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+  usiId: 99,
+};
+
+const willReturn99 = this.usiModalService.add(globalModalConfig);
+const willBeRandomId = this.usiModalService.add('title');
+```
+
+## Popup Limit
+Since the modal module is really just an extension of the notification module, the `usiLimit` property is also available
+and enforced. By default, the limit is set to 1 but sometimes there is a need to have multiple modals open at the same
+time. This usually happens if the action button leads to another component inside the modal.
+
+```ts
+const globalModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+  usiLimit: 2,
+};
+
+this.usiModalService.add(globalModalConfig);
+```
+
+## Messages
+Dialog and validation modals should always contain a message. This message should be descriptive and explain the purpose
+of the modal
+
+```ts
+const globalModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+  usiMessage: 'Lorem ipsum dolor sit amet, consectetur.',
+};
+
+this.usiModalService.add(globalModalConfig);
+```
+
+## Type
+Campfire comes with two types of modals: `dialog` and `validation`. The `dialog` modal is used to display information in
+regard to an action that still **needs** to be taken by the user. The `validation` modal is used to display information
+to an action that has **already** happened. `Dialog` modals are the default type if not specified.
+
+```ts
+const dialogModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+  usiModalType: 'dialog',
+};
+
+this.usiModalService.add(dialogModalConfig);
+
+const validationModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+  usiModalType: 'validation',
+};
+
+this.usiModalService.add(dialogModalConfig);
+```
+
+## On Action
+Custom actions can be taken when the primary action button is clicked. This is useful for when additional validation is
+required or another action needs to be taken.
+
+```ts
+const globalModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+  usiOnAction: () => {
+    console.log('action');
+  },
+};
+
+this.usiModalService.add(globalModalConfig);
+```
+
+## On Add
+Custom actions can be taken when the modal is added to the DOM. These custom actions will be run after the modal has been
+displayed to the user.
+
+```ts
+const globalModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+  usiOnAdd: () => {
+    console.log('add');
+  },
+};
+
+this.usiModalService.add(globalModalConfig);
+```
+
+## On Remove
+Just like `usiOnAdd`, custom actions can be taken when the modal is removed from the DOM. These custom actions will
+be run after the modal has been removed from the DOM.
+
+```ts
+const globalModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+  usiOnRemove: () => {
+    console.log('add');
+  },
+};
+
+this.usiModalService.add(globalModalConfig);
+```
+
+## Position
+> As of right now, Campfire modals only support a `center-center` positioning.
+
+## Title
+The title of the modal should be descriptive and should be used to give the user a sense of what is happening even before
+the user reads the message associated with it. It is important that the length of a title is not too long. Extra information
+should be added to the message.
+
+> A title is **required** or an error will be thrown.
+
+```ts
+const globalModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+};
+
+this.usiModalService.add(globalModalConfig);
+```
+
+## Timeout
+Occasionally a modal will need to be closed automatically if there is no response from the user. By default, the timeout
+is set to `0` which means that the modal will stay open until the user closes it or an action is taken. The timeout should
+be given in milliseconds.
+
+```ts
+const globalModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+usiTimeout: 5000,
+};
+
+this.usiModalService.add(globalModalConfig);
+```
+
+## Validation Type
+The validation type is used to determine what type of validation is being performed. This only applies to validation
+modals and can be omitted when using a `dialog` modal. The default type is `success`.
+
+```ts
+const globalModalConfig: UsiModalInterface = {
+  usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
+  usiModalType: 'validation',
+  usiValidationType: 'error',
+};
+
+this.usiModalService.add(globalModalConfig);
+```
+
+## Customization
+When it comes to customizing modals it can be a little more difficult than other components. CSS variables may still be
+overwritten in the `root` selector, but classes will not be able to be added since there is no element added to the HTML.
+
+```css
+:root {
+  --modal-background-color: var(--white);
+  --modal-box-shadow: 2px 0 24px rgba(0, 0, 0, 0.32);
+  --modal-underlay-color: rgba(0, 0, 0, 0.5);
+  --modal-width: 734px;
+
+  --modal-close-button-color: var(--gray);
+  --modal-icon-color--success: var(--success);
+  --modal-icon-color--warning: var(--warning);
+  --modal-icon-color--error: var(--error);
+
+  --modal-title-color: var(--black);
+  --modal-message-color: var(--black);
+}
+```
