@@ -1,5 +1,5 @@
-import { Component, Input, TemplateRef, forwardRef, Injector, AfterViewInit } from '@angular/core';
-import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Input, TemplateRef, forwardRef, Injector, AfterViewInit, ChangeDetectorRef, DoCheck } from '@angular/core';
+import { ControlValueAccessor, FormControl, FormGroupDirective, NgControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
@@ -43,7 +43,7 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
         [required]="usiRequired"
         (input)="onChange($any($event).target.value)"
         (keyup)="checkValidations($any($event).target.value)"
-        (blur)="onTouched()"
+        (blur)="checkValidations($any($event).target.value)"
         [attr.aria-labelledby]="uid"
       />
 
@@ -76,7 +76,7 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
+export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, DoCheck {
   @Input()
   usiType: 'text' | 'email' | 'password' | 'number' = 'text';
 
@@ -136,7 +136,7 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
   hasError: boolean | null = false;
   touched: boolean | null = false;
 
-  constructor(private injector: Injector) {
+  constructor(public parentFormGroup: FormGroupDirective, private injector: Injector, private cdr: ChangeDetectorRef) {
     this.uid = UniqueId();
   }
 
@@ -147,11 +147,20 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
     // Bind the form control to the input
     if (ngControl) {
       this.control = ngControl.control as FormControl;
+      this.checkForValidations();
     }
 
     if (this.usiForceError && this.control) {
       this.hasError = true;
       this.control.markAsTouched();
+    }
+  }
+
+  // Check validations on every detection change to make sure the form is still valid
+  // We need to keep this as lean as possible to keep change detection as fast as possible
+  ngDoCheck() {
+    if (this.control) {
+      this.checkValidations(this.innerValue, false);
     }
   }
 
@@ -208,18 +217,19 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
   /**
    * We need to have custom validations to work with the floating labels
    * @param { string } value | The value to check
+   * @param { boolean } touched | Whether the user has touched the input
    * @return
    */
-  public checkValidations(value: string): void {
+  public checkValidations(value: string, touched: boolean = true): void {
     this.inputEmpty = value !== '';
 
-    if (value !== '') {
-      this.control.markAsTouched();
-    }
-
     if (this.control) {
-      this.hasError = this.control.invalid && this.control.touched;
-      this.touched = this.control.touched;
+      if (touched || this.parentFormGroup.submitted) {
+        this.control.markAllAsTouched();
+        this.touched = this.control.touched;
+      }
+
+      this.hasError = this.control.invalid && (this.control.dirty || this.control.touched || this.parentFormGroup.submitted);
     }
   }
 
@@ -229,5 +239,17 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
    */
   public revealPassword(): void {
     this.usiType === 'password' ? (this.usiType = 'text') : (this.usiType = 'password');
+  }
+
+  /**
+   * We can check for validations that are presented in the form control even
+   * if they are not provided on the input itself.
+   * @private
+   */
+  private checkForValidations(): void {
+    if (this.control.hasValidator(Validators.required)) {
+      this.usiRequired = true;
+      this.cdr.detectChanges();
+    }
   }
 }

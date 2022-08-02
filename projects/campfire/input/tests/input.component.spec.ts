@@ -1,5 +1,6 @@
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { FormGroupDirective } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsiInputComponent } from '../input.component';
@@ -15,6 +16,7 @@ describe('UsiInputComponent', () => {
     await TestBed.configureTestingModule({
       imports: [UsiSharedModule],
       declarations: [UsiInputComponent],
+      providers: [FormGroupDirective],
     }).compileComponents();
   });
 
