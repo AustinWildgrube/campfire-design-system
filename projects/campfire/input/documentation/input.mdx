@@ -64,7 +64,7 @@ allows the input to use custom controls for passwords that are baked into Campfi
 > `type="password"` can be used with `usiPassword` but the inverse is not true.
 
 ```html
-<usi-input usiLabel="label" usiPassword usiPlaceholder="placeholder" usiType="password"></usi-input>
+<usi-input usiLabel="label" usiPlaceholder="placeholder" usiType="password" usiPassword></usi-input>
 ```
 
 ## Required Inputs
@@ -81,7 +81,7 @@ Campfire inputs can have custom error templates. This is done by providing the `
 It is up to the developer to provide the correct error message.
 
 ```html
-<usi-input usiPlaceholder="placeholder" usiLabel="label" usiError="errorTemplate"></usi-input>
+<usi-input usiPlaceholder="placeholder" usiLabel="label" [usiError]="errorTemplate"></usi-input>
 
 <ng-template #errorTemplate>
   <p *ngIf="tooShort">Input is too short</p>
@@ -131,7 +131,7 @@ overriding our CSS variables in the root selector. The list of overridable varia
 
 ```css
 :root {
---input-min-width: 135px;
+  --input-min-width: 135px;
   --input-background-color: var(--white);
   --input-border: 1px solid var(--gray);
   --input-corner-radius: 3px;
