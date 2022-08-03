@@ -34,6 +34,7 @@ short and descriptive.
   <usi-tab usiLabel="Tab 1">
     <p>Tab 1 content</p>
   </usi-tab>
+
   <usi-tab usiLabel="Tab 2">
     <p>Tab 1 content</p>
   </usi-tab>
@@ -92,8 +93,28 @@ specific tab.
   <usi-tab usiLabel="Tab 1">
     <p>Tab 1 content</p>
   </usi-tab>
+
   <usi-tab usiLabel="Tab 2" usiActive>
-    <p>Tab 1 content</p>
+    <p>Tab 2 content</p>
+  </usi-tab>
+</usi-tab-group>
+```
+
+## Lazy Loading Content
+Lazy loading helps initial load performance by only initializing the active tab, inactive tabs are not initialized until they get selected. Lazy loaded
+tab content is cached by default so that upon reselection, they are not created again. A tab is specified as lazy when there is a ngTemplate with `usi-lazy` in
+it.
+
+```html
+<usi-tab-group>
+  <usi-tab usiLabel="Tab 1">
+    <ng-template usi-lazy>
+      <p>Lazy loaded tab content</p>
+    </ng-template>
+  </usi-tab>
+
+  <usi-tab usiLabel="Tab 2">
+    <p>Eagerly loaded tab content</p>
   </usi-tab>
 </usi-tab-group>
 ```

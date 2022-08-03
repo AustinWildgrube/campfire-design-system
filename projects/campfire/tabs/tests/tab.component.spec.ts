@@ -10,9 +10,11 @@ import { UsiTabsComponent } from '../tabs.component';
       <usi-tab usiLabel="Tab 1">
         <p>Tab 1 content</p>
       </usi-tab>
+
       <usi-tab [usiLabel]="usiLabel" [usiActive]="usiActive" [usiDisabled]="usiDisabled">
         <p>Tab 2 content</p>
       </usi-tab>
+
       <usi-tab usiLabel="Tab 3">
         <p>Tab 3 content</p>
       </usi-tab>

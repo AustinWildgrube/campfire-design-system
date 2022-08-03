@@ -3,23 +3,38 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsiTabsComponent } from '../tabs.component';
 import { UsiTabComponent } from '../tab/tab.component';
+import { UsiTabDirective } from '../tab/tab.directive';
 
 @Component({
   template: `
     <usi-tab-group [usiDisabled]="usiDisabled" [usiGrow]="usiGrow" [usiTabPosition]="usiTabPosition">
       <usi-tab usiLabel="Tab 1">
-        <p>Tab 1 content</p>
+        <p>{{ getTimeLoaded(1) | date: 'medium' }}</p>
       </usi-tab>
+
       <usi-tab usiLabel="Tab 2">
-        <p>Tab 2 content</p>
+        <p>{{ getTimeLoaded(2) | date: 'medium' }}</p>
       </usi-tab>
+
       <usi-tab usiLabel="Tab 3">
-        <p>Tab 3 content</p>
+        <ng-template usi-lazy>
+          <p>{{ getTimeLoaded(3) | date: 'medium' }}</p>
+        </ng-template>
       </usi-tab>
     </usi-tab-group>
   `,
 })
-class TestComponent extends UsiTabsComponent {}
+class TestComponent extends UsiTabsComponent {
+  tabLoadTimes: Date[] = [];
+
+  getTimeLoaded(index: number) {
+    if (!this.tabLoadTimes[index]) {
+      this.tabLoadTimes[index] = new Date();
+    }
+
+    return this.tabLoadTimes[index];
+  }
+}
 
 describe('UsiTabsComponent', () => {
   let component: TestComponent;
@@ -28,7 +43,7 @@ describe('UsiTabsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsiTabsComponent, UsiTabComponent, TestComponent],
+      declarations: [UsiTabsComponent, UsiTabComponent, UsiTabDirective, TestComponent],
     }).compileComponents();
   });
 
@@ -71,5 +86,19 @@ describe('UsiTabsComponent', () => {
     fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelector('.usi-tab-group--right')).toBeTruthy();
+  });
+
+  it('should lazy load the third tab', async () => {
+    const tabs = debugElement.nativeElement.querySelectorAll('.usi-tab-group__tab');
+    const tabsContent = debugElement.nativeElement.querySelectorAll('.usi-tabs__content');
+    const tabValue = tabsContent[0].textContent;
+
+    await new Promise((r) => setTimeout(r, 2000));
+
+    tabs[2].click();
+    fixture.detectChanges();
+
+    const tabThreeValue = tabsContent[2].textContent;
+    expect(tabValue !== tabThreeValue).toBeTruthy();
   });
 });

@@ -15,23 +15,21 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
       }"
     >
       <ul class="usi-tab-group__container" [ngClass]="{ 'usi-tab-group__container--disabled': usiDisabled }" [ngStyle]="{ width: usiGrow ? '100%' : 'auto' }">
-        <ng-container>
-          <li
-            *ngFor="let tab of tabs; let i = index"
-            class="usi-tab-group__tab"
-            [ngClass]="{
-              'usi-tab-group__tab--active': tab.usiActive,
-              'usi-tab-group__tab--disabled': tab.usiDisabled || usiDisabled,
-              'usi-tab-group__tab--grow': usiGrow
-            }"
-            (click)="selectTab(tab, i)"
-            (keydown.enter)="selectTab(tab, i)"
-            [attr.tabindex]="tab.usiDisabled || usiDisabled ? -1 : 0"
-            #tabWidth
-          >
-            {{ tab.usiLabel }}
-          </li>
-        </ng-container>
+        <li
+          *ngFor="let tab of tabs; let i = index"
+          class="usi-tab-group__tab"
+          [ngClass]="{
+            'usi-tab-group__tab--active': tab.usiActive,
+            'usi-tab-group__tab--disabled': tab.usiDisabled || usiDisabled,
+            'usi-tab-group__tab--grow': usiGrow
+          }"
+          (click)="selectTab(tab, i)"
+          (keydown.enter)="selectTab(tab, i)"
+          [attr.tabindex]="tab.usiDisabled || usiDisabled ? -1 : 0"
+          #tabWidth
+        >
+          {{ tab.usiLabel }}
+        </li>
 
         <li class="usi-tab-group__line" [style.left.px]="selectedWidth[selectedTab]" [style.width.px]="selectedWidthReal[selectedTab]"></li>
       </ul>
