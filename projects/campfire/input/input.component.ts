@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, forwardRef, Injector, AfterViewInit, ChangeDetectorRef, DoCheck } from '@angular/core';
+import { Component, Input, TemplateRef, forwardRef, Injector, AfterViewInit, ChangeDetectorRef, HostListener } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroupDirective, NgControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
@@ -42,7 +42,7 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
         [value]="usiValue"
         [required]="usiRequired"
         (input)="onChange($any($event).target.value)"
-        (keyup)="checkValidations($any($event).target.value)"
+        (keydown)="checkValidations($any($event).target.value)"
         (blur)="checkValidations($any($event).target.value)"
         [attr.aria-labelledby]="uid"
       />
@@ -76,7 +76,7 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, DoCheck {
+export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
   @Input()
   usiType: 'text' | 'email' | 'password' | 'number' = 'text';
 
@@ -128,6 +128,13 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, D
     }
   }
 
+  @HostListener('document:click', ['$event'])
+  formClickEvent(event: any) {
+    if (event.path[0].getAttribute('type')) {
+      this.checkValidations(this.usiValue, false);
+    }
+  }
+
   private innerValue: any = '';
   private control: FormControl = new FormControl();
 
@@ -153,14 +160,6 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, D
     if (this.usiForceError && this.control) {
       this.hasError = true;
       this.control.markAsTouched();
-    }
-  }
-
-  // Check validations on every detection change to make sure the form is still valid
-  // We need to keep this as lean as possible to keep change detection as fast as possible
-  ngDoCheck() {
-    if (this.control) {
-      this.checkValidations(this.innerValue, false);
     }
   }
 
@@ -220,16 +219,18 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, D
    * @param { boolean } touched | Whether the user has touched the input
    * @return
    */
-  public checkValidations(value: string, touched: boolean = true): void {
+  public async checkValidations(value: string, touched: boolean = true): Promise<void> {
     this.inputEmpty = value !== '';
 
     if (this.control) {
-      if (touched || this.parentFormGroup.submitted) {
-        this.control.markAllAsTouched();
-        this.touched = this.control.touched;
-      }
+      setTimeout(() => {
+        if (touched || this.parentFormGroup.submitted) {
+          this.control.markAllAsTouched();
+          this.touched = this.control.touched;
+        }
 
-      this.hasError = this.control.invalid && (this.control.dirty || this.control.touched || this.parentFormGroup.submitted);
+        this.hasError = this.control.invalid && (this.control.dirty || this.control.touched || this.parentFormGroup.submitted);
+      }, 0);
     }
   }
 
