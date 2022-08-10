@@ -221,7 +221,7 @@
   /* Select */
   --select-options-background-color: var(--white);
   --select-options-corner-radius: var(--input-corner-radius);
-  --select-options-shadow: 0 1px 3px rgba(0, 0, 0, .32);
+  --select-options-shadow: 0 1px 6px rgba(0, 0, 0, .32);
   --select-options-z-index: 300;
 
   --select-options-label-text-color: var(--gray);
@@ -235,5 +235,19 @@
   --select-options-text-color--active: var(--black);
 
   --select-options-text-color--disabled: var(--gray);
+
+  /* Switch */
+  --switch-background-color--active: var(--primary);
+  --switch-background-color--inactive: var(--gray);
+  --switch-background-color--disabled: #ADADAE;
+  --switch-animation-duration: 100ms;
+  --switch-border-inset: 1px;
+
+  --switch-label-text-color: var(--black);
+  --switch-label-text-color--disabled: var(--gray);
+
+  --switch-rail-height: 1.25rem;
+  --switch-rail-corner-radius: 25px;
+  --switch-rail-ratio: 1.9;
 }
 

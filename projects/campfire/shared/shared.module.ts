@@ -2,15 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/pro-regular-svg-icons';
-import { faCaretDown, faChevronLeft as fasChevronLeft, faChevronRight as fasChevronRight } from '@fortawesome/pro-solid-svg-icons';
+import { faCheck, faAngleDown as farAngleDown } from '@fortawesome/pro-regular-svg-icons';
+import { faChevronLeft as fasChevronLeft, faChevronRight as fasChevronRight } from '@fortawesome/pro-solid-svg-icons';
 import {
   faAngleDown,
+  faAngleRight,
   faAngleUp,
   faArrowDown,
+  faArrowLeftLong,
+  faArrowRightFromBracket,
   faArrowUp,
   faCalendarDay,
   faCheckCircle,
+  faChevronLeft,
+  faChevronRight,
   faCoffee,
   faExclamationCircle,
   faExclamationTriangle,
@@ -19,6 +24,8 @@ import {
   faFilePdf,
   faFileWord,
   faFrown,
+  faGear,
+  faGlobe,
   faInfoCircle,
   faQuestionCircle,
   faSortAlt,
@@ -34,13 +41,15 @@ import {
 export class UsiSharedModule {
   constructor(library: FaIconLibrary) {
     library.addIcons(
-      // Light & Regular
       faAngleDown,
+      faAngleRight,
       faAngleUp,
       faArrowDown,
+      faArrowLeftLong,
+      faArrowRightFromBracket,
       faArrowUp,
       faCalendarDay,
-      faCaretDown,
+      faCheck,
       faCheckCircle,
       faChevronLeft,
       faChevronRight,
@@ -52,11 +61,16 @@ export class UsiSharedModule {
       faFilePdf,
       faFileWord,
       faFrown,
+      faGear,
+      faGlobe,
       faInfoCircle,
       faQuestionCircle,
       faSortAlt,
       faTimes,
       faUser,
+
+      // Regular
+      farAngleDown,
 
       // Solid
       fasChevronLeft,

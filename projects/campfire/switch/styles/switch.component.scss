@@ -1,0 +1,101 @@
+@use '../../campfire.css';
+
+.usi-switch {
+  align-items: center;
+  display: inline-flex;
+  flex-flow: row wrap;
+  font-family: var(--font-family);
+  position: relative;
+  user-select: none;
+  width: max-content;
+
+  .usi-switch__label--disabled {
+    color: var(--switch-label-text-color--disabled);
+    cursor: not-allowed;
+  }
+}
+
+.usi-switch__label {
+  color: var(--switch-label-text-color);
+  font-size: 0.875rem;
+  margin-right: 16px;
+}
+
+
+.usi-switch__input {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  order: 1;
+  position: relative;
+}
+
+.usi-switch__input input {
+  appearance: none;
+  background-color: #fff;
+  border-radius: 1em;
+  cursor: pointer;
+  font-size: 1.2rem;
+  height: var(--switch-rail-height);
+  margin: 0;
+  position: relative;
+  width: calc(var(--switch-rail-height) * var(--switch-rail-ratio));
+}
+
+.usi-switch__input input:before {
+  content: '';
+  background-color: var(--switch-background-color--inactive);
+  border-radius: var(--switch-rail-corner-radius);
+  height: 100%;
+  position: absolute;
+  transition: all var(--switch-animation-duration) ease;
+  width: 100%;
+  z-index: 0;
+}
+
+.usi-switch__input input:disabled:before {
+  background-color: var(--switch-background-color--disabled);
+  cursor: not-allowed;
+}
+
+.usi-switch__input input:checked:before {
+  background-color: var(--switch-background-color--active);
+}
+
+.usi-switch__input input:after {
+  aspect-ratio: 1;
+  background-color: #fff;
+  border-radius: 100%;
+  bottom: var(--switch-border-inset);
+  box-shadow: 0 0 1px rgba(0, 0, 0, .32);
+  content: '';
+  left: var(--switch-border-inset);
+  position: absolute;
+  top: var(--switch-border-inset);
+  transition: left 200ms ease;
+}
+
+.usi-switch__input input:checked:after {
+  left: calc(100% - var(--switch-rail-height) + var(--switch-border-inset));
+}
+
+.usi-switch__input input:disabled:after {
+  cursor: not-allowed;
+}
+
+.usi-switch__input fa-icon {
+  color: var(--switch-background-color--active);
+  font-size: 0.625rem;
+  line-height: 1;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.usi-switch__status {
+  color: var(--switch-label-text-color);
+  margin-left: 4px;
+  margin-right: 0;
+  order: 2;
+  text-transform: capitalize;
+}

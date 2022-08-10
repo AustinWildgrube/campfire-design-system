@@ -1,0 +1,75 @@
+```ts
+import { UsiSwitchModule } from 'usi-campfire/switch';
+```
+
+# Switches
+Toggle switches are best used for changing the state of system functionalities and preferences. Toggles may replace two radio buttons or a single checkbox to
+allow users to choose between two opposing states. Toggle switches should take immediate effect and should not require the user to click Save or Submit to
+apply the new state.
+
+```html
+  <label usi-switch>This is the label</label>
+```
+
+## Switches in Forms
+Switches will almost always be used in forms. Campfire switches can be used in reactive forms as well as in
+template driven forms via the methods below.
+
+```ts
+switchNgModel: boolean = false;
+switchFormGroup: FormGroup;
+
+constructor(private formBuilder: FormBuilder) {
+  this.switchFormGroup = this.formBuilder.group({
+    switchOne: true
+  });
+}
+```
+
+```html
+<label [(ngModel)]="switchNgModel" usi-switch>Switch Label</label>
+
+<form [formGroup]="switchFormGroup">
+  <label formControlName="switchOne" usi-switch>Switch One</label>
+</form>
+```
+
+## Disabled Switches
+Switches may be disabled to indicate to a user that the choice is unavailable. It should be clear to the user
+why the switch is disabled, and users should be directed how enable the switch if that is possible.
+
+```html
+<label usi-switch usiDisabled>This is the label</label>
+```
+
+## Checked Switches
+Switches can be checked by default if needed. The value will be true and the user will not be able to change it.
+
+```html
+<label usi-switch usiChecked>This is the label</label>
+```
+
+## Customization
+Switches were made to be easily customizable. Styling a switch is as simple as just adding a class onto the tag or
+overriding our CSS variables in the root selector. The list of overridable variables are as follows:
+
+```css
+:root {
+  --switch-background-color--active: var(--primary);
+  --switch-background-color--inactive: var(--gray);
+  --switch-background-color--disabled: #ADADAE;
+  --switch-animation-duration: 100ms;
+  --switch-border-inset: 1px;
+
+  --switch-label-text-color: var(--black);
+  --switch-label-text-color--disabled: var(--gray);
+
+  --switch-rail-height: 1.25rem;
+  --switch-rail-corner-radius: 25px;
+  --switch-rail-ratio: 1.9;
+}
+```
+
+```html
+<label class="custom-switch" usi-switch>This is the label</label>
+```
