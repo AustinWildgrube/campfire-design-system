@@ -32,15 +32,15 @@ constructor(private formBuilder: FormBuilder) {
 ```
 
 ```html
-<label [(ngModel)]="checkNgModel">Checkbox Label</label>
+<label [(ngModel)]="checkNgModel" usi-checkbox>Checkbox Label</label>
 
 <form [formGroup]="checkFormGroup">
-  <label formControlName="checkOne">Checkbox One</label>
+  <label formControlName="checkOne" usi-checkbox>Checkbox One</label>
 </form>
 ```
 
 ## Required Checkboxes
-Checkboxes can be required by adding the `required` attribute to the checkbox label. This will ensure that the user checks
+Checkboxes can be required by adding the `usiRequired` attribute to the checkbox label. This will ensure that the user checks
 the checkbox before submitting the form. This is useful for when a user must agree to a term of service for example.
 
 ```html
@@ -53,6 +53,13 @@ why the checkbox is disabled, and users should be directed how enable the checkb
 
 ```html
 <label usi-checkbox usiDisabled>This is the label</label>
+```
+
+## Checked Checkboxes
+Checkboxes can be checked by default if needed. The value will be true and the user will not be able to change it.
+
+```html
+<label usi-checkbox usiChecked>This is the label</label>
 ```
 
 ## Customization

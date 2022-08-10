@@ -8,7 +8,7 @@ import { UsiSharedModule } from 'usi-campfire/shared';
 import documentation from '../../projects/campfire/checkbox/documentation/checkbox.mdx';
 
 export default {
-  title: 'Forms/Checkboxes',
+  title: 'Forms/Checkbox',
   component: UsiCheckboxComponent,
   decorators: [
     moduleMetadata({
