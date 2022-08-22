@@ -41,11 +41,15 @@ export class UsiRadioButtonComponent implements ControlValueAccessor, OnInit {
   @InputBoolean()
   usiDisabled?: BooleanInput;
 
+  @Input()
+  @InputBoolean()
+  usiChecked?: BooleanInput;
+
   private isNgModel: boolean = false;
 
-  uid: string = '';
   isChecked: boolean = false;
   name: string = '';
+  uid: string = '';
 
   constructor(
     private ngZone: NgZone,
@@ -72,20 +76,28 @@ export class UsiRadioButtonComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit(): void {
     if (this.usiRadioService) {
+      if (this.usiChecked) {
+        this.writeValue(true);
+        this.usiRadioService.select(this.usiValue);
+      }
+
       this.usiRadioService.name.subscribe((name) => {
         this.name = name;
         this.cdr.markForCheck();
       });
 
       this.usiRadioService.selected.subscribe((value) => {
-        const isChecked = this.isChecked;
-        this.isChecked = this.usiValue === value;
+        if (value) {
+          console.log(value);
+          const isChecked = this.isChecked;
+          this.isChecked = this.usiValue === value;
 
-        if (this.isNgModel && isChecked !== this.isChecked && !this.isChecked) {
-          this.onChange(false);
+          if (this.isNgModel && isChecked !== this.isChecked && !this.isChecked) {
+            this.onChange(false);
+          }
+
+          this.cdr.markForCheck();
         }
-
-        this.cdr.markForCheck();
       });
     }
 
