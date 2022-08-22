@@ -72,7 +72,7 @@
 }
 
 .usi-inline__title {
-  color: var(--inline-title-color);
+  color: var(--inline-title-text-color);
   display: block;
   font-size: 1.125rem;
   font-weight: 600;
@@ -85,7 +85,7 @@
 }
 
 .usi-inline__message {
-  color: var(--inline-message-color);
+  color: var(--inline-message-text-color);
   font-size: 1rem;
   line-height: 1;
 }

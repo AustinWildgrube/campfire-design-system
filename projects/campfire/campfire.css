@@ -56,8 +56,8 @@
   /* Inline notifications */
   --inline-background-color: var(--white);
   --inline-border-color: var(--black);
-  --inline-title-color: var(--black);
-  --inline-message-color: var(--black);
+  --inline-title-text-color: var(--black);
+  --inline-message-text-color: var(--black);
 
   --inline-border-color--success: var(--success);
   --inline-text-color--success: var(--success);
@@ -83,8 +83,8 @@
 
   /* Toast notifications */
   --toast-background-color: rgba(255, 255, 255, .85);
-  --toast-title-color: var(--black);
-  --toast-message-color: var(--black);
+  --toast-title-text-color: var(--black);
+  --toast-message-text-color: var(--black);
   --toast-close-button-color: var(--gray);
 
   --toast-icon-color--success: var(--success);
@@ -189,7 +189,7 @@
   /* Avatars */
   --avatar-background-color: var(--white);
   --avatar-text-color: #003052;
-  --avatar-icon-text-color: var(--gray);
+  --avatar-icon-color: var(--gray);
   --avatar-shadow: 0 1px 3px rgba(0, 0, 0, .32);
 
   --avatar-corner-radius--square: 3px;
@@ -222,7 +222,7 @@
   --select-options-background-color: var(--white);
   --select-options-corner-radius: var(--input-corner-radius);
   --select-options-shadow: 0 1px 6px rgba(0, 0, 0, .32);
-  --select-options-z-index: 300;
+  --select-options-zindex: 300;
 
   --select-options-label-text-color: var(--gray);
   --select-options-label-border: 1px solid #CED4DA;
