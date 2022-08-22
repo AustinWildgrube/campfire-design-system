@@ -14,7 +14,7 @@ aspects that aims at guiding users in the right direction. Good menu design enha
 ```ts
 import { MobileMenuAuth, MobileMenuLayout } from 'usi-campfire/mobile-menu';
 
-menuLayout: string = '';
+menuLayout: string = 'main';
 
 menuAuth: MobileMenuAuth = {
   initials: 'HS',
@@ -378,4 +378,37 @@ public login(): void {
     this.usiMobileMenuService.toggleAuth(true);
   }
 }
+```
+
+## Customization
+The Campfire mobile menu was made to be easily customizable. Styling the mobile menu is as simple as just adding a class onto the tag or overriding our CSS
+variables in the root selector. The list of overridable variables are as follows:
+
+```css
+:root {
+  --mobile-menu-background-color: #333234;
+  --mobile-menu-text-color: var(--white);
+  --mobile-menu-icon-color: var(--white);
+  --mobile-menu-zindex: 1020;
+
+  --mobile-menu-header-background-color: transparent linear-gradient(155deg, #333234 0%, var(--gray) 100%) 0 0 no-repeat padding-box;
+  --mobile-menu-close-button-color: var(--white);
+  --mobile-menu-back-button-color: var(--white);
+
+  --mobile-menu-section-border: 1px solid #515152;
+  --mobile-menu-section-text-color: #ADADAE;
+
+  --mobile-menu-radio-border-color: var(--white);
+  --mobile-menu-radio-background-color: var(--white);
+
+  --mobile-menu-switch-background-color--checked--before: #D6F4FF;
+  --mobile-menu-switch-background-color--checked--after: #00A5E0;
+  --mobile-menu-switch-label-text-color: var(--white);
+  --mobile-menu-switch-icon-color: var(--white);
+}
+```
+
+
+```html
+<usi-mobile-menu class="custom-menu" [usiAuth]="auth" [usiLayout]="layout" [(usiLayer)]="layer"></usi-mobile-menu>
 ```
