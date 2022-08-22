@@ -1,0 +1,381 @@
+```ts
+import { UsiMobileMenuModule } from 'usi-campfire/mobile-menu';
+```
+
+# Mobile Menu
+Ungerboeck has a uniquely designed custom mobile menu that is used for all of our applications. Because of this, using a premade mobile menu just wasn't an
+option for us. For ease of use, consistency, and accessibility, we have created a mobile menu component. The design of a mobile menu is one of the most important
+aspects that aims at guiding users in the right direction. Good menu design enhances the user experience of the entire product.
+
+```html
+<usi-mobile-menu [usiLayout]="menuLayout" [usiAuth]="menuAuth" [(usiLayer)]="menuLayer"></usi-mobile-menu>
+```
+
+```ts
+import { MobileMenuAuth, MobileMenuLayout } from 'usi-campfire/mobile-menu';
+
+menuLayout: string = '';
+
+menuAuth: MobileMenuAuth = {
+  initials: 'HS',
+  name: 'Harry Styles',
+  company: 'Ungerboeck',
+  loginLink: '/login',
+  registerLink: '/register',
+};
+
+menuLayout: MobileMenuLayout[] = [
+  {
+    type: 'link',
+    text: 'Space Booking',
+    href: '/',
+    show: 'guest',
+  },
+]
+```
+
+## Authentication
+The mobile menu changes according to whether the user is logged in or out. When the user is logged out, it will display a register link as well as a login link.
+When the user is logged in, it will display the user's initials, name, and company. This information can all be provided to the mobile menu as it becomes
+available. The `MobileMenuAuth` interface is available to know what information needs to be provided. The authentication object can be provided to the mobile
+menu using the square bracket syntax `[usiAuth]`.
+
+> The authentication information can be updated instantaneously using variables, and the mobile menu will update accordingly.
+
+```html
+<usi-mobile-menu [usiAuth]="menuAuth"></usi-mobile-menu>
+```
+
+```ts
+menuAuth: MobileMenuAuth = {
+  initials: 'HS',
+  name: 'Harry Styles',
+  company: 'Ungerboeck',
+  loginLink: '/login',
+  registerLink: '/register',
+};
+```
+
+## Navigation and Layout
+The mobile menu layout is controlled by an array of objects. These objects have various attributes to control navigation and create the correct menu structure.
+There are a variety of observables that can be subscribed to, so you know when various actions are happening. Once the menu layout is set, the object can be
+provided to the mobile menu using the square bracket syntax `[usiLayout]`.
+
+```ts
+export interface MobileMenuLayout {
+  type: 'section' | 'layer' | 'link';
+  show: 'all' | 'logged' | 'guest';
+  id?: 'settings' | string;
+  text?: string;
+  title?: string;
+  icon?: IconName;
+  href?: string;
+  languages?: MobileMenuLanguages[];
+  section?: MobileMenuLayout[];
+}
+
+export interface MobileMenuLanguages {
+  label: string;
+  value: string;
+  selected?: boolean;
+}
+```
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+  {
+    type: 'link',
+    text: 'Space Booking',
+    href: '/',
+    show: 'guest',
+  },
+]
+```
+
+```html
+<usi-mobile-menu [usiLayout]="menuLayout"></usi-mobile-menu>
+```
+
+### Type
+There are two required attributes, one of which is the type of menu item. The type can be one of the following: `section`, `layer`, or `link`.
+
+* Sections create a bordered block in the menu and can have a heading and links underneath. This would be used for when certain links need to be grouped
+together.
+
+* Layers when clicked will move the user to a different layer of the mobile menu.
+
+* Links are more traditional in the sense that they will redirect the user to a different page, closing the mobile menu.
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+  {
+    type: 'link',
+    show: 'all',
+  },
+  {
+      id: 'layerId',
+      type: 'layer',
+      show: 'all',
+    },
+  {
+    type: 'section',
+    show: 'all',
+    section: [
+      // Section items
+    ]
+  },
+]
+```
+
+#### Layer
+When the `layer` type is used, the developer is responsible for the body of the layer. By default, the header is shown with a close button and a back arrow.
+The body, however, will need to be passed into the mobile menu using Angular's built-in `ng-content`. The body will have no styling, so it will need to be
+applied by the developer. The mobile menu will output a value with `usiLayer` but this could also be retrieved from the mobile menu service. Using the `id in
+the *ngIf` statement will determine when the layer is shown.
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+ {
+    type: 'layer',
+    text: 'Documents',
+    id: 'documents',
+    show: 'logged',
+  },
+];
+```
+
+```html
+<usi-mobile-menu [(usiLayer)]="menuLayer">
+  <ng-container *ngIf="lay === 'documents'">
+    <h1 class="menu-title">Documents</h1>
+    <span class="menu-item">Brochure</span>
+    <span class="menu-item">Catering Spreadsheet</span>
+    <span class="menu-item">Seating Arrangement</span>
+    <span class="menu-item">Contract</span>
+  </ng-container>
+</usi-mobile-menu>
+```
+
+#### Section
+When the `section` type is used, there almost always needs to be a `title` associated with it. Along with the `title` there is also a `section` attribute that
+will need to be used. The section attribute accepts the same array of objects as the menu does.
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+ {
+    type: 'section',
+    show: 'logged',
+    title: 'Section Title',
+    section: [
+      {
+        type: 'link',
+        text: 'Contact Salesperson',
+        icon: 'phone-flip',
+        href: '/',
+        show: 'logged',
+      },
+    ],
+  },
+];
+```
+
+### Show
+The other required attribute is the `show` attribute. The mobile menu has two different states: `logged` or `guest`. Logged users will see the link when they
+**are authenticated**, whereas guests will see the link when they **are not authenticated**. If the link needs to be shown for both states, then the `show`
+attribute can be set to `all`.
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+  {
+    type: 'link',
+    show: 'guest',
+  },
+  {
+      type: 'link',
+      show: 'logged',
+    },
+  {
+    type: 'link',
+    show: 'all',
+  },
+]
+```
+
+### ID
+ID is an optional attribute that can be used to identify a menu action. This is useful for when you want to have a page event that only fires when a certain
+mobile menu item is clicked. In most instances, this would be paired with one of the mobile menu observables to identify which item was clicked. There are two
+prebuilt menu layers that can be accessed by using the ID: `settings` or `languages`.
+
+> `settings` and `languages` are reserved ID's for the mobile menu
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+  {
+    id: 'guestId',
+    type: 'link',
+    show: 'guest',
+  },
+  {
+      id: 'loggedId',
+      type: 'link',
+      show: 'logged',
+    },
+  {
+    id: 'allId',
+    type: 'link',
+    show: 'all',
+  },
+  {
+    id: 'settings', // reserved ID
+    type: 'section',
+    show: 'all',
+    section: [
+      {
+        id: 'languages', // reserved ID
+        type: 'layer',
+        show: 'all',
+      },
+    ],
+  },
+]
+```
+
+### Text
+Text is an optional attribute that can be used to display a text label for the menu item. This should be descriptive enough to help the user understand where
+they are navigating to.
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+  {
+    text: 'Space Booking',
+    type: 'link',
+    show: 'guest',
+  },
+];
+```
+
+### Title
+Title is an option attribute that is reserved for titling sections of menu items. This title is not clickable and will never have an `href` or `routerLink`
+attribute associated with it.
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+  {
+    title: 'Catering Links',
+    type: 'section',
+    show: 'guest',
+    section: [
+      // Section items
+    ]
+  },
+];
+```
+
+### Icon
+FontAwesome icons can be used to help the user better understand where they are navigating to. As of right now, only a subset of FontAwesome icons are
+available. The `icon` attribute can be used along with any type of menu item.
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+  {
+    icon: 'globe',
+    type: 'link',
+    show: 'guest',
+  },
+];
+```
+
+### Href
+The `href` attribute can be used to redirect the user to a different page. This attribute works the exact same as an `<a>` tag and does not utilize Angular's
+built-in router. This will perform a full page refresh when clicked. Because of this, the `href` attribute should be reserved for offsite links. The `href`
+cannot be used with the `routerLink` attribute.
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+  {
+    href: 'https://www.ungerboeck.com',
+    type: 'link',
+    show: 'guest',
+  },
+];
+```
+
+### RouterLink
+The `routerLink` attribute can also be used to redirect the user to a different page. The only difference between this and the `href` attribute is that it uses
+Angular's built-in router. This means that it can only work with routes that are defined by the application.
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+  {
+    routerLink: '/catering',
+    type: 'link',
+    show: 'guest',
+  },
+];
+```
+
+### Languages
+Since Ungerboeck's apps are built to support multiple languages, the `languages` attribute can be used to display a list of languages that the user can select.
+The `languages` attribute will take an array of objects that have their own interface. There are three attributes: `label`, `value`, and `selected`. The
+`selected` attribute determines the default language that is selected. When changing a language it is best to subscribe to the language observable then make the
+app changes accordingly.
+
+> The `languages` attribute **must** be used with type `layer` and id `languages`.
+
+```ts
+export interface MobileMenuLanguages {
+  label: string;
+  value: string;
+  selected?: boolean;
+}
+```
+
+```ts
+menuLayout: MobileMenuLayout[] = [
+  {
+    id: 'languages',
+    type: 'layer',
+    show: 'all',
+    languages: [
+      {
+        label: 'English (US)',
+        value: 'en-US',
+        selected: true,
+      },
+      {
+        label: 'Spanish (MX)',
+        value: 'es-MX',
+      },
+    ],
+  }
+];
+```
+
+## Mobile Menu Observables
+The mobile menu provides a service that can be used to watch and change the state of it. There are five observables: `route`, `isDarkMode`, `isAuthed`,
+`isOpen`, and `language`. When the user performs an action, these observables will be updated accordingly. There are also three change events: `toggleAuth`,
+`toggleDarkMode`, and `toggleOpen`. These change events can be used to manually update the state of the menu.
+
+```ts
+constructor(private usiMobileMenuService: UsiMobileMenuService) { }
+
+ngOnInit() {
+  this.usiMobileMenuService.route.subscribe((route: MobileMenuLayout) => {
+    // Do something with the route
+    // For example show the account tab on the page
+    if (route.id === 'account') {
+      this.showAccount = true;
+    }
+  });
+
+  // Subscribe to other observables
+}
+
+public login(): void {
+  // The user gave credentials and clicked login
+  // Do super secret authentication stuff
+  if (mySecretAuthenticationWorked) {
+    this.usiMobileMenuService.toggleAuth(true);
+  }
+}
+```

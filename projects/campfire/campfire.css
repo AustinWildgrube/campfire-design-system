@@ -249,5 +249,26 @@
   --switch-rail-height: 1.25rem;
   --switch-rail-corner-radius: 25px;
   --switch-rail-ratio: 1.9;
+
+  /* Mobile menu */
+  --mobile-menu-background-color: #333234;
+  --mobile-menu-text-color: var(--white);
+  --mobile-menu-icon-color: var(--white);
+  --mobile-menu-zindex: 1020;
+
+  --mobile-menu-header-background-color: transparent linear-gradient(155deg, #333234 0%, var(--gray) 100%) 0 0 no-repeat padding-box;
+  --mobile-menu-close-button-color: var(--white);
+  --mobile-menu-back-button-color: var(--white);
+
+  --mobile-menu-section-border: 1px solid #515152;
+  --mobile-menu-section-text-color: #ADADAE;
+
+  --mobile-menu-radio-border-color: var(--white);
+  --mobile-menu-radio-background-color: var(--white);
+
+  --mobile-menu-switch-background-color--checked--before: #D6F4FF;
+  --mobile-menu-switch-background-color--checked--after: #00A5E0;
+  --mobile-menu-switch-label-text-color: var(--white);
+  --mobile-menu-switch-icon-color: var(--white);
 }
 

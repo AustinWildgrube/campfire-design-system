@@ -27,10 +27,12 @@ import {
   faGear,
   faGlobe,
   faInfoCircle,
+  faPhoneFlip,
   faQuestionCircle,
   faSortAlt,
   faTimes,
   faUser,
+  faUserGear,
 } from '@fortawesome/pro-light-svg-icons';
 
 @NgModule({
@@ -64,10 +66,12 @@ export class UsiSharedModule {
       faGear,
       faGlobe,
       faInfoCircle,
+      faPhoneFlip,
       faQuestionCircle,
       faSortAlt,
       faTimes,
       faUser,
+      faUserGear,
 
       // Regular
       farAngleDown,
