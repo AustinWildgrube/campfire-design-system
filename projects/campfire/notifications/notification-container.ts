@@ -35,7 +35,6 @@ export class UsiNotificationComponentContainer {
   protected add(toast: UsiToastInterface | UsiSnackbarInterface | UsiModalInterface): void {
     // If we've gone over our limit, remove the earliest one from the array
     if (this.notifications.length >= toast.usiLimit!) {
-      console.log('Removing oldest notification');
       this.notifications.shift();
     }
 

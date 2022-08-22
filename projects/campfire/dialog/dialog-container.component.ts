@@ -28,7 +28,6 @@ export class UsiDialogComponentContainer extends UsiNotificationComponentContain
   ngOnInit(): void {
     // Start listening to events from our service
     this.usiModalsService.events.subscribe((event: NotificationEvent) => {
-      console.log('event', event);
       // Add dialog to array
       if (event.type === NotificationEventType.ADD) {
         let dialog: UsiModalInterface = event.value;

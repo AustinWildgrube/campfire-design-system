@@ -88,7 +88,6 @@ export class UsiRadioButtonComponent implements ControlValueAccessor, OnInit {
 
       this.usiRadioService.selected.subscribe((value) => {
         if (value) {
-          console.log(value);
           const isChecked = this.isChecked;
           this.isChecked = this.usiValue === value;
 

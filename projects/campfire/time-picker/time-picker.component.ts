@@ -129,7 +129,6 @@ export class UsiTimePickerComponent implements AfterViewInit, ControlValueAccess
    * @return
    */
   public checkValidations(value: string): void {
-    console.log(value);
     this.inputEmpty = value !== '';
 
     if (value !== '') {
