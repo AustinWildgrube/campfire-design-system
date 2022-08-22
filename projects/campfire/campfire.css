@@ -152,7 +152,7 @@
   --input-label-text-color: var(--gray);
   --input-label-text-color--error: var(--error);
 
-  --input-icon-text-color: #515152;
+  --input-icon-color: #515152;
 
   --input-hint-text-color: var(--gray);
   --input-hint-text-color--error: var(--error);

@@ -1,6 +1,7 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
+import { FormGroupDirective } from '@angular/forms';
 
 import { UsiInputComponent } from 'projects/campfire/input';
 import { UsiSharedModule } from 'usi-campfire/shared';
@@ -13,6 +14,7 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [UsiSharedModule],
+      providers: [FormGroupDirective],
     }),
   ],
   parameters: {
@@ -319,7 +321,7 @@ Prefix.args = {
   usiRequired: undefined,
   usiForceError: undefined,
   usiPassword: undefined,
-  usiPrefix: 'alien',
+  usiPrefix: 'coffee',
   usiSuffix: undefined,
   usiHint: undefined,
   usiLabel: 'Label',

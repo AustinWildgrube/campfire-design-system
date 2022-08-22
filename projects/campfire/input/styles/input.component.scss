@@ -37,7 +37,7 @@
     }
 
     &.usi-input-group__input--prefix {
-      padding-left: 36px;
+      padding-left: 42px;
     }
 
     &.usi-input-group__input--suffix {
@@ -113,7 +113,7 @@
   -webkit-line-clamp: 1;
 
   &.usi-input-group__label--prefix {
-    left: 34px;
+    left: 42px;
   }
 
   &.usi-input-group__label--error {
@@ -122,7 +122,7 @@
 }
 
 .usi-input-group__prefix {
-  color: var(--input-icon-text-color);
+  color: var(--input-icon-color);
   font-size: 1.125rem;
   left: 12px;
   line-height: 1;
@@ -132,7 +132,7 @@
 }
 
 .usi-input-group__suffix {
-  color: var(--input-icon-text-color);
+  color: var(--input-icon-color);
   font-size: 1.125rem;
   right: 12px;
   line-height: 1;
@@ -146,7 +146,7 @@
 }
 
 .usi-input-group__hint {
-  color: var(--input-icon-text-color);
+  color: var(--input-icon-color);
   display: block;
   font-size: 0.625rem;
   left: 12px;

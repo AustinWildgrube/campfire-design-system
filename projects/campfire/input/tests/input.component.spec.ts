@@ -111,8 +111,8 @@ describe('UsiInputComponent', () => {
   });
 
   it('should have a prefix and suffix icon', () => {
-    component.usiPrefix = 'alien';
-    component.usiSuffix = 'alien';
+    component.usiPrefix = 'coffee';
+    component.usiSuffix = 'coffee';
     fixture.detectChanges();
 
     const input = debugElement.query(By.css('.usi-input-group__input'));
