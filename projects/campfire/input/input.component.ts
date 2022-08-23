@@ -130,7 +130,7 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
 
   @HostListener('document:click', ['$event'])
   formClickEvent(event: any) {
-    if (event.path[0].getAttribute('type')) {
+    if (event.path[0].getAttribute('type') || (event.path[0].offsetParent && event.path[0].offsetParent.form)) {
       this.checkValidations(this.usiValue, false);
     }
   }
