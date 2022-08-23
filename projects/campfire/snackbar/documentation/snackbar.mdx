@@ -8,7 +8,7 @@ bottom of the screen. They shouldn't interrupt the user experience, and usually 
 Snackbar notification have a default show time of 4 seconds which proves enough time to comprehend the message and act
 on it.
 
-USI snackbar notifications are called via a service. The service will first need to be injected into the component on
+Campfire snackbar notifications are called via a service. The service will first need to be injected into the component on
 which the snackbar will be used. It can then be called using various methods.
 
 ```ts
@@ -203,7 +203,7 @@ this.usiSnackbarService.default('Title', { usiIcon: 'alien' });
 ```
 
 ## Snackbar Notification Customization
-USI snackbar notifications were made to be easily customizable. Styling an inline notification is as simple as just
+Campfire snackbar notifications were made to be easily customizable. Styling an inline notification is as simple as just
 overriding our CSS variables in the root selector. The list of overridable variables are as follows:
 
 ```css

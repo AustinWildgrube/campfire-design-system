@@ -7,10 +7,10 @@ A table displays information in a grid of rows and columns providing a method of
 facilitates comparisons to discover patterns and insights. Use the table styles wherever you need to present static data
 in a tabular format. Tables also provide ways to sort and filter data as needed.
 
-To keep semantic meaning, USI tables are simply
+To keep semantic meaning, Campfiretables are simply
 [W3C Standard HTML tables](https://www.w3.org/TR/html401/struct/tables.html) wrapped in the `usi-table` tag.
 
-The standard USI table is used like:
+The standard Campfiretable is used like:
 
 ```html
 <usi-table>
@@ -29,13 +29,13 @@ The standard USI table is used like:
 ```
 
 ## Table Features
-USI tables come with a number of features for styling, sorting, filtering, and paginating data. Sorting and filtering
-can be done using attributes on the table, or they can be done using the USI table service.
+Campfiretables come with a number of features for styling, sorting, filtering, and paginating data. Sorting and filtering
+can be done using attributes on the table, or they can be done using the Campfire table service.
 
 > Parent tags in the following examples may be omitted for brevity.
 
 ## Data Manipulation
-To use sorting and filtering in a USI table data must be provided to the `usiData` attribute. This allows us to
+To use sorting and filtering in a Campfire table data must be provided to the `usiData` attribute. This allows us to
 manipulate the data and display it in the desired format. Once the data has been processed it is exported using
 Angular's [Template Context](https://angular.io/guide/template-syntax#statement-context). An `*ngFor` can then be used
 to render the data.
@@ -78,8 +78,7 @@ let exampleData = [
 ```
 
 ## Sorting
-After we have passed our data to the `usiData` attribute, we are able to start sorting it. Sorting is implemented on a
-row by row basis, therefore some rows can be sorted while others stay static if desired. To start sorting the
+After we have passed our data to the `usiData` attribute, we are able to start sorting it. To start sorting the
 `usiSortKey` attribute needs to be set on the `th` tag. This allows the backend to know which column to sort. Once the
 `usiSortKey` attribute has been added the sort arrows will appear to the right of the table header.
 
@@ -161,7 +160,7 @@ Pagination is a user interface pattern that divides content into separate pages.
 searching for something specific within the list of results, not just browsing the content. This is specifically useful
 for tables that are displaying a large quantity of data.
 
-To use pagination with USI tables the boolean attribute `usiPagination` will need to be included on the `usi-table` tag
+To use pagination with Campfire tables the boolean attribute `usiPagination` will need to be included on the `usi-table` tag
 along with `[usiData]`.
 
 ```html
@@ -198,13 +197,13 @@ presented within the table. To align content, the `usiAlign` attribute will need
 ```
 
 ### Mobile Styling
-USI tables only visually represent a table when the viewport is `> 767px`. After this break point the tables are
+Campfire tables only visually represent a table when the viewport is `> 767px`. After this break point the tables are
 made to look like cards. Although the table is still semantically a table the underlying CSS goes through a
 transformation.
 
 The decision to make tables look like cards for mobile devices provides for a better user experience. When a table is
 able to scroll along the y-axis data it becomes difficult to analyze the data that is being presented. Because of this,
-USI tables have a few built in attributes to make the transition from a table to a card easier.
+Campfire tables have a few built in attributes to make the transition from a table to a card easier.
 
 #### Mobile Labels
 Because of the complexity that goes into changing a semantic table to a card, table headers cannot be directly changed
@@ -225,7 +224,7 @@ attribute takes a string that will be used as the card header for that piece of 
 ```
 
 ## Styling
-Since USI tables don't change the semantics of an HTML table traditional methods to style tables still remain. Styling a
+Since Campfire tables don't change the semantics of an HTML table traditional methods to style tables still remain. Styling a
 table is as simple as just adding a class onto the tags or overriding our CSS variables in the root selector. The list
 of overridable variables are as follows:
 

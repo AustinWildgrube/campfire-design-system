@@ -3,12 +3,12 @@ import { UsiToastModule } from 'usi-campfire/toast';
 ```
 
 # Toast Notifications
-Toasts inform users of a process that an app has performed or will perform. They appear temporarily, towards the
-bottom of the screen. They shouldn't interrupt the user experience, and usually don't require user input to disappear.
-Toast notification have a default show time of 4 seconds which proves enough time to comprehend the message and act
-on it.
+Toast Notifications inform users of a process that an app has performed or will perform. They appear temporarily,
+towards the top right of the screen. They shouldn't interrupt the user experience, and usually don't require user
+input to disappear. Toast notification have a default show time of 4 seconds which proves enough time to comprehend
+the message and act on it.
 
-USI toast notifications are called via a service. The service will first need to be injected into the component on
+Campfire toast notifications are called via a service. The service will first need to be injected into the component on
 which the toast will be used. It can then be called using various methods.
 
 ```ts
@@ -200,7 +200,7 @@ this.usiToastService.success(globalToastConfig);
 ```
 
 ## Toast Notification Customization
-USI toast notifications were made to be easily customizable. Styling an inline notification is as simple as just
+Campfire toast notifications were made to be easily customizable. Styling an inline notification is as simple as just
 overriding our CSS variables in the root selector. The list of overridable variables are as follows:
 
 ```css

@@ -58,7 +58,7 @@ describe('UsiTableComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create a usi table', () => {
+  it('should create a campfire table', () => {
     expect(component).toBeTruthy();
     expect(debugElement.nativeElement.querySelector('.usi-table')).toBeTruthy();
   });
