@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
-import { UsiMobileMenuService } from 'usi-campfire/mobile-menu/mobile-menu.service';
+import { UsiMobileMenuService } from './mobile-menu.service';
 
 export interface MobileMenuAuth {
   initials?: string;
