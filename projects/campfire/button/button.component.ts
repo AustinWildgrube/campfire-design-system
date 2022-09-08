@@ -8,13 +8,13 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
   styleUrls: ['./styles/button.component.scss'],
 })
 export class UsiButtonComponent implements AfterViewInit {
-  @HostBinding('class.usi-button') true = true;
+  @HostBinding('class.usi-clickable') true = true;
 
   @Input()
   @InputBoolean()
   usiLoading: BooleanInput = false;
 
-  @HostBinding('class.usi-button--loading')
+  @HostBinding('class.usi-clickable--loading')
   public get isLoading(): BooleanInput {
     return this.usiLoading;
   }
@@ -23,7 +23,7 @@ export class UsiButtonComponent implements AfterViewInit {
   @InputBoolean()
   usiBlock: BooleanInput = false;
 
-  @HostBinding('class.usi-button--block')
+  @HostBinding('class.usi-clickable--block')
   public get isBlock(): BooleanInput {
     return this.usiBlock;
   }
@@ -40,12 +40,12 @@ export class UsiButtonComponent implements AfterViewInit {
   @Input()
   usiType: 'primary' | 'secondary' | 'transparent' = 'primary';
 
-  @HostBinding('class.usi-button--secondary')
+  @HostBinding('class.usi-clickable--secondary')
   public get isSecondary(): boolean {
     return this.usiType === 'secondary';
   }
 
-  @HostBinding(`class.usi-button--transparent`)
+  @HostBinding(`class.usi-clickable--transparent`)
   public get isTransparent(): boolean {
     return this.usiType === 'transparent';
   }
@@ -53,12 +53,12 @@ export class UsiButtonComponent implements AfterViewInit {
   @Input()
   usiSize: 'small' | 'medium' | 'large' = 'medium';
 
-  @HostBinding(`class.usi-button--small`)
+  @HostBinding(`class.usi-clickable--small`)
   public get isSmall(): boolean {
     return this.usiSize === 'small';
   }
 
-  @HostBinding(`class.usi-button--large`)
+  @HostBinding(`class.usi-clickable--large`)
   public get isLarge(): boolean {
     return this.usiSize === 'large';
   }
@@ -66,7 +66,7 @@ export class UsiButtonComponent implements AfterViewInit {
   @Input()
   usiColor: 'usi' | 'white' = 'usi';
 
-  @HostBinding('class.usi-button--white')
+  @HostBinding('class.usi-clickable--white')
   public get isWhite(): boolean {
     return this.usiColor === 'white';
   }
