@@ -28,21 +28,21 @@ describe('UsiButtonComponent', () => {
 
   it('should create a button', () => {
     expect(component).toBeTruthy();
-    expect(debugElement.nativeElement.className).toBe('usi-button');
+    expect(debugElement.nativeElement.className).toBe('usi-clickable');
   });
 
   it('should show a loading spinner', () => {
     component.usiLoading = true;
     fixture.detectChanges();
 
-    expect(debugElement.nativeElement.className).toContain('usi-button--loading');
+    expect(debugElement.nativeElement.className).toContain('usi-clickable--loading');
   });
 
   it('should be a block element', () => {
     component.usiBlock = true;
     fixture.detectChanges();
 
-    expect(debugElement.nativeElement.className).toContain('usi-button--block');
+    expect(debugElement.nativeElement.className).toContain('usi-clickable--block');
   });
 
   it('should disable button', () => {
@@ -56,31 +56,31 @@ describe('UsiButtonComponent', () => {
     component.usiType = 'secondary';
     fixture.detectChanges();
 
-    expect(debugElement.nativeElement.className).toContain('usi-button--secondary');
+    expect(debugElement.nativeElement.className).toContain('usi-clickable--secondary');
 
     component.usiType = 'transparent';
     fixture.detectChanges();
 
-    expect(debugElement.nativeElement.className).toContain('usi-button--transparent');
+    expect(debugElement.nativeElement.className).toContain('usi-clickable--transparent');
   });
 
   it('should have the correct size styles', () => {
     component.usiSize = 'small';
     fixture.detectChanges();
 
-    expect(debugElement.nativeElement.className).toContain('usi-button--small');
+    expect(debugElement.nativeElement.className).toContain('usi-clickable--small');
 
     component.usiSize = 'large';
     fixture.detectChanges();
 
-    expect(debugElement.nativeElement.className).toContain('usi-button--large');
+    expect(debugElement.nativeElement.className).toContain('usi-clickable--large');
   });
 
   it('should have the correct color styles', () => {
     component.usiColor = 'white';
     fixture.detectChanges();
 
-    expect(debugElement.nativeElement.className).toContain('usi-button--white');
+    expect(debugElement.nativeElement.className).toContain('usi-clickable--white');
   });
 
   it('should show text in the button', () => {
