@@ -1,0 +1,11 @@
+@use '../../campfire.css';
+
+.usi-card {
+  background-color: var(--card-background-color);
+  border-radius: var(--card-corner-radius);
+  box-shadow: var(--card-shadow);
+  box-sizing: border-box;
+  display: block;
+  padding: 20px;
+  position: relative;
+}

@@ -270,5 +270,10 @@
   --mobile-menu-switch-background-color--checked--after: #00A5E0;
   --mobile-menu-switch-label-text-color: var(--white);
   --mobile-menu-switch-icon-color: var(--white);
+
+  /* Card */
+  --card-background-color: var(--white);
+  --card-corner-radius: 3px;
+  --card-shadow: 0 2px 8px rgba(113, 112, 115, .24);
 }
 
