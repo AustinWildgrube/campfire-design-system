@@ -52,7 +52,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <h2 className="h2">Sizes</h2>
 
-Right now, Campfire is using a scale that ranges from `xxs` to `xxl`. Each level has a different pixel value associated with it. The scale is:
+Right now, Campfire is using a scale that ranges from `xxs` to `xxxl`. Each level has a different pixel value associated with it. The scale is:
 
 - `xxs` - `4px`
 - `xs` - `8px`
@@ -67,7 +67,7 @@ Right now, Campfire is using a scale that ranges from `xxs` to `xxl`. Each level
 
 All Campfire components support these attributes:
 
- - Margin props:
+ - Margin:
     - `usiM` – sets `margin` property on root element.
     - `usiMy` – sets `margin-top` and `margin-bottom` properties on root element.
     - `usiMx` – sets `margin-right` and `margin-left` properties on root element.
@@ -76,14 +76,14 @@ All Campfire components support these attributes:
     - `usiMl` – sets `margin-left` property on root element.
     - `usiMr` – sets `margin-right` property on root element.
 
-Margin Props can get value from `theme.spacing`:
+Margin can get value from `theme.spacing` as well:
 
 ```html
 <Card usiM="xl">Card</card> -> margin: theme.spacing.xl
 <Card [usiM]="100">Card</card> -> margin: 100px
 ```
 
-- Padding props:
+- Padding:
     - `usiP` – sets `padding` property on root element
     - `usiPy` – sets `padding-top` and `padding-bottom` properties on root element
     - `usiPx` – sets `padding-right` and `padding-left` properties on root element
@@ -92,7 +92,7 @@ Margin Props can get value from `theme.spacing`:
     - `usiPl` – sets `padding-left` property on root element
     - `usiPr` – sets `padding-right` property on root element
 
-Same is applied top padding attributes:
+Padding can get value from `theme.spacing` as well:
 
 ```html
 <Card usiP="xl">Card</card> -> padding: theme.spacing.xl
