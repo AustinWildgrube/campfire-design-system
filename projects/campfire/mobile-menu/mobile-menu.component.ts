@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IconName } from '@fortawesome/pro-light-svg-icons';
+import { UsiSpacing } from 'usi-campfire/utils';
 
 import { UsiMobileMenuService } from './mobile-menu.service';
 
@@ -175,7 +176,7 @@ export interface MobileMenuLayout {
   `,
   styleUrls: ['./styles/mobile-menu.component.scss'],
 })
-export class UsiMobileMenuComponent implements OnInit {
+export class UsiMobileMenuComponent extends UsiSpacing implements OnInit {
   @Input()
   usiAuth: MobileMenuAuth = {};
 
@@ -194,7 +195,9 @@ export class UsiMobileMenuComponent implements OnInit {
   isLoggedIn: boolean = false;
   darkMode: boolean = false;
 
-  constructor(private usiMobileMenuService: UsiMobileMenuService) {
+  constructor(private elementRef: ElementRef, private usiMobileMenuService: UsiMobileMenuService) {
+    super(elementRef);
+
     this.isOpen();
     this.isLoggedInCheck();
   }

@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component, forwardRef, HostBinding, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, forwardRef, HostBinding, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { UsiRadioService } from '../radio.service';
 
-import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UsiSpacing } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-radio-group',
@@ -18,7 +18,7 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiRadioGroupComponent implements ControlValueAccessor, OnInit {
+export class UsiRadioGroupComponent extends UsiSpacing implements ControlValueAccessor, OnInit {
   @HostBinding('class.usi-radio-group') true = true;
 
   @Input()
@@ -38,7 +38,9 @@ export class UsiRadioGroupComponent implements ControlValueAccessor, OnInit {
 
   private value: any = null;
 
-  constructor(private cdr: ChangeDetectorRef, private usiRadioService: UsiRadioService) {}
+  constructor(private elementRef: ElementRef, private cdr: ChangeDetectorRef, private usiRadioService: UsiRadioService) {
+    super(elementRef);
+  }
 
   ngOnInit(): void {
     this.usiRadioService.selected.subscribe((value) => {

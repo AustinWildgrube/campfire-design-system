@@ -1,4 +1,5 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input } from '@angular/core';
+import { UsiSpacing } from 'usi-campfire/utils';
 
 import { UsiTableService } from '../table.service';
 
@@ -13,7 +14,7 @@ import { UsiTableService } from '../table.service';
   `,
   styleUrls: ['../styles/th.component.scss'],
 })
-export class UsiThComponent {
+export class UsiThComponent extends UsiSpacing {
   sortMethod: 'asc' | 'desc' | 'unsorted' = 'asc';
 
   // Sorting
@@ -37,7 +38,9 @@ export class UsiThComponent {
     return this.usiAlign === 'right';
   }
 
-  constructor(private usiTableService: UsiTableService) {}
+  constructor(private elementRef: ElementRef, private usiTableService: UsiTableService) {
+    super(elementRef);
+  }
 
   /**
    * We need to determine our sort method and then use our table service to

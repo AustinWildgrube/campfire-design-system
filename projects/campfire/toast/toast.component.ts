@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 
 import { UsiToastService } from './toast.service';
 
-import { UsiToastInterface } from 'usi-campfire/utils';
+import { UsiSpacing, UsiToastInterface } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-toast',
@@ -38,10 +38,12 @@ import { UsiToastInterface } from 'usi-campfire/utils';
   `,
   styleUrls: ['./styles/toast.component.scss'],
 })
-export class UsiToastComponent {
+export class UsiToastComponent extends UsiSpacing {
   @Input() toast: UsiToastInterface | undefined;
 
-  constructor(private usiToastService: UsiToastService) {}
+  constructor(private usiToastService: UsiToastService, private elementRef: ElementRef) {
+    super(elementRef);
+  }
 
   /**
    * Use the toast service to close the toast.

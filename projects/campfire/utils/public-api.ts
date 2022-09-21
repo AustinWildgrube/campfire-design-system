@@ -1,6 +1,7 @@
 export * from './convert';
 export * from './resize';
 export * from './is-type';
+export * from './spacing';
 export * from './unqiue-id';
 export * from './utils.module';
 export * from './types/globals';

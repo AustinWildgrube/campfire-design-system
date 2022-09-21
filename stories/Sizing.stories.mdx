@@ -1,0 +1,100 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Design/Sizing" />
+
+<style>{`
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+    .title {
+      display: block;
+      color: #292829;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.875rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .description {
+      color: #292829;
+      display: block;
+      font-family: 'Open Sans', sans-serif;
+      font-size: .875rem;
+      margin-bottom: 0;
+    }
+
+    .h2  {
+      border: none;
+      color: #292829;
+      display: block;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.5625rem;
+      font-weight: 600;
+      line-height: 30px;
+      margin-top: 24px !important;
+      width: 50%;
+    }
+
+    .paragraph {
+      color: #292829;
+      font-family: 'Open Sans', sans-serif;
+      font-size: .875rem;
+      line-height: 22px;
+      margin-bottom: 24px;
+    }
+`}</style>
+
+<span className="title">Sizing</span>
+
+<p className="description">
+  Campfire comes with a sizing system that can be utilized within a group of utility attributes. This page will help you get familiar with how sizing and spacing
+  work within the library.
+</p>
+
+<h2 className="h2">Sizes</h2>
+
+Right now, Campfire is using a scale that ranges from `xxs` to `xxl`. Each level has a different pixel value associated with it. The scale is:
+
+- `xxs` - `4px`
+- `xs` - `8px`
+- `sm` - `12px`
+- `md` - `16px`
+- `lg` - `20px`
+- `xl` - `32px`
+- `xxl` - `44px`
+- `xxxl` - `64px`
+
+<h2 className="h2">Shared Attributes</h2>
+
+All Campfire components support these attributes:
+
+ - Margin props:
+    - `usiM` – sets `margin` property on root element.
+    - `usiMy` – sets `margin-top` and `margin-bottom` properties on root element.
+    - `usiMx` – sets `margin-right` and `margin-left` properties on root element.
+    - `usiMt` – sets `margin-top` property on root element.
+    - `usiMb` – sets `margin-bottom` property on root element.
+    - `usiMl` – sets `margin-left` property on root element.
+    - `usiMr` – sets `margin-right` property on root element.
+
+Margin Props can get value from `theme.spacing`:
+
+```html
+<Card usiM="xl">Card</card> -> margin: theme.spacing.xl
+<Card [usiM]="100">Card</card> -> margin: 100px
+```
+
+- Padding props:
+    - `usiP` – sets `padding` property on root element
+    - `usiPy` – sets `padding-top` and `padding-bottom` properties on root element
+    - `usiPx` – sets `padding-right` and `padding-left` properties on root element
+    - `usiPt` – sets `padding-top` property on root element
+    - `usiPb` – sets `padding-bottom` property on root element
+    - `usiPl` – sets `padding-left` property on root element
+    - `usiPr` – sets `padding-right` property on root element
+
+Same is applied top padding attributes:
+
+```html
+<Card usiP="xl">Card</card> -> padding: theme.spacing.xl
+<Card [usiP]="100">Card</card> -> padding: 100px
+```

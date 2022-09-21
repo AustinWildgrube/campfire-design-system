@@ -4,7 +4,7 @@ import { fromEvent } from 'rxjs';
 
 import { UsiRadioService } from '../radio.service';
 
-import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/utils';
 
 @Component({
   selector: 'label[usi-radio]',
@@ -33,7 +33,7 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiRadioButtonComponent implements ControlValueAccessor, OnInit {
+export class UsiRadioButtonComponent extends UsiSpacing implements ControlValueAccessor, OnInit {
   @Input()
   usiValue: string = '';
 
@@ -57,6 +57,8 @@ export class UsiRadioButtonComponent implements ControlValueAccessor, OnInit {
     private cdr: ChangeDetectorRef,
     @Optional() @Inject(UsiRadioService) private usiRadioService: UsiRadioService | null
   ) {
+    super(elementRef);
+
     // Generate random name so we don't have matching ids
     this.uid = UniqueId();
 

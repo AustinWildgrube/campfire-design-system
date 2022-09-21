@@ -1,9 +1,9 @@
-import { Component, Input, TemplateRef, forwardRef, Injector, AfterViewInit, ChangeDetectorRef, HostListener } from '@angular/core';
+import { Component, Input, TemplateRef, forwardRef, Injector, AfterViewInit, ChangeDetectorRef, HostListener, ElementRef } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroupDirective, NgControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
-import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-input',
@@ -76,7 +76,7 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
+export class UsiInputComponent extends UsiSpacing implements AfterViewInit, ControlValueAccessor {
   @Input()
   usiType: 'text' | 'email' | 'password' | 'number' = 'text';
 
@@ -143,7 +143,8 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
   hasError: boolean | null = false;
   touched: boolean | null = false;
 
-  constructor(public parentFormGroup: FormGroupDirective, private injector: Injector, private cdr: ChangeDetectorRef) {
+  constructor(public parentFormGroup: FormGroupDirective, private injector: Injector, private cdr: ChangeDetectorRef, private elementRef: ElementRef) {
+    super(elementRef);
     this.uid = UniqueId();
   }
 

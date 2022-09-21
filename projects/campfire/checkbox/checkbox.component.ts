@@ -1,7 +1,7 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/utils';
 
 @Component({
   selector: 'label[usi-checkbox]',
@@ -30,7 +30,7 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiCheckboxComponent implements ControlValueAccessor, OnInit {
+export class UsiCheckboxComponent extends UsiSpacing implements ControlValueAccessor, OnInit {
   @Input()
   @InputBoolean()
   usiDisabled?: BooleanInput;
@@ -46,7 +46,8 @@ export class UsiCheckboxComponent implements ControlValueAccessor, OnInit {
   value: boolean = false;
   uid: string = '';
 
-  constructor() {
+  constructor(private elementRef: ElementRef) {
+    super(elementRef);
     this.uid = UniqueId();
   }
 

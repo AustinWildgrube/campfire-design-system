@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input } from '@angular/core';
 
 import { UsiModalsService } from 'usi-campfire/modals';
-import { UsiModalInterface } from 'usi-campfire/utils';
+import { UsiModalInterface, UsiSpacing } from 'usi-campfire/utils';
 import { isFunction } from 'usi-campfire/utils';
 
 @Component({
@@ -38,10 +38,12 @@ import { isFunction } from 'usi-campfire/utils';
   `,
   styleUrls: ['./styles/validation.component.scss', '../modals/styles/modals.scss'],
 })
-export class UsiValidationModalComponent {
+export class UsiValidationModalComponent extends UsiSpacing {
   @Input() validation: UsiModalInterface | undefined;
 
-  constructor(private elementRef: ElementRef, private usiModalService: UsiModalsService) {}
+  constructor(private elementRef: ElementRef, private usiModalService: UsiModalsService) {
+    super(elementRef);
+  }
 
   /**
    * Run our custom action if it is specified

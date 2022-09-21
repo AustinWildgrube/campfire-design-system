@@ -1,6 +1,8 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input } from '@angular/core';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
+
+import { UsiSpacing } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-avatar',
@@ -16,7 +18,7 @@ import { IconName } from '@fortawesome/pro-light-svg-icons';
   `,
   styleUrls: ['./styles/avatar.component.scss'],
 })
-export class UsiAvatarComponent {
+export class UsiAvatarComponent extends UsiSpacing {
   @Input()
   usiSrc?: string;
 
@@ -53,5 +55,7 @@ export class UsiAvatarComponent {
     };
   }
 
-  constructor() {}
+  constructor(private elementRef: ElementRef) {
+    super(elementRef);
+  }
 }

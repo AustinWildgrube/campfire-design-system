@@ -1,7 +1,7 @@
-import { Component, forwardRef, HostListener, Input, OnChanges, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
+import { Component, ElementRef, forwardRef, HostListener, Input, OnChanges, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/utils';
 
 export interface SelectDataInterface {
   value: string | number | any[];
@@ -95,7 +95,7 @@ export interface SelectDataInterface {
     },
   ],
 })
-export class UsiSelectComponent implements OnChanges, OnInit {
+export class UsiSelectComponent extends UsiSpacing implements OnChanges, OnInit {
   @Input()
   usiLabel?: string = '';
 
@@ -148,7 +148,9 @@ export class UsiSelectComponent implements OnChanges, OnInit {
     this.showOptions = false;
   }
 
-  constructor() {
+  constructor(private elementRef: ElementRef) {
+    super(elementRef);
+
     // Generate random name so we don't have matching ids
     this.uid = UniqueId();
   }

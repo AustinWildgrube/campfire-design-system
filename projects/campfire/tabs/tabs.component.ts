@@ -2,7 +2,7 @@ import { AfterViewChecked, Component, ContentChildren, ElementRef, HostBinding, 
 
 import { UsiTabComponent } from './tab/tab.component';
 
-import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UsiSpacing } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-tab-group',
@@ -39,7 +39,7 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
   `,
   styleUrls: ['./styles/tabs.component.scss'],
 })
-export class UsiTabsComponent implements AfterViewChecked {
+export class UsiTabsComponent extends UsiSpacing implements AfterViewChecked {
   @ContentChildren(UsiTabComponent)
   tabs: QueryList<UsiTabComponent> | undefined;
 
@@ -68,7 +68,9 @@ export class UsiTabsComponent implements AfterViewChecked {
   selectedWidth: number[] = [];
   selectedWidthReal: number[] = [];
 
-  constructor() {}
+  constructor(private elementRef: ElementRef) {
+    super(elementRef);
+  }
 
   ngAfterViewChecked(): void {
     // Fixes the NG0100 error

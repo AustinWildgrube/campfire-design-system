@@ -1,13 +1,13 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input } from '@angular/core';
 
-import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UsiSpacing } from 'usi-campfire/utils';
 
 @Component({
   selector: 'h1[usi-title], h2[usi-title], h3[usi-title], h4[usi-title], h5[usi-title], h6[usi-title]',
   template: ` <ng-content></ng-content> `,
   styleUrls: ['./styles/title.component.scss'],
 })
-export class UsiTitleComponent {
+export class UsiTitleComponent extends UsiSpacing {
   @Input()
   usiAlign?: 'left' | 'center' | 'right' | 'justify';
 
@@ -24,5 +24,7 @@ export class UsiTitleComponent {
     };
   }
 
-  constructor() {}
+  constructor(private elementRef: ElementRef) {
+    super(elementRef);
+  }
 }
