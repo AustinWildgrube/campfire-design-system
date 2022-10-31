@@ -1,0 +1,65 @@
+@use '../../campfire.css';
+
+:host.usi-tooltip {
+  display: inline-block;
+  font-family: var(--font-family);
+}
+
+.usi-tooltip__text {
+  background-color: var(--tooltip-background-color);
+  color: var(--tooltip-text-color);
+  border-radius: 3px;
+  font-size: 0.75rem;
+  opacity: 0;
+  padding: 8px 12px;
+  position: absolute;
+  text-align: center;
+  z-index: 999;
+
+  &:after {
+    border-style: solid;
+    content: '';
+    position: absolute;
+  }
+}
+
+.usi-tooltip__text--multiline {
+  max-width: var(--tooltip-multiline-max-width);
+}
+
+.usi-tooltip__text--show {
+  opacity: 1;
+}
+
+
+.usi-tooltip__text--top:after {
+  border-color: var(--tooltip-caret-background-color) transparent transparent transparent;
+  border-width: 5px;
+  left: 50%;
+  margin-left: -5px;
+  top: 100%;
+}
+
+.usi-tooltip__text--right:after {
+  border-color: transparent var(--tooltip-caret-background-color) transparent transparent;
+  border-width: 5px;
+  margin-top: -5px;
+  right: 100%;
+  top: 50%;
+}
+
+.usi-tooltip__text--bottom:after {
+  border-color: transparent transparent var(--tooltip-caret-background-color) transparent;
+  border-width: 5px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+}
+
+.usi-tooltip__text--left:after {
+  border-color: transparent transparent transparent var(--tooltip-caret-background-color);
+  border-width: 5px;
+  left: 100%;
+  margin-top: -5px;
+  top: 50%;
+}

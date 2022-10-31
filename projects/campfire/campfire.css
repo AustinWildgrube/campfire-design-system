@@ -275,5 +275,11 @@
   --card-background-color: var(--white);
   --card-corner-radius: 3px;
   --card-shadow: 0 2px 8px rgba(113, 112, 115, .24);
+
+  /* Tooltip */
+  --tooltip-background-color: #515152;
+  --tooltip-caret-background-color: var(--tooltip-background-color);
+  --tooltip-text-color: var(--white);
+  --tooltip-multiline-max-width: 384px;
 }
 

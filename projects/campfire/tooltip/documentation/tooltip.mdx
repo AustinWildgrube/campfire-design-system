@@ -1,0 +1,106 @@
+```ts
+import { UsiTooltipModule } from 'usi-campfire/tooltip';
+```
+
+# Tooltips
+A tooltip is a brief, informative message that appears when a user interacts with an element in a graphical user interface (GUI). Tooltips are usually initiated
+in one of two ways: through a mouse-hover gesture or through a keyboard-hover gesture.
+
+```html
+<usi-tooltip usiLabel="Tooltip Label">
+  <button>
+    Button Text
+  </button>
+</usi-tooltip>
+```
+
+## Tooltip Labels
+Since tooltips can be used to provide additional information about an element, they are required to have a label. The label of a Campfire tooltip is set using
+the `usiLabel` attribute.
+
+```html
+<usi-tooltip usiLabel="Tooltip Label">
+  <button>
+    Button Text
+  </button>
+</usi-tooltip>
+```
+
+## Tooltip Placements
+A tooltip will almost always be positioned at the top, but depending on the content it is providing information on and where it is placed on the page, the
+tooltip might need to be repositioned. The position can be set using the `usiPlacement` attribute with a value of `top`, `right`, `bottom` or `left`.
+
+> The default position is `top`.
+
+```html
+<usi-tooltip usiLabel="Tooltip Label" usiPlacement="right">
+  <button>
+    Button Text
+  </button>
+</usi-tooltip>
+```
+
+## Tooltip Open & Close Delays
+Tooltips can be configured to open and close with a delay in milliseconds. Normally, this is not ideal, but in a few specific cases, it may be required. The
+delay can be set using the `usiOpenDelay` and `usiCloseDelay` attributes.
+
+```html
+<usi-tooltip usiLabel="Tooltip Label" usiOpenDelay="1000" usiCloseDelay="1000">
+  <button>
+    Button Text
+  </button>
+</usi-tooltip>
+```
+
+## Tooltip Multiline
+By default, the tooltip's width will expand with the content. If the content is too long, it may be better to set the tooltip to a fixed width. This can be done
+using the `usiMultiline` attribute. When using `usiMultiline` the width will remain fixed but the height will expand with the content.
+
+```html
+<usi-tooltip usiLabel="Tooltip Label" usiMultiline>
+  <button>
+    Button Text
+  </button>
+</usi-tooltip>
+```
+
+## Tooltip Offset
+The tooltip can be offset from the element it is attached to. This can be done using the `usiOffset` attribute. The value of the attribute should be a pixel
+value, which means it will need to use Angular's square bracket syntax.
+
+> The value may also be negative.
+
+```html
+<usi-tooltip usiLabel="Tooltip Label" [usiOffset]="10">
+  <button>
+    Button Text
+  </button>
+</usi-tooltip>
+
+<usi-tooltip usiLabel="Tooltip Label" [usiOffset]="-10">
+  <button>
+    Button Text
+  </button>
+</usi-tooltip>
+```
+
+## Tooltip Customization
+Campfire tooltips were made to be easily customizable. Styling a tooltip is as simple as just adding a class onto the tag or overriding our CSS variables in the
+root selector. The list of overridable variables is as follows:
+
+```css
+:root {
+  --tooltip-background-color: #515152;
+  --tooltip-caret-background-color: var(--tooltip-background-color);
+  --tooltip-text-color: var(--white);
+  --tooltip-multiline-max-width: 384px;
+}
+```
+
+```html
+<usi-tooltip class="custom-tooltip" usiLabel="Tooltip Label">
+  <button>
+    Button Text
+  </button>
+</usi-tooltip>
+```
