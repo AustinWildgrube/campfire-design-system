@@ -130,8 +130,8 @@ export class UsiInputComponent extends UsiSpacing implements AfterViewInit, Cont
 
   @HostListener('document:click', ['$event'])
   formClickEvent(event: any) {
-    if (event.path[0].getAttribute('type') || (event.path[0].offsetParent && event.path[0].offsetParent.form)) {
-      this.checkValidations(this.usiValue, false);
+    if (event.path[0].getAttribute('type') === 'submit' || (event.path[0].offsetParent && event.path[0].offsetParent.form)) {
+      this.checkValidations(this.control.value, false);
     }
   }
 
@@ -221,9 +221,9 @@ export class UsiInputComponent extends UsiSpacing implements AfterViewInit, Cont
    * @return
    */
   public async checkValidations(value: string, touched: boolean = true): Promise<void> {
-    this.inputEmpty = value !== '';
-
     if (this.control) {
+      this.inputEmpty = value !== '';
+
       setTimeout(() => {
         if (touched || this.parentFormGroup.submitted) {
           this.control.markAllAsTouched();
