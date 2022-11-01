@@ -122,7 +122,6 @@ export class UsiInputComponent extends UsiSpacing implements AfterViewInit, Cont
   set usiValue(v: any) {
     if (v !== this.innerValue && v !== '' && v !== null) {
       this.innerValue = v;
-      this.registerOnChange(v);
       this.checkValidations(this.usiValue);
       this.touched = true;
     }
