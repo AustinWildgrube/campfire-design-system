@@ -1,7 +1,7 @@
 @use '../../campfire.css';
 
 .usi-input-group {
-  display: inline-block;
+  display: block;
   font-family: var(--font-family);
   min-width: var(--input-min-width);
   position: relative;
@@ -139,6 +139,10 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.usi-input-group__suffix--error {
+  color: var(--input-label-text-color--error);
 }
 
 .usi-input-group__suffix--password {
