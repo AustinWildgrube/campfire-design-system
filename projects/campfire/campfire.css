@@ -281,5 +281,26 @@
   --tooltip-caret-background-color: var(--tooltip-background-color);
   --tooltip-text-color: var(--white);
   --tooltip-multiline-max-width: 384px;
+
+  /* Date Picker */
+  --date-picker-headings-text-color: var(--gray);
+
+  --date-picker-direction-icons-text-color: var(--gray);
+  --date-picker-view-icon-text-color: var(--black);
+
+  --date-picker-data-text-color: var(--black);
+  --date-picker-data-text-color--disabled: var(--gray);
+  --date-picker-data-text-color--other-month: var(--gray);
+
+  --date-picker-data-background-color--hover: #F5F5F5;
+  --date-picker-data-border-color--hover: #F5F5F5;
+  --date-picker-data-text-color--hover: var(--black);
+
+  --date-picker-data-background-color--selected: var(--primary);
+  --date-picker-data-border-color--selected: var(--primary);
+  --date-picker-data-text-color--selected: var(--white);
+
+  --date-picker-data-border-color--today: var(--primary);
+  --date-picker-data-text-color--today: var(--primary);
 }
 

@@ -1,5 +1,20 @@
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
+export interface UsiCalendar {
+  dates: UsiDate[][];
+  month: number;
+  year: number;
+}
+
+export interface UsiDate {
+  day: number;
+  month: number;
+  year: number;
+  today: boolean;
+  otherMonth?: boolean;
+  beforeToday?: boolean;
+}
+
 export interface UsiModalInterface {
   usiButtonText?: string;
   usiCancelText?: string;
@@ -14,6 +29,12 @@ export interface UsiModalInterface {
   usiTitle?: string;
   usiTimeout?: number;
   usiValidationType?: 'success' | 'warning' | 'error';
+}
+
+export interface UsiMonth {
+  dates: UsiDate[][];
+  month: number;
+  year: number;
 }
 
 export interface UsiSnackbarInterface {
