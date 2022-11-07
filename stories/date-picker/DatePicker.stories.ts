@@ -2,16 +2,16 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { UsiCalendarComponent, UsiCalendarModule } from 'usi-campfire/date-picker';
+import { UsiDatePickerComponent, UsiDatePickerModule } from 'usi-campfire/date-picker';
 
 import documentation from 'usi-campfire/date-picker/documentation/date-picker.mdx';
 
 export default {
   title: 'Forms/Date Picker',
-  component: UsiCalendarComponent,
+  component: UsiDatePickerComponent,
   decorators: [
     moduleMetadata({
-      imports: [UsiCalendarModule],
+      imports: [UsiDatePickerModule],
     }),
   ],
   parameters: {
@@ -180,10 +180,10 @@ export default {
   },
 } as Meta;
 
-const Template: Story<UsiCalendarComponent> = (args: UsiCalendarComponent) => ({
+const Template: Story<UsiDatePickerComponent> = (args: UsiDatePickerComponent) => ({
   props: args,
   template: `
-    <usi-calendar
+    <usi-date-picker
     [usiError]="usiError"
     [usiLabel]="usiLabel"
     [usiPlaceholder]="usiPlaceholder"
@@ -202,7 +202,7 @@ const Template: Story<UsiCalendarComponent> = (args: UsiCalendarComponent) => ({
     [usiDisabled]="usiDisabled"
     [usiRequired]="usiRequired"
     [usiForceError]="usiForceError"
-    ></usi-calendar>
+    ></usi-date-picker>
     `,
 });
 
