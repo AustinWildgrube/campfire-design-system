@@ -1,7 +1,7 @@
 import { Component, ElementRef, forwardRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import * as isBetween from 'dayjs/plugin/isBetween';
 import * as localeData from 'dayjs/plugin/localeData';
 import * as localizedFormat from 'dayjs/plugin/localizedFormat';
