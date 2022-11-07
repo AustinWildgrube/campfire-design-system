@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, forwardRef, Injector, AfterViewInit, ChangeDetectorRef, HostListener, ElementRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, forwardRef, HostListener, Injector, Input, NgZone, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroupDirective, NgControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
@@ -129,9 +129,20 @@ export class UsiInputComponent extends UsiSpacing implements AfterViewInit, Cont
 
   @HostListener('document:click', ['$event'])
   formClickEvent(event: any) {
-    if (event.path[0].getAttribute('type') === 'submit' || (event.path[0].offsetParent && event.path[0].offsetParent.form)) {
-      this.checkValidations(this.control.value, false);
+    if (event && event.path) {
+      if (event.path[0].getAttribute('type') === 'submit' || (event.path[0].offsetParent && event.path[0].offsetParent.form)) {
+        this.checkValidations(this.control.value, false);
+      }
     }
+  }
+
+  @HostListener('change', ['$event.target'])
+  checkAutofill(target: { value: any }) {
+    this.ngZone.run(() => {
+      if (target.value) {
+        this.checkValidations(target.value, false);
+      }
+    });
   }
 
   private innerValue: any = '';
@@ -142,7 +153,13 @@ export class UsiInputComponent extends UsiSpacing implements AfterViewInit, Cont
   hasError: boolean | null = false;
   touched: boolean | null = false;
 
-  constructor(public parentFormGroup: FormGroupDirective, private injector: Injector, private cdr: ChangeDetectorRef, private elementRef: ElementRef) {
+  constructor(
+    public parentFormGroup: FormGroupDirective,
+    private injector: Injector,
+    private cdr: ChangeDetectorRef,
+    private elementRef: ElementRef,
+    private ngZone: NgZone
+  ) {
     super(elementRef);
     this.uid = UniqueId();
   }
@@ -221,7 +238,7 @@ export class UsiInputComponent extends UsiSpacing implements AfterViewInit, Cont
    */
   public async checkValidations(value: string, touched: boolean = true): Promise<void> {
     if (this.control) {
-      this.inputEmpty = value !== '';
+      this.inputEmpty = value !== '' && value !== null && value !== undefined;
 
       setTimeout(() => {
         if (touched || this.parentFormGroup.submitted) {
