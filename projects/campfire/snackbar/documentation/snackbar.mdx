@@ -13,11 +13,11 @@ which the snackbar will be used. It can then be called using various methods.
 
 ```ts
 import { UsiSnackbarService } from 'usi-campfire/snackbar';
-import { UsiSnackbarInterface } from 'usi-campfire/utils';
+import { UsiSnackbar } from 'usi-campfire/utils';
 
 constructor(private usiSnackbarService: UsiSnackbarService) { }
 
-globalSnackbarConfig: UsiSnackbarInterface = {
+globalSnackbarConfig: UsiSnackbar = {
   usiTitle: 'Title',
   usiLimit: 10,
   usiTimeout: 10000,
@@ -83,7 +83,7 @@ The on add method is called right when the snackbar is added to the dom. This co
 action in sync with the addition of a notification.
 
 ```ts
-const globalSnackbarConfig: UsiSnackbarInterface = {
+const globalSnackbarConfig: UsiSnackbar = {
   usiTitle: 'Title',
   usiOnAdd: () => {
     console.log('added snackbar');
@@ -98,7 +98,7 @@ function addSnackbarCallback(): void {
   console.log('added snackbar');
 }
 
-const GlobalSnackbarConfig: UsiSnackbarInterface = {
+const GlobalSnackbarConfig: UsiSnackbar = {
   usiTitle: 'Title',
   usiOnAdd: addSnackbarCallback(),
 };
@@ -111,7 +111,7 @@ The on remove method is called right when the snackbar is removed from the dom. 
 an action in sync with the removal of a notification.
 
 ```ts
-const globalSnackbarConfig: UsiSnackbarInterface = {
+const globalSnackbarConfig: UsiSnackbar = {
   usiTitle: 'Title',
   usiOnRemove: () => {
     console.log('removed snackbar');
@@ -126,7 +126,7 @@ function removeSnackbarCallback(): void {
   console.log('removed snackbar');
 }
 
-const GlobalSnackbarConfig: UsiSnackbarInterface = {
+const GlobalSnackbarConfig: UsiSnackbar = {
   usiTitle: 'Title',
   usiOnRemove: removeSnackbarCallback(),
 };
@@ -138,7 +138,7 @@ this.usiSnackbarService.success(globalSnackbarConfig);
 A custom action can be preformed upon the pressing of the button.
 
 ```ts
-const globalSnackbarConfig: UsiSnackbarInterface = {
+const globalSnackbarConfig: UsiSnackbar = {
   usiTitle: 'Title',
   usiOnAction: () => {
     console.log('action clicked');
@@ -153,7 +153,7 @@ function actionSnackbarCallback(): void {
   console.log('action clicked');
 }
 
-const GlobalSnackbarConfig: UsiSnackbarInterface = {
+const GlobalSnackbarConfig: UsiSnackbar = {
   usiTitle: 'Title',
   usiOnRemove: actionSnackbarCallback(),
 };
@@ -184,7 +184,7 @@ snackbar can be shown at: `top-left`, `top-center`, `top-right`, `center-center`
 `bottom-right`.
 
 ```ts
-const globalSnackbarConfig: UsiSnackbarInterface = {
+const globalSnackbarConfig: UsiSnackbar = {
   usiTitle: 'Title',
   usiPosition: 'top-left',
 };

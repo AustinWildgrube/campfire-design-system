@@ -5,11 +5,12 @@ import { UsiValidationModalComponent } from './validation.component';
 import { UsiValidationComponentContainer } from './validation-container.component';
 
 import { UsiSharedModule } from 'usi-campfire/shared';
+import { UsiUtilsModule } from 'usi-campfire/utils';
 import { UsiButtonModule } from 'usi-campfire/button';
 import { ComponentPortal, NotificationContainerDirective, Overlay, UsiNotificationService } from 'usi-campfire/notifications';
 
 @NgModule({
-  imports: [CommonModule, UsiSharedModule, UsiButtonModule],
+  imports: [CommonModule, UsiSharedModule, UsiUtilsModule, UsiButtonModule],
   exports: [UsiValidationModalComponent, UsiValidationComponentContainer],
   declarations: [UsiValidationModalComponent, UsiValidationComponentContainer],
   providers: [UsiNotificationService],

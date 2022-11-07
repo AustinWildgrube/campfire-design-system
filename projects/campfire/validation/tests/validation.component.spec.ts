@@ -8,7 +8,7 @@ import { UsiValidationModalComponent } from 'usi-campfire/validation';
 import { UsiNotificationService } from 'usi-campfire/notifications';
 import { UsiValidationComponentContainer } from 'usi-campfire/validation';
 import { UsiModalsService } from 'usi-campfire/modals';
-import { UsiModalInterface } from 'usi-campfire/utils';
+import { UsiModal } from 'usi-campfire/utils';
 
 describe('UsiValidationModalComponent', () => {
   let notificationService: UsiNotificationService;
@@ -72,7 +72,7 @@ describe('UsiValidationModalComponent', () => {
   });
 
   it('should accept a config object', () => {
-    const globalModalConfig: UsiModalInterface = {
+    const globalModalConfig: UsiModal = {
       usiButtonText: 'Okay',
       usiCancelText: 'Cancel',
       usiId: 0,

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UsiToastService } from './toast.service';
 
-import { UsiToastInterface } from 'usi-campfire/utils';
+import { UsiToast } from 'usi-campfire/utils';
 import { NotificationEvent, NotificationEventType, UsiNotificationComponentContainer } from 'usi-campfire/notifications';
 
 @Component({
@@ -39,14 +39,14 @@ import { NotificationEvent, NotificationEventType, UsiNotificationComponentConta
   styleUrls: ['./styles/toast.component.scss', '../notifications/styles/notifications.scss'],
 })
 export class UsiToastComponentContainer extends UsiNotificationComponentContainer implements OnInit {
-  override notifications: Array<UsiToastInterface> = [];
-  override topLeftNotifications: Array<UsiToastInterface> = [];
-  override topCenterNotifications: Array<UsiToastInterface> = [];
-  override topRightNotifications: Array<UsiToastInterface> = [];
-  override centerCenterNotifications: Array<UsiToastInterface> = [];
-  override bottomLeftNotifications: Array<UsiToastInterface> = [];
-  override bottomCenterNotifications: Array<UsiToastInterface> = [];
-  override bottomRightNotifications: Array<UsiToastInterface> = [];
+  override notifications: Array<UsiToast> = [];
+  override topLeftNotifications: Array<UsiToast> = [];
+  override topCenterNotifications: Array<UsiToast> = [];
+  override topRightNotifications: Array<UsiToast> = [];
+  override centerCenterNotifications: Array<UsiToast> = [];
+  override bottomLeftNotifications: Array<UsiToast> = [];
+  override bottomCenterNotifications: Array<UsiToast> = [];
+  override bottomRightNotifications: Array<UsiToast> = [];
 
   constructor(private usiToastService: UsiToastService) {
     super();
@@ -56,7 +56,7 @@ export class UsiToastComponentContainer extends UsiNotificationComponentContaine
     // Start listening to events from our service
     this.usiToastService.events.subscribe((event: NotificationEvent) => {
       if (event.type === NotificationEventType.ADD) {
-        let toast: UsiToastInterface = event.value;
+        let toast: UsiToast = event.value;
         super.add(toast);
       } else if (event.type === NotificationEventType.CLEAR) {
         let id: number = event.value;

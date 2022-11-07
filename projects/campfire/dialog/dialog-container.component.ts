@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UsiModalInterface } from 'usi-campfire/utils';
+import { UsiModal } from 'usi-campfire/utils';
 import { UsiModalsService } from 'usi-campfire/modals';
 import { NotificationEvent, NotificationEventType, UsiNotificationComponentContainer } from 'usi-campfire/notifications';
 
@@ -18,8 +18,8 @@ import { NotificationEvent, NotificationEventType, UsiNotificationComponentConta
   styleUrls: ['./styles/dialog.component.scss', '../notifications/styles/notifications.scss'],
 })
 export class UsiDialogComponentContainer extends UsiNotificationComponentContainer implements OnInit {
-  override notifications: Array<UsiModalInterface> = [];
-  override centerCenterNotifications: Array<UsiModalInterface> = [];
+  override notifications: Array<UsiModal> = [];
+  override centerCenterNotifications: Array<UsiModal> = [];
 
   constructor(private usiModalsService: UsiModalsService) {
     super();
@@ -30,7 +30,7 @@ export class UsiDialogComponentContainer extends UsiNotificationComponentContain
     this.usiModalsService.events.subscribe((event: NotificationEvent) => {
       // Add dialog to array
       if (event.type === NotificationEventType.ADD) {
-        let dialog: UsiModalInterface = event.value;
+        let dialog: UsiModal = event.value;
         super.add(dialog);
       } else if (event.type === NotificationEventType.CLEAR) {
         let id: number = event.value;

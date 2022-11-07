@@ -6,11 +6,12 @@ import { UsiDialogComponentContainer } from './dialog-container.component';
 
 import { UsiSharedModule } from 'usi-campfire/shared';
 import { UsiButtonModule } from 'usi-campfire/button';
+import { UsiUtilsModule } from 'usi-campfire/utils';
 import { ComponentPortal, NotificationContainerDirective, Overlay, UsiNotificationService } from 'usi-campfire/notifications';
 
 @NgModule({
   declarations: [UsiDialogModalComponent, UsiDialogComponentContainer],
-  imports: [CommonModule, UsiSharedModule, UsiButtonModule],
+  imports: [CommonModule, UsiSharedModule, UsiUtilsModule, UsiButtonModule],
   exports: [UsiDialogModalComponent, UsiDialogComponentContainer],
   providers: [UsiNotificationService],
 })

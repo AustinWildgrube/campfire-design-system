@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { NotificationEvent, NotificationEventType, UsiNotificationService } from 'usi-campfire/notifications';
-import { isFunction, isString, UsiSnackbarInterface } from 'usi-campfire/utils';
+import { isFunction, isString, UsiSnackbar } from 'usi-campfire/utils';
 
 export const globalSnackbarConfig = {
   usiButtonText: 'Okay',
@@ -25,41 +25,41 @@ export class UsiSnackbarService extends UsiNotificationService {
 
   /**
    * Create snackbar of default type.
-   * @param { UsiSnackbarInterface | string } options | Individual snackbar config overrides or a title.
-   * @param { UsiToastInterface } optionalOptions | If using the shortcut and wants to be more specific.
+   * @param { UsiSnackbar | string } options | Individual snackbar config overrides or a title.
+   * @param { UsiToast } optionalOptions | If using the shortcut and wants to be more specific.
    * @return
    */
-  public default(options: UsiSnackbarInterface | string, optionalOptions?: Partial<UsiSnackbarInterface>): number {
+  public default(options: UsiSnackbar | string, optionalOptions?: Partial<UsiSnackbar>): number {
     return this.add(options, 'default', optionalOptions);
   }
 
   /**
    * Create snackbar of success type.
-   * @param { UsiSnackbarInterface | string } options | Individual snackbar config overrides or a title.
-   * @param { UsiToastInterface } optionalOptions | If using the shortcut and wants to be more specific.
+   * @param { UsiSnackbar | string } options | Individual snackbar config overrides or a title.
+   * @param { UsiToast } optionalOptions | If using the shortcut and wants to be more specific.
    * @return
    */
-  public success(options: UsiSnackbarInterface | string, optionalOptions?: Partial<UsiSnackbarInterface>): number {
+  public success(options: UsiSnackbar | string, optionalOptions?: Partial<UsiSnackbar>): number {
     return this.add(options, 'success', optionalOptions);
   }
 
   /**
    * Create snackbar of error type.
-   * @param { UsiSnackbarInterface | string } options | Individual snackbar config overrides or a title.
-   * @param { UsiToastInterface } optionalOptions | If using the shortcut and wants to be more specific.
+   * @param { UsiSnackbar | string } options | Individual snackbar config overrides or a title.
+   * @param { UsiToast } optionalOptions | If using the shortcut and wants to be more specific.
    * @return
    */
-  public error(options: UsiSnackbarInterface | string, optionalOptions?: Partial<UsiSnackbarInterface>): number {
+  public error(options: UsiSnackbar | string, optionalOptions?: Partial<UsiSnackbar>): number {
     return this.add(options, 'error', optionalOptions);
   }
 
   /**
    * Create snackbar of warning type.
-   * @param { UsiSnackbarInterface | string } options | Individual snackbar config overrides or a title.
-   * @param { UsiToastInterface } optionalOptions | If using the shortcut and wants to be more specific.
+   * @param { UsiSnackbar | string } options | Individual snackbar config overrides or a title.
+   * @param { UsiToast } optionalOptions | If using the shortcut and wants to be more specific.
    * @return
    */
-  public info(options: UsiSnackbarInterface | string, optionalOptions?: Partial<UsiSnackbarInterface>): number {
+  public info(options: UsiSnackbar | string, optionalOptions?: Partial<UsiSnackbar>): number {
     return this.add(options, 'info', optionalOptions);
   }
 
@@ -82,22 +82,22 @@ export class UsiSnackbarService extends UsiNotificationService {
 
   /**
    * Add our new snackbar message.
-   * @param { UsiSnackbarInterface | string } options | Options the user has defined or a title.
+   * @param { UsiSnackbar | string } options | Options the user has defined or a title.
    * @param { string } type | Type of snackbar notification to add.
-   * @param { UsiToastInterface } optionalOptions | If using the shortcut and wants to be more specific.
+   * @param { UsiToast } optionalOptions | If using the shortcut and wants to be more specific.
    * @protected
    */
-  protected add(options: UsiSnackbarInterface | string, type: string, optionalOptions?: Partial<UsiSnackbarInterface>): number {
-    let customSnackbarConfig: UsiSnackbarInterface;
+  protected add(options: UsiSnackbar | string, type: string, optionalOptions?: Partial<UsiSnackbar>): number {
+    let customSnackbarConfig: UsiSnackbar;
 
     // Set snackbar options to what is provided or set with title and message
     if (isString(options) && options !== '') {
-      customSnackbarConfig = <UsiSnackbarInterface>{
+      customSnackbarConfig = <UsiSnackbar>{
         usiTitle: options.toString(),
         ...optionalOptions,
       };
     } else {
-      customSnackbarConfig = <UsiSnackbarInterface>options;
+      customSnackbarConfig = <UsiSnackbar>options;
     }
 
     // Message is required
@@ -106,7 +106,7 @@ export class UsiSnackbarService extends UsiNotificationService {
     }
 
     // Set config items of snackbar
-    let snackbar: UsiSnackbarInterface = <UsiSnackbarInterface>{
+    let snackbar: UsiSnackbar = <UsiSnackbar>{
       usiOnAction: super.checkConfigItem(options, optionalOptions, globalSnackbarConfig, 'usiOnAction'),
       usiButtonText: super.checkConfigItem(options, optionalOptions, globalSnackbarConfig, 'usiButtonText'),
       usiIcon: super.checkConfigItem(options, optionalOptions, globalSnackbarConfig, 'usiIcon'),

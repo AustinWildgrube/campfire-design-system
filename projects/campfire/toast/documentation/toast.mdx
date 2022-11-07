@@ -13,11 +13,11 @@ which the toast will be used. It can then be called using various methods.
 
 ```ts
 import { UsiToastService } from 'usi-campfire/toast';
-import { UsiToastInterface } from 'usi-campfire/utils';
+import { UsiToast } from 'usi-campfire/utils';
 
 constructor(private usiToastService: UsiToastService) { }
 
-globalToastConfig: UsiToastInterface = {
+globalToastConfig: UsiToast = {
     usiTitle: 'Title',
     usiMessage: 'Message',
     usiLimit: 10,
@@ -88,7 +88,7 @@ The on add method is called right when the toast is added to the dom. This could
 action in sync with the addition of a notification.
 
 ```ts
-const globalToastConfig: UsiToastInterface = {
+const globalToastConfig: UsiToast = {
   title: 'Title',
   message: 'Message',
   onAdd: () => {
@@ -104,7 +104,7 @@ function addToastCallback(): void {
   console.log('added toast');
 }
 
-const GlobalToastConfig: UsiToastInterface = {
+const GlobalToastConfig: UsiToast = {
   title: 'Title',
   message: 'Message',
   onAdd: addToastCallback(),
@@ -118,7 +118,7 @@ The on remove method is called right when the toast is removed from the dom. Thi
 an action in sync with the removal of a notification.
 
 ```ts
-const globalToastConfig: UsiToastInterface = {
+const globalToastConfig: UsiToast = {
   title: 'Title',
   message: 'Message',
   onRemove: () => {
@@ -134,7 +134,7 @@ function removeToastCallback(): void {
   console.log('removed toast');
 }
 
-const GlobalToastConfig: UsiToastInterface = {
+const GlobalToastConfig: UsiToast = {
   title: 'Title',
   message: 'Message',
   onRemove: removeToastCallback(),
@@ -165,7 +165,7 @@ toast can be shown at: `top-left`, `top-center`, `top-right`, `center-center`, `
 `bottom-right`.
 
 ```ts
-const globalToastConfig: UsiToastInterface = {
+const globalToastConfig: UsiToast = {
   title: 'Title',
   message: 'Message',
   position: 'top-left',
@@ -190,7 +190,7 @@ shown the toast notification will be closed after 4 seconds. The showing of the 
 `usiShowIcon` property.
 
 ```ts
-const globalToastConfig: UsiToastInterface = {
+const globalToastConfig: UsiToast = {
   title: 'Title',
   message: 'Message',
   showClose: false,

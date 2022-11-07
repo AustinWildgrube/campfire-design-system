@@ -7,7 +7,7 @@ import { UsiSnackbarService } from '../snackbar.service';
 import { UsiSnackbarComponent } from '../snackbar.component';
 import { UsiSnackbarComponentContainer } from '../snackbar-container.component';
 
-import { UsiSnackbarInterface } from 'usi-campfire/utils';
+import { UsiSnackbar } from 'usi-campfire/utils';
 import { UsiNotificationService } from 'usi-campfire/notifications';
 
 describe('UsiSnackbarComponent', () => {
@@ -95,7 +95,7 @@ describe('UsiSnackbarComponent', () => {
   });
 
   it('should accept a config object', () => {
-    const config: UsiSnackbarInterface = {
+    const config: UsiSnackbar = {
       usiTitle: 'Lorem Ipsum',
       usiButtonText: 'Okay',
       usiType: 'info',

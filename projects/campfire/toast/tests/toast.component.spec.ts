@@ -7,7 +7,7 @@ import { UsiToastComponent } from '../toast.component';
 import { UsiToastService } from '../toast.service';
 import { UsiToastComponentContainer } from '../toast-container.component';
 
-import { UsiToastInterface } from 'usi-campfire/utils';
+import { UsiToast } from 'usi-campfire/utils';
 import { UsiNotificationService } from 'usi-campfire/notifications';
 
 describe('UsiToastComponent', () => {
@@ -103,7 +103,7 @@ describe('UsiToastComponent', () => {
   });
 
   it('should accept a config object', () => {
-    const config: UsiToastInterface = {
+    const config: UsiToast = {
       usiTitle: 'Lorem Ipsum',
       usiMessage: 'Lorem ipsum dolet sit amet',
       usiType: 'info',

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { isFunction, isString, UsiModalInterface } from 'usi-campfire/utils';
+import { isFunction, isString, UsiModal } from 'usi-campfire/utils';
 import { NotificationEvent, NotificationEventType, UsiNotificationService } from 'usi-campfire/notifications';
 
-export const globalModalConfig: UsiModalInterface = {
+export const globalModalConfig: UsiModal = {
   usiButtonText: 'Okay',
   usiCancelText: 'Cancel',
   usiId: 0,
@@ -41,17 +41,17 @@ export class UsiModalsService extends UsiNotificationService {
    * @param options
    * @param optionalOptions
    */
-  public add(options: UsiModalInterface | string, optionalOptions?: Partial<UsiModalInterface>): number {
-    let customModalConfig: UsiModalInterface;
+  public add(options: UsiModal | string, optionalOptions?: Partial<UsiModal>): number {
+    let customModalConfig: UsiModal;
 
     // Set modal options to what is provided or set with title and message
     if (isString(options) && options !== '') {
-      customModalConfig = <UsiModalInterface>{
+      customModalConfig = <UsiModal>{
         usiTitle: options.toString(),
         ...optionalOptions,
       };
     } else {
-      customModalConfig = <UsiModalInterface>options;
+      customModalConfig = <UsiModal>options;
     }
 
     // Title is required
@@ -60,7 +60,7 @@ export class UsiModalsService extends UsiNotificationService {
     }
 
     // Set config items of snackbar
-    let modal: UsiModalInterface = <UsiModalInterface>{
+    let modal: UsiModal = <UsiModal>{
       usiButtonText: super.checkConfigItem(options, optionalOptions, globalModalConfig, 'usiButtonText'),
       usiCancelText: super.checkConfigItem(options, optionalOptions, globalModalConfig, 'usiCancelText'),
       usiId: Math.floor(Math.random() * 1000 + 1),

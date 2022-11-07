@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UsiSnackbarService } from './snackbar.service';
 
-import { UsiSnackbarInterface } from 'usi-campfire/utils';
+import { UsiSnackbar } from 'usi-campfire/utils';
 import { NotificationEvent, NotificationEventType, UsiNotificationComponentContainer } from 'usi-campfire/notifications';
 
 @Component({
@@ -39,13 +39,13 @@ import { NotificationEvent, NotificationEventType, UsiNotificationComponentConta
   styleUrls: ['./styles/snackbar.component.scss', '../notifications/styles/notifications.scss'],
 })
 export class UsiSnackbarComponentContainer extends UsiNotificationComponentContainer implements OnInit {
-  override topLeftNotifications: Array<UsiSnackbarInterface> = [];
-  override topCenterNotifications: Array<UsiSnackbarInterface> = [];
-  override topRightNotifications: Array<UsiSnackbarInterface> = [];
-  override centerCenterNotifications: Array<UsiSnackbarInterface> = [];
-  override bottomLeftNotifications: Array<UsiSnackbarInterface> = [];
-  override bottomCenterNotifications: Array<UsiSnackbarInterface> = [];
-  override bottomRightNotifications: Array<UsiSnackbarInterface> = [];
+  override topLeftNotifications: Array<UsiSnackbar> = [];
+  override topCenterNotifications: Array<UsiSnackbar> = [];
+  override topRightNotifications: Array<UsiSnackbar> = [];
+  override centerCenterNotifications: Array<UsiSnackbar> = [];
+  override bottomLeftNotifications: Array<UsiSnackbar> = [];
+  override bottomCenterNotifications: Array<UsiSnackbar> = [];
+  override bottomRightNotifications: Array<UsiSnackbar> = [];
 
   constructor(private usiSnackbarService: UsiSnackbarService) {
     super();
@@ -55,7 +55,7 @@ export class UsiSnackbarComponentContainer extends UsiNotificationComponentConta
     // Start listening to events from our service
     this.usiSnackbarService.events.subscribe((event: NotificationEvent) => {
       if (event.type === NotificationEventType.ADD) {
-        let snackbar: UsiSnackbarInterface = event.value;
+        let snackbar: UsiSnackbar = event.value;
         super.add(snackbar);
       } else if (event.type === NotificationEventType.CLEAR) {
         let id: number = event.value;

@@ -8,7 +8,7 @@ import { UsiDialogComponentContainer } from '../dialog-container.component';
 import { UsiModalsModule, UsiModalsService } from 'usi-campfire/modals';
 import { UsiNotificationService } from 'usi-campfire/notifications';
 import { UsiSharedModule } from 'usi-campfire/shared';
-import { UsiModalInterface } from 'usi-campfire/utils';
+import { UsiModal } from 'usi-campfire/utils';
 
 describe('UsiDialogModalComponent', () => {
   let notificationService: UsiNotificationService;
@@ -72,7 +72,7 @@ describe('UsiDialogModalComponent', () => {
   });
 
   it('should accept a config object', () => {
-    const globalModalConfig: UsiModalInterface = {
+    const globalModalConfig: UsiModal = {
       usiButtonText: 'Okay',
       usiCancelText: 'Cancel',
       usiId: 0,

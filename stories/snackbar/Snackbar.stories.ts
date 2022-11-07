@@ -216,14 +216,14 @@ export default {
     success: {
       name: 'success',
       description: 'Create snackbar of success type.',
-      defaultValue: '(options: UsiSnackbarInterface | string) => void',
+      defaultValue: '(options: UsiSnackbar | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiSnackbarInterface | string) => void' },
+        defaultValue: { summary: '(options: UsiSnackbar | string) => void' },
       },
       control: {
         type: null,
@@ -232,14 +232,14 @@ export default {
     error: {
       name: 'error',
       description: 'Create snackbar of error type.',
-      defaultValue: '(options: UsiSnackbarInterface | string) => void',
+      defaultValue: '(options: UsiSnackbar | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiSnackbarInterface | string) => void' },
+        defaultValue: { summary: '(options: UsiSnackbar | string) => void' },
       },
       control: {
         type: null,
@@ -248,14 +248,14 @@ export default {
     info: {
       name: 'info',
       description: 'Create snackbar of info type.',
-      defaultValue: '(options: UsiSnackbarInterface | string) => void',
+      defaultValue: '(options: UsiSnackbar | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiSnackbarInterface | string) => void' },
+        defaultValue: { summary: '(options: UsiSnackbar | string) => void' },
       },
       control: {
         type: null,
@@ -264,14 +264,14 @@ export default {
     default: {
       name: 'default',
       description: 'Create snackbar of default type.',
-      defaultValue: '(options: UsiSnackbarInterface | string) => void',
+      defaultValue: '(options: UsiSnackbar | string) => void',
       type: {
         name: 'string',
         required: false,
       },
       table: {
         category: 'Methods',
-        defaultValue: { summary: '(options: UsiSnackbarInterface | string) => void' },
+        defaultValue: { summary: '(options: UsiSnackbar | string) => void' },
       },
       control: {
         type: null,
@@ -321,7 +321,7 @@ export default {
       table: {
         category: 'Configuration',
         defaultValue: { summary: '' },
-        type: { summary: 'UsiSnackbarInterface' },
+        type: { summary: 'UsiSnackbar' },
       },
       control: {
         type: 'array',

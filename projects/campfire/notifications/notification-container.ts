@@ -1,14 +1,14 @@
-import { isFunction, UsiModalInterface, UsiSnackbarInterface, UsiToastInterface } from 'usi-campfire/utils';
+import { isFunction, UsiModal, UsiSnackbar, UsiToast } from 'usi-campfire/utils';
 
 export class UsiNotificationComponentContainer {
-  notifications: Array<UsiToastInterface | UsiSnackbarInterface | UsiModalInterface> = [];
-  topLeftNotifications: Array<UsiToastInterface | UsiSnackbarInterface | UsiModalInterface> = [];
-  topCenterNotifications: Array<UsiToastInterface | UsiSnackbarInterface | UsiModalInterface> = [];
-  topRightNotifications: Array<UsiToastInterface | UsiSnackbarInterface | UsiModalInterface> = [];
-  centerCenterNotifications: Array<UsiToastInterface | UsiSnackbarInterface | UsiModalInterface> = [];
-  bottomLeftNotifications: Array<UsiToastInterface | UsiSnackbarInterface | UsiModalInterface> = [];
-  bottomCenterNotifications: Array<UsiToastInterface | UsiSnackbarInterface | UsiModalInterface> = [];
-  bottomRightNotifications: Array<UsiToastInterface | UsiSnackbarInterface | UsiModalInterface> = [];
+  notifications: Array<UsiToast | UsiSnackbar | UsiModal> = [];
+  topLeftNotifications: Array<UsiToast | UsiSnackbar | UsiModal> = [];
+  topCenterNotifications: Array<UsiToast | UsiSnackbar | UsiModal> = [];
+  topRightNotifications: Array<UsiToast | UsiSnackbar | UsiModal> = [];
+  centerCenterNotifications: Array<UsiToast | UsiSnackbar | UsiModal> = [];
+  bottomLeftNotifications: Array<UsiToast | UsiSnackbar | UsiModal> = [];
+  bottomCenterNotifications: Array<UsiToast | UsiSnackbar | UsiModal> = [];
+  bottomRightNotifications: Array<UsiToast | UsiSnackbar | UsiModal> = [];
 
   constructor() {}
 
@@ -29,10 +29,10 @@ export class UsiNotificationComponentContainer {
 
   /**
    * Add a new notification to our array.
-   * @param { UsiToastInterface | UsiSnackbarInterface | UsiModalInterface } toast | The data for the notification.
+   * @param { UsiToast | UsiSnackbar | UsiModal } toast | The data for the notification.
    * @protected
    */
-  protected add(toast: UsiToastInterface | UsiSnackbarInterface | UsiModalInterface): void {
+  protected add(toast: UsiToast | UsiSnackbar | UsiModal): void {
     // If we've gone over our limit, remove the earliest one from the array
     if (this.notifications.length >= toast.usiLimit!) {
       this.notifications.shift();
@@ -88,11 +88,11 @@ export class UsiNotificationComponentContainer {
 
   /**
    * Sets the timeouts for individual notifications.
-   * @param { UsiToastInterface | UsiSnackbarInterface | UsiModalInterface } notification | We need the ID and Timeout to
+   * @param { UsiToast | UsiSnackbar | UsiModal } notification | We need the ID and Timeout to
    * set properties.
    * @protected
    */
-  protected setTimeout(notification: UsiToastInterface | UsiSnackbarInterface | UsiModalInterface): void {
+  protected setTimeout(notification: UsiToast | UsiSnackbar | UsiModal): void {
     window.setTimeout(() => {
       this.clear(notification.usiId!);
     }, notification.usiTimeout);

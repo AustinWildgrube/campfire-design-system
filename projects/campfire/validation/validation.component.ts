@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input } from '@angular/core';
 
 import { UsiModalsService } from 'usi-campfire/modals';
-import { UsiModalInterface, UsiSpacing } from 'usi-campfire/utils';
+import { UsiModal, UsiSpacing } from 'usi-campfire/utils';
 import { isFunction } from 'usi-campfire/utils';
 
 @Component({
@@ -39,7 +39,7 @@ import { isFunction } from 'usi-campfire/utils';
   styleUrls: ['./styles/validation.component.scss', '../modals/styles/modals.scss'],
 })
 export class UsiValidationModalComponent extends UsiSpacing {
-  @Input() validation: UsiModalInterface | undefined;
+  @Input() validation: UsiModal | undefined;
 
   constructor(private elementRef: ElementRef, private usiModalService: UsiModalsService) {
     super(elementRef);
@@ -57,10 +57,10 @@ export class UsiValidationModalComponent extends UsiSpacing {
 
   /**
    * Use the modal service to close the dialog.
-   * @param { UsiModalInterface } validation | To get the ID of the dialog message to close.
+   * @param { UsiModal } validation | To get the ID of the dialog message to close.
    * @return
    */
-  public closeModal(validation: UsiModalInterface): void {
+  public closeModal(validation: UsiModal): void {
     this.usiModalService.clear(validation.usiId!);
   }
 }

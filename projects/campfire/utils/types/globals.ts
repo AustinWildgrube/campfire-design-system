@@ -15,7 +15,7 @@ export interface UsiDate {
   beforeToday?: boolean;
 }
 
-export interface UsiModalInterface {
+export interface UsiModal {
   usiButtonText?: string;
   usiCancelText?: string;
   usiId?: number;
@@ -37,7 +37,7 @@ export interface UsiMonth {
   year: number;
 }
 
-export interface UsiSnackbarInterface {
+export interface UsiSnackbar {
   usiButtonText?: string;
   usiIcon?: IconName;
   usiId?: number;
@@ -51,7 +51,7 @@ export interface UsiSnackbarInterface {
   usiTimeout?: number;
 }
 
-export interface UsiToastInterface {
+export interface UsiToast {
   usiIcon?: IconName;
   usiId?: number;
   usiLimit?: number;
