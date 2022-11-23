@@ -91,6 +91,7 @@
     padding: 12px 21px;
     text-transform: var(--table-label-text-casing);
     transition: background .3s;
+    user-select: none;
     white-space: nowrap;
   }
 

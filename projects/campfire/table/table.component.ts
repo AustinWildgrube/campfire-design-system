@@ -105,6 +105,7 @@ export class UsiTableComponent implements AfterViewChecked, OnChanges, OnInit {
 
     if (usiData) {
       this.usiTableService.data.next(usiData.currentValue);
+      this.usiTableService.dataCopy.next(usiData.currentValue);
     }
   }
 

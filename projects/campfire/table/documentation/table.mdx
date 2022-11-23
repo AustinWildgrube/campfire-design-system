@@ -71,7 +71,7 @@ let exampleData = [
   <thead>...</thead>
   <tbody>
     <tr *ngFor="let myVar of basicTable.data">
-      <td>{{ data.name }}</td>
+      <td>{{ myVar.name }}</td>
     </tr>
   </tbody>
 </usi-table>
@@ -82,6 +82,7 @@ After we have passed our data to the `usiData` attribute, we are able to start s
 `usiSortKey` attribute needs to be set on the `th` tag. This allows the backend to know which column to sort. Once the
 `usiSortKey` attribute has been added the sort arrows will appear to the right of the table header.
 
+
 ```html
 <usi-table #basicTable [usiData]="exampleData">
   <thead>
@@ -91,6 +92,63 @@ After we have passed our data to the `usiData` attribute, we are able to start s
   </thead>
   <tbody>
     <tr>...</tr>
+  </tbody>
+</usi-table>
+```
+Sorting can also be done externally by manually manipulating the data. Campfire tables will detect changes to the data and will re-render accordingly.
+
+```ts
+let exampleData = [
+  {
+    key: '1',
+    type: 'pdf',
+    name: 'document-name-here.PDF',
+    category: 'Sales',
+    lastUpdated: '10/10/2021'
+  },
+  {
+    key: '2',
+    type: 'word',
+    name: 'NRL Telstra Premiership Finals Series - Melborne Storm V Paramatta.DOC',
+    category: 'Event Operations',
+    lastUpdated: '10/10/2021'
+  },
+  {
+    key: '3',
+    type: 'word',
+    name: 'document-name-here.PDF',
+    category: 'Sales',
+    lastUpdated: '10/10/2021'
+  },
+]
+
+sortData() {
+    this.exampleData.sort((a: any, b: any) => {
+      if (a.name < b.name) {
+        return 1;
+      }
+
+      if (a.name > b.name) {
+        return -1;
+      }
+
+      return 0;
+    });
+
+    // You must reset the data to trigger a re-render
+    this.exampleData = [...this.exampleData];
+  }
+```
+
+```html
+<button (click)="sortData()">Sort Data</button>
+
+<usi-table #basicTable [usiData]="exampleData">
+  <thead>...</thead>
+  <tbody>
+  <tr *ngFor="let myVar of basicTable.data">
+    <td>{{ myVar.name }}</td>
+  </tr>
   </tbody>
 </usi-table>
 ```
@@ -153,7 +211,52 @@ public customSortButton(): void {
 ```
 
 ## Filtering
-Todo
+Campfire does not natively handle filtering data, but it can still be filtered manually. Campfire tables will detect changes to the data and re-render
+accordingly.
+
+```ts
+let exampleData = [
+  {
+    key: '1',
+    type: 'pdf',
+    name: 'document-name-here.PDF',
+    category: 'Sales',
+    lastUpdated: '10/10/2021'
+  },
+  {
+    key: '2',
+    type: 'word',
+    name: 'NRL Telstra Premiership Finals Series - Melborne Storm V Paramatta.DOC',
+    category: 'Event Operations',
+    lastUpdated: '10/10/2021'
+  },
+  {
+    key: '3',
+    type: 'word',
+    name: 'document-name-here.PDF',
+    category: 'Sales',
+    lastUpdated: '10/10/2021'
+  },
+]
+
+filterData() {
+    // There is no need to reset the data, because filtering technically does not change the data
+    this.exampleData = this.exampleData.filter((item) => item.type === 'pdf');
+}
+```
+
+```html
+<button (click)="filterData()">Filter Data</button>
+
+<usi-table #basicTable [usiData]="exampleData">
+  <thead>...</thead>
+  <tbody>
+  <tr *ngFor="let myVar of basicTable.data">
+    <td>{{ myVar.name }}</td>
+  </tr>
+  </tbody>
+</usi-table>
+```
 
 ## Pagination
 Pagination is a user interface pattern that divides content into separate pages. Pagination is good when the user is
