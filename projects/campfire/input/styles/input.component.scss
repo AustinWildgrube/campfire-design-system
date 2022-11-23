@@ -36,6 +36,10 @@
       }
     }
 
+    &--hidden {
+      display: none;
+    }
+
     &.usi-input-group__input--prefix {
       padding-left: 42px;
     }
@@ -48,6 +52,13 @@
     &.usi-input-group__input--error {
       border-color: var(--input-border-color--error);
       outline-color: var(--input-outline-color--error);
+    }
+
+    &.usi-input-group__input--multiselect {
+      padding-bottom: 5px;
+      padding-right: 113px;
+      padding-top: 6px;
+      text-overflow: ellipsis;
     }
   }
 }
@@ -149,6 +160,11 @@
   cursor: pointer;
 }
 
+.usi-input-group__suffix--multiselect {
+  font-size: 0.75rem;
+  right: 38px;
+}
+
 .usi-input-group__hint {
   color: var(--input-icon-color);
   display: block;
@@ -164,4 +180,83 @@
 
 .usi-input-group__hint--error {
   color: var(--input-hint-text-color--error);
+}
+
+//TODO: Move to badge component when created
+.badges {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  position: relative;
+}
+
+.badge {
+  align-items: center;
+  border: 1px solid #ADADAE;
+  border-radius: 3px;
+  color: #292829;
+  display: flex;
+  font-size: 0.75rem;
+  max-height: 23px;
+  min-width: max-content;
+  padding: 2px 8px;
+}
+
+.badge--overflow {
+  cursor: pointer;
+
+  &:hover {
+    background-color: #F5F5F5;
+  }
+}
+
+.badge fa-icon {
+  color: #717073;
+  cursor: pointer;
+  font-size: 0.875rem;
+  margin-left: 12px;
+}
+
+.badges__modal {
+  background: transparent;
+  display: none;
+  position: absolute;
+  right: -25px;
+  top: 100%;
+}
+
+.badges__overflow {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.32);
+  flex-direction: column;
+  font-size: 0.875rem;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 16px;
+  z-index: 99;
+
+  span {
+    color: #292829;
+    margin: 0 12px 0 0;
+  }
+
+  fa-icon {
+    color: #717073;
+    cursor: pointer;
+  }
+
+  div {
+    margin-bottom: 20px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.badges:hover .badge--overflow:hover + .badges__modal,
+.badges__modal:hover {
+  display: flex;
 }

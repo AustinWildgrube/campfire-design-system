@@ -1,5 +1,4 @@
-import { Component, ElementRef, HostBinding, Input } from '@angular/core';
-import { UsiSpacing } from 'usi-campfire/utils';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'usi-table td',
@@ -9,7 +8,7 @@ import { UsiSpacing } from 'usi-campfire/utils';
   `,
   styleUrls: ['../styles/td.component.scss'],
 })
-export class UsiTdComponent extends UsiSpacing {
+export class UsiTdComponent {
   @HostBinding('class.usi-table__data') true = true;
 
   @Input()
@@ -28,7 +27,5 @@ export class UsiTdComponent extends UsiSpacing {
     return this.usiAlign === 'right';
   }
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
-  }
+  constructor() {}
 }

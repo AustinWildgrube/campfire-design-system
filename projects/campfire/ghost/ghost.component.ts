@@ -1,6 +1,6 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { BooleanInput, InputBoolean, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-ghost',
@@ -27,7 +27,7 @@ import { BooleanInput, InputBoolean, UsiSpacing } from 'usi-campfire/utils';
   `,
   styleUrls: ['./styles/ghost.component.scss'],
 })
-export class UsiGhostComponent extends UsiSpacing {
+export class UsiGhostComponent {
   @Input()
   class?: string;
 
@@ -44,7 +44,5 @@ export class UsiGhostComponent extends UsiSpacing {
   @Input()
   usiWidth?: number;
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
-  }
+  constructor() {}
 }

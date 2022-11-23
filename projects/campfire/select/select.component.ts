@@ -1,7 +1,7 @@
 import { Component, ElementRef, forwardRef, HostListener, Input, OnChanges, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 
 export interface SelectDataInterface {
   value: string | number | any[];
@@ -95,7 +95,7 @@ export interface SelectDataInterface {
     },
   ],
 })
-export class UsiSelectComponent extends UsiSpacing implements OnChanges, OnInit {
+export class UsiSelectComponent implements OnChanges, OnInit {
   @Input()
   usiLabel?: string = '';
 
@@ -148,9 +148,7 @@ export class UsiSelectComponent extends UsiSpacing implements OnChanges, OnInit 
     this.showOptions = false;
   }
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
-
+  constructor(protected elementRef: ElementRef) {
     // Generate random name so we don't have matching ids
     this.uid = UniqueId();
   }
@@ -255,9 +253,10 @@ export class UsiSelectComponent extends UsiSpacing implements OnChanges, OnInit 
   /**
    * Write form value to the DOM element (model => view)
    * @param { SelectDataInterface | string } value | the value to write
+   * @param { Event } event | the event that triggered the change
    * @return
    */
-  public writeValue(value: SelectDataInterface | string): void {
+  public writeValue(value: SelectDataInterface | string, event?: Event): void {
     if (value) {
       // If value is provided to us from ngModel we need to find the corresponding
       // key value pair

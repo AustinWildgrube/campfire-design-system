@@ -2,7 +2,7 @@ import { AfterViewChecked, Component, ElementRef, Input, OnChanges, OnInit, Rend
 
 import { UsiTableService } from './table.service';
 
-import { BooleanInput, InputBoolean, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 
 interface Pagination {
   totalItems: number;
@@ -50,7 +50,7 @@ interface Pagination {
   styleUrls: ['./styles/table.component.scss'],
   providers: [UsiTableService],
 })
-export class UsiTableComponent extends UsiSpacing implements AfterViewChecked, OnChanges, OnInit {
+export class UsiTableComponent implements AfterViewChecked, OnChanges, OnInit {
   data: any;
 
   pageData: Pagination = {
@@ -79,9 +79,7 @@ export class UsiTableComponent extends UsiSpacing implements AfterViewChecked, O
   @Input()
   usiPageSize?: number = 5;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private usiTableService: UsiTableService) {
-    super(elementRef);
-  }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private usiTableService: UsiTableService) {}
 
   ngOnInit(): void {
     if (this.usiData) {

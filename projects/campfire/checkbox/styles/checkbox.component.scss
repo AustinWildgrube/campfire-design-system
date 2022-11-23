@@ -34,7 +34,8 @@
     opacity: 0;
   }
 
-  &:checked {
+  &:checked,
+  &--checked {
     color: var(--checkbox-check-color--disabled);
 
     &:before {
@@ -42,7 +43,8 @@
     }
   }
 
-  &:checked:not(:disabled) {
+  &:checked:not(:disabled),
+  &--checked:not(:disabled) {
     background: var(--checkbox-background-color--checked);
     border-color: var(--checkbox-border-color--checked);
     color: var(--checkbox-check-color--checked);

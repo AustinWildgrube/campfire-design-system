@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { UsiCheckboxComponent } from './checkbox.component';
 import { UsiSharedModule } from 'usi-campfire/shared';
+import { UsiUtilsModule } from 'usi-campfire/utils';
 
 @NgModule({
   declarations: [UsiCheckboxComponent],
-  imports: [CommonModule, FormsModule, UsiSharedModule],
+  imports: [CommonModule, FormsModule, UsiSharedModule, UsiUtilsModule],
   exports: [UsiCheckboxComponent],
 })
 export class UsiCheckboxModule {}

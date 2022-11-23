@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ElementRef, forwardRef, Injector, Input, TemplateRef } from '@angular/core';
+import { AfterViewInit, Component, forwardRef, Injector, Input, TemplateRef } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, NgControl, ControlValueAccessor } from '@angular/forms';
 
-import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-time-picker',
@@ -48,7 +48,7 @@ import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/u
     },
   ],
 })
-export class UsiTimePickerComponent extends UsiSpacing implements AfterViewInit, ControlValueAccessor {
+export class UsiTimePickerComponent implements AfterViewInit, ControlValueAccessor {
   @Input()
   @InputBoolean()
   usiDisabled?: BooleanInput;
@@ -81,8 +81,7 @@ export class UsiTimePickerComponent extends UsiSpacing implements AfterViewInit,
   touched: boolean | null = false;
   value: string = this.usiValue || '00:00';
 
-  constructor(private injector: Injector, private elementRef: ElementRef) {
-    super(elementRef);
+  constructor(private injector: Injector) {
     this.uid = UniqueId();
   }
 

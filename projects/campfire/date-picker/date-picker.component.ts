@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, forwardRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import dayjs from 'dayjs';
@@ -6,7 +6,7 @@ import * as isBetween from 'dayjs/plugin/isBetween';
 import * as localeData from 'dayjs/plugin/localeData';
 import * as localizedFormat from 'dayjs/plugin/localizedFormat';
 
-import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-date-picker',
@@ -231,7 +231,7 @@ import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth, UsiSpacing 
     },
   ],
 })
-export class UsiDatePickerComponent extends UsiSpacing implements OnInit {
+export class UsiDatePickerComponent implements OnInit {
   @ViewChild('dateInput') dateInput: { nativeElement: { value: string | string[] } } | undefined;
 
   @Input()
@@ -309,8 +309,7 @@ export class UsiDatePickerComponent extends UsiSpacing implements OnInit {
   hoveredDate: string = '';
   value: string[] | string = [];
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
+  constructor() {
     dayjs.extend(isBetween);
     dayjs.extend(localeData);
     dayjs.extend(localizedFormat);

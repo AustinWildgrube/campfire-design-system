@@ -1,7 +1,7 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { UsiModalsService } from 'usi-campfire/modals';
-import { isFunction, UsiModal, UsiSpacing } from 'usi-campfire/utils';
+import { isFunction, UsiModal } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-dialog-modal',
@@ -32,12 +32,10 @@ import { isFunction, UsiModal, UsiSpacing } from 'usi-campfire/utils';
   `,
   styleUrls: ['./styles/dialog.component.scss', '../modals/styles/modals.scss'],
 })
-export class UsiDialogModalComponent extends UsiSpacing {
+export class UsiDialogModalComponent {
   @Input() dialog: UsiModal | undefined;
 
-  constructor(private elementRef: ElementRef, private usiModalService: UsiModalsService) {
-    super(elementRef);
-  }
+  constructor(private usiModalService: UsiModalsService) {}
 
   /**
    * Run our custom action if it is specified

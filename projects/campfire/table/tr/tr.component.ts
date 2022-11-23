@@ -1,16 +1,12 @@
-import { Component, ElementRef, HostBinding } from '@angular/core';
-
-import { UsiSpacing } from 'usi-campfire/utils';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'usi-table tr',
   template: ` <ng-content></ng-content> `,
   styleUrls: ['../styles/th.component.scss'],
 })
-export class UsiTrComponent extends UsiSpacing {
+export class UsiTrComponent {
   @HostBinding('class.usi-table__row') true = true;
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
-  }
+  constructor() {}
 }

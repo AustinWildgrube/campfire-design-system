@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input } from '@angular/core';
 
 import { UsiSnackbarService } from './snackbar.service';
-import { isFunction, UsiSnackbar, UsiSpacing } from 'usi-campfire/utils';
+import { isFunction, UsiSnackbar } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-snackbar',
@@ -28,12 +28,10 @@ import { isFunction, UsiSnackbar, UsiSpacing } from 'usi-campfire/utils';
   `,
   styleUrls: ['./styles/snackbar.component.scss'],
 })
-export class UsiSnackbarComponent extends UsiSpacing {
+export class UsiSnackbarComponent {
   @Input() snackbar: UsiSnackbar | undefined;
 
-  constructor(private elementRef: ElementRef, private usiSnackbarService: UsiSnackbarService) {
-    super(elementRef);
-  }
+  constructor(private elementRef: ElementRef, private usiSnackbarService: UsiSnackbarService) {}
 
   /**
    * Run our custom action if it is specified

@@ -3,7 +3,7 @@ import { ControlValueAccessor, FormControl, FormGroupDirective, NgControl, NG_VA
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
-import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-input',
@@ -76,7 +76,7 @@ import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/u
     },
   ],
 })
-export class UsiInputComponent extends UsiSpacing implements AfterViewInit, ControlValueAccessor {
+export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
   @Input()
   usiType: 'text' | 'email' | 'password' | 'number' = 'text';
 
@@ -160,7 +160,6 @@ export class UsiInputComponent extends UsiSpacing implements AfterViewInit, Cont
     private elementRef: ElementRef,
     private ngZone: NgZone
   ) {
-    super(elementRef);
     this.uid = UniqueId();
   }
 

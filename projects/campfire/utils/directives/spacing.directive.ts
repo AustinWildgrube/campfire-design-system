@@ -1,10 +1,12 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 
-@Directive()
-export abstract class UsiSpacing {
+@Directive({
+  selector: '[usiM], [usiMt], [usiMr], [usiMb], [usiMl], [usiMx], [usiMy], [usiP], [usiPt], [usiPr], [usiPb], [usiPl], [usiPx], [usiPy]',
+})
+export class UsiSpacingDirective {
   // Margins
   @Input() public set usiM(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.marginTop = `${spacing}px`;
     this.callingComponent.style.marginRight = `${spacing}px`;
@@ -13,45 +15,45 @@ export abstract class UsiSpacing {
   }
 
   @Input() public set usiMt(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.marginTop = `${spacing}px`;
   }
 
   @Input() public set usiMr(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.marginRight = `${spacing}px`;
   }
 
   @Input() public set usiMb(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.marginBottom = `${spacing}px`;
   }
 
   @Input() public set usiMl(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.marginLeft = `${spacing}px`;
   }
 
   @Input() public set usiMx(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.marginLeft = `${spacing}px`;
     this.callingComponent.style.marginRight = `${spacing}px`;
   }
 
   @Input() public set usiMy(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
     this.callingComponent.style.marginTop = `${spacing}px`;
     this.callingComponent.style.marginBottom = `${spacing}px`;
   }
 
   // Paddings
   @Input() public set usiP(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.paddingTop = `${spacing}px`;
     this.callingComponent.style.paddingRight = `${spacing}px`;
@@ -60,38 +62,38 @@ export abstract class UsiSpacing {
   }
 
   @Input() public set usiPt(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.paddingTop = `${spacing}px`;
   }
 
   @Input() public set usiPr(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.paddingRight = `${spacing}px`;
   }
 
   @Input() public set usiPb(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.paddingBottom = `${spacing}px`;
   }
 
   @Input() public set usiPl(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.paddingLeft = `${spacing}px`;
   }
 
   @Input() public set usiPx(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.paddingLeft = `${spacing}px`;
     this.callingComponent.style.paddingRight = `${spacing}px`;
   }
 
   @Input() public set usiPy(value: string | number) {
-    const spacing = UsiSpacing.getThemeSpacing(value);
+    const spacing = UsiSpacingDirective.getThemeSpacing(value);
 
     this.callingComponent.style.paddingTop = `${spacing}px`;
     this.callingComponent.style.paddingBottom = `${spacing}px`;
@@ -99,7 +101,7 @@ export abstract class UsiSpacing {
 
   callingComponent: ElementCSSInlineStyle;
 
-  protected constructor(elementRef: ElementRef) {
+  constructor(elementRef: ElementRef) {
     this.callingComponent = elementRef.nativeElement;
   }
 
@@ -137,7 +139,7 @@ export abstract class UsiSpacing {
           return 64;
 
         default:
-          throw new Error('UsiSpacing: Numbers require the square bracket syntax!');
+          throw new Error('UsiSpacingDirective: Numbers require the square bracket syntax!');
       }
     }
 

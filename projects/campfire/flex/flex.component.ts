@@ -1,6 +1,6 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { BooleanInput, InputBoolean, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-flex',
@@ -41,7 +41,7 @@ import { BooleanInput, InputBoolean, UsiSpacing } from 'usi-campfire/utils';
   `,
   styleUrls: ['./styles/flex.component.scss'],
 })
-export class UsiFlexComponent extends UsiSpacing {
+export class UsiFlexComponent {
   @Input()
   usiAlign?: 'initial' | 'inherit' | 'unset' | 'start' | 'center' | 'end' | 'baseline' | 'stretch';
 
@@ -62,7 +62,5 @@ export class UsiFlexComponent extends UsiSpacing {
   @Input()
   usiSpacing?: number;
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
-  }
+  constructor() {}
 }

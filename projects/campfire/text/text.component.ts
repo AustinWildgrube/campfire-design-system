@@ -1,13 +1,13 @@
-import { Component, ElementRef, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
-import { BooleanInput, InputBoolean, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 
 @Component({
   selector: '[usi-text]',
   template: ` <ng-content></ng-content> `,
   styleUrls: ['./styles/text.component.scss'],
 })
-export class UsiTextComponent extends UsiSpacing {
+export class UsiTextComponent {
   @Input()
   usiAlign?: 'left' | 'center' | 'right' | 'justify';
 
@@ -86,7 +86,5 @@ export class UsiTextComponent extends UsiSpacing {
     };
   }
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
-  }
+  constructor() {}
 }

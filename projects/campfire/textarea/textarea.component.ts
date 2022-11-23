@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ElementRef, forwardRef, Injector, Input, TemplateRef } from '@angular/core';
+import { AfterViewInit, Component, forwardRef, Injector, Input, TemplateRef } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
-import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-textarea',
@@ -51,7 +51,7 @@ import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/u
     },
   ],
 })
-export class UsiTextareaComponent extends UsiSpacing implements AfterViewInit {
+export class UsiTextareaComponent implements AfterViewInit {
   @Input()
   usiLabel: string = '';
 
@@ -101,8 +101,7 @@ export class UsiTextareaComponent extends UsiSpacing implements AfterViewInit {
   hasError: boolean | null = false;
   touched: boolean | null = false;
 
-  constructor(private injector: Injector, private elementRef: ElementRef) {
-    super(elementRef);
+  constructor(private injector: Injector) {
     this.uid = UniqueId();
   }
 

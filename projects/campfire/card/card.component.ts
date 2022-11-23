@@ -1,6 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
-
-import { UsiSpacing } from 'usi-campfire/utils';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'usi-card',
@@ -11,8 +9,6 @@ import { UsiSpacing } from 'usi-campfire/utils';
   `,
   styleUrls: ['./styles/card.component.scss'],
 })
-export class UsiCardComponent extends UsiSpacing {
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
-  }
+export class UsiCardComponent {
+  constructor() {}
 }

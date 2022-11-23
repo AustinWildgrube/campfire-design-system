@@ -1,13 +1,13 @@
 import { Component, Input, ElementRef, HostListener, Renderer2, HostBinding } from '@angular/core';
 
-import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-tooltip',
   template: `<ng-content></ng-content>`,
   styleUrls: ['./styles/tooltip.component.scss'],
 })
-export class UsiTooltipComponent extends UsiSpacing {
+export class UsiTooltipComponent {
   @HostBinding('class.usi-tooltip') true = true;
 
   @HostListener('mouseenter') onMouseEnter(): void {
@@ -56,9 +56,7 @@ export class UsiTooltipComponent extends UsiSpacing {
 
   tooltip: HTMLLabelElement | null = null;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    super(elementRef);
-  }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   /**
    * Initialize our tooltip and control the opening delay.

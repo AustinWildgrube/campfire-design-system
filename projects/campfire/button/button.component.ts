@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer2 } from '@angular/core';
 
-import { BooleanInput, InputBoolean, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 
 @Component({
   selector: 'button[usi-button], a[usi-button]',
   template: ` <ng-content></ng-content> `,
   styleUrls: ['./styles/button.component.scss'],
 })
-export class UsiButtonComponent extends UsiSpacing implements AfterViewInit {
+export class UsiButtonComponent implements AfterViewInit {
   @HostBinding('class.usi-clickable') true = true;
 
   @Input()
@@ -71,9 +71,7 @@ export class UsiButtonComponent extends UsiSpacing implements AfterViewInit {
     return this.usiColor === 'white';
   }
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
-    super(elementRef);
-  }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
     this.insertSpan(this.elementRef.nativeElement.childNodes, this.renderer);

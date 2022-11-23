@@ -1,7 +1,7 @@
-import { Component, ElementRef, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 
 @Component({
   selector: 'label[usi-checkbox]',
@@ -9,8 +9,7 @@ import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/u
     <span class="usi-checkbox">
       <input
         class="usi-checkbox__input"
-        [(ngModel)]="value"
-        (ngModelChange)="updateChanges()"
+        [ngClass]="{ 'usi-checkbox__input--checked': value === true }"
         [disabled]="usiDisabled == true"
         [required]="usiRequired == true"
         [attr.aria-labelledby]="uid"
@@ -30,7 +29,10 @@ import { BooleanInput, InputBoolean, UniqueId, UsiSpacing } from 'usi-campfire/u
     },
   ],
 })
-export class UsiCheckboxComponent extends UsiSpacing implements ControlValueAccessor, OnInit {
+export class UsiCheckboxComponent implements ControlValueAccessor, OnChanges, OnInit {
+  @Output()
+  usiChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   @Input()
   @InputBoolean()
   usiDisabled?: BooleanInput;
@@ -46,8 +48,7 @@ export class UsiCheckboxComponent extends UsiSpacing implements ControlValueAcce
   value: boolean = false;
   uid: string = '';
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
+  constructor() {
     this.uid = UniqueId();
   }
 
@@ -58,12 +59,22 @@ export class UsiCheckboxComponent extends UsiSpacing implements ControlValueAcce
     }
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    const { usiChecked } = changes;
+
+    if (usiChecked.currentValue !== usiChecked.previousValue) {
+      this.value = usiChecked.currentValue;
+      this.updateChanges();
+    }
+  }
+
   /**
    * Method that is invoked on an update of a model
    * @return
    */
   updateChanges() {
     this.onChange(this.value);
+    this.usiChange.emit(this.value);
   }
 
   /**

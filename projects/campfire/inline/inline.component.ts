@@ -1,8 +1,6 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
-
-import { UsiSpacing } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-inline',
@@ -29,7 +27,7 @@ import { UsiSpacing } from 'usi-campfire/utils';
   `,
   styleUrls: ['./styles/inline.component.scss'],
 })
-export class UsiInlineComponent extends UsiSpacing {
+export class UsiInlineComponent {
   @Input()
   usiTitle = '';
 
@@ -42,7 +40,5 @@ export class UsiInlineComponent extends UsiSpacing {
   @Input()
   usiType?: 'success' | 'info' | 'warning' | 'error' | 'default' = 'default';
 
-  constructor(private elementRef: ElementRef) {
-    super(elementRef);
-  }
+  constructor() {}
 }
