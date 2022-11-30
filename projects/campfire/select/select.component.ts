@@ -1,7 +1,8 @@
-import { Component, ElementRef, forwardRef, HostListener, Input, OnChanges, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
+import { UsiSelectService } from 'usi-campfire/select/select.service';
 
 export interface SelectDataInterface {
   value: string | number | any[];
@@ -13,35 +14,41 @@ export interface SelectDataInterface {
 @Component({
   selector: 'usi-select',
   template: `
-    <div class="usi-select" (usiClickOutside)="showOptions = false" role="listbox" [attr.aria-expanded]="showOptions" [attr.aria-labelledby]="uid">
+    <div
+      class="usi-select"
+      (usiClickOutside)="usiSelectService.showOptions = false"
+      role="listbox"
+      [attr.aria-expanded]="usiSelectService.showOptions"
+      [attr.aria-labelledby]="uid"
+    >
       <div class="usi-input-group">
         <input
           class="usi-input-group__input"
           [ngClass]="{
-            'usi-input-group__input--filled': value !== '' || hasValue,
+            'usi-input-group__input--filled': this.usiSelectService.value !== '' || hasValue,
             'usi-input-group__input--error': hasError || usiForceError
           }"
-          (click)="showOptions = !showOptions"
+          (click)="usiSelectService.showOptions = !usiSelectService.showOptions"
           (keyup)="searchOptions($any($event).target.value)"
           (keyup.enter)="showOption()"
           [placeholder]="usiPlaceholder"
           [disabled]="usiDisabled == true"
-          [value]="realValue ? realValue.label : ''"
+          [value]="usiSelectService.realValue ? usiSelectService.realValue.label : ''"
           [readonly]="!usiSearchable"
           [attr.aria-labelledby]="uid"
         />
 
         <fa-icon
-          *ngIf="showOptions"
+          *ngIf="usiSelectService.showOptions"
           class="usi-input-group__suffix usi-input-group__suffix--password"
-          (click)="showOptions = false"
+          (click)="usiSelectService.showOptions = false"
           [icon]="['fal', 'angle-up']"
         ></fa-icon>
 
         <fa-icon
-          *ngIf="!showOptions"
+          *ngIf="!usiSelectService.showOptions"
           class="usi-input-group__suffix usi-input-group__suffix--password"
-          (click)="showOptions = true"
+          (click)="usiSelectService.showOptions = true"
           [icon]="['fal', 'angle-down']"
         ></fa-icon>
 
@@ -56,7 +63,7 @@ export interface SelectDataInterface {
         </div>
       </div>
 
-      <ul *ngIf="showOptions" class="usi-select__options" role="group">
+      <ul *ngIf="usiSelectService.showOptions && usiData" class="usi-select__options" role="group">
         <li *ngIf="manipulatedData.size === 0" class="usi-select__no-result">{{ usiNoResultMessage }}</li>
 
         <ng-container *ngFor="let options of manipulatedData | keyvalue: asIsOrder">
@@ -68,14 +75,14 @@ export interface SelectDataInterface {
             <li
               class="usi-select__option"
               [ngClass]="{
-                'usi-select__option--active': realValue.value === option.value,
+                'usi-select__option--active': usiSelectService.realValue.value === option.value,
                 'usi-select__option--disabled': option.disabled == true
               }"
               (click)="writeValue(option)"
               (keyup.enter)="writeValue(option)"
-              (keyup.arrowUp)="moveFocus($any($event))"
-              (keyup.arrowDown)="moveFocus($any($event))"
-              [attr.aria-selected]="realValue.value === option.value"
+              (keyup.arrowUp)="usiSelectService.moveFocus($any($event))"
+              (keyup.arrowDown)="usiSelectService.moveFocus($any($event))"
+              [attr.aria-selected]="usiSelectService.realValue.value === option.value"
               tabindex="0"
               role="option"
             >
@@ -83,6 +90,10 @@ export interface SelectDataInterface {
             </li>
           </ng-container>
         </ng-container>
+      </ul>
+
+      <ul *ngIf="usiSelectService.showOptions && !usiData" class="usi-select__options" role="group">
+        <ng-content></ng-content>
       </ul>
     </div>
   `,
@@ -93,6 +104,7 @@ export interface SelectDataInterface {
       useExisting: forwardRef(() => UsiSelectComponent),
       multi: true,
     },
+    UsiSelectService,
   ],
 })
 export class UsiSelectComponent implements OnChanges, OnInit {
@@ -103,7 +115,7 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   usiPlaceholder?: string = '';
 
   @Input()
-  usiData: SelectDataInterface[] = [];
+  usiData?: SelectDataInterface[] = undefined;
 
   @Input()
   usiNoResultMessage?: string = 'No Result';
@@ -130,68 +142,42 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   @InputBoolean()
   usiDisabled?: BooleanInput = false;
 
+  @Output()
+  usiSearchValue: EventEmitter<string> = new EventEmitter<string>();
+
   hasError: boolean | null = false;
   touched: boolean | null = false;
-  showOptions: boolean = false;
   hasValue: boolean = false;
-  uid: string = '';
-
-  realValue: SelectDataInterface = { label: '', value: '' };
-  value: string | number | any[] = '';
-  optionIndex: number = 0;
   numberOfOptions: number = 0;
+  uid: string = '';
 
   groupedData: Map<string, SelectDataInterface[]> = new Map();
   manipulatedData: Map<string, SelectDataInterface[]> = new Map();
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(): void {
-    this.showOptions = false;
+    this.usiSelectService.showOptions = false;
   }
 
-  constructor(protected elementRef: ElementRef) {
+  constructor(protected elementRef: ElementRef, public usiSelectService: UsiSelectService) {
     // Generate random name so we don't have matching ids
     this.uid = UniqueId();
   }
 
   ngOnInit(): void {
     // Group our data and then shallow copy it, so we can manipulate it
-    this.groupedData = this.groupBy(this.usiData, (data) => data.group);
-    this.manipulatedData = this.groupedData;
+    if (this.usiData) {
+      this.groupedData = this.groupBy(this.usiData, (data) => data.group);
+      this.manipulatedData = this.groupedData;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     const { usiData } = changes;
 
     // If data changes, we need to re-group it
-    if (usiData) {
+    if (usiData && this.usiData) {
       this.groupedData = this.groupBy(this.usiData, (data) => data.group);
       this.manipulatedData = this.groupedData;
-    }
-  }
-
-  /**
-   * For accessibility, we need to be able to navigate through the options with just arrow keys
-   * https://www.w3.org/WAI/ARIA/apg/patterns/listbox/
-   */
-  public moveFocus(event: KeyboardEvent): void {
-    switch (event.key) {
-      case 'ArrowUp': // this is the ascii of arrow down
-        if (this.optionIndex > 0) {
-          this.optionIndex--;
-        }
-
-        break;
-      case 'ArrowDown': // this is the ascii of arrow up
-        if (this.optionIndex < this.usiData.length - 1) {
-          this.optionIndex++;
-        }
-
-        break;
-    }
-
-    const options = document.querySelectorAll<HTMLLIElement>('.usi-select__option');
-    if (options[this.optionIndex]) {
-      options[this.optionIndex].focus();
     }
   }
 
@@ -201,7 +187,7 @@ export class UsiSelectComponent implements OnChanges, OnInit {
    * @return
    */
   public showOption(): void {
-    this.showOptions = true;
+    this.usiSelectService.showOptions = true;
 
     setTimeout(() => {
       document.querySelectorAll<HTMLLIElement>(`.usi-select__option`)[0]?.focus();
@@ -236,18 +222,18 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   public searchOptions(query: string): void {
     if (query !== '') {
       this.hasValue = true;
-      this.manipulatedData = this.filterData(this.groupedData, this.usiSearchable == true, query, UsiSelectComponent.defaultFilter, this.value);
+      this.usiSearchValue.emit(query);
+
+      this.manipulatedData = this.filterData(
+        this.groupedData,
+        this.usiSearchable == true,
+        query,
+        UsiSelectComponent.defaultFilter,
+        this.usiSelectService.value
+      );
     } else {
       this.hasValue = false;
     }
-  }
-
-  /**
-   * Method that is invoked on an update of a model
-   * @return
-   */
-  public updateChanges(): void {
-    this.onChange(this.value);
   }
 
   /**
@@ -257,26 +243,26 @@ export class UsiSelectComponent implements OnChanges, OnInit {
    * @return
    */
   public writeValue(value: SelectDataInterface | string, event?: Event): void {
-    if (value) {
+    if (value && this.usiData) {
       // If value is provided to us from ngModel we need to find the corresponding
       // key value pair
       if (typeof value === 'string') {
         for (let [_, values] of this.usiData.entries()) {
           if (values.value === value) {
-            this.value = value;
-            this.realValue = values;
+            this.usiSelectService.value = value;
+            this.usiSelectService.realValue = values;
           }
         }
       } else {
         if (value.disabled !== null && value.disabled !== true) {
-          this.value = value.value;
-          this.realValue = value;
-          this.showOptions = false;
+          this.usiSelectService.value = value.value;
+          this.usiSelectService.realValue = value;
+          this.usiSelectService.showOptions = false;
         }
       }
 
       this.manipulatedData = this.groupedData;
-      this.updateChanges();
+      this.usiSelectService.updateChanges();
     }
   }
 
@@ -286,7 +272,7 @@ export class UsiSelectComponent implements OnChanges, OnInit {
    * @return
    */
   public registerOnChange(fn: any): void {
-    this.onChange = fn;
+    this.usiSelectService.onChange = fn;
   }
 
   /**
@@ -297,13 +283,6 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   public registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
-
-  /**
-   * This function is left empty to satisfy the ControlValueAccessor interface
-   * @param { any } _ | Unused
-   * @return
-   */
-  public onChange: (_: any) => void = (_: any) => {};
 
   /**
    * This function is left empty to satisfy the ControlValueAccessor interface

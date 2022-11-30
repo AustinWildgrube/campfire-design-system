@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { UsiSelectComponent } from '../select.component';
-
 import { UsiSharedModule } from 'usi-campfire/shared';
 
 @Component({
@@ -50,6 +49,8 @@ describe('UsiSelectComponent', () => {
   });
 
   it('should show no results', () => {
+    component.usiData = [];
+
     const select = debugElement.query(By.css('.usi-input-group__input'));
     select.nativeElement.click();
     fixture.detectChanges();
@@ -59,6 +60,8 @@ describe('UsiSelectComponent', () => {
   });
 
   it('should have a custom no result message', () => {
+    component.usiData = [];
+
     component.usiNoResultMessage = 'Test Message';
     fixture.detectChanges();
 

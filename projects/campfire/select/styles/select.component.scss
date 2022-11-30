@@ -68,6 +68,13 @@
   margin-top: 4px;
 }
 
+:host.usi-select__group-divider--bottom {
+  border-bottom: var(--select-options-label-border);
+  display: block;
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+}
+
 .usi-select__option {
   cursor: pointer;
   font-size: .875rem;

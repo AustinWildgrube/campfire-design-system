@@ -3,8 +3,8 @@ import { UsiSelectModule } from 'usi-campfire/select';
 ```
 
 # Select
-Select component is a component that allows users pick a value from predefined options. Ideally, it should be used when there are more than 5 options, otherwise
-you might consider using a radio group instead.
+A select component is a component that allows users to pick a value from predefined options. Ideally, it should be used when there are more than five options;
+otherwise, you might consider using a radio group instead.
 
 The select component is a wrapper around the `<usi-input>` component. This means that attributes specified in the `<usi-input>` component are also available in
 the `<usi-select>` component. This includes the following attributes:
@@ -34,8 +34,9 @@ data: SelectDataInterface[] = [
 ```
 
 ## Data Format
-Data will need to be presented to the select component in a specific way. The `SelectDataInterface` can be used for Typescript completion when creating the
-data to be passed in. The label will be displayed in the select options but the value will be used in forms.
+Data can be presented to the select component in one of two ways. The first is passing the data directly to the select component. If using this method, the
+`SelectDataInterface` can be used for Typescript completion when creating the data to be passed in. The label will appear in the drop-down menu, but the
+value will be used in forms.
 
 ```ts
 interface SelectDataInterface {
@@ -46,9 +47,25 @@ interface SelectDataInterface {
 }
 ```
 
+If the data is not in the correct format, the `<usi-option>` component can be used. When the usi-option component is used, it is up to the user to ensure the
+correct data is being presented. If the select still needs to be searchable the data will need to be manually filtered. Campfire provides a `usiSearchValue`
+output that captures the value entered into the select component.
+
+For grouping, the `<usi-optgroup>` component can be used. The `<usi-option>` components that fit the group will need to be nested inside.
+
+```html
+<usi-select (usiSearchValue)="captureValue($event)" usiSearchable>
+  <usi-option *ngFor="let option of data" [usiValue]="option.value" [usiDisabled]="option.disabled">{{ option.label }}</usi-option>
+
+  <usi-optgroup usiLabel="Group 1">
+    <usi-option usiValue="opt1">Option One</usi-option>
+</usi-optgroup>
+</usi-select>
+```
+
 ## Grouping Data
-Data can be grouped together when presented in the select options. This is done by using the `group` keyword. Items that are grouped together will be displayed
-under the same label and any options without a group will be presented at the end of the list.
+Data can still be grouped together using this method. This is done by using the `group` keyword. Items that are grouped together will be displayed under the
+same label, and any options without a group will be presented at the end of the list.
 
 ```ts
 data: SelectDataInterface[] = [
@@ -74,7 +91,7 @@ data: SelectDataInterface[] = [
 ```
 
 ## Disabling Options
-Options can be disabled by using a boolean attribute. A disabled option is unusable and un-clickable. The disabled attribute can be set to keep a user from
+Options can be disabled by using a boolean attribute. A disabled option is unusable and unclickable. The disabled attribute can be set to keep a user from
 selecting the option until some other condition has been met (like selecting a checkbox, etc.).
 
 ```ts
@@ -91,8 +108,7 @@ data: SelectDataInterface[] = [
 ```
 
 ## Selects in Forms
-Selects will almost always be used in forms. Campfire selects can be used in reactive forms as well as in
-template driven forms via the methods below.
+Selects will almost always be used in forms. Campfire selects can be used in reactive forms as well as template-driven forms via the methods below.
 
 ```ts
 selectNgModel: boolean = false;
@@ -124,24 +140,24 @@ constructor(private formBuilder: FormBuilder) {
 ```
 
 ## Searching
-Campfire select components allows the user to search for the value they are looking for. This search filters through the data by label **not** by value. If
-there is no result from the search a 'No Result' message will be displayed.
+Campfire select components allows the user to search for the value they are looking for. This search filters through the data by label, **not** by value. If
+there is no result from the search, a 'No Result' message will be displayed.
 
 ```html
 <usi-select [usiData]="data" usiSearchable></usi-select>
 ```
 
 ## Custom No Result Message
-By default, Campfire will display a 'No result' message when the users search returns a map of size 0. To accommodate other languages there is a
-`usiNoResultMessage` attribute that can specify a custom no result message
+By default, Campfire will display a 'No result' message when the user's search returns a map of size 0. To accommodate other languages, there is a
+`usiNoResultMessage` attribute that can specify a custom no result message.
 
 ```html
 <usi-select [usiData]="data" usiNoResultMessage="Search is Invalid"></usi-select>
 ```
 
 ## Customization
-Selects were made to be easily customizable. Styling a select is as simple as just adding a class onto the tag or
-overriding our CSS variables in the root selector. The list of overridable variables are as follows:
+Selects were made to be easily customizable. Styling a select is as simple as just adding a class to the tag or overriding our CSS variables in the root
+selector. The list of overridable variables is as follows:
 
 ```css
 :root {
