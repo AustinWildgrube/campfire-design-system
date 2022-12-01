@@ -103,6 +103,7 @@ export class UsiSpacingDirective {
 
   constructor(elementRef: ElementRef) {
     this.callingComponent = elementRef.nativeElement;
+    this.callingComponent.style.display = 'block';
   }
 
   /**
