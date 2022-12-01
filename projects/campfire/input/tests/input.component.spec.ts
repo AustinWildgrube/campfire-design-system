@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { FormGroupDirective } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import { UsiInputComponent } from '../input.component';
 
@@ -14,7 +14,7 @@ describe('UsiInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UsiSharedModule],
+      imports: [ReactiveFormsModule, FormsModule, UsiSharedModule],
       declarations: [UsiInputComponent],
       providers: [FormGroupDirective],
     }).compileComponents();
@@ -39,47 +39,17 @@ describe('UsiInputComponent', () => {
     fixture.detectChanges();
 
     const input = debugElement.query(By.css('.usi-input-group__input'));
+    expect(input.nativeElement.classList).toContain('usi-input-group__input--filled');
     expect(input.nativeElement.value).toBe('test');
   });
 
-  it('should disable input', () => {
-    component.usiDisabled = true;
+  it('should disable the input', () => {
+    component.setDisabledState(true);
     fixture.detectChanges();
 
     const input = debugElement.query(By.css('.usi-input-group__input'));
     expect(input.nativeElement.disabled).toBeTruthy();
-  });
-
-  it('should add usiRequired state', () => {
-    component.usiRequired = true;
-    fixture.detectChanges();
-
-    const input = debugElement.query(By.css('.usi-input-group__input'));
-    expect(input.nativeElement.required).toBeTruthy();
-  });
-
-  it('should add the correct type', () => {
-    const input = debugElement.query(By.css('.usi-input-group__input'));
-
-    component.usiType = 'text';
-    fixture.detectChanges();
-
-    expect(input.nativeElement.type).toBe('text');
-
-    component.usiType = 'email';
-    fixture.detectChanges();
-
-    expect(input.nativeElement.type).toBe('email');
-
-    component.usiType = 'password';
-    fixture.detectChanges();
-
-    expect(input.nativeElement.type).toBe('password');
-
-    component.usiType = 'number';
-    fixture.detectChanges();
-
-    expect(input.nativeElement.type).toBe('number');
+    expect(component.control.disabled).toBe(true);
   });
 
   it('should add the correct placeholder', () => {

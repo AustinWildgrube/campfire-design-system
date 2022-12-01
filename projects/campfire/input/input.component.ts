@@ -1,4 +1,17 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, forwardRef, HostListener, Injector, Input, NgZone, TemplateRef } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  forwardRef,
+  HostListener,
+  Injector,
+  Input,
+  NgZone,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  TemplateRef,
+} from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroupDirective, NgControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
@@ -28,24 +41,71 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
       >
       </fa-icon>
 
-      <input
-        class="usi-input-group__input"
-        [ngClass]="{
-          'usi-input-group__input--error': hasError || usiForceError,
-          'usi-input-group__input--filled': inputEmpty,
-          'usi-input-group__input--prefix': usiPrefix,
-          'usi-input-group__input--suffix': usiSuffix || usiPassword
-        }"
-        [placeholder]="usiPlaceholder"
-        [disabled]="usiDisabled == true"
-        [type]="usiType"
-        [value]="usiValue"
-        [required]="usiRequired"
-        (input)="onChange($any($event).target.value)"
-        (keydown)="checkValidations($any($event).target.value)"
-        (blur)="checkValidations($any($event).target.value)"
-        [attr.aria-labelledby]="uid"
-      />
+      <ng-container [ngSwitch]="usiType">
+        <input
+          class="usi-input-group__input"
+          [ngClass]="{
+            'usi-input-group__input--error': hasError || usiForceError,
+            'usi-input-group__input--filled': isEmpty == false,
+            'usi-input-group__input--prefix': usiPrefix,
+            'usi-input-group__input--suffix': usiSuffix || usiPassword
+          }"
+          [formControl]="control"
+          [placeholder]="usiPlaceholder"
+          [attr.aria-labelledby]="uid"
+          (blur)="checkValidations($any($event).target.value)"
+          *ngSwitchCase="'text'"
+          type="text"
+        />
+
+        <input
+          class="usi-input-group__input"
+          [ngClass]="{
+            'usi-input-group__input--error': hasError || usiForceError,
+            'usi-input-group__input--filled': isEmpty == false,
+            'usi-input-group__input--prefix': usiPrefix,
+            'usi-input-group__input--suffix': usiSuffix || usiPassword
+          }"
+          [formControl]="control"
+          [placeholder]="usiPlaceholder"
+          [attr.aria-labelledby]="uid"
+          (blur)="checkValidations($any($event).target.value)"
+          *ngSwitchCase="'number'"
+          type="number"
+        />
+
+        <input
+          class="usi-input-group__input"
+          [ngClass]="{
+            'usi-input-group__input--error': hasError || usiForceError,
+            'usi-input-group__input--filled': isEmpty == false,
+            'usi-input-group__input--prefix': usiPrefix,
+            'usi-input-group__input--suffix': usiSuffix || usiPassword
+          }"
+          [formControl]="control"
+          [placeholder]="usiPlaceholder"
+          [attr.aria-labelledby]="uid"
+          (blur)="checkValidations($any($event).target.value)"
+          *ngSwitchCase="'email'"
+          type="email"
+        />
+
+        <input
+          class="usi-input-group__input"
+          [ngClass]="{
+            'usi-input-group__input--error': hasError || usiForceError,
+            'usi-input-group__input--filled': isEmpty == false,
+            'usi-input-group__input--prefix': usiPrefix,
+            'usi-input-group__input--suffix': usiSuffix || usiPassword
+          }"
+          [formControl]="control"
+          [placeholder]="usiPlaceholder"
+          [attr.aria-labelledby]="uid"
+          (blur)="checkValidations($any($event).target.value)"
+          *ngSwitchCase="'password'"
+          type="password"
+        />
+      </ng-container>
 
       <label
         [id]="uid"
@@ -76,7 +136,7 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
+export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
   @Input()
   usiType: 'text' | 'email' | 'password' | 'number' = 'text';
 
@@ -116,13 +176,13 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
 
   @Input()
   get usiValue(): any {
-    return this.innerValue;
+    return this.getValue();
   }
 
   set usiValue(v: any) {
-    if (v !== this.innerValue && v !== '' && v !== null) {
-      this.innerValue = v;
-      this.checkValidations(this.usiValue);
+    if (v !== this.getValue() && v !== '' && v !== null) {
+      this.writeValue(v);
+      this.isEmpty = false;
       this.touched = true;
     }
   }
@@ -145,37 +205,43 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
     });
   }
 
-  private innerValue: any = '';
-  private control: FormControl = new FormControl();
-
   uid: string = '';
-  inputEmpty: boolean = false;
+  isEmpty: boolean = true;
   hasError: boolean | null = false;
   touched: boolean | null = false;
 
-  constructor(
-    public parentFormGroup: FormGroupDirective,
-    private injector: Injector,
-    private cdr: ChangeDetectorRef,
-    private elementRef: ElementRef,
-    private ngZone: NgZone
-  ) {
+  public control: FormControl = new FormControl();
+
+  constructor(public parentFormGroup: FormGroupDirective, private injector: Injector, private cdr: ChangeDetectorRef, private ngZone: NgZone) {
     this.uid = UniqueId();
   }
 
-  // The form control is only set after initialization
+  ngOnInit() {
+    this.control.valueChanges.subscribe(() => {
+      const value = this.getValue();
+      this.checkValidations(value);
+      this._onChange(value);
+    });
+  }
+
   ngAfterViewInit(): void {
     const ngControl: NgControl | null = this.injector.get(NgControl, null);
-
-    // Bind the form control to the input
-    if (ngControl) {
-      this.control = ngControl.control as FormControl;
-      this.checkForValidations();
+    if (ngControl?.control?.hasValidator(Validators.required)) {
+      this.usiRequired = true;
     }
 
-    if (this.usiForceError && this.control) {
-      this.hasError = true;
-      this.control.markAsTouched();
+    this.checkForExistingValidations();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { usiDisabled, usiRequired } = changes;
+
+    if (usiDisabled) {
+      this.setDisabledState(usiDisabled.currentValue);
+    }
+
+    if (usiRequired) {
+      this.checkForExistingValidations();
     }
   }
 
@@ -186,16 +252,23 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
    */
   public writeValue(value: any): void {
     this.onTouched();
-    this.usiValue = value;
+
+    if (value && typeof value === 'object') {
+      this.control.setValue(value.value);
+    } else {
+      this.control.setValue(value);
+    }
+
+    this.checkValidations(value);
   }
 
   /**
    * We need to register an onChange function since we need to overwrite the Angular onChange function
-   * @param { () => any } fn | The function to overwrite with
+   * @param { (value: string) => void } fn | The function to overwrite with
    * @return
    */
-  public registerOnChange(fn: any): void {
-    this.onChange = fn;
+  public registerOnChange(fn: (value: string) => void): void {
+    this._onChange = fn;
   }
 
   /**
@@ -203,22 +276,22 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
    * @param { () => any } fn | The function to overwrite with
    * @return
    */
-  public registerOnTouched(fn: any): void {
+  public registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
   /**
    * This function is left empty to satisfy the ControlValueAccessor interface
-   * @param { any } _ | Unused
+   * @param { string } _value | Unused
    * @return
    */
-  public onChange: (_: any) => void = (_: any) => {};
+  private _onChange = (_value: string): void => undefined;
 
   /**
    * This function is left empty to satisfy the ControlValueAccessor interface
    * @return
    */
-  public onTouched: () => void = () => {};
+  public onTouched = (): void => undefined;
 
   /**
    * Set the disabled state of the input
@@ -226,28 +299,26 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
    * @return
    */
   public setDisabledState(isDisabled: boolean): void {
-    this.usiDisabled = isDisabled;
+    isDisabled ? this.control.disable() : this.control.enable();
   }
 
   /**
    * We need to have custom validations to work with the floating labels
-   * @param { string } value | The value to check
+   * @param { string | number | { value: string } } value | The value to check
    * @param { boolean } touched | Whether the user has touched the input
    * @return
    */
-  public async checkValidations(value: string, touched: boolean = true): Promise<void> {
-    if (this.control) {
-      this.inputEmpty = value !== '' && value !== null && value !== undefined;
+  public async checkValidations(value: string | number | object | null, touched: boolean = true): Promise<void> {
+    setTimeout(() => {
+      this.isEmpty = value === '' || value === null;
 
-      setTimeout(() => {
-        if (touched || this.parentFormGroup.submitted) {
-          this.control.markAllAsTouched();
-          this.touched = this.control.touched;
-        }
+      if (touched || this.parentFormGroup.submitted) {
+        this.control.markAllAsTouched();
+        this.touched = this.control.touched;
+      }
 
-        this.hasError = this.control.invalid && (this.control.dirty || this.control.touched || this.parentFormGroup.submitted);
-      }, 0);
-    }
+      this.hasError = this.control.invalid && (this.control.dirty || this.control.touched || this.parentFormGroup.submitted);
+    }, 0);
   }
 
   /**
@@ -263,10 +334,36 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor {
    * if they are not provided on the input itself.
    * @private
    */
-  private checkForValidations(): void {
-    if (this.control.hasValidator(Validators.required)) {
-      this.usiRequired = true;
+  private checkForExistingValidations(): void {
+    if (this.control.hasValidator(Validators.required) || this.usiRequired) {
+      if (!this.control.hasValidator(Validators.required)) {
+        this.control.setValidators([Validators.required]);
+      } else if (!this.usiRequired) {
+        this.usiRequired = true;
+      }
+
       this.cdr.detectChanges();
     }
+
+    if (this.usiDisabled) {
+      this.control.disable();
+    }
+
+    if (this.usiForceError) {
+      this.hasError = true;
+      this.control.hasError('');
+    }
+  }
+
+  /**
+   * Get the value of the form control
+   * @return string | The value of the form control
+   */
+  private getValue(): string {
+    if (this.control.value && typeof this.control.value === 'object') {
+      return this.control.value.value;
+    }
+
+    return this.control.value;
   }
 }
