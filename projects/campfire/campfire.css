@@ -20,6 +20,9 @@
   --button-border-color: var(--primary);
   --button-corner-radius: 3px;
   --button-text-color: var(--white);
+  --button-text-size: 0.875rem;
+  --button-min-width: 133px;
+  --button-height: 38px;
 
   --button-background-color--hover: #1339B5;
   --button-border-color--hover: #1339B5;

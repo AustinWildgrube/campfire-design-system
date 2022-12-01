@@ -9,10 +9,10 @@
   color: var(--button-text-color);
   cursor: pointer;
   font-family: var(--font-family);
-  font-size: 0.875rem;
-  height: 38px;
+  font-size: var(--button-text-size);
+  height: var(--button-height);
   line-height: 1;
-  min-width: 133px;
+  min-width: var(--button-min-width);
   padding: 10px 20px 9px;
   position: relative;
   text-align: center;
