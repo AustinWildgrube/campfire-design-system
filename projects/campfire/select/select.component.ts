@@ -1,8 +1,8 @@
 import { Component, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { UsiSelectService } from './select.service';
 import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
-import { UsiSelectService } from 'usi-campfire/select/select.service';
 
 export interface SelectDataInterface {
   value: string | number | any[];

@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
-import { UsiSelectService } from 'usi-campfire/select/select.service';
+import { UsiSelectService } from '../select.service';
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 
 @Component({

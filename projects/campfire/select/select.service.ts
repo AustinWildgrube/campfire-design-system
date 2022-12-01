@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { SelectDataInterface } from 'usi-campfire/select/select.component';
+import { SelectDataInterface } from './select.component';
 
 @Injectable({
   providedIn: 'root',

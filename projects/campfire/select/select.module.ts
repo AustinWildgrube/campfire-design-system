@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UsiSelectComponent } from './select.component';
 import { UsiOptionComponent } from './option/option.component';
-import { UsiGroupComponent } from 'usi-campfire/select/group/group.component';
+import { UsiGroupComponent } from './group/group.component';
 
 import { UsiInputModule } from 'usi-campfire/input';
 import { UsiSharedModule } from 'usi-campfire/shared';
