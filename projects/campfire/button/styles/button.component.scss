@@ -100,7 +100,7 @@
   background: transparent;
   border: none;
   color: var(--button-text-color--transparent);
-  font-weight: 600;
+  font-weight: var(--button-text-weight--transparent);
 
   &:hover {
     background: transparent;
