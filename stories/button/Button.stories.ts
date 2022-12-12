@@ -23,7 +23,7 @@ export default {
   argTypes: {
     usiColor: {
       name: 'usiColor',
-      description: 'The color theme of our button.',
+      description: 'Choose between the primary color and white for our button background.',
       defaultValue: 'usi',
       type: {
         name: 'string',
@@ -39,7 +39,7 @@ export default {
     },
     usiSize: {
       name: 'usiSize',
-      description: 'The size of the button can change depending on the use case.',
+      description: 'Changes the size of the button.',
       defaultValue: 'medium',
       type: {
         name: 'string',
@@ -55,7 +55,7 @@ export default {
     },
     usiType: {
       name: 'usiType',
-      description: 'The size of the button can change depending on the use case.',
+      description: 'Changes the style of the button to fit the use case.',
       defaultValue: 'primary',
       type: {
         name: 'string',
@@ -71,7 +71,7 @@ export default {
     },
     usiBlock: {
       name: 'usiBlock',
-      description: 'The size of the button can change depending on the use case.',
+      description: 'Expands the button to 100% of the containers width.',
       defaultValue: false,
       type: {
         name: 'boolean',
@@ -86,7 +86,7 @@ export default {
     },
     usiLoading: {
       name: 'usiLoading',
-      description: 'The size of the button can change depending on the use case.',
+      description: 'Shows the loading spinner to indicate an action is taking place.',
       defaultValue: false,
       type: {
         name: 'boolean',
@@ -101,7 +101,7 @@ export default {
     },
     usiDisabled: {
       name: 'usiDisabled',
-      description: 'The size of the button can change depending on the use case.',
+      description: 'Stops the button from being interacted with.',
       defaultValue: false,
       type: {
         name: 'boolean',

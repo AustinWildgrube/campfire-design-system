@@ -50,6 +50,7 @@
   --button-text-color--secondary--disabled: #515152;
 
   --button-text-color--transparent: var(--primary);
+  --button-text-weight--transparent: 600;
   --button-border-color--hover--transparent: #1339B5;
 
   /* Notifications */
