@@ -3,50 +3,47 @@ import { UsiAvatarModule } from 'usi-campfire/avatar';
 ```
 
 # Avatars
-An avatar is a visual representation of a user or group. Use of an avatar can help people efficiently identify another
-person or company within the platform. Where appropriate, link the avatar to a context-specific view of that individual
-or company such as a settings page or a profile page.
+An avatar is a visual representation of a user or group. The use of an avatar can help people efficiently identify another person or company within the
+platform. Where appropriate, link the avatar to a context-specific view of that individual or company, such as a settings page or a profile page.
 
 ```html
 <usi-avatar></usi-avatar>
 ```
 
 ## Types
-There are three main types of content that can be embedded into an avatar: image, icon, text. It is best practice using
-an image within an avatar. When that is not possible text would be the second most desirable option leaving an icon
-as the last option.
+There are three main types of content that can be embedded into an avatar: images, icons, and text. It is considered best practice to use an image within an
+avatar. When that is not possible, text would be the second most desirable option, leaving an icon as the last option.
 
 ### Image
-The image is the most common type of avatar. The Campfire avatar can take an image from a relative path or a URL. It is
-usually best to use a headshot of a person or the logo of a company. Keep in mind that avatars are limited in size so
-it is best to keep the image to a minimum.
+The image is the most common type of avatar. The Campfire avatar can take an image from a relative path or a URL. It is usually best to use a headshot of a
+person or the logo of a company. Keep in mind that avatars are limited in size, so it is best to keep the image to a minimum.
 
-> When using an image it is best to pair it with an alt text that describes the image.
+> When using an image, it is best to pair it with an alt text that describes the image.
 
 ```html
 <usi-avatar usiSrc="https://via.placeholder.com/150" usiAlt="150x150 gray placeholder"></usi-avatar>
 ```
 
 ### Text
-When there is no personal photo to show, use initials. Because personal names differ around the world, consider avoiding
-using initials that may not represent an individual accurately. We tend to use the first letter of each space-separated
-word for initials. You may need to resize the initials text for more than 4 names.
+When there is no personal photo to show, use initials. Because personal names differ around the world, consider avoiding using initials that may not represent
+an individual accurately. We tend to use the first letter of each space-separated word for initials. If you have more than four names, you may need to resize
+the initials text.
 
 ```html
 <usi-avatar usiText="ES"></usi-avatar>
 ```
 
 ### Icons
-If neither an image nor text is available it is appropriate to use an icon as a placeholder. Right now the only icons
-that can be used with Campfire Design System is **FontAwesome**.
+If neither an image nor text is available, it is appropriate to use an icon as a placeholder. Right now, the only icon library that can be used with the
+Campfire Design System is **FontAwesome**.
 
 ```html
 <usi-avatar usiIcon="user"></usi-avatar>
 ```
 
 ## Sizes
-Campfire Design System provides a set of sizes for avatars. The default size is `md` and the available sizes are: `xs`,
-`sm`, `md`, `lg`, `xl`.
+The Campfire Design System provides a set of sizes for avatars. The standard size is `md`, and the following sizes are available: `xs`, `sm`, `md`, `lg` and
+`xl`.
 
 ```html
 <usi-avatar usiSize="xs"></usi-avatar>
@@ -58,8 +55,8 @@ Campfire Design System provides a set of sizes for avatars. The default size is 
 ```
 
 ## Customization
-Campfire avatars were made to be easily customizable. Styling an avatar is as simple as just adding a class onto the tag
-or overriding our CSS variables in the root selector. The list of overridable variables are as follows:
+Campfire avatars were made to be easily customizable. Styling an avatar is as simple as just adding a class to the tag or overriding our CSS variables in the
+root selector. The list of overridable variables is as follows:
 
 ```css
 :root {
