@@ -133,33 +133,31 @@
   --input-border: 1px solid var(--gray);
   --input-corner-radius: 3px;
   --input-text-color: var(--black);
+  --input-placeholder-color: var(--gray);
+  --input-label-text-color: var(--gray);
+  --input-icon-color: #515152;
+  --input-hint-text-color: var(--gray);
+
+  --input-border-color--hover: #515152;
 
   --input-background--disabled: #f5f5f5;
   --input-border-color--disabled: #717073;
   --input-text-color--disabled: #515152;
 
-  --input-outline-color--focus: var(--primary);
-
   --input-border-color--error: var(--error);
   --input-outline-color--error: var(--error);
+  --input-label-text-color--error: var(--error);
+  --input-hint-text-color--error: var(--error);
 
-  --input-placeholder-color: var(--gray);
-
+  --input-outline-color--focus: var(--primary);
   --input-label-background-color--focus: var(--white);
   --input-label-text-color--focus: var(--primary);
-  --input-label-text-color--focus--error: var(--error);
 
-  --input-label-background-color--filled: var(--white);
   --input-label-text-color--filled: var(--gray);
+  --input-label-background-color--filled: var(--white);
+
   --input-label-text-color--filled--error: var(--error);
-
-  --input-label-text-color: var(--gray);
-  --input-label-text-color--error: var(--error);
-
-  --input-icon-color: #515152;
-
-  --input-hint-text-color: var(--gray);
-  --input-hint-text-color--error: var(--error);
+  --input-label-text-color--focus--error: var(--error);
 
   /* Checkboxes */
   --checkbox-border-color: var(--gray);
