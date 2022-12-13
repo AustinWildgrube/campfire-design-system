@@ -679,9 +679,9 @@ export class UsiDatePickerComponent implements OnInit {
             : this.value.splice(this.value.indexOf(this.getFormattedDate(date)), 1);
 
           const outputDates: string[] = [];
-          this.value.map((date: string) => {
+          this.value.forEach((date: string) => {
             outputDates.push(dayjs(date).format(this.usiDateOutputFormat));
-          });
+          })
 
           this.onChange(outputDates);
 
@@ -701,7 +701,7 @@ export class UsiDatePickerComponent implements OnInit {
           this.value.push(this.getFormattedDate(date));
 
           const outputDatesRange: string[] = [];
-          this.value.map((date: string) => {
+          this.value.forEach((date: string) => {
             outputDatesRange.push(dayjs(date).format(this.usiDateOutputFormat));
           });
 
