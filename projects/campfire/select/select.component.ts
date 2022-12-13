@@ -2,53 +2,46 @@ import { Component, ElementRef, EventEmitter, forwardRef, HostListener, Input, O
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { UsiSelectService } from './select.service';
-import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
-
-export interface SelectDataInterface {
-  value: string | number | any[];
-  label: string;
-  disabled?: boolean;
-  group?: string;
-}
+import { BooleanInput, InputBoolean, SelectData, UniqueId } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-select',
   template: `
     <div
       class="usi-select"
-      (usiClickOutside)="usiSelectService.showOptions = false"
+      (usiClickOutside)="selectService.showOptions = false"
       role="listbox"
-      [attr.aria-expanded]="usiSelectService.showOptions"
+      [attr.aria-expanded]="selectService.showOptions"
       [attr.aria-labelledby]="uid"
     >
       <div class="usi-input-group">
         <input
           class="usi-input-group__input"
           [ngClass]="{
-            'usi-input-group__input--filled': this.usiSelectService.value !== '' || hasValue,
+            'usi-input-group__input--filled': this.selectService.value.length > 0 || hasValue,
             'usi-input-group__input--error': hasError || usiForceError
           }"
-          (click)="usiSelectService.showOptions = !usiSelectService.showOptions"
+          (click)="selectService.showOptions = !selectService.showOptions"
           (keyup)="searchOptions($any($event).target.value)"
           (keyup.enter)="showOption()"
           [placeholder]="usiPlaceholder"
           [disabled]="usiDisabled == true"
-          [value]="usiSelectService.realValue ? usiSelectService.realValue.label : ''"
+          [value]="isEmptyObject(selectService.valueObject) ? '' : selectService.valueObject[0].label"
           [readonly]="!usiSearchable"
           [attr.aria-labelledby]="uid"
         />
 
         <fa-icon
-          *ngIf="usiSelectService.showOptions"
+          *ngIf="selectService.showOptions"
           class="usi-input-group__suffix usi-input-group__suffix--password"
-          (click)="usiSelectService.showOptions = false"
+          (click)="selectService.showOptions = false"
           [icon]="['fal', 'angle-up']"
         ></fa-icon>
 
         <fa-icon
-          *ngIf="!usiSelectService.showOptions"
+          *ngIf="!selectService.showOptions"
           class="usi-input-group__suffix usi-input-group__suffix--password"
-          (click)="usiSelectService.showOptions = true"
+          (click)="selectService.showOptions = true"
           [icon]="['fal', 'angle-down']"
         ></fa-icon>
 
@@ -63,7 +56,7 @@ export interface SelectDataInterface {
         </div>
       </div>
 
-      <ul *ngIf="usiSelectService.showOptions && usiData" class="usi-select__options" role="group">
+      <ul *ngIf="selectService.showOptions && usiData" class="usi-select__options" role="group">
         <li *ngIf="manipulatedData.size === 0" class="usi-select__no-result">{{ usiNoResultMessage }}</li>
 
         <ng-container *ngFor="let options of manipulatedData | keyvalue: asIsOrder">
@@ -75,14 +68,14 @@ export interface SelectDataInterface {
             <li
               class="usi-select__option"
               [ngClass]="{
-                'usi-select__option--active': usiSelectService.realValue.value === option.value,
+                'usi-select__option--active': !isEmptyObject(selectService.valueObject) && selectService.valueObject[0].value === option.value,
                 'usi-select__option--disabled': option.disabled == true
               }"
               (click)="writeValue(option)"
               (keyup.enter)="writeValue(option)"
-              (keyup.arrowUp)="usiSelectService.moveFocus($any($event))"
-              (keyup.arrowDown)="usiSelectService.moveFocus($any($event))"
-              [attr.aria-selected]="usiSelectService.realValue.value === option.value"
+              (keyup.arrowUp)="selectService.moveFocus($any($event))"
+              (keyup.arrowDown)="selectService.moveFocus($any($event))"
+              [attr.aria-selected]="!isEmptyObject(selectService.valueObject) && selectService.valueObject[0].value === option.value"
               tabindex="0"
               role="option"
             >
@@ -92,7 +85,7 @@ export interface SelectDataInterface {
         </ng-container>
       </ul>
 
-      <ul *ngIf="usiSelectService.showOptions && !usiData" class="usi-select__options" role="group">
+      <ul *ngIf="selectService.showOptions && !usiData" class="usi-select__options" role="group">
         <ng-content></ng-content>
       </ul>
     </div>
@@ -115,7 +108,7 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   usiPlaceholder?: string = '';
 
   @Input()
-  usiData?: SelectDataInterface[] = undefined;
+  usiData?: SelectData[] = undefined;
 
   @Input()
   usiNoResultMessage?: string = 'No Result';
@@ -145,22 +138,24 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   @Output()
   usiSearchValue: EventEmitter<string> = new EventEmitter<string>();
 
+  selectService: UsiSelectService;
   hasError: boolean | null = false;
   touched: boolean | null = false;
   hasValue: boolean = false;
   numberOfOptions: number = 0;
   uid: string = '';
 
-  groupedData: Map<string, SelectDataInterface[]> = new Map();
-  manipulatedData: Map<string, SelectDataInterface[]> = new Map();
+  groupedData: Map<string, SelectData[]> = new Map();
+  manipulatedData: Map<string, SelectData[]> = new Map();
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(): void {
     this.usiSelectService.showOptions = false;
   }
 
-  constructor(protected elementRef: ElementRef, public usiSelectService: UsiSelectService) {
+  constructor(protected elementRef: ElementRef, private usiSelectService: UsiSelectService) {
     // Generate random name so we don't have matching ids
     this.uid = UniqueId();
+    this.selectService = usiSelectService;
   }
 
   ngOnInit(): void {
@@ -237,33 +232,29 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   }
 
   /**
+   * This method determines if the multiselect value is empty or not.
+   * @param { object } obj | The object to check
+   * @return { boolean } boolean | True if the object is empty
+   */
+  public isEmptyObject(obj: {}): boolean {
+    return obj && Object.keys(obj).length === 0;
+  }
+
+  /**
    * Write form value to the DOM element (model => view)
-   * @param { SelectDataInterface | string } value | the value to write
+   * @param { SelectData | string } value | the value to write
    * @param { Event } event | the event that triggered the change
    * @return
    */
-  public writeValue(value: SelectDataInterface | string, event?: Event): void {
-    if (value && this.usiData) {
-      // If value is provided to us from ngModel we need to find the corresponding
-      // key value pair
-      if (typeof value === 'string') {
-        for (let [_, values] of this.usiData.entries()) {
-          if (values.value === value) {
-            this.usiSelectService.value = value;
-            this.usiSelectService.realValue = values;
-          }
-        }
-      } else {
-        if (value.disabled !== null && value.disabled !== true) {
-          this.usiSelectService.value = value.value;
-          this.usiSelectService.realValue = value;
-          this.usiSelectService.showOptions = false;
-        }
-      }
-
-      this.manipulatedData = this.groupedData;
-      this.usiSelectService.updateChanges();
+  public writeValue(value: SelectData, event?: Event): void {
+    if (value && !value.disabled) {
+      this.usiSelectService.value = [value.value];
+      this.usiSelectService.valueObject[0] = value;
+      this.usiSelectService.showOptions = false;
     }
+
+    this.manipulatedData = this.groupedData;
+    this.usiSelectService.updateChanges();
   }
 
   /**
@@ -293,15 +284,15 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   /**
    * This method groups our data based on the group attribute if it is present
    * in the data provided.
-   * @param { SelectDataInterface[] } list | The list of data to group
+   * @param { SelectData[] } list | The list of data to group
    * @param { () => any } keyGetter | The function to get the key from the data
    * @return
    */
-  private groupBy(list: SelectDataInterface[], keyGetter: (arg0: any) => any): Map<string, SelectDataInterface[]> {
+  private groupBy(list: SelectData[], keyGetter: (arg0: any) => any): Map<string, SelectData[]> {
     const map = new Map();
     this.numberOfOptions = list.length;
 
-    list.forEach((item: SelectDataInterface) => {
+    list.forEach((item: SelectData) => {
       const key = keyGetter(item);
       const collection = map.get(key);
 
@@ -319,10 +310,10 @@ export class UsiSelectComponent implements OnChanges, OnInit {
    * This is our default filter that sees if the value is included in
    * the label. If it is not it will trim the value from our data.
    * @param { string } value | The value of our search
-   * @param { SelectDataInterface } option | A single piece of data to test our filter against
+   * @param { SelectData } option | A single piece of data to test our filter against
    * @return
    */
-  private static defaultFilter(value: string, option: SelectDataInterface) {
+  private static defaultFilter(value: string, option: SelectData) {
     return option.label.toLowerCase().trim().includes(value.toLowerCase().trim());
   }
 
@@ -330,7 +321,7 @@ export class UsiSelectComponent implements OnChanges, OnInit {
    * When a search is performed we can invoke this method to filter our
    * data. After filtering, we regroup our data and return it for the
    * DOM to render.
-   * @param { Map<string, SelectDataInterface[]> } data | The data that we will filter through
+   * @param { Map<string, SelectData[]> } data | The data that we will filter through
    * @param { boolean } searchable | Whether our data is searchable or not
    * @param { string } searchValue | The value of our search
    * @param { () => boolean } filter | The filter function to use. If none is provided we use our default filter
@@ -338,10 +329,10 @@ export class UsiSelectComponent implements OnChanges, OnInit {
    * @return
    */
   private filterData(
-    data: Map<string, SelectDataInterface[]>,
+    data: Map<string, SelectData[]>,
     searchable: boolean,
     searchValue: string,
-    filter: (value: string, item: SelectDataInterface) => boolean,
+    filter: (value: string, item: SelectData) => boolean,
     value: string | number | any[]
   ) {
     if (!searchable) {

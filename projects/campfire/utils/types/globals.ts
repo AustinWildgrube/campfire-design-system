@@ -37,6 +37,13 @@ export interface UsiMonth {
   year: number;
 }
 
+export interface SelectData {
+  value: string | number | any[];
+  label: string;
+  disabled?: boolean;
+  group?: string;
+}
+
 export interface UsiSnackbar {
   usiButtonText?: string;
   usiIcon?: IconName;

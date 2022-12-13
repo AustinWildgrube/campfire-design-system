@@ -1,0 +1,194 @@
+```ts
+import { UsiMultiselectModule } from 'usi-campfire/multiselect';
+```
+
+# Multiselect
+A multiselect component is a component that allows users to pick multiple values from predefined options. Ideally, it should be used when there are more than
+five options; otherwise, you might consider using a radio group instead.
+
+The multiselect component is a wrapper around the `<usi-select>` component. This means that attributes specified in the `<usi-select>` component are also
+available in the `<usi-multiselect>` component. This includes the following attributes:
+
+  * `usiPlaceholder` - The placeholder text of the multiselect component.
+  * `usiLabel` - The label text of the multiselect component.
+  * `usiDisabled` - Whether the multiselect component is disabled.
+  * `usiRequired` - Whether the multiselect component is required.
+  * `usiError` - The error message to display when the multiselect component is invalid.
+  * `usiForceError` - Whether to display the error message even when the multiselect component is valid.
+  * `usiHint` - The hint text to display below the multiselect component.
+
+```html
+<usi-multiselect [usiData]="data"></usi-multiselect>
+```
+
+```ts
+data: SelectData[] = [
+    label: 'Option 1',
+    value: 'option-1',
+  },
+  {
+    label: 'Option 2',
+    value: 'option-2',
+  },
+]
+```
+
+## Data Format
+Data can be presented to the select component in one of two ways. The first is passing the data directly to the select component. If using this method, the
+`SelectData` can be used for Typescript completion when creating the data to be passed in. The label will appear in the drop-down menu, but the
+value will be used in forms.
+
+```ts
+interface SelectData {
+  value: string | number | any[];
+  label: string;
+  disabled?: boolean;
+  group?: string;
+}
+```
+
+If the data is not in the correct format, the `<usi-option>` component can be used. When the `<usi-option>` component is used, it is up to the user to ensure
+the correct data is being presented. If the multiselect still needs to be searchable, the data will need to be manually filtered. Campfire provides a
+`usiSearchValue` output that captures the value entered into the multiselect component.
+
+For grouping, the `<usi-optgroup>` component can be used. The `<usi-option>` components that fit the group will need to be nested inside.
+
+```html
+<usi-multiselect (usiSearchValue)="captureValue($event)" usiSearchable>
+  <usi-option *ngFor="let option of data" [usiValue]="option.value" [usiDisabled]="option.disabled">{{ option.label }}</usi-option>
+
+  <usi-optgroup usiLabel="Group 1">
+    <usi-option usiValue="opt1">Option One</usi-option>
+  </usi-optgroup>
+</usi-multiselect>
+```
+
+## Grouping Data
+Data can still be grouped together using this method. This is done by using the `group` keyword. Items that are grouped together will be displayed under the
+same label, and any options without a group will be presented at the end of the list.
+
+```ts
+data: SelectData[] = [
+    label: 'Option 1',
+    value: 'option-1',
+    group: 'Important',
+  },
+  {
+    label: 'Option 2',
+    value: 'option-2',
+    group: 'Important',
+  },
+  {
+    label: 'Option 3',
+    value: 'option-3',
+    group: 'Less Important',
+  },
+  {
+    label: 'Option 4',
+    value: 'option-4',
+  },
+]
+```
+
+If using the `<usi-option>` component, the `<usi-optgroup>` component can be used to group the options together.
+
+```html
+<usi-multiselect (usiSearchValue)="captureValue($event)" usiSearchable>
+  <usi-optgroup usiLabel="Group 1">
+    <usi-option usiValue="opt1">Option One</usi-option>
+    <usi-option usiValue="opt2">Option Two</usi-option>
+  </usi-optgroup>
+
+  <usi-optgroup usiLabel="Group 2">
+    <usi-option usiValue="opt3">Option Three</usi-option>
+  </usi-optgroup>
+</usi-multiselect>
+```
+
+
+## Disabling Options
+Options can be disabled by using a boolean attribute. A disabled option is unusable and unclickable. The disabled attribute can be set to prevent a user from
+selecting the option until some other condition has been met (like selecting a checkbox, etc.).
+
+```ts
+data: SelectData[] = [
+    label: 'Option 1',
+    value: 'option-1',
+  },
+  {
+    label: 'Option 2',
+    value: 'option-2',
+    disabled: true,
+  },
+]
+```
+
+If using the `<usi-option>` component, the `usiDisabled` attribute can be used.
+
+```html
+<usi-multiselect (usiSearchValue)="captureValue($event)" usiSearchable>
+  <usi-option usiValue="opt1">Option One</usi-option>
+  <usi-option usiValue="opt2" usiDisabled>Option Two</usi-option>
+</usi-multiselect>
+```
+
+## Multiselects in Forms
+Multiselects will almost always be used in forms. Campfire selects can be used in reactive forms as well as template-driven forms via the methods below.
+
+```ts
+selectNgModel: boolean = false;
+selectFormGroup: FormGroup;
+
+data: SelectData[] = [
+    label: 'Option 1',
+    value: 'option-1',
+  },
+  {
+    label: 'Option 2',
+    value: 'option-2',
+  },
+];
+
+constructor(private formBuilder: FormBuilder) {
+  this.selectFormGroup = this.formBuilder.group({
+    selectOne: ['']
+  });
+}
+```
+
+```html
+<usi-multiselect [(ngModel)]="selectNgModel" [usiData]="data" usiPlaceholder="placeholder" usiLabel="label"></usi-multiselect>
+
+<form [formGroup]="selectFormGroup">
+  <usi-multiselect formControlName="selectOne" [usiData]="data" usiPlaceholder="placeholder" usiLabel="label"></usi-multiselect>
+</form>
+```
+
+## Customization
+Multiselects were made to be easily customizable. Styling a multiselect is as simple as just adding a class to the tag or overriding our CSS variables in the
+root selector. The list of overridable variables is as follows:
+
+```css
+:root {
+  --select-options-background-color: var(--white);
+  --select-options-corner-radius: var(--input-corner-radius);
+  --select-options-shadow: 0 1px 3px rgba(0, 0, 0, .32);
+  --select-options-zindex: 300;
+
+  --select-options-label-text-color: var(--gray);
+  --select-options-label-border: 1px solid #CED4DA;
+
+  --select-options-background-color--hover: #f5f5f5;
+  --select-options-border--hover: 2px solid var(--gray);
+
+  --select-options-background-color--active: #f5f5f5;
+  --select-options-border--active: 2px solid var(--primary);
+  --select-options-text-color--active: var(--black);
+
+  --select-options-text-color--disabled: var(--gray);
+}
+```
+
+```html
+<usi-multiselect class="custom-select" [usiData]="data"></usi-multiselect>
+```
