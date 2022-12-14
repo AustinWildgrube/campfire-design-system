@@ -55,7 +55,11 @@ describe('UsiSelectOptionComponent', () => {
     option[0].nativeElement.click();
     fixture.detectChanges();
 
-    expect(option[0].nativeElement.classList).toContain('usi-select__option--active');
+    select.nativeElement.click();
+    fixture.detectChanges();
+
+    const newOptions = debugElement.queryAll(By.css('.usi-select__option'));
+    expect(newOptions[0].nativeElement.classList).toContain('usi-select__option--active');
   });
 
   it('should have a disabled option', () => {
