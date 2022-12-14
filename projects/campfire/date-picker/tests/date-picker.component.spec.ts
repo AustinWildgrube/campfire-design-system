@@ -9,6 +9,7 @@ import { UsiSharedModule } from 'usi-campfire/shared';
 @Component({
   template: `
     <usi-date-picker
+      [usiLocalization]="usiLocalization"
       [usiError]="usiError"
       [usiLabel]="usiLabel"
       [usiPlaceholder]="usiPlaceholder"
@@ -23,7 +24,6 @@ import { UsiSharedModule } from 'usi-campfire/shared';
       [usiDateFormat]="usiDateFormat"
       [usiDateOutputFormat]="usiDateOutputFormat"
       [usiSelectionMode]="usiSelectionMode"
-      [usiLocalization]="usiLocalization"
       [usiDisabled]="usiDisabled"
       [usiRequired]="usiRequired"
       [usiForceError]="usiForceError"
@@ -49,6 +49,8 @@ describe('UsiDatePickerComponent', () => {
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
     fixture.detectChanges();
+
+    spyOn(console, 'warn');
 
     debugElement.nativeElement.querySelector('.usi-input-group__input').click();
     fixture.detectChanges();
@@ -126,5 +128,30 @@ describe('UsiDatePickerComponent', () => {
     fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelectorAll('.usi-date-picker__day--selected').length).toBe(2);
+  });
+
+  it('should load a different localization', async () => {
+    const shortGermanMonths = ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 'Juli', 'Aug.', 'Sept.', 'Okt.', 'Nov.', 'Dez.'];
+
+    component.usiLocalization = 'de';
+    fixture.detectChanges();
+
+    await component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(component.monthName).toEqual(shortGermanMonths);
+  });
+
+  it('should fail to load the localization and default to english', async () => {
+    const shortEnglishMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const currentMonth = new Date().getMonth();
+
+    component.usiLocalization = 'test';
+    await component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelector('.usi-date-picker__selected-month-year').textContent).toContain(shortEnglishMonths[currentMonth]);
+    expect(component.monthName).toEqual(shortEnglishMonths);
+    expect(console.warn).toHaveBeenCalled();
   });
 });

@@ -912,6 +912,9 @@ export class UsiDatePickerComponent implements OnInit {
     await import(`dayjs/locale/${this.usiLocalization}`).then(() => {
       dayjs.locale(this.usiLocalization);
       this.monthName = dayjs.monthsShort();
+    }).catch(() => {
+      console.warn(`Campfire Date Picker: No ${this.usiLocalization} localization was not found; defaulting to English..`);
+      this.monthName = dayjs.monthsShort();
     });
   }
 
