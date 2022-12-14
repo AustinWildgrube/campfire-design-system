@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, forwardRef, HostBinding, Input, OnInit, SimpleChanges } from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, forwardRef, HostBinding, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { UsiRadioService } from '../radio.service';
@@ -18,7 +18,7 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiRadioGroupComponent implements ControlValueAccessor, OnInit {
+export class UsiRadioGroupComponent implements ControlValueAccessor, OnChanges, OnInit {
   @HostBinding('class.usi-radio-group') true = true;
 
   @Input()
