@@ -1,22 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
 import { BooleanInput } from 'usi-campfire/utils';
 
 @Injectable()
 export class UsiRadioService {
-  touched = new Subject<void>();
   name = new ReplaySubject<string>(1);
   selected = new ReplaySubject<any>(1);
   disabled = new ReplaySubject<BooleanInput>(1);
-
-  /**
-   * Emits to each radio button if the radio group  has been touched.
-   * @return
-   */
-  public touch(): void {
-    this.touched.next();
-  }
 
   /**
    * Emits to each radio button if the radio group  has been selected.

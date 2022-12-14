@@ -48,10 +48,6 @@ export class UsiRadioGroupComponent implements ControlValueAccessor, OnChanges, 
       }
     });
 
-    this.usiRadioService.touched.subscribe(() => {
-      Promise.resolve().then(() => this.onTouched());
-    });
-
     this.usiRadioService.setDisabled(this.usiDisabled);
   }
 
