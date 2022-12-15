@@ -1,0 +1,21 @@
+@use '../../campfire.css';
+
+:host {
+  align-items: center;
+  display: inline-flex;
+}
+
+.usi-status {
+  color: var(--status-text-color);
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+}
+
+.usi-status__circle {
+  background-color: var(--status-background-color);
+  border-radius: 50%;
+  display: inline-block;
+  height: 10px;
+  margin-right: 8px;
+  width: 10px;
+}

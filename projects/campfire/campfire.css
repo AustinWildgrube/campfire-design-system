@@ -304,5 +304,21 @@
 
   --date-picker-data-border-color--today: var(--primary);
   --date-picker-data-text-color--today: var(--primary);
+
+  /* Badge */
+  --badge-background-color: var(--primary);
+  --badge-text-color: var(--white);
+  --badge-corner-radius: 3px;
+
+  --badge-background-color--warning: var(--warning);
+  --badge-background-text-color--warning: var(--black);
+
+  --badge-background-color--success: var(--success);
+  --badge-background-color--error: var(--error);
+  --badge-background-color--info: var(--info);
+
+  /* Status */
+  --status-background-color: var(--primary);
+  --status-text-color: var(--black);
 }
 

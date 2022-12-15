@@ -1,0 +1,35 @@
+```ts
+import { UsiStatusModule } from 'usi-campfire/status';
+```
+
+# Statuses
+Status indicators are an important method of communicating severity level information to users. Different colors enable users to quickly assess and identify
+their status and respond accordingly.
+
+```html
+<usi-status>Status Text</usi-status>
+```
+
+## Colors
+The primary status color is Ungerboeck primary blue, but this can be changed to any color using the `usiColor` property.
+
+```html
+<usi-status usiColor="pink">Pink Status</usi-status>
+<usi-status usiColor="#ffc8dd">Hex Status</usi-status>
+<usi-status usiColor="rgb(255, 200, 221)">RGB Status</usi-status>
+```
+
+## Customization
+Campfire statuses were made to be easily customizable. Styling a status is as simple as just adding a class to the tag or overriding our CSS variables in the
+root selector. The list of overridable variables is as follows:
+
+```css
+:root {
+  --status-background-color: var(--primary);
+  --status-text-color: var(--black);
+}
+```
+
+```html
+<usi-status class="custom-status">Custom Status</usi-status>
+```
