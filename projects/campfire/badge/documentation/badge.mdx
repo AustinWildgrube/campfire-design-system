@@ -1,0 +1,52 @@
+```ts
+import { UsiBadgeModule } from 'usi-campfire/badge';
+```
+
+# Badges
+A badge is a small, overlapped UI item that indicates a status, notification, or event that appears in relation to the underlying object.
+
+```html
+<usi-badge>Badge Text</usi-badge>
+```
+
+## Types
+There are four different badge types: `success`, `error`, `info`, `warning` that can be defined using the `usiType` attribute. If none of those types fits the
+purpose of the badge, you can omit the type and create a custom badge with custom CSS styles.
+
+```html
+<usi-badge usiType="success">Success</usi-badge>
+<usi-badge usiType="error">Error</usi-badge>
+<usi-badge usiType="info">Info</usi-badge>
+<usi-badge usiType="warning">Warning</usi-badge>
+```
+
+## Icons
+If one of the four predefined types is being used, an icon is already provided. Although an icon is not necessary, one can be used if using a custom badge type
+with the `usiIcon` attribute.
+
+```html
+<usi-badge usiIcon="coffee">Custom Badge</usi-badge>
+```
+
+## Customization
+Campfire badges were made to be easily customizable. Styling a badge is as simple as just adding a class to the tag or overriding our CSS variables in the
+root selector. The list of overridable variables is as follows:
+
+```css
+:root {
+  --badge-background-color: var(--primary);
+  --badge-text-color: var(--white);
+  --badge-corner-radius: 3px;
+
+  --badge-background-color--warning: var(--warning);
+  --badge-background-text-color--warning: var(--black);
+
+  --badge-background-color--success: var(--success);
+  --badge-background-color--error: var(--error);
+  --badge-background-color--info: var(--info);
+}
+```
+
+```html
+<usi-badge class="custom-badge">Custom Badge</usi-badge>
+```

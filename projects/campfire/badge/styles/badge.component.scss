@@ -1,0 +1,44 @@
+@use '../../campfire.css';
+
+:host {
+  display: inline-block;
+}
+
+.usi-badge {
+  align-items: center;
+  background-color: var(--badge-background-color);
+  border-radius: 17px;
+  box-sizing: border-box;
+  color: var(--badge-text-color);
+  display: flex;
+  font-family: var(--font-family);
+  font-size: 0.75rem;
+  font-weight: 600;
+  height: 25px;
+  padding: 4px 12px;
+  width: fit-content;
+
+  fa-icon {
+    align-items: center;
+    display: flex;
+    font-size: 1rem;
+    margin-right: 8px;
+  }
+}
+
+.usi-badge--success {
+  background-color: var(--badge-background-color--success);
+}
+
+.usi-badge--warning {
+  background-color: var(--badge-background-color--warning);
+  color: var(--badge-background-text-color--warning);
+}
+
+.usi-badge--error {
+  background-color: var(--badge-background-color--error);
+}
+
+.usi-badge--info {
+  background-color: var(--badge-background-color--info);
+}
