@@ -1,7 +1,9 @@
+import { Platform } from '@angular/cdk/platform';
 import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   forwardRef,
   HostListener,
   Injector,
@@ -212,7 +214,13 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, O
 
   public control: FormControl = new FormControl();
 
-  constructor(public parentFormGroup: FormGroupDirective, private injector: Injector, private cdr: ChangeDetectorRef, private ngZone: NgZone) {
+  constructor(
+    public parentFormGroup: FormGroupDirective,
+    private injector: Injector,
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone,
+    private platform: Platform
+  ) {
     this.uid = UniqueId();
   }
 
@@ -225,6 +233,8 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, O
   }
 
   ngAfterViewInit(): void {
+    this.checkForAutofill();
+
     const ngControl: NgControl | null = this.injector.get(NgControl, null);
     if (ngControl?.control?.hasValidator(Validators.required)) {
       this.usiRequired = true;
@@ -365,5 +375,22 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, O
     }
 
     return this.control.value;
+  }
+
+  /**
+   * Check for autofill by seeing if the input has the :-internal-autofill-selected pseudo selector
+   * @private
+   */
+  private checkForAutofill(): void {
+    const input = document.querySelector('.usi-input-group__input');
+
+    // This pseudo selector does not exist in Firefox
+    if (this.platform.isBrowser && !this.platform.FIREFOX) {
+      setTimeout(() => {
+        if (input?.matches(':-internal-autofill-selected')) {
+          this.isEmpty = false;
+        }
+      }, 600);
+    }
   }
 }
