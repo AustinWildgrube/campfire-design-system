@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UsiStatusComponent } from 'usi-campfire/status/status.component';
+import { UsiStatusComponent } from './status.component';
 
 @NgModule({
   declarations: [UsiStatusComponent],
