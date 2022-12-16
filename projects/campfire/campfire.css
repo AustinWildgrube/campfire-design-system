@@ -320,5 +320,17 @@
   /* Status */
   --status-background-color: var(--primary);
   --status-text-color: var(--black);
+
+  /* Breadcrumbs */
+  --breadcrumbs-text-color: var(--primary);
+  --breadcrumbs-text-size: 0.875rem;
+
+  --breadcrumbs-text-color--disabled: var(--gray);
+  --breadcrumbs-text-color--hover: #1339B5;
+
+  --breadcrumbs-text-color--active: var(--breadcrumbs-text-color);
+  --breadcrumbs-text-weight--active: 600;
+
+  --breadcrumbs-separator-color: #ADADAE;
 }
 

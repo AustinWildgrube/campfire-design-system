@@ -1,0 +1,38 @@
+.usi-breadcrumb {
+  color: var(--breadcrumbs-text-color);
+  font-family: var(--font-family);
+  font-size: var(--breadcrumbs-text-size);
+  margin-right: 12px;
+  text-decoration: none;
+
+  fa-icon {
+    color: var(--breadcrumbs-separator-color);
+    font-size: var(--breadcrumbs-text-size);
+    margin-right: 4px;
+  }
+}
+
+.usi-breadcrumb--link {
+  cursor: pointer;
+
+  &:hover {
+    color: var(--breadcrumbs-text-color--hover);
+    text-decoration: underline;
+  }
+}
+
+.usi-breadcrumb--active {
+  color: var(--breadcrumbs-text-color--active);
+  font-weight: 600;
+}
+
+.usi-breadcrumb__label--disabled {
+  color: var(--breadcrumbs-text-color--disabled);
+  cursor: not-allowed;
+}
+
+.usi-breadcrumb__separator {
+  color: var(--breadcrumbs-separator-color);
+  font-size: var(--breadcrumbs-text-size);
+  margin-right: 12px;
+}

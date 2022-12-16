@@ -1,5 +1,12 @@
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
+export interface UsiBreadcrumbs {
+  label: string;
+  icon?: IconName;
+  link?: string;
+  routerLink?: string;
+}
+
 export interface UsiCalendar {
   dates: UsiDate[][];
   month: number;

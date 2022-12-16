@@ -1,0 +1,72 @@
+```ts
+import { UsiBreadcrumbsModule } from 'usi-campfire/breadcrumbs';
+```
+
+# Breadcrumbs
+Breadcrumbs are represented as a trail of links at the top of the page, usually just below the global navigation; the home page (or root node of the hierarchy)
+is the first link.
+
+```html
+<usi-breadcrumbs [usiData]="breadcrumbs"></usi-breadcrumbs>
+```
+
+```ts
+breadcrumbs: UsiBreadcrumbs[] = [
+    {
+      label: 'Home',
+      icon: 'coffee',
+    },
+    {
+      label: 'Page 1',
+      link: '/page-1',
+    },
+    {
+      label: 'Page 2',
+      routerLink: '/page-2',
+    },
+  ];
+```
+
+Campfire uses an array of links to generate the breadcrumbs and uses the following interface:
+
+```ts
+export interface UsiBreadcrumbs {
+  label: string;
+  icon?: IconName;
+  link?: string;
+  routerLink?: string;
+}
+```
+
+## Separators
+Separators are used to visually separate the links in the breadcrumbs. The default separator is the FontAwesome right chevron (`>`), but this can be changed by
+using the `usiSeparator` attribute.
+
+> Only strings are supported through this attribute.
+
+```html
+<usi-breadcrumbs [usiData]="breadcrumbs" usiSeparator="--"></usi-breadcrumbs>
+```
+
+## Customization
+Campfire breadcrumbs were made to be easily customizable. Styling a breadcrumb is as simple as just adding a class to the tag or overriding our CSS variables in
+the root selector. The list of overridable variables is as follows:
+
+```css
+:root {
+  --breadcrumbs-text-color: var(--primary);
+  --breadcrumbs-text-size: 0.875rem;
+
+  --breadcrumbs-text-color--disabled: var(--gray);
+  --breadcrumbs-text-color--hover: #1339B5;
+
+  --breadcrumbs-text-color--active: var(--breadcrumbs-text-color);
+  --breadcrumbs-text-weight--active: 600;
+
+  --breadcrumbs-separator-color: #ADADAE;
+}
+```
+
+```html
+<usi-breadcrumbs class="custom-breadcrumbs" [usiData]="breadcrumbs"></usi-breadcrumbs>
+```
