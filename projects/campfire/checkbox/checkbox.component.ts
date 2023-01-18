@@ -10,6 +10,7 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
       <input
         class="usi-checkbox__input"
         [ngClass]="{ 'usi-checkbox__input--checked': value === true }"
+        (click)="this.writeValue($any($event.target).checked)"
         [disabled]="usiDisabled == true"
         [required]="usiRequired == true"
         [attr.aria-labelledby]="uid"
