@@ -16,11 +16,12 @@
   background-color: var(--select-options-background-color);
   border-radius: var(--select-options-corner-radius);
   box-shadow: var(--select-options-shadow);
+  box-sizing: border-box;
   list-style: none;
   margin-bottom: 0;
   margin-right: 0;
   margin-top: 4px;
-  max-height: 150px;
+  max-height: 204px;
   min-width: var(--input-min-width);
   overflow-x: hidden;
   overflow-y: auto;
@@ -79,9 +80,9 @@
   cursor: pointer;
   font-size: .875rem;
   margin: 4px 0;
-  padding: 16px 20px;
+  padding: 8px 12px;
 
-  &:hover:not(.usi-select__option--active):not(.usi-select__option--disabled) {
+  &:hover:not(.usi-select__option--active):not(.usi-select__option--disabled):not(.usi-select__option--controls) {
     background-color: var(--select-options-background-color--hover);
     border-left: var(--select-options-border--hover);
   }

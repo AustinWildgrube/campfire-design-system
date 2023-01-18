@@ -10,9 +10,11 @@ export class UsiSelectService {
   public valueObject: SelectData[] = [];
   public multiSelectBadges: SelectData[] = [];
   public showOptions: boolean = false;
-  public inputWidth: number = 0;
-  public badgeContainerWidth: number = 0;
-  public showMore: boolean = false;
+  public showSelectedOnly: boolean = false;
+
+  // public inputWidth: number = 0;
+  // public badgeContainerWidth: number = 0;
+  // public showMore: boolean = false;
 
   private optionIndex: number = 0;
 
@@ -48,48 +50,58 @@ export class UsiSelectService {
   }
 
   /**
-   * Determines if adding the badge will cause the badges to overflow
-   * @param { SelectData } value | The value to add
-   * @param { boolean } remove | Whether we are removing a badge
+   * Clear all the selected values by emptying the value array
+   * @return
    */
-  public checkOverflow(value: SelectData, remove: boolean): void {
-    if (remove) {
-      this.badgeContainerWidth -= this.getTextWidth(value.label, '12px Open Sans') + 39;
-      this.badgeContainerWidth = 0;
-      this.multiSelectBadges = [];
-
-      for (let i = 0; i < this.value.length; i++) {
-        this.checkOverflow(this.value[i], false);
-        this.multiSelectBadges.push(this.valueObject[i]);
-      }
-
-      this.showMore = this.badgeContainerWidth > this.inputWidth;
-    } else {
-      this.badgeContainerWidth += this.getTextWidth(value.label, '12px Open Sans') + 39;
-
-      if (this.badgeContainerWidth > this.inputWidth) {
-        this.multiSelectBadges.pop();
-        this.showMore = true;
-      } else {
-        this.showMore = false;
-      }
-    }
+  public clearAll(): void {
+    this.value = [];
+    this.valueObject = [];
+    this.multiSelectBadges = [];
   }
 
-  /**
-   * Get the width of text to determine if it will overflow
-   * @param { string } text | The text to get the width of
-   * @param { string } font | The font to use
-   * @private { number } | The width of the text
-   */
-  private getTextWidth(text: string, font: string): number {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
+  // /**
+  //  * Determines if adding the badge will cause the badges to overflow
+  //  * @param { SelectData } value | The value to add
+  //  * @param { boolean } remove | Whether we are removing a badge
+  //  */
+  // public checkOverflow(value: SelectData, remove: boolean): void {
+  //   if (remove) {
+  //     this.badgeContainerWidth -= this.getTextWidth(value.label, '12px Open Sans') + 39;
+  //     this.badgeContainerWidth = 0;
+  //     this.multiSelectBadges = [];
+  //
+  //     for (let i = 0; i < this.value.length; i++) {
+  //       this.checkOverflow(this.value[i], false);
+  //       this.multiSelectBadges.push(this.valueObject[i]);
+  //     }
+  //
+  //     this.showMore = this.badgeContainerWidth > this.inputWidth;
+  //   } else {
+  //     this.badgeContainerWidth += this.getTextWidth(value.label, '12px Open Sans') + 39;
+  //
+  //     if (this.badgeContainerWidth > this.inputWidth) {
+  //       this.multiSelectBadges.pop();
+  //       this.showMore = true;
+  //     } else {
+  //       this.showMore = false;
+  //     }
+  //   }
+  // }
 
-    context!.font = font || getComputedStyle(document.body).font;
-
-    return context!.measureText(text).width;
-  }
+  // /**
+  //  * Get the width of text to determine if it will overflow
+  //  * @param { string } text | The text to get the width of
+  //  * @param { string } font | The font to use
+  //  * @private { number } | The width of the text
+  //  */
+  // private getTextWidth(text: string, font: string): number {
+  //   const canvas = document.createElement('canvas');
+  //   const context = canvas.getContext('2d');
+  //
+  //   context!.font = font || getComputedStyle(document.body).font;
+  //
+  //   return context!.measureText(text).width;
+  // }
 
   /**
    * Method that is invoked on an update of a model

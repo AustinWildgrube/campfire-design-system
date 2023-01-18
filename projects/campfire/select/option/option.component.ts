@@ -7,7 +7,10 @@ import { BooleanInput, InputBoolean, SelectData } from 'usi-campfire/utils';
   selector: 'usi-option',
   template: `
     <li
-      *ngIf="usiSelectService.showOptions"
+      *ngIf="
+        (usiSelectService.showOptions && usiMultiSelect && !usiSelectService.showSelectedOnly) ||
+        (usiSelectService.showOptions && usiMultiSelect && usiSelectService.showSelectedOnly && this.usiSelectService.value.includes(usiValue))
+      "
       class="usi-select__option"
       [ngClass]="{
         'usi-select__option--active': !usiMultiSelect && usiSelectService.value.includes(usiValue),
@@ -80,15 +83,15 @@ export class UsiOptionComponent implements OnInit {
         if (this.usiSelectService.value.includes(value)) {
           this.usiSelectService.value = [...this.usiSelectService.value.filter((item: string) => item !== value)];
           this.usiSelectService.valueObject = [...this.usiSelectService.valueObject.filter((item: SelectData) => item.value !== value)];
-          this.usiSelectService.multiSelectBadges.splice(this.usiSelectService.multiSelectBadges.indexOf(value), 1);
 
-          this.usiSelectService.checkOverflow(value, true);
+          // this.usiSelectService.multiSelectBadges.splice(this.usiSelectService.multiSelectBadges.indexOf(value), 1);
+          // this.usiSelectService.checkOverflow(value, true);
         } else {
           this.usiSelectService.value = [...this.usiSelectService.value, value];
           this.usiSelectService.valueObject = [...this.usiSelectService.valueObject, { label: this.content?.nativeElement.textContent, value: value }];
-          this.usiSelectService.multiSelectBadges.push({ label: this.content?.nativeElement.textContent, value: value });
 
-          this.usiSelectService.checkOverflow(value, false);
+          // this.usiSelectService.multiSelectBadges.push({ label: this.content?.nativeElement.textContent, value: value });
+          // this.usiSelectService.checkOverflow(value, false);
         }
       }
     }

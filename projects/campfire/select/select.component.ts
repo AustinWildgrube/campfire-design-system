@@ -146,7 +146,7 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   uid: string = '';
 
   groupedData: Map<string, SelectData[]> = new Map();
-  manipulatedData: Map<string, SelectData[]> = new Map();
+  manipulatedData: Map<string | undefined, SelectData[]> = new Map();
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(): void {
     this.usiSelectService.showOptions = false;
@@ -288,7 +288,7 @@ export class UsiSelectComponent implements OnChanges, OnInit {
    * @param { () => any } keyGetter | The function to get the key from the data
    * @return
    */
-  private groupBy(list: SelectData[], keyGetter: (arg0: any) => any): Map<string, SelectData[]> {
+  protected groupBy(list: SelectData[], keyGetter: (arg0: any) => any): Map<string, SelectData[]> {
     const map = new Map();
     this.numberOfOptions = list.length;
 

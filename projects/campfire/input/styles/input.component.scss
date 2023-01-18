@@ -59,6 +59,8 @@
     }
 
     &.usi-input-group__input--multiselect {
+      align-items: center;
+      display: flex;
       padding-bottom: 5px;
       padding-right: 113px;
       padding-top: 6px;
@@ -144,6 +146,12 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 1;
+}
+
+.usi-input-group__prefix--multiselect {
+  font-size: 1rem;
+  left: auto;
 }
 
 .usi-input-group__suffix {

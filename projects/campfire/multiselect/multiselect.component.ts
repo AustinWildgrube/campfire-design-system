@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, forwardRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
@@ -16,15 +16,6 @@ import { SelectData } from 'usi-campfire/utils';
       role="listbox"
     >
       <div class="usi-input-group">
-        <input
-          class="usi-input-group__input--hidden"
-          (keyup)="searchOptions($any($event).target.value)"
-          [placeholder]="usiPlaceholder"
-          [disabled]="usiDisabled == true"
-          [value]=""
-          [readonly]="!usiSearchable"
-        />
-
         <div
           class="usi-input-group__input usi-input-group__input--multiselect"
           [ngClass]="{
@@ -36,28 +27,31 @@ import { SelectData } from 'usi-campfire/utils';
           (keyup.enter)="showOption()"
           [attr.aria-labelledby]="uid"
         >
-          <div class="badges" #badges>
-            <span *ngFor="let item of selectService.multiSelectBadges" class="badge">
-              {{ item.label }}
-              <fa-icon (click)="writeValue(item, $event)" [icon]="['fal', 'times']"></fa-icon>
-            </span>
-
-            <span *ngIf="selectService.showMore" class="badge badge--overflow">...</span>
-
-            <div *ngIf="selectService.showMore" class="badges__modal">
-              <div class="badges__overflow">
-                <ng-container *ngFor="let item of selectService.valueObject; let i = index">
-                  <div *ngIf="!selectService.multiSelectBadges.includes(item)">
-                    <span>{{ item.label }}</span>
-                    <fa-icon (click)="writeValue(item, $event)" [icon]="['fal', 'times']"></fa-icon>
-                  </div>
-                </ng-container>
-              </div>
-            </div>
-          </div>
+          <span *ngIf="selectService.value.length > 0">{{ selectService.value.length }} Selected</span>
         </div>
 
-        <span class="usi-input-group__suffix usi-input-group__suffix--multiselect">{{ selectService.value.length }} Selected</span>
+        <!--          <div class="badges" #badges>-->
+        <!--            <span *ngFor="let item of selectService.multiSelectBadges" class="badge">-->
+        <!--              {{ item.label }}-->
+        <!--              <fa-icon (click)="writeValue(item, $event)" [icon]="['fal', 'times']"></fa-icon>-->
+        <!--            </span>-->
+
+        <!--            <span *ngIf="selectService.showMore" class="badge badge&#45;&#45;overflow">...</span>-->
+
+        <!--            <div *ngIf="selectService.showMore" class="badges__modal">-->
+        <!--              <div class="badges__overflow">-->
+        <!--                <ng-container *ngFor="let item of selectService.valueObject; let i = index">-->
+        <!--                  <div *ngIf="!selectService.multiSelectBadges.includes(item)">-->
+        <!--                    <span>{{ item.label }}</span>-->
+        <!--                    <fa-icon (click)="writeValue(item, $event)" [icon]="['fal', 'times']"></fa-icon>-->
+        <!--                  </div>-->
+        <!--                </ng-container>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+
+        <!--        <span class="usi-input-group__suffix usi-input-group__suffix&#45;&#45;multiselect">{{ selectService.value.length }} Selected</span>-->
 
         <fa-icon
           *ngIf="selectService.showOptions"
@@ -85,6 +79,16 @@ import { SelectData } from 'usi-campfire/utils';
       </div>
 
       <ul *ngIf="selectService.showOptions && usiData" class="usi-select__options" role="group">
+        <li *ngIf="usiSearchable" class="usi-select__option--search usi-select__option--controls">
+          <fa-icon class="usi-input-group__prefix usi-input-group__prefix--multiselect" [icon]="['fal', 'magnifying-glass']"></fa-icon>
+          <input class="usi-select__search" (keyup)="searchOptions($any($event).target.value)" placeholder="Search" type="text" />
+        </li>
+
+        <li class="usi-select__option usi-select__option--controls">
+          <label (usiChange)="showSelectedOnly($event)" usi-checkbox>Show Selected Only</label>
+          <span class="usi-select__clear-all" (click)="selectService.clearAll()">Clear All</span>
+        </li>
+
         <li *ngIf="manipulatedData.size === 0" class="usi-select__no-result">{{ usiNoResultMessage }}</li>
 
         <ng-container *ngFor="let options of manipulatedData | keyvalue: asIsOrder">
@@ -111,7 +115,17 @@ import { SelectData } from 'usi-campfire/utils';
         </ng-container>
       </ul>
 
-      <ul *ngIf="selectService.showOptions && !usiData" class="usi-select__options" role="group" #contentWrapper>
+      <ul *ngIf="selectService.showOptions && !usiData" class="usi-select__options" role="group">
+        <li *ngIf="usiSearchable" class="usi-select__option--search usi-select__option--controls">
+          <fa-icon class="usi-input-group__prefix usi-input-group__prefix--multiselect" [icon]="['fal', 'magnifying-glass']"></fa-icon>
+          <input class="usi-select__search" (keyup)="searchOptions($any($event).target.value)" placeholder="Search" type="text" />
+        </li>
+
+        <li class="usi-select__option usi-select__option--controls">
+          <label (usiChange)="showSelectedOnly($event)" usi-checkbox>Show Selected Only</label>
+          <span class="usi-select__clear-all" (click)="selectService.clearAll()">Clear All</span>
+        </li>
+
         <ng-content></ng-content>
       </ul>
     </div>
@@ -126,13 +140,25 @@ import { SelectData } from 'usi-campfire/utils';
     UsiSelectService,
   ],
 })
-export class UsiMultiselectComponent extends UsiSelectComponent implements AfterViewInit {
-  @ViewChild('badges', { static: true }) badges: any;
-  @ViewChild('contentWrapper') content: ElementRef | undefined;
+export class UsiMultiselectComponent extends UsiSelectComponent {
+  // @ViewChild('badges', { static: true }) badges: any;
+  // @ViewChild('contentWrapper') content: ElementRef | undefined;
 
-  ngAfterViewInit() {
-    if (this.badges) {
-      this.selectService.inputWidth = this.badges.nativeElement.scrollWidth - 36;
+  // ngAfterViewInit() {
+  //   if (this.badges) {
+  //     this.selectService.inputWidth = this.badges.nativeElement.scrollWidth - 36;
+  //   }
+  // }
+
+  public showSelectedOnly(event: boolean): void {
+    this.selectService.showSelectedOnly = event;
+
+    if (event) {
+      this.manipulatedData.clear();
+      this.manipulatedData.set(undefined, this.selectService.valueObject);
+    } else {
+      this.groupedData = this.groupBy(this.usiData!, (data) => data.group);
+      this.manipulatedData = this.groupedData;
     }
   }
 
@@ -162,15 +188,15 @@ export class UsiMultiselectComponent extends UsiSelectComponent implements After
       if (this.selectService.valueObject.includes(value)) {
         this.selectService.value = [...this.selectService.value.filter((item: string) => item !== value.value)];
         this.selectService.valueObject = [...this.selectService.valueObject.filter((item: SelectData) => item.value !== value.value)];
-        this.selectService.multiSelectBadges.splice(this.selectService.multiSelectBadges.indexOf(value), 1);
 
-        this.selectService.checkOverflow(value, true);
+        // this.selectService.multiSelectBadges.splice(this.selectService.multiSelectBadges.indexOf(value), 1);
+        // this.selectService.checkOverflow(value, true);
       } else {
         this.selectService.value = [...this.selectService.value, value.value];
         this.selectService.valueObject = [...this.selectService.valueObject, value];
-        this.selectService.multiSelectBadges.push(value);
 
-        this.selectService.checkOverflow(value, false);
+        // this.selectService.multiSelectBadges.push(value);
+        // this.selectService.checkOverflow(value, false);
       }
     }
   }
