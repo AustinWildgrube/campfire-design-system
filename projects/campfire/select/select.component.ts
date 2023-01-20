@@ -142,7 +142,6 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   hasError: boolean | null = false;
   touched: boolean | null = false;
   hasValue: boolean = false;
-  numberOfOptions: number = 0;
   uid: string = '';
 
   groupedData: Map<string, SelectData[]> = new Map();
@@ -290,7 +289,6 @@ export class UsiSelectComponent implements OnChanges, OnInit {
    */
   protected groupBy(list: SelectData[], keyGetter: (arg0: any) => any): Map<string, SelectData[]> {
     const map = new Map();
-    this.numberOfOptions = list.length;
 
     list.forEach((item: SelectData) => {
       const key = keyGetter(item);

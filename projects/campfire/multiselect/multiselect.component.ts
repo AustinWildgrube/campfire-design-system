@@ -30,29 +30,6 @@ import { SelectData } from 'usi-campfire/utils';
           <span *ngIf="selectService.value.length > 0">{{ selectService.value.length }} Selected</span>
         </div>
 
-        <!--          <div class="badges" #badges>-->
-        <!--            <span *ngFor="let item of selectService.multiSelectBadges" class="badge">-->
-        <!--              {{ item.label }}-->
-        <!--              <fa-icon (click)="writeValue(item, $event)" [icon]="['fal', 'times']"></fa-icon>-->
-        <!--            </span>-->
-
-        <!--            <span *ngIf="selectService.showMore" class="badge badge&#45;&#45;overflow">...</span>-->
-
-        <!--            <div *ngIf="selectService.showMore" class="badges__modal">-->
-        <!--              <div class="badges__overflow">-->
-        <!--                <ng-container *ngFor="let item of selectService.valueObject; let i = index">-->
-        <!--                  <div *ngIf="!selectService.multiSelectBadges.includes(item)">-->
-        <!--                    <span>{{ item.label }}</span>-->
-        <!--                    <fa-icon (click)="writeValue(item, $event)" [icon]="['fal', 'times']"></fa-icon>-->
-        <!--                  </div>-->
-        <!--                </ng-container>-->
-        <!--              </div>-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-
-        <!--        <span class="usi-input-group__suffix usi-input-group__suffix&#45;&#45;multiselect">{{ selectService.value.length }} Selected</span>-->
-
         <fa-icon
           *ngIf="selectService.showOptions"
           class="usi-input-group__suffix usi-input-group__suffix--password"
@@ -141,15 +118,6 @@ import { SelectData } from 'usi-campfire/utils';
   ],
 })
 export class UsiMultiselectComponent extends UsiSelectComponent {
-  // @ViewChild('badges', { static: true }) badges: any;
-  // @ViewChild('contentWrapper') content: ElementRef | undefined;
-
-  // ngAfterViewInit() {
-  //   if (this.badges) {
-  //     this.selectService.inputWidth = this.badges.nativeElement.scrollWidth - 36;
-  //   }
-  // }
-
   /**
    * Only show the selected values when event is true
    * @param { boolean } event | whether to show selected only or not
@@ -201,15 +169,9 @@ export class UsiMultiselectComponent extends UsiSelectComponent {
       if (this.selectService.valueObject.includes(value)) {
         this.selectService.value = [...this.selectService.value.filter((item: string) => item !== value.value)];
         this.selectService.valueObject = [...this.selectService.valueObject.filter((item: SelectData) => item.value !== value.value)];
-
-        // this.selectService.multiSelectBadges.splice(this.selectService.multiSelectBadges.indexOf(value), 1);
-        // this.selectService.checkOverflow(value, true);
       } else {
         this.selectService.value = [...this.selectService.value, value.value];
         this.selectService.valueObject = [...this.selectService.valueObject, value];
-
-        // this.selectService.multiSelectBadges.push(value);
-        // this.selectService.checkOverflow(value, false);
       }
     }
   }
