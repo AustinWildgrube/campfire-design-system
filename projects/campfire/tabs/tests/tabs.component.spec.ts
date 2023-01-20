@@ -101,4 +101,14 @@ describe('UsiTabsComponent', () => {
     const tabThreeValue = tabsContent[2].textContent;
     expect(tabValue !== tabThreeValue).toBeTruthy();
   });
+
+  it('should emit an event when a tab is clicked', () => {
+    const spy = spyOn(component.usiTabChange, 'emit');
+    const tabs = debugElement.nativeElement.querySelectorAll('.usi-tab-group__tab');
+
+    component.selectTab(tabs[1], 1);
+    fixture.detectChanges();
+
+    expect(spy).toHaveBeenCalledWith(1);
+  });
 });

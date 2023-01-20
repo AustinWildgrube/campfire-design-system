@@ -1,4 +1,16 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, ContentChildren, ElementRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  Input,
+  Output,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 
 import { UsiTabComponent } from './tab/tab.component';
 
@@ -46,6 +58,9 @@ export class UsiTabsComponent implements AfterViewChecked {
   @ViewChildren('tabWidth')
   tabWidth!: QueryList<ElementRef>;
 
+  @Output()
+  usiTabChange: EventEmitter<number> = new EventEmitter<number>();
+
   @Input()
   @InputBoolean()
   usiDisabled?: BooleanInput;
@@ -90,7 +105,7 @@ export class UsiTabsComponent implements AfterViewChecked {
       }
     });
 
-    // If there is no active tab set, activate the first
+    // if there is no active tab set, activate the first
     if (activeTabs?.length === 0 && this.tabs) {
       this.selectTab(this.tabs.first, 0);
     }
@@ -127,13 +142,11 @@ export class UsiTabsComponent implements AfterViewChecked {
       // deactivate all tabs
       this.tabs?.toArray().forEach((tab: UsiTabComponent) => (tab.usiActive = false));
 
-      // activate the tab the user has clicked on.
       tab.usiActive = true;
-
-      // set selectedTab property
       this.selectedTab = index;
 
       this.getTabWidths();
+      this.usiTabChange.emit(index);
     }
   }
 }
