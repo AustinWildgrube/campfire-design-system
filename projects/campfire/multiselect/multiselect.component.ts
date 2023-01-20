@@ -150,6 +150,11 @@ export class UsiMultiselectComponent extends UsiSelectComponent {
   //   }
   // }
 
+  /**
+   * Only show the selected values when event is true
+   * @param { boolean } event | whether to show selected only or not
+   * @return
+   */
   public showSelectedOnly(event: boolean): void {
     this.selectService.showSelectedOnly = event;
 
@@ -157,7 +162,10 @@ export class UsiMultiselectComponent extends UsiSelectComponent {
       this.manipulatedData.clear();
       this.manipulatedData.set(undefined, this.selectService.valueObject);
     } else {
-      this.groupedData = this.groupBy(this.usiData!, (data) => data.group);
+      if (this.usiData) {
+        this.groupedData = this.groupBy(this.usiData, (data) => data.group);
+      }
+
       this.manipulatedData = this.groupedData;
     }
   }
@@ -183,6 +191,11 @@ export class UsiMultiselectComponent extends UsiSelectComponent {
     this.selectService.updateChanges();
   }
 
+  /**
+   * Since we store the values in our select service we need to write to that
+   * @param { SelectData } value | the value to write
+   * @private
+   */
   private writeToService(value: SelectData): void {
     if (!value.disabled) {
       if (this.selectService.valueObject.includes(value)) {
