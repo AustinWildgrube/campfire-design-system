@@ -1,5 +1,5 @@
 ```ts
-import { UsiDatePickerModule } from 'usi-campfire/datepicker';
+import { UsiDatePickerModule } from 'usi-campfire/date-picker';
 ```
 
 > Campfire uses the tiny 2kB library [dayjs](https://day.js.org/) for date manipulation and localization. If dayjs is not installed you will **need** to run the
@@ -14,7 +14,7 @@ A date picker, popup calendar, date and time picker, or time picker is a graphic
 and/or time from a time range. The use of a datepicker allows the developer to control the consistency of the date format and the date range.
 
 The date picker component is a wrapper around the `<usi-input>` component. This means that attributes specified in the `<usi-input>` component are also
-available in the `<usi-datepicker>` component. This includes the following attributes:
+available in the `<usi-date-picker>` component. This includes the following attributes:
 
   * `usiPlaceholder` - The placeholder text of the select component.
   * `usiLabel` - The label text of the select component.
@@ -25,44 +25,44 @@ available in the `<usi-datepicker>` component. This includes the following attri
   * `usiHint` - The hint text to display below the select component.
 
 ```html
-<usi-datepicker usiPlaceholder="placeholder" usiLabel="label"></usi-datepicker>
+<usi-date-picker usiPlaceholder="placeholder" usiLabel="label"></usi-date-picker>
 ```
 
 ## Formatting Dates
-The date picker component uses the [Day.js](https://day.js.org/) library to format dates. The `<usi-datepicker>` component will accept any format that Day.js
+The date picker component uses the [Day.js](https://day.js.org/) library to format dates. The `<usi-date-picker>` component will accept any format that Day.js
 supports. A list of these formats can be found [here](https://day.js.org/docs/en/display/format). The localized formats are also supported. Strings may be
 added to the dates by using square brackets. For example, `[on]` will add the word "on" to the date. The following example will display the date as
 "on 12/25/2019".
 
 ```html
-<usi-datepicker usiFormat="[on] MM/DD/YYYY"></usi-datepicker>
+<usi-date-picker usiDateFormat="[on] MM/DD/YYYY"></usi-date-picker>
 ```
 
 There are two different formatting options. The first, being `usiDateFormat` is how the date within the input is displayed, and the second is
-`usiDateOutputFormat`. By default, the `<usi-datepicker>` will use `'L'` as the default output format and `MM/DD/YYYY` as the default output format.
+`usiDateOutputFormat`. By default, the `<usi-date-picker>` will use `'L'` as the default output format and `MM/DD/YYYY` as the default output format.
 
 ```html
-<usi-datepicker usiDateFormat="LL" usiDateOutputFormat="dd, MMMM D YYYY"></usi-datepicker>
+<usi-date-picker usiDateFormat="LL" usiDateOutputFormat="dd, MMMM D YYYY"></usi-date-picker>
 ```
 
 ## Selection Modes
-The `<usi-datepicker>` component has three different selection modes: `single`, `multiple`, and `range`. The first is the default mode, which is single day
+The `<usi-date-picker>` component has three different selection modes: `single`, `multiple`, and `range`. The first is the default mode, which is single day
 selection. This allows the user to choose one day after which will close the date picker. If the user opens the date picker again and chooses a different date,
 the value will also change. The second mode is a multi-day selection, which allows the user to choose multiple days. The selection of dates will be output in an
 array. The third mode is range selection. This allows the user to choose a range of dates. The selection of dates will be output in an array, with the first
 value being the start date and the second value being the end date.
 
 ```html
-<usi-datepicker usiSelectionMode="multiple"></usi-datepicker>
+<usi-date-picker usiSelectionMode="multiple"></usi-date-picker>
 ```
 
 ## Localization
-The `<usi-datepicker>` component supports localization. The default language is English, but the language can be changed by setting the `usiLocalization`
+The `<usi-date-picker>` component supports localization. The default language is English, but the language can be changed by setting the `usiLocalization`
 attribute. Since we are using Day.js for localization, the supported languages can be found [here](https://github.com/iamkun/dayjs/tree/dev/src/locale).
 
 ```html
 <!-- Mexico Spanish Localization -->
-<usi-datepicker usiLocalization="es-mx"></usi-datepicker>
+<usi-date-picker usiLocalization="es-mx"></usi-date-picker>
 ```
 
 ## Disabling Dates
@@ -71,7 +71,7 @@ attribute takes an array of numbers, where 0 is Sunday, 1 is Monday, and so on. 
 
 ```html
 <!-- Disables Sundays and Fridays -->
-<usi-datepicker usiDisabledDays="[0, 5]"></usi-datepicker>
+<usi-date-picker usiDisabledDays="[0, 5]"></usi-date-picker>
 ```
 
 The second way to disable dates is to disable specific dates using the `usiDisabledDates` attribute. This attribute takes an array of dates and will only
@@ -85,7 +85,7 @@ disabledDates: Date[] = [this.oneDayAgo, this.oneDayInTheFuture];
 ```
 
 ```html
-<usi-datepicker [usiDisabledDates]="disabledDates"></usi-datepicker>
+<usi-date-picker [usiDisabledDates]="disabledDates"></usi-date-picker>
 ```
 
 The third way to disable dates is by setting a minimum and/or maximum date using the `usiMinDate` and `usiMaxDate` attributes. This will disable all dates
@@ -97,7 +97,7 @@ fiveDaysInTheFuture: Date = new Date(new Date().setDate(new Date().getDate() + 5
 ```
 
 ```html
-<usi-datepicker [usiMinDate]="fiveDaysAgo" [usiMaxDate]="fiveDaysInTheFuture"></usi-datepicker>
+<usi-date-picker [usiMinDate]="fiveDaysAgo" [usiMaxDate]="fiveDaysInTheFuture"></usi-date-picker>
 ```
 
 ## Multiple Months
@@ -105,7 +105,7 @@ Occasionally, it is necessary to display more than one month at a time. For exam
 two or three months at a time. This can be done by setting the `usiNumberOfMonths` attribute to the number of months you want to display.
 
 ```html
-<usi-datepicker [usiNumberOfMonths]="3"></usi-datepicker>
+<usi-date-picker [usiNumberOfMonths]="3"></usi-date-picker>
 ```
 
 ## Start Day of the Week
@@ -114,8 +114,8 @@ can either take the English lowercase name of the day or the number of the day. 
 
 ```html
 <!-- Starts on Monday -->
-<usi-datepicker usiFirstDayOfWeek="monday"></usi-datepicker>
-<usi-datepicker [usiFirstDayOfWeek]="1"></usi-datepicker>
+<usi-date-picker usiFirstDayOfWeek="monday"></usi-date-picker>
+<usi-date-picker [usiFirstDayOfWeek]="1"></usi-date-picker>
 ```
 
 ## Start View
@@ -124,7 +124,7 @@ will open the calendar to the selected view **only** on the first open. After th
 user. The values for this attribute are `day`, `month`, and `year`.
 
 ```html
-<usi-datepicker usiView="month"></usi-datepicker>
+<usi-date-picker usiView="month"></usi-date-picker>
 ```
 
 ## Customization
@@ -133,7 +133,6 @@ the root selector. The list of overridable variables are as follows:
 
 ```css
 :root {
-    /* Date Picker */
   --date-picker-headings-text-color: var(--gray);
 
   --date-picker-direction-icons-text-color: var(--gray);
@@ -157,5 +156,5 @@ the root selector. The list of overridable variables are as follows:
 ```
 
 ```html
-<usi-datepicker class="custom-datepicker"></usi-datepicker>
+<usi-date-picker class="custom-datepicker"></usi-date-picker>
 ```
