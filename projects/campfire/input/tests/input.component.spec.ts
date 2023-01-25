@@ -1,7 +1,6 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
 
 import { UsiInputComponent } from '../input.component';
 
@@ -14,7 +13,7 @@ describe('UsiInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, FormsModule, UsiSharedModule],
+      imports: [FormsModule, ReactiveFormsModule, UsiSharedModule],
       declarations: [UsiInputComponent],
       providers: [FormGroupDirective],
     }).compileComponents();
@@ -24,6 +23,7 @@ describe('UsiInputComponent', () => {
     fixture = TestBed.createComponent(UsiInputComponent);
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
+
     fixture.detectChanges();
   });
 
@@ -34,50 +34,60 @@ describe('UsiInputComponent', () => {
     expect(debugElement.nativeElement.querySelector('.usi-input-group')).toBeTruthy();
   });
 
-  it('input should have value', () => {
-    component.usiValue = 'test';
+  it('should change the type of the input', () => {
+    expect(debugElement.nativeElement.querySelector('.usi-input-group input').type).toBe('text');
+
+    component.usiType = 'number';
     fixture.detectChanges();
 
-    const input = debugElement.query(By.css('.usi-input-group__input'));
-    expect(input.nativeElement.classList).toContain('usi-input-group__input--filled');
-    expect(input.nativeElement.value).toBe('test');
-  });
+    expect(debugElement.nativeElement.querySelector('.usi-input-group input').type).toBe('number');
 
-  it('should disable the input', () => {
-    component.setDisabledState(true);
-    fixture.detectChanges();
-
-    const input = debugElement.query(By.css('.usi-input-group__input'));
-    expect(input.nativeElement.disabled).toBeTruthy();
-    expect(component.control.disabled).toBe(true);
-  });
-
-  it('should add the correct placeholder', () => {
-    component.usiPlaceholder = 'test';
-    fixture.detectChanges();
-
-    expect(debugElement.query(By.css('.usi-input-group__input')).nativeElement.placeholder).toBe('test');
-  });
-
-  it('should show password when icon is clicked', () => {
     component.usiType = 'password';
     component.usiPassword = true;
     fixture.detectChanges();
 
-    expect(component.usiType).toBe('password');
+    expect(debugElement.nativeElement.querySelector('.usi-input-group input').type).toBe('password');
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__suffix--password')).toBeTruthy();
 
-    const input = debugElement.query(By.css('.usi-input-group__input'));
-    expect(input.nativeElement.classList).toContain('usi-input-group__input--suffix');
-
-    const suffix = debugElement.query(By.css('.usi-input-group__suffix'));
-    expect(suffix).toBeDefined();
-    expect(suffix).not.toBeNull();
-    expect(suffix.nativeElement.classList).toContain('usi-input-group__suffix--password');
-
-    suffix.nativeElement.click();
+    component.usiType = 'email';
     fixture.detectChanges();
 
-    expect(component.usiType).toBe('text');
+    expect(debugElement.nativeElement.querySelector('.usi-input-group input').type).toBe('email');
+  });
+
+  it('should have a placeholder', () => {
+    component.usiPlaceholder = 'placeholder';
+    fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelector('.usi-input-group input').placeholder).toBe('placeholder');
+  });
+
+  // TODO: error template
+
+  it('should be disabled', () => {
+    expect(component.formControlValue.disabled).toBeFalsy();
+
+    component.formControlValue.disable();
+    fixture.detectChanges();
+
+    expect(component.formControlValue.disabled).toBeTruthy();
+  });
+
+  it('should be a required input', () => {
+    component.usiRequired = true;
+    fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelector('.usi-input-group input').required).toBeTruthy();
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__label').textContent).toBe('  *');
+
+    // TODO: expand to capture form input
+  });
+
+  it('should force an error', () => {
+    component.usiForceError = true;
+    fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__input--error')).toBeTruthy();
   });
 
   it('should have a prefix and suffix icon', () => {
@@ -85,37 +95,56 @@ describe('UsiInputComponent', () => {
     component.usiSuffix = 'coffee';
     fixture.detectChanges();
 
-    const input = debugElement.query(By.css('.usi-input-group__input'));
-    const inputLabel = debugElement.query(By.css('.usi-input-group__label'));
-
-    const prefix = debugElement.query(By.css('.usi-input-group__prefix'));
-    expect(prefix).toBeDefined();
-    expect(prefix).not.toBeNull();
-    expect(input.nativeElement.classList).toContain('usi-input-group__input--prefix');
-    expect(inputLabel.nativeElement.classList).toContain('usi-input-group__label--prefix');
-
-    const suffix = debugElement.query(By.css('.usi-input-group__suffix'));
-    expect(suffix).toBeDefined();
-    expect(suffix).not.toBeNull();
-    expect(input.nativeElement.classList).toContain('usi-input-group__input--suffix');
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__prefix')).toBeTruthy();
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__input--prefix')).toBeTruthy();
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__suffix')).toBeTruthy();
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__input--suffix')).toBeTruthy();
   });
 
-  it('should display a hint', () => {
-    component.usiHint = 'test';
+  it('should show a hint', () => {
+    component.usiHint = 'hint';
     fixture.detectChanges();
 
-    const hint = debugElement.query(By.css('.usi-input-group__hint'));
-    expect(hint).toBeDefined();
-    expect(hint).not.toBeNull();
-    expect(hint.nativeElement.innerText).toBe('test');
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__hint')).toBeTruthy();
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__hint').textContent).toBe('hint');
+  });
+
+  it('should remove the hint if there is an error', () => {
+    component.usiHint = 'hint';
+    component.usiForceError = true;
+    fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__hint').textContent).toBeFalsy();
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__hint--error')).toBeTruthy();
   });
 
   it('should have a label', () => {
-    component.usiLabel = 'test';
+    component.usiLabel = 'label';
     fixture.detectChanges();
 
-    const label = debugElement.query(By.css('.usi-input-group__label'));
-    expect(label).toBeDefined();
-    expect(label).not.toBeNull();
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__label').textContent).toBe(' label ');
   });
+
+  it('should have a default value', async () => {
+    component.usiValue = 'default';
+    component.ngOnInit();
+
+    await fixture.detectChanges();
+
+    expect(component.formControlValue.value).toBe('default');
+  });
+
+  it('should have a floating label when there is text', async () => {
+    component.usiLabel = 'label';
+    await fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__input--filled')).toBeFalsy();
+
+    component.writeValue('text');
+    await fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__input--filled')).toBeTruthy();
+  });
+
+  // TODO: Create tests for ngModel and formControlName
 });

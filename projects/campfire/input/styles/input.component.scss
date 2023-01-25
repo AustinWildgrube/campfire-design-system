@@ -1,4 +1,7 @@
 @use '../../campfire.css';
+@use '@angular/cdk';
+
+@include cdk.text-field-autofill();
 
 .usi-input-group {
   display: block;

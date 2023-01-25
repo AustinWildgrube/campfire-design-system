@@ -1,20 +1,7 @@
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, forwardRef, Input, OnChanges, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
+import { ControlValueAccessor, FormControl, FormGroupDirective, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { AutofillEvent, AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  forwardRef,
-  HostListener,
-  Injector,
-  Input,
-  NgZone,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-  TemplateRef,
-} from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroupDirective, NgControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
@@ -52,10 +39,12 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
             'usi-input-group__input--prefix': usiPrefix,
             'usi-input-group__input--suffix': usiSuffix || usiPassword
           }"
-          [formControl]="control"
+          [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
           [attr.aria-labelledby]="uid"
-          (blur)="checkValidations($any($event).target.value)"
+          [required]="!!usiRequired"
+          (input)="writeValue($any($event).target.value)"
+          (blur)="checkValidations()"
           *ngSwitchCase="'text'"
           type="text"
         />
@@ -68,10 +57,12 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
             'usi-input-group__input--prefix': usiPrefix,
             'usi-input-group__input--suffix': usiSuffix || usiPassword
           }"
-          [formControl]="control"
+          [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
           [attr.aria-labelledby]="uid"
-          (blur)="checkValidations($any($event).target.value)"
+          [required]="!!usiRequired"
+          (input)="writeValue($any($event).target.value)"
+          (blur)="checkValidations()"
           *ngSwitchCase="'number'"
           type="number"
         />
@@ -84,10 +75,12 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
             'usi-input-group__input--prefix': usiPrefix,
             'usi-input-group__input--suffix': usiSuffix || usiPassword
           }"
-          [formControl]="control"
+          [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
           [attr.aria-labelledby]="uid"
-          (blur)="checkValidations($any($event).target.value)"
+          [required]="!!usiRequired"
+          (input)="writeValue($any($event).target.value)"
+          (blur)="checkValidations()"
           *ngSwitchCase="'email'"
           type="email"
         />
@@ -100,10 +93,12 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
             'usi-input-group__input--prefix': usiPrefix,
             'usi-input-group__input--suffix': usiSuffix || usiPassword
           }"
-          [formControl]="control"
+          [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
           [attr.aria-labelledby]="uid"
-          (blur)="checkValidations($any($event).target.value)"
+          [required]="!!usiRequired"
+          (input)="writeValue($any($event).target.value)"
+          (blur)="checkValidations()"
           *ngSwitchCase="'password'"
           type="password"
         />
@@ -120,11 +115,9 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
         {{ usiLabel }} <span *ngIf="usiRequired">*</span>
       </label>
 
-      <span *ngIf="usiHint && !hasError && !usiForceError" class="usi-input-group__hint">
-        {{ usiHint }}
-      </span>
+      <span *ngIf="usiHint && !hasError && !usiForceError" class="usi-input-group__hint">{{ usiHint }}</span>
 
-      <div *ngIf="(usiError && touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
+      <div *ngIf="(usiError && formControlValue.touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
         <ng-container *ngTemplateOutlet="usiError">{{ usiError }}</ng-container>
       </div>
     </div>
@@ -177,83 +170,101 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, O
   usiLabel?: string;
 
   @Input()
-  get usiValue(): any {
-    return this.getValue();
-  }
+  usiValue?: string | number;
 
-  set usiValue(v: any) {
-    if (v !== this.getValue() && v !== '' && v !== null) {
-      this.writeValue(v);
-      this.isEmpty = false;
-      this.touched = true;
-    }
-  }
-
-  @HostListener('document:click', ['$event'])
-  formClickEvent(event: any) {
-    if (event && event.path) {
-      if (event.path[0].getAttribute('type') === 'submit' || (event.path[0].offsetParent && event.path[0].offsetParent.form)) {
-        this.checkValidations(this.control.value, false);
-      }
-    }
-  }
-
-  @HostListener('change', ['$event.target'])
-  checkAutofill(target: { value: any }) {
-    this.ngZone.run(() => {
-      if (target.value) {
-        this.checkValidations(target.value, false);
-      }
-    });
-  }
+  @Input()
+  formControlName?: string;
 
   uid: string = '';
   isEmpty: boolean = true;
   hasError: boolean | null = false;
-  touched: boolean | null = false;
-
-  public control: FormControl = new FormControl();
+  formControlValue: FormControl = new FormControl();
 
   constructor(
     public parentFormGroup: FormGroupDirective,
-    private injector: Injector,
     private cdr: ChangeDetectorRef,
-    private ngZone: NgZone,
-    private platform: Platform
+    private platform: Platform,
+    private autofillMonitor: AutofillMonitor,
+    private elementRef: ElementRef
   ) {
     this.uid = UniqueId();
-  }
 
-  ngOnInit() {
-    this.control.valueChanges.subscribe(() => {
-      const value = this.getValue();
-      this.checkValidations(value);
-      this._onChange(value);
+    // check if parent form is submitted
+    this.parentFormGroup.ngSubmit.subscribe(() => {
+      this.checkValidations();
     });
   }
 
-  ngAfterViewInit(): void {
-    this.checkForAutofill();
+  ngOnInit(): void {
+    if (this.usiValue) {
+      this.writeValue(this.usiValue);
+    }
+  }
 
-    const ngControl: NgControl | null = this.injector.get(NgControl, null);
-    if (ngControl?.control?.hasValidator(Validators.required)) {
-      this.usiRequired = true;
+  ngAfterViewInit(): void {
+    this.formControlValue.markAsUntouched();
+
+    if (this.formControlName) {
+      // copy errors from parent form control to mark input as invalid
+      this.parentFormGroup.control.controls[this.formControlName].valueChanges.subscribe(() => {
+        if (this.parentFormGroup.control.controls[this.formControlName!].errors) {
+          this.formControlValue.setErrors(this.parentFormGroup.control.controls[this.formControlName!].errors);
+        }
+      });
+
+      if (this.parentFormGroup.control.controls[this.formControlName].hasError('required')) {
+        this.usiRequired = true;
+        this.formControlValue.setValidators(Validators.required);
+      }
+
+      if (this.parentFormGroup.control.controls[this.formControlName].disabled) {
+        this.usiDisabled = true;
+        this.formControlValue.disable();
+      }
     }
 
-    this.checkForExistingValidations();
+    // check if the value was autofilled
+    this.autofillMonitor.monitor(this.elementRef.nativeElement.querySelector('input')).subscribe((event: AutofillEvent) => {
+      this.isEmpty = !event.isAutofilled;
+    });
+
+    this.cdr.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { usiDisabled, usiRequired } = changes;
+    const { usiDisabled, usiRequired, usiValue } = changes;
 
     if (usiDisabled) {
-      this.setDisabledState(usiDisabled.currentValue);
+      this.usiDisabled = usiDisabled.currentValue;
+
+      if (usiDisabled.currentValue) {
+        this.formControlValue.disable();
+      } else {
+        this.formControlValue.enable();
+      }
     }
 
     if (usiRequired) {
-      this.checkForExistingValidations();
+      this.usiRequired = usiRequired.currentValue;
+    }
+
+    if (usiValue) {
+      this.writeValue(usiValue.currentValue);
     }
   }
+
+  /**
+   * This function is left empty to satisfy the ControlValueAccessor interface
+   * @param { any } _ | Unused
+   * @return
+   */
+  public onChange = (_: any): void => {};
+
+  /**
+   * This function is left empty to satisfy the ControlValueAccessor interface
+   * @return
+   */
+  public onTouched = (): void => {};
 
   /**
    * Write form value to the DOM element (model => view)
@@ -261,15 +272,9 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, O
    * @return
    */
   public writeValue(value: any): void {
-    this.onTouched();
-
-    if (value && typeof value === 'object') {
-      this.control.setValue(value.value);
-    } else {
-      this.control.setValue(value);
-    }
-
-    this.checkValidations(value);
+    this.formControlValue.setValue(value);
+    this.usiValue = value;
+    this.checkValidations();
   }
 
   /**
@@ -277,8 +282,8 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, O
    * @param { (value: string) => void } fn | The function to overwrite with
    * @return
    */
-  public registerOnChange(fn: (value: string) => void): void {
-    this._onChange = fn;
+  public registerOnChange(fn: any): void {
+    this.formControlValue.valueChanges.subscribe(fn);
   }
 
   /**
@@ -286,49 +291,8 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, O
    * @param { () => any } fn | The function to overwrite with
    * @return
    */
-  public registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  /**
-   * This function is left empty to satisfy the ControlValueAccessor interface
-   * @param { string } _value | Unused
-   * @return
-   */
-  private _onChange = (_value: string): void => undefined;
-
-  /**
-   * This function is left empty to satisfy the ControlValueAccessor interface
-   * @return
-   */
-  public onTouched = (): void => undefined;
-
-  /**
-   * Set the disabled state of the input
-   * @param { boolean } isDisabled | The state of the input
-   * @return
-   */
-  public setDisabledState(isDisabled: boolean): void {
-    isDisabled ? this.control.disable() : this.control.enable();
-  }
-
-  /**
-   * We need to have custom validations to work with the floating labels
-   * @param { string | number | { value: string } } value | The value to check
-   * @param { boolean } touched | Whether the user has touched the input
-   * @return
-   */
-  public async checkValidations(value: string | number | object | null, touched: boolean = true): Promise<void> {
-    setTimeout(() => {
-      this.isEmpty = value === '' || value === null;
-
-      if (touched || this.parentFormGroup.submitted) {
-        this.control.markAllAsTouched();
-        this.touched = this.control.touched;
-      }
-
-      this.hasError = this.control.invalid && (this.control.dirty || this.control.touched || this.parentFormGroup.submitted);
-    }, 0);
+  public registerOnTouched(fn: any): void {
+    this.formControlValue.markAsTouched();
   }
 
   /**
@@ -340,57 +304,17 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, O
   }
 
   /**
-   * We can check for validations that are presented in the form control even
-   * if they are not provided on the input itself.
-   * @private
+   * We need to have custom validations to work with the floating labels
+   * @return
    */
-  private checkForExistingValidations(): void {
-    if (this.control.hasValidator(Validators.required) || this.usiRequired) {
-      if (!this.control.hasValidator(Validators.required)) {
-        this.control.setValidators([Validators.required]);
-      } else if (!this.usiRequired) {
-        this.usiRequired = true;
-      }
+  public checkValidations(): void {
+    this.formControlValue.markAsTouched();
 
-      this.cdr.detectChanges();
+    if (this.formControlName) {
+      this.parentFormGroup.control.controls[this.formControlName].markAsTouched();
     }
 
-    if (this.usiDisabled) {
-      this.control.disable();
-    }
-
-    if (this.usiForceError) {
-      this.hasError = true;
-      this.control.hasError('');
-    }
-  }
-
-  /**
-   * Get the value of the form control
-   * @return string | The value of the form control
-   */
-  private getValue(): string {
-    if (this.control.value && typeof this.control.value === 'object') {
-      return this.control.value.value;
-    }
-
-    return this.control.value;
-  }
-
-  /**
-   * Check for autofill by seeing if the input has the :-internal-autofill-selected pseudo selector
-   * @private
-   */
-  private checkForAutofill(): void {
-    const input = document.querySelector('.usi-input-group__input');
-
-    // This pseudo selector does not exist in Firefox
-    if (this.platform.isBrowser && !this.platform.FIREFOX) {
-      setTimeout(() => {
-        if (input?.matches(':-internal-autofill-selected')) {
-          this.isEmpty = false;
-        }
-      }, 600);
-    }
+    this.isEmpty = this.usiValue === null || this.usiValue === '';
+    this.hasError = this.formControlValue.invalid && (this.formControlValue.dirty || this.formControlValue.touched || this.parentFormGroup.submitted);
   }
 }
