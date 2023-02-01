@@ -2,9 +2,9 @@ import { Component, forwardRef, Input, OnInit, TemplateRef, ViewChild } from '@a
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import dayjs from 'dayjs';
-import * as isBetween from 'dayjs/plugin/isBetween';
-import * as localeData from 'dayjs/plugin/localeData';
-import * as localizedFormat from 'dayjs/plugin/localizedFormat';
+import isBetween from 'dayjs/plugin/isBetween';
+import localeData from 'dayjs/plugin/localeData';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 
 import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-campfire/utils';
 
@@ -681,7 +681,7 @@ export class UsiDatePickerComponent implements OnInit {
           const outputDates: string[] = [];
           this.value.forEach((date: string) => {
             outputDates.push(dayjs(date).format(this.usiDateOutputFormat));
-          })
+          });
 
           this.onChange(outputDates);
 
@@ -909,13 +909,15 @@ export class UsiDatePickerComponent implements OnInit {
    * @private
    */
   private async dynamicLocalizationImport(): Promise<void> {
-    await import(`dayjs/locale/${this.usiLocalization}`).then(() => {
-      dayjs.locale(this.usiLocalization);
-      this.monthName = dayjs.monthsShort();
-    }).catch(() => {
-      console.warn(`Campfire Date Picker: No ${this.usiLocalization} localization was not found; defaulting to English..`);
-      this.monthName = dayjs.monthsShort();
-    });
+    await import(`dayjs/locale/${this.usiLocalization}`)
+      .then(() => {
+        dayjs.locale(this.usiLocalization);
+        this.monthName = dayjs.monthsShort();
+      })
+      .catch(() => {
+        console.warn(`Campfire Date Picker: No ${this.usiLocalization} localization was not found; defaulting to English..`);
+        this.monthName = dayjs.monthsShort();
+      });
   }
 
   /**
