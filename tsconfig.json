@@ -12,6 +12,7 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "jsx": "react",
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
