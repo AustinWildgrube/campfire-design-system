@@ -9,6 +9,14 @@ following command.
 npm install dayjs
 ```
 
+> After installing [dayjs](https://day.js.org/), you will also need to include the Typescript definitions in the `tsconfig.json` file.
+
+```ts
+"include": [
+  "./node_modules/dayjs/locale/index.d.ts"
+]
+````
+
 # Date Picker
 A date picker, popup calendar, date and time picker, or time picker is a graphical user interface widget that allows the user to select a date from a calendar
 and/or time from a time range. The use of a datepicker allows the developer to control the consistency of the date format and the date range.
