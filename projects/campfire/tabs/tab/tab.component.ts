@@ -1,4 +1,5 @@
 import { AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 import { UsiTabDirective } from './tab.directive';
@@ -6,7 +7,7 @@ import { UsiTabDirective } from './tab.directive';
 @Component({
   selector: 'usi-tab',
   template: `
-    <div class="usi-tabs__content" [hidden]="!usiActive">
+    <div class="usi-tabs__content" [hidden]="shouldHide() | async">
       <ng-content></ng-content>
 
       <ng-container *ngIf="contentTemplate && usiActive">
@@ -32,6 +33,7 @@ export class UsiTabComponent implements AfterContentInit {
   templates: QueryList<any> | undefined;
 
   contentTemplate: TemplateRef<any> | undefined;
+  private shouldHideSubject = new BehaviorSubject<boolean>(false);
 
   constructor() {}
 
@@ -41,5 +43,13 @@ export class UsiTabComponent implements AfterContentInit {
         this.contentTemplate = item.template;
       });
     }
+
+    setTimeout(() => {
+      this.shouldHideSubject.next(!this.usiActive);
+    }, 0);
+  }
+
+  public shouldHide(): Observable<boolean> {
+    return this.shouldHideSubject.asObservable();
   }
 }
