@@ -7,10 +7,7 @@ import { BooleanInput, InputBoolean, SelectData } from 'usi-campfire/utils';
   selector: 'usi-option',
   template: `
     <li
-      *ngIf="
-        (usiSelectService.showOptions && usiMultiSelect && !usiSelectService.showSelectedOnly) ||
-        (usiSelectService.showOptions && usiMultiSelect && usiSelectService.showSelectedOnly && this.usiSelectService.value.includes(usiValue))
-      "
+      *ngIf="usiSelectService.showOptions && (usiMultiSelect ? !usiSelectService.showSelectedOnly || this.usiSelectService.value.includes(usiValue) : true)"
       class="usi-select__option"
       [ngClass]="{
         'usi-select__option--active': !usiMultiSelect && usiSelectService.value.includes(usiValue),
