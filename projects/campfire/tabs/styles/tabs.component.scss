@@ -3,8 +3,6 @@
 :host.usi-tabs {
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
-  overflow-y: hidden;
   width: 100%;
 }
 
@@ -12,6 +10,8 @@
   border-bottom: 1px solid var(--tab-group-border-color);
   display: flex;
   margin: 0 0 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
   width: 100%;
 }
 
