@@ -41,6 +41,8 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
           }"
           [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
+          [minlength]="usiMin"
+          [maxlength]="usiMax"
           [attr.aria-labelledby]="uid"
           [required]="!!usiRequired"
           (input)="writeValue($any($event).target.value)"
@@ -59,6 +61,8 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
           }"
           [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
+          [min]="usiMin"
+          [max]="usiMax"
           [attr.aria-labelledby]="uid"
           [required]="!!usiRequired"
           (input)="writeValue($any($event).target.value)"
@@ -77,6 +81,8 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
           }"
           [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
+          [minlength]="usiMin"
+          [maxlength]="usiMax"
           [attr.aria-labelledby]="uid"
           [required]="!!usiRequired"
           (input)="writeValue($any($event).target.value)"
@@ -95,6 +101,8 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
           }"
           [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
+          [minlength]="usiMin"
+          [maxlength]="usiMax"
           [attr.aria-labelledby]="uid"
           [required]="!!usiRequired"
           (input)="writeValue($any($event).target.value)"
@@ -140,6 +148,12 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, O
 
   @Input()
   usiError: TemplateRef<any> | null = null;
+
+  @Input()
+  usiMin: string | number | null = 0;
+
+  @Input()
+  usiMax: string | number | null = 524_288;
 
   @Input()
   @InputBoolean()

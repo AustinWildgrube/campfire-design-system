@@ -20,6 +20,8 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
         (keyup)="checkValidations($any($event).target.value)"
         [disabled]="usiDisabled == true"
         [placeholder]="usiPlaceholder"
+        [attr.minlength]="usiMin"
+        [attr.maxlength]="usiMax"
         [attr.aria-labelledby]="uid"
         >{{ innerValue }}</textarea>
 
@@ -57,6 +59,12 @@ export class UsiTextareaComponent implements AfterViewInit {
 
   @Input()
   usiPlaceholder: string = '';
+
+  @Input()
+  usiMin: string | number | null = 0;
+
+  @Input()
+  usiMax: string | number | null = 524_288;
 
   @Input()
   usiHint?: string;
