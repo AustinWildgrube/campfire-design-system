@@ -140,11 +140,15 @@ export class UsiTabsComponent implements AfterViewChecked {
   public selectTab(tab: UsiTabComponent, index: number): void {
     if (tab && !tab.usiDisabled && !this.usiDisabled) {
       // deactivate all tabs
-      this.tabs?.toArray().forEach((tab: UsiTabComponent) => (tab.usiActive = false));
+      this.tabs?.toArray().forEach((tab: UsiTabComponent) => {
+        tab.usiActive = false;
+        tab.setActive(false);
+      });
 
       tab.usiActive = true;
-      this.selectedTab = index;
+      tab.setActive(true);
 
+      this.selectedTab = index;
       this.getTabWidths();
       this.usiTabChange.emit(index);
     }

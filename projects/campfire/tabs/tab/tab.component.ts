@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
+import { AfterContentInit, ChangeDetectorRef, Component, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
@@ -33,23 +33,36 @@ export class UsiTabComponent implements AfterContentInit {
   templates: QueryList<any> | undefined;
 
   contentTemplate: TemplateRef<any> | undefined;
-  private shouldHideSubject = new BehaviorSubject<boolean>(false);
 
-  constructor() {}
+  private shouldHideTab = new BehaviorSubject<boolean>(false);
 
-  ngAfterContentInit() {
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngAfterContentInit(): void {
     if (this.templates) {
       this.templates.forEach((item) => {
         this.contentTemplate = item.template;
       });
     }
 
-    setTimeout(() => {
-      this.shouldHideSubject.next(!this.usiActive);
-    }, 0);
+    this.setActive(this.usiActive);
   }
 
+  /**
+   * Here we update the active tab and then detect changes to keep the NG0100 error from logging
+   * @param { BooleanInput } active | whether the current tab is active
+   */
+  public setActive(active: BooleanInput): void {
+    this.usiActive = active;
+    this.shouldHideTab.next(!active);
+    this.cdr.detectChanges();
+  }
+
+  /**
+   * We need a function that checks our observable and returns the value to our HTML
+   * @return { Observable<boolean> } the value of our shouldHideTab behavior subject
+   */
   public shouldHide(): Observable<boolean> {
-    return this.shouldHideSubject.asObservable();
+    return this.shouldHideTab.asObservable();
   }
 }

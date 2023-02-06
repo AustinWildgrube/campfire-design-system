@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 
 import { UsiTabComponent } from '../tab/tab.component';
 import { UsiTabsComponent } from '../tabs.component';
@@ -11,7 +11,7 @@ import { UsiTabsComponent } from '../tabs.component';
         <p>Tab 1 content</p>
       </usi-tab>
 
-      <usi-tab [usiLabel]="usiLabel" [usiActive]="usiActive" [usiDisabled]="usiDisabled">
+      <usi-tab [usiLabel]="usiLabel" [usiActive]="true" [usiDisabled]="usiDisabled">
         <p>Tab 2 content</p>
       </usi-tab>
 
@@ -53,12 +53,9 @@ describe('UsiTabComponent', () => {
     expect(debugElement.nativeElement.querySelectorAll('.usi-tab-group__tab')[1].textContent).toContain('Test');
   });
 
-  it('should create a tab with an active class', () => {
-    component.usiActive = true;
-    fixture.detectChanges();
-
+  it('should create a tab with an active class', fakeAsync(() => {
     expect(debugElement.nativeElement.querySelectorAll('.usi-tab-group__tab')[1].classList).toContain('usi-tab-group__tab--active');
-  });
+  }));
 
   it('should disable a single tab', () => {
     component.usiDisabled = true;
