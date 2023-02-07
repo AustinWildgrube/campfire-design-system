@@ -90,6 +90,34 @@ export default {
         defaultValue: { summary: '' },
       },
     },
+    usiMin: {
+      name: 'usiMin',
+      description: 'The minimum value or number of characters.',
+      defaultValue: '0',
+      type: {
+        name: 'string',
+        required: false,
+      },
+      table: {
+        category: 'Attributes',
+        defaultValue: { summary: '0' },
+        type: { summary: 'string | number' },
+      },
+    },
+    usiMax: {
+      name: 'usiMax',
+      description: 'The maximum value or number of characters.',
+      defaultValue: '524,288',
+      type: {
+        name: 'string',
+        required: false,
+      },
+      table: {
+        category: 'Attributes',
+        defaultValue: { summary: '524,288' },
+        type: { summary: 'string | number' },
+      },
+    },
     usiPassword: {
       name: 'usiPassword',
       description: 'Will add password controls to the input.',
@@ -104,9 +132,9 @@ export default {
       },
       control: { type: 'boolean' },
     },
-    usiPrefix: {
-      name: 'usiPrefix',
-      description: 'Will add a FontAwesome prefix icon to the start of the input.',
+    usiPattern: {
+      name: 'usiPattern',
+      description: 'The pattern which the entered value will need to follow.',
       defaultValue: '',
       type: {
         name: 'string',
@@ -115,6 +143,7 @@ export default {
       table: {
         category: 'Attributes',
         defaultValue: { summary: '' },
+        type: { summary: 'string | RegExp' },
       },
     },
     usiPlaceholder: {
@@ -130,6 +159,19 @@ export default {
         defaultValue: { summary: 'placeholder' },
       },
       control: { type: 'text' },
+    },
+    usiPrefix: {
+      name: 'usiPrefix',
+      description: 'Will add a FontAwesome prefix icon to the start of the input.',
+      defaultValue: '',
+      type: {
+        name: 'string',
+        required: false,
+      },
+      table: {
+        category: 'Attributes',
+        defaultValue: { summary: '' },
+      },
     },
     usiRequired: {
       name: 'usiRequired',

@@ -125,6 +125,23 @@ to a form the value will be set there as well.
 <usi-input usiPlaceholder="placeholder" usiValue="default" usiLabel="label"></usi-input>
 ```
 
+## Minimum & Maximum Values
+Occasionally, there will be a need for minimum and maximum values when it comes to an input. Whether this is in reference
+to numbers or the amount of characters the input can have, this can be done by setting the `usiMin` and `usiMax` attributes.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiLabel="label" usiType="text" usiMin="2" usiMax="10"></usi-input>
+```
+
+## Patterns
+Being able to enforce a pattern on the input can help guide users to what is needed for completing the form. If the pattern
+is incorrect, an error state will be shown, informing the user that a different value needs to be given. The `usiPattern`
+attribute can be given a `string` or a `RegExp`.
+
+```html
+<usi-input usiPlaceholder="placeholder" usiLabel="label" usiPattern="[A-Za-z]{3}"></usi-input>
+```
+
 ## Customization
 Inputs were made to be easily customizable. Styling an input is as simple as just adding a class onto the tag or
 overriding our CSS variables in the root selector. The list of overridable variables are as follows:

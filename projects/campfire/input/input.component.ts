@@ -41,9 +41,10 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
           }"
           [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
-          [minlength]="usiMin"
-          [maxlength]="usiMax"
+          [minlength]="usiMin ? usiMin : 0"
+          [maxlength]="usiMax ? usiMax : 524288"
           [attr.aria-labelledby]="uid"
+          [pattern]="usiPattern ? usiPattern : ''"
           [required]="!!usiRequired"
           (input)="writeValue($any($event).target.value)"
           (blur)="checkValidations()"
@@ -61,10 +62,11 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
           }"
           [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
-          [min]="usiMin"
-          [max]="usiMax"
-          [attr.aria-labelledby]="uid"
+          [min]="usiMin ? usiMin : 0"
+          [max]="usiMax ? usiMax : 524288"
+          [pattern]="usiPattern ? usiPattern : ''"
           [required]="!!usiRequired"
+          [attr.aria-labelledby]="uid"
           (input)="writeValue($any($event).target.value)"
           (blur)="checkValidations()"
           *ngSwitchCase="'number'"
@@ -81,10 +83,11 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
           }"
           [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
-          [minlength]="usiMin"
-          [maxlength]="usiMax"
-          [attr.aria-labelledby]="uid"
+          [minlength]="usiMin ? usiMin : 0"
+          [maxlength]="usiMax ? usiMax : 524288"
+          [pattern]="usiPattern ? usiPattern : ''"
           [required]="!!usiRequired"
+          [attr.aria-labelledby]="uid"
           (input)="writeValue($any($event).target.value)"
           (blur)="checkValidations()"
           *ngSwitchCase="'email'"
@@ -101,10 +104,11 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
           }"
           [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
-          [minlength]="usiMin"
-          [maxlength]="usiMax"
-          [attr.aria-labelledby]="uid"
+          [minlength]="usiMin ? usiMin : 0"
+          [maxlength]="usiMax ? usiMax : 524288"
+          [pattern]="usiPattern ? usiPattern : ''"
           [required]="!!usiRequired"
+          [attr.aria-labelledby]="uid"
           (input)="writeValue($any($event).target.value)"
           (blur)="checkValidations()"
           *ngSwitchCase="'password'"
@@ -150,10 +154,13 @@ export class UsiInputComponent implements AfterViewInit, ControlValueAccessor, O
   usiError: TemplateRef<any> | null = null;
 
   @Input()
-  usiMin: string | number | null = 0;
+  usiMin?: string | number;
 
   @Input()
-  usiMax: string | number | null = 524_288;
+  usiMax?: string | number;
+
+  @Input()
+  usiPattern?: string | RegExp;
 
   @Input()
   @InputBoolean()

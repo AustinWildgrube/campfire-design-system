@@ -169,4 +169,13 @@ describe('UsiInputComponent', () => {
     expect(debugElement.nativeElement.querySelector('.usi-input-group input').min).toBe('2');
     expect(debugElement.nativeElement.querySelector('.usi-input-group input').max).toBe('10');
   });
+
+  it('should have a patten', () => {
+    component.usiPattern = '^[0-9]{1,9}$';
+    component.usiType = 'number';
+
+    fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelector('.usi-input-group input').pattern).toBe('^[0-9]{1,9}$');
+  });
 });
