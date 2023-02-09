@@ -39,10 +39,12 @@ import {
   faUserGear,
 } from '@fortawesome/pro-light-svg-icons';
 
+import { UsiInputHarnessComponent } from './input-harness/input-harness';
+
 @NgModule({
   imports: [CommonModule, FontAwesomeModule],
-  exports: [FontAwesomeModule],
-  declarations: [],
+  exports: [FontAwesomeModule, UsiInputHarnessComponent],
+  declarations: [UsiInputHarnessComponent],
 })
 export class UsiSharedModule {
   constructor(library: FaIconLibrary) {
