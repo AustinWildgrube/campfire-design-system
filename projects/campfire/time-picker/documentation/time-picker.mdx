@@ -3,55 +3,84 @@ import { UsiTimePickerModule } from 'usi-campfire/time-picker';
 ```
 
 # Time Picker
-The Time Picker is an input field which accepts a value in HH:mm format. Currently, the Time Picker is built on top of the HTML time picker, using an input field
-with type="time", which comes with some inherent limitations. In order to release a functional and stable Time Picker for immediate use, we decided to work
-within these limitations with the intention of updating this module to a custom Time Picker in a future release. The current API was designed to avoid any
-breaking changes with future versions of the Time Picker.
-
-## Browser Support
-Because browsers' implementations of the native time picker vary, this component may not be fully accessible in all cases. Chrome/Edge, Safari and Firefox all
-support the Time Picker, but the user experience differs browser-to-browser.
+The Time Picker is an input field that accepts time values in the HH:mm format and supports both 12-hour and 24-hour time formats. In the Campfire time picker,
+you can select the time interval from a dropdown or enter it manually in the input field. Once you select or enter a time, the Campfire time picker returns a
+time object that provides the hours and minutes in the 24-hour format. You can access this return object by importing the `UsiTimePickerResult` interface.
 
 ```html
 <usi-time-picker usiLabel="Start Time"></usi-time-picker>
 ```
 
-## Disabled Time Pickers
-Time Pickers may be disabled to indicate to a user that the current action is unavailable. It should be clear to the user why a Time Picker is disabled, however,
-and users should be directed how enable the input if that is possible. Campfire time pickers are disabled by using the `usiDisabled` attribute.
+## Disabling
+Time Pickers may be disabled to indicate to a user that the current action is unavailable. It should be clear to the user why a time picker is disabled,
+however, and users should be directed on how to enable the input if that is possible. Campfire time pickers are disabled by using the `usiDisabled` attribute.
 
 ```html
 <usi-time-picker usiLabel="Start Time" usiDisabled></usi-time-picker>
 ```
 
-## Required Time Pickers
-Time Pickers can be required by adding the `usiRequired` attribute to the `usi-time-picker` element. This will ensure that the user provides a value before
-submitting the form.
+## Required
+Time Pickers can be required by adding the `usiRequired` attribute. This will ensure that the user provides a value before submitting the form.
 
 ```html
 <usi-time-picker usiLabel="Start Time" usiRequired></usi-time-picker>
 ```
 
 ## Label
-The `usiLabel` attribute is used to provide a label for the Time Picker. When a Campfire time picker is being focused the label will float
-above like our traditional inputs. Labels are required as they provide crucial information to the users.
+The `usiLabel` attribute is used to provide a label for the time picker. Campfire time pickers will always have a floating label. Labels are required as they
+provide crucial information to the users.
 
 ```html
 <usi-time-picker usiLabel="Start Time"></usi-time-picker>
 ```
 
-## Default Values
-A lot of the time pickers already have had information provided to them. This is common when a user is to edit some information they have previously provided.
-This is done by setting the `usiValue` attribute. If the Time Picker is connected to a form the value will be set there as well. The value must be provided in a
+## Default Value
+A lot of the time pickers already have had information provided to them. This is common when a user wants to edit some information they have previously provided.
+This is done by setting the `usiValue` attribute. If the time picker is connected to a form, the value will be set there as well. The value must be provided in a
 valid 24-hour format (HH:mm).
 
 ```html
 <usi-time-picker usiLabel="Start Time" usiValue="14:35"></usi-time-picker>
 ```
 
+## Start and End Times
+Start and end times can be added to Campfire time pickers using the `usiStart` and `usiEnd` attributes. The provided values will need to be of type string and
+presented in a 24-hour format, for example, 13:59. For manual input values, it will run validations to make sure it is in the correct time range, and for
+dropdowns or intervals, it will only show times in between the provided values.
+
+```html
+<usi-time-picker usiLabel="Start Time" usiStart="08:00" usiEnd="16:45"></usi-time-picker>
+```
+
+## Manual Entry
+The Campfire time picker allows you to enter a time by default, but this behavior can be changed if needed. To disable manual entry, you can add the
+`usiManualEntry` attribute and set its value to false. This attribute enables an opt-out behavior, meaning that manual entry is turned on by default but can be
+disabled as needed.
+
+```html
+<usi-time-picker usiLabel="Start Time" [usiManualEntry]="false"></usi-time-picker>
+```
+
+## Dropdowns and Intervals
+Campfire makes time selection easier with a dropdown that functions much like the browser's native dropdown. To add this feature to the time picker, simply
+include the `usiShowDropdown` attribute. By default, the dropdown displays 12-hour time with 1-minute intervals and an AM/PM selector. If you need to customize
+the intervals, you can add the `usiInterval` attribute as well.
+
+```html
+<usi-time-picker usiLabel="Start Time" [usiInterval]="20" usiShowDropdown></usi-time-picker>
+```
+
+## 24 Format
+To use the 24-hour time format, simply add the `usiTwentyFourHour` attribute. This setting will adjust the dropdown and change the format of manual entry to use
+the 24-hour clock.
+
+```html
+<usi-time-picker usiLabel="Start Time" [usiInterval]="20" usiTwentyFourHour></usi-time-picker>
+```
+
 ## Customization
 Campfire time pickers were made to be easily customizable. Styling a time picker is as simple as just adding a class onto the tag or overriding our CSS variables
-in the root selector. Since time pickers are just an extension of our normal input the list of overridable variables are the same:
+in the root selector. Since time pickers are just an extension of our normal input, the list of overridable variables is the same:
 
 ```css
 :root {

@@ -1,40 +1,71 @@
 @use '../../campfire.css';
 
-.usi-input-group__input {
-  &::-webkit-datetime-edit-ampm-field {
-    border: 1px solid #D8D9DA;
-    border-radius: 3px;
-    color: var(--black);
-    font-family: var(--font-family);
-    font-size: .875rem;
-    padding: 4px 9px;
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    /* for Firefox */
-    -moz-appearance: none;
-    /* for Chrome */
-    -webkit-appearance: none;
-  }
-
-  &::-webkit-calendar-picker-indicator {
-    background: none;
-    height: 38px;
-    width: 36px;
-    z-index: 99;
-  }
-
-  &::-webkit-clear-button {
-    appearance: none;
-    margin: -10px;
-  }
-
-  &:not(:focus) {
-    &::placeholder {
-      color: transparent;
-    }
+.usi-time {
+  .usi-time__options {
+    display: flex;
+    overflow-y: hidden !important;
   }
 }
 
+.usi-time-group__input {
+  border: none;
+  box-sizing: border-box;
+  height: 21px;
+  text-align: center;
+  width: 32px;
+}
+
+.usi-time-group__input::-webkit-outer-spin-button,
+.usi-time-group__input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance:none;
+}
+
+.usi-time-group__input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.usi-time-group__input--minutes{
+  left: 72px;
+}
+
+.usi-time-group__dot {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.usi-time__list {
+  flex: 1;
+  list-style-type: none;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+}
+
+.usi-time__list--half {
+  width: 50%;
+}
+
+.usi-time__list::-webkit-scrollbar {
+  display: none;
+}
+
+.usi-time__meridiem {
+  align-items: center;
+  border: 1px solid #D8D9DA;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: #292829;
+  display: flex;
+  font-size: 0.875rem;
+  height: 21px;
+  padding: 4px 8px;
+  text-align: center;
+  width: 38px;
+}
+
+.usi-input-group--time {
+  display: flex;
+  justify-content: space-between;
+}

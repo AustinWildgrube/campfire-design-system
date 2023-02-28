@@ -65,6 +65,11 @@ export interface UsiSnackbar {
   usiTimeout?: number;
 }
 
+export interface UsiTimePickerResult {
+  hours: number;
+  minutes: number;
+}
+
 export interface UsiToast {
   usiIcon?: IconName;
   usiId?: number;

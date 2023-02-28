@@ -1,45 +1,122 @@
-import { AfterViewInit, Component, forwardRef, Injector, Input, TemplateRef } from '@angular/core';
-import { FormControl, NG_VALUE_ACCESSOR, NgControl, ControlValueAccessor } from '@angular/forms';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
+import { UsiInputHarnessComponent } from 'usi-campfire/shared';
 
 @Component({
-  selector: 'usi-time-picker',
+  selector: 'usi-time-picker, usi-time-alt',
   template: `
-    <div class="usi-input-group">
-      <input
-        class="usi-input-group__input usi-input-group__input--filled"
-        [ngClass]="{ 'usi-input-group__input--error': hasError || usiForceError }"
-        (input)="onChange($any($event).target.value)"
-        (change)="checkValidations($any($event).target.value)"
-        (blur)="onTouched()"
-        [required]="usiRequired"
-        [disabled]="usiDisabled"
-        [value]="usiValue || value"
-        [attr.aria-labelledby]="uid"
-        type="time"
-      />
+    <div class="usi-select usi-time" (usiClickOutside)="showOptions = false" role="listbox" [attr.aria-expanded]="showOptions" [attr.aria-labelledby]="uid">
+      <div class="usi-input-group">
+        <div
+          class="usi-input-group__input usi-input-group--time"
+          [ngClass]="{
+            'usi-input-group__input--filled': true,
+            'usi-input-group__input--error': hasError || usiForceError
+          }"
+          (click)="showOptions = !showOptions"
+        >
+          <div>
+            <input
+              class="usi-time-group__input"
+              [formControl]="formControlValueHours"
+              [max]="hoursMax"
+              [readonly]="!usiManualEntry"
+              [attr.aria-labelledby]="uid"
+              (input)="checkValue()"
+              (blur)="formatTime('hours')"
+              placeholder="--"
+              type="number"
+              min="0"
+            />
 
-      <label
-        [id]="uid"
-        class="usi-input-group__label"
-        [ngClass]="{
-          'usi-input-group__label--error': hasError || usiForceError
-        }"
-      >
-        {{ usiLabel }} <span *ngIf="usiRequired">*</span>
-      </label>
+            <span class="usi-time-group__dot">:</span>
 
-      <span *ngIf="usiHint && !hasError && !usiForceError" class="usi-input-group__hint">
-        {{ usiHint }}
-      </span>
+            <input
+              class="usi-time-group__input usi-time-group__input--minutes"
+              [formControl]="formControlValueMinutes"
+              [readonly]="!usiManualEntry"
+              [attr.aria-labelledby]="uid"
+              (input)="checkValue()"
+              (blur)="formatTime('minutes')"
+              placeholder="--"
+              type="number"
+              min="0"
+              max="60"
+            />
+          </div>
 
-      <div *ngIf="(usiError && touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
-        <ng-container *ngTemplateOutlet="usiError">{{ usiError }}</ng-container>
+          <input
+            *ngIf="!usiTwentyFourHour"
+            class="usi-time__meridiem"
+            [formControl]="formControlValueMeridiem"
+            (keyup)="formatMeridiem($event)"
+            placeholder="--"
+            maxlength="2"
+          />
+        </div>
+
+        <label [id]="uid" class="usi-input-group__label">{{ usiLabel }} <span *ngIf="usiRequired">*</span></label>
+
+        <span *ngIf="usiHint && !hasError && !usiForceError" class="usi-input-group__hint">
+          {{ usiHint }}
+        </span>
+
+        <div *ngIf="(usiError && formControlValue.touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
+          <ng-container *ngTemplateOutlet="usiError">{{ usiError }}</ng-container>
+        </div>
+      </div>
+
+      <div *ngIf="showOptions && usiShowDropdown" class="usi-select__options usi-time__options" role="group">
+        <ul *ngIf="!usiInterval" class="usi-time__list">
+          <li
+            *ngFor="let hour of hours"
+            class="usi-select__option"
+            [ngClass]="{ 'usi-select__option--active': formControlValueHours.value === hour }"
+            (click)="formControlValueHours.setValue(hour); formatTimeForOutput()"
+            tabindex="0"
+            role="option"
+          >
+            {{ hour }}
+          </li>
+        </ul>
+
+        <ul *ngIf="!usiInterval" class="usi-time__list">
+          <li
+            *ngFor="let minute of minutes"
+            class="usi-select__option"
+            [ngClass]="{ 'usi-select__option--active': formControlValueMinutes.value === minute }"
+            (click)="formControlValueMinutes.setValue(minute); formatTimeForOutput()"
+            tabindex="0"
+            role="option"
+          >
+            {{ minute }}
+          </li>
+        </ul>
+
+        <ul *ngIf="!usiInterval && !usiTwentyFourHour" class="usi-time__list">
+          <li
+            *ngFor="let meridiemValue of meridiem"
+            class="usi-select__option"
+            [ngClass]="{ 'usi-select__option--active': formControlValueMeridiem.value === meridiemValue }"
+            (click)="formControlValueMeridiem.setValue(meridiemValue); formatTimeForOutput()"
+            tabindex="0"
+            role="option"
+          >
+            {{ meridiemValue }}
+          </li>
+        </ul>
+
+        <ul *ngIf="usiInterval" class="usi-time__list">
+          <li *ngFor="let intervalTime of intervalTimes" class="usi-select__option" (click)="selectInterval(intervalTime)" tabindex="0" role="option">
+            {{ intervalTime }}
+          </li>
+        </ul>
       </div>
     </div>
   `,
-  styleUrls: ['./styles/time-picker.component.scss', '../input/styles/input.component.scss'],
+  styleUrls: ['./styles/time-picker.component.scss', '../input/styles/input.component.scss', '../select/styles/select.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -48,109 +125,239 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiTimePickerComponent implements AfterViewInit, ControlValueAccessor {
+export class UsiTimePickerComponent extends UsiInputHarnessComponent implements OnInit {
+  @Input()
+  usiStart?: string;
+
+  @Input()
+  usiEnd?: string;
+
+  @Input()
+  usiInterval?: number;
+
   @Input()
   @InputBoolean()
-  usiDisabled?: BooleanInput;
+  usiShowDropdown?: BooleanInput;
 
   @Input()
   @InputBoolean()
-  usiRequired?: BooleanInput;
+  usiTwentyFourHour?: BooleanInput;
 
   @Input()
   @InputBoolean()
-  usiForceError?: BooleanInput;
+  usiManualEntry?: BooleanInput = true;
 
-  @Input()
-  usiError: TemplateRef<any> | null = null;
+  hours: string[] = [];
+  minutes: string[] = [];
+  meridiem: string[] = ['AM', 'PM'];
+  intervalTimes: string[] = [];
+  hoursMax: number = this.usiTwentyFourHour ? 24 : 12;
+  showOptions: boolean = false;
 
-  @Input()
-  usiHint?: string;
+  formControlValueHours: FormControl = new FormControl();
+  formControlValueMinutes: FormControl = new FormControl();
+  formControlValueMeridiem: FormControl = new FormControl();
 
-  @Input()
-  usiValue?: any;
+  override ngOnInit() {
+    super.ngOnInit();
 
-  @Input()
-  usiLabel: string = '';
+    if (this.usiValue) {
+      this.selectInterval(this.usiValue as string);
+    }
 
-  private control: FormControl = new FormControl();
-
-  uid: string = '';
-  inputEmpty: boolean = false;
-  hasError: boolean | null = false;
-  touched: boolean | null = false;
-  value: string = this.usiValue || '00:00';
-
-  constructor(private injector: Injector) {
-    this.uid = UniqueId();
-  }
-
-  // The form control is only set after initialization
-  ngAfterViewInit(): void {
-    const ngControl: NgControl | null = this.injector.get(NgControl, null);
-
-    // Bind the form control to the input
-    if (ngControl) {
-      this.control = ngControl.control as FormControl;
+    if (this.usiInterval) {
+      this.createIntervalArray();
+    } else {
+      this.createTimeArrays();
     }
   }
 
   /**
-   * Write form value to the DOM element (model => view)
-   * @param { any } value | the value to write
+   * Creates the necessary arrays for the dropdown, containing hours and minutes.
+   * It takes care of zero-padding any numbers under 10 and accommodates 24-hour
+   * time format.
    * @return
    */
-  public writeValue(value: any): void {
-    this.onTouched();
-    this.value = value;
-  }
+  public createTimeArrays(): void {
+    for (let i = 1; i < 60; i++) {
+      if (i <= 9) {
+        this.hours.push('0' + i.toString());
+        this.minutes.push('0' + i.toString());
+      } else {
+        if ((this.hoursMax === 12 && i <= 12) || (this.hoursMax === 24 && i < 24)) {
+          this.hours.push(i.toString());
+        }
 
-  /**
-   * We need to register an onChange function since we need to overwrite the Angular onChange function
-   * @param { () => any } fn | The function to overwrite with
-   * @return
-   */
-  public registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  /**
-   * As with the registerOnChange function we also need to register an onTouched function
-   * @param { () => any } fn | The function to overwrite with
-   * @return
-   */
-  public registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  /**
-   * We need to have custom validations to work with the floating labels
-   * @param { string } value | The value to check
-   * @return
-   */
-  public checkValidations(value: string): void {
-    this.inputEmpty = value !== '';
-
-    if (value !== '') {
-      this.control.markAsTouched();
-    }
-
-    if (this.control) {
-      this.hasError = this.control.invalid && this.control.touched;
-      this.touched = this.control.touched;
+        this.minutes.push(i.toString());
+      }
     }
   }
 
   /**
-   * This function is left empty to satisfy the ControlValueAccessor interface
-   * @param { any } _ | Unused
+   * Creates the interval times we need based on the usiInterval attribute. Since the
+   * times are strings we need to split hours and minutes to be able to use the JS
+   * date object.
    * @return
    */
-  public onChange: (_: any) => void = (_: any) => {};
+  public createIntervalArray(): void {
+    const startTimeString = this.usiStart || '00:00';
+    const endTimeString = this.usiEnd || '23:59';
+
+    const [startHours, startMinutes] = startTimeString.split(':');
+    const [endHours, endMinutes] = endTimeString.split(':');
+
+    const startTime = new Date();
+    startTime.setHours(parseInt(startHours), parseInt(startMinutes), 0, 0);
+
+    const endTime = new Date();
+    endTime.setHours(parseInt(endHours), parseInt(endMinutes), 0, 0);
+
+    let currentTime = startTime;
+    while (currentTime < endTime) {
+      const locale = this.usiTwentyFourHour ? 'en-GB' : 'en-US';
+      const timeString = currentTime.toLocaleTimeString([locale], { hour: 'numeric', minute: '2-digit' });
+      this.intervalTimes.push(timeString);
+      currentTime.setMinutes(currentTime.getMinutes() + this.usiInterval!);
+    }
+  }
 
   /**
-   * This function is left empty to satisfy the ControlValueAccessor interface
+   * When a user selects an interval we need to set the formControlValues, so the
+   * selected time shows in the input. Then we can format the time for output.
+   * @param { string } value | the chosen time
    * @return
    */
-  public onTouched: () => void = () => {};
+  public selectInterval(value: string): void {
+    const [time, period] = value.split(/(?=[AP]M)/);
+    const [hours, minutes] = time.split(':');
+
+    let ampm = 'AM';
+    if (period) {
+      ampm = period.toUpperCase();
+    } else {
+      if (parseInt(hours) > 11) {
+        ampm = 'PM';
+      }
+    }
+
+    let formattedHours = parseInt(hours);
+    if (!this.usiTwentyFourHour) {
+      formattedHours = parseInt(hours) % 12 === 0 ? 12 : parseInt(hours) % 12;
+    }
+
+    this.formControlValueHours.setValue(formattedHours);
+    this.formControlValueMinutes.setValue(minutes);
+    this.formControlValueMeridiem.setValue(ampm);
+
+    this.formatTimeForOutput();
+  }
+
+  /**
+   * This is more of an autocomplete for the meridiem input. If a user types the letter
+   * A then AM is selected, but if the user presses the letter P it will switch over to
+   * PM
+   * @param { Event } event | the keyboard event that occurred
+   */
+  public formatMeridiem(event: any): void {
+    if (this.formControlValueMeridiem.value?.length === 2 && event.code === 'KeyM') {
+      return;
+    }
+
+    if (event.code === 'KeyA') {
+      this.formControlValueMeridiem.setValue('AM');
+    } else if (event.code === 'KeyP') {
+      this.formControlValueMeridiem.setValue('PM');
+    } else if (
+      (this.formControlValueMeridiem.value?.length !== 2 && this.formControlValueMeridiem.value !== 'AM') ||
+      this.formControlValueMeridiem.value !== 'PM'
+    ) {
+      this.formControlValueMeridiem.reset();
+    }
+
+    this.formatTimeForOutput();
+  }
+
+  /**
+   * To keep users from typing values that are not acceptable we format the input
+   * and replace bad values.
+   * @param { 'minutes' | 'hours' } control | which form control was just changed
+   */
+  public formatTime(control: 'minutes' | 'hours'): void {
+    const stringMinutes = this.formControlValueMinutes.value?.toString();
+    const stringHours = this.formControlValueHours.value?.toString();
+
+    if (control === 'minutes') {
+      this.formControlValueMinutes.setValue(stringMinutes.padStart(2, '0'));
+    }
+
+    if (control === 'hours') {
+      this.formControlValueHours.setValue(stringHours.padStart(2, '0'));
+
+      if (stringHours === '0') {
+        this.formControlValueHours.setValue('12');
+      }
+
+      if (stringHours.length > 2) {
+        this.formControlValueHours.setValue(stringHours.slice(0, 2));
+      }
+    }
+
+    this.formatTimeForOutput();
+  }
+
+  /**
+   * If the user types in a value that isn't valid we reformat it to something
+   * that is valid.
+   * @return
+   */
+  public checkValue(): void {
+    const minValue = 0;
+    const maxValueMin = 59;
+    const maxValueHour = this.usiTwentyFourHour ? 23 : 12;
+
+    let hours = this.formControlValueHours.value;
+    let minutes = this.formControlValueMinutes.value;
+
+    if (minutes < minValue) {
+      minutes = minValue;
+    } else if (minutes > maxValueMin) {
+      minutes = maxValueMin;
+    }
+
+    switch (true) {
+      case hours < minValue:
+        hours = minValue;
+        break;
+      case hours > maxValueHour:
+        hours = maxValueHour;
+        break;
+      default:
+        break;
+    }
+
+    this.formControlValueHours.setValue(hours);
+    this.formControlValueMinutes.setValue(minutes);
+  }
+
+  /**
+   * We set the hour and minutes value to output to the form.
+   * @private
+   */
+  public formatTimeForOutput(): void {
+    let outputHours = this.formControlValueHours.value;
+    if (this.formControlValueMeridiem.value === 'PM' && this.formControlValueHours.value !== '12') {
+      outputHours = parseInt(this.formControlValueHours.value) + 12;
+    }
+
+    if (this.formControlValueMeridiem.value === 'AM' && this.formControlValueHours.value === '12') {
+      outputHours = 0;
+    }
+
+    this.formControlValue.setValue({
+      hours: outputHours,
+      minutes: this.formControlValueMinutes.value,
+    });
+
+    this.writeValue(this.formControlValue.value);
+  }
 }
