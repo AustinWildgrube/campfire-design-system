@@ -332,5 +332,16 @@
   --breadcrumbs-text-weight--active: 600;
 
   --breadcrumbs-separator-color: #ADADAE;
+
+  /* Chips */
+  --chip-background-color: var(--white);
+  --chip-border-color: var(--gray);
+  --chip-text-color: var(--black);
+  --chip-corner-radius: 22px;
+
+  --chip-background-color--disabled: #D8D9DA;
+
+  --chip-background-color--selected: var(--primary);
+  --chip-text-color--slected: var(--white);
 }
 

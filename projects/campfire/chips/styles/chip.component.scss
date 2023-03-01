@@ -1,0 +1,31 @@
+@use '../../campfire.css';
+
+.usi-chip {
+  align-items: center;
+  background-color: var(--chip-background-color);
+  border: 1px solid var(--chip-border-color);
+  border-radius: var(--chip-corner-radius);
+  color: var(--chip-text-color);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--font-family);
+  height: 38px;
+  margin-right: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
+  user-select: none;
+
+  &:hover:not(.usi-chip--disabled):not(.usi-chip--selected) {
+    background-color: #F5F5F5;
+  }
+}
+
+.usi-chip--disabled {
+  cursor: not-allowed;
+  background-color: var(--chip-background-color--disabled);
+}
+
+.usi-chip--selected {
+  background-color: var(--chip-background-color--selected);
+  color: var(--chip-text-color--slected);
+}
