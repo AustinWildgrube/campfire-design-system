@@ -16,7 +16,7 @@ import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-
         <fa-icon
           class="usi-input-group__suffix"
           [icon]="['fal', 'calendar-day']"
-          [ngClass]="{ 'usi-input-group__suffix--error': usiError || usiForceError }"
+          [ngClass]="{ 'usi-input-group__suffix--error': hasError || usiForceError }"
         ></fa-icon>
 
         <input
