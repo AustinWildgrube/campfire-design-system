@@ -23,7 +23,7 @@ import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-
           class="usi-input-group__input usi-input-group__input--suffix"
           [ngClass]="{
             'usi-input-group__input--error': hasError || usiForceError,
-            'usi-input-group__input--filled': value !== undefined
+            'usi-input-group__input--filled': value.length !== 0
           }"
           (click)="showOptions = !showOptions"
           (input)="onChange($any($event).target.value)"
