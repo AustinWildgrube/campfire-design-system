@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { SelectData } from 'usi-campfire/utils';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsiSelectService {
-  public value: any[] = [];
-  public valueObject: SelectData[] = [];
-  public multiSelectBadges: SelectData[] = [];
+  public chosenValues: BehaviorSubject<any> = new BehaviorSubject([]);
+  public initialChosenValues: BehaviorSubject<string> = new BehaviorSubject('');
+
   public showOptions: boolean = false;
   public showSelectedOnly: boolean = false;
 
@@ -46,27 +46,11 @@ export class UsiSelectService {
   }
 
   /**
-   * Clear all the selected values by emptying the value array
-   * @return
+   * The chosen values are an array of objects, so we're searching the object to
+   * see if the value is included.
+   * @return { boolean } | true if value is in the array
    */
-  public clearAll(): void {
-    this.value = [];
-    this.valueObject = [];
-    this.multiSelectBadges = [];
+  public isValueIncluded(value: any): boolean {
+    return !!this.chosenValues.value.some((arrayValue: any) => arrayValue.value === value);
   }
-
-  /**
-   * Method that is invoked on an update of a model
-   * @return
-   */
-  public updateChanges(): void {
-    this.onChange(this.value);
-  }
-
-  /**
-   * This function is left empty to satisfy the ControlValueAccessor interface
-   * @param { any } _ | Unused
-   * @return
-   */
-  public onChange: (_: any) => void = (_: any) => {};
 }

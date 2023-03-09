@@ -96,9 +96,11 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
     }
 
     // check if the value was autofilled
-    this.autofillMonitor.monitor(this.elementRef.nativeElement.querySelector('input')).subscribe((event: AutofillEvent) => {
-      this.isEmpty = !event.isAutofilled;
-    });
+    if (this.elementRef.nativeElement.querySelector('input')) {
+      this.autofillMonitor.monitor(this.elementRef.nativeElement.querySelector('input')).subscribe((event: AutofillEvent) => {
+        this.isEmpty = !event.isAutofilled;
+      });
+    }
 
     this.cdr.detectChanges();
   }
@@ -178,7 +180,7 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
       this.parentFormGroup.control.controls[this.formControlName].markAsTouched();
     }
 
-    this.isEmpty = this.usiValue === null || this.usiValue === '';
+    this.isEmpty = !this.usiValue;
     this.hasError = this.formControlValue.invalid && (this.formControlValue.dirty || this.formControlValue.touched || this.parentFormGroup.submitted);
   }
 }

@@ -1,47 +1,65 @@
-import { Component, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  HostListener,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { FormGroupDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AutofillMonitor } from '@angular/cdk/text-field';
+import { Platform } from '@angular/cdk/platform';
+
+import { UsiInputHarnessComponent } from 'usi-campfire/shared';
 
 import { UsiSelectService } from './select.service';
-import { BooleanInput, InputBoolean, SelectData, UniqueId } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, SelectData } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-select',
   template: `
     <div
       class="usi-select"
-      (usiClickOutside)="selectService.showOptions = false"
-      role="listbox"
-      [attr.aria-expanded]="selectService.showOptions"
+      (usiClickOutside)="usiSelectService.showOptions = false"
+      [attr.aria-expanded]="usiSelectService.showOptions"
       [attr.aria-labelledby]="uid"
+      role="listbox"
     >
       <div class="usi-input-group">
         <input
           class="usi-input-group__input"
           [ngClass]="{
-            'usi-input-group__input--filled': this.selectService.value.length > 0 || hasValue,
+            'usi-input-group__input--filled': usiSelectService.chosenValues.value.length > 0 || !isEmpty,
             'usi-input-group__input--error': hasError || usiForceError
           }"
-          (click)="selectService.showOptions = !selectService.showOptions"
+          (click)="usiSelectService.showOptions = !usiSelectService.showOptions"
           (keyup)="searchOptions($any($event).target.value)"
-          (keyup.enter)="showOption()"
+          (keyup.enter)="showOptionList()"
+          [value]="labelText"
+          [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
           [disabled]="usiDisabled == true"
-          [value]="isEmptyObject(selectService.valueObject) ? '' : selectService.valueObject[0].label"
           [readonly]="!usiSearchable"
           [attr.aria-labelledby]="uid"
         />
 
         <fa-icon
-          *ngIf="selectService.showOptions"
+          *ngIf="usiSelectService.showOptions"
           class="usi-input-group__suffix usi-input-group__suffix--password"
-          (click)="selectService.showOptions = false"
+          (click)="usiSelectService.showOptions = false"
           [icon]="['fal', 'angle-up']"
         ></fa-icon>
 
         <fa-icon
-          *ngIf="!selectService.showOptions"
+          *ngIf="!usiSelectService.showOptions"
           class="usi-input-group__suffix usi-input-group__suffix--password"
-          (click)="selectService.showOptions = true"
+          (click)="usiSelectService.showOptions = true"
           [icon]="['fal', 'angle-down']"
         ></fa-icon>
 
@@ -51,41 +69,25 @@ import { BooleanInput, InputBoolean, SelectData, UniqueId } from 'usi-campfire/u
           {{ usiHint }}
         </span>
 
-        <div *ngIf="(usiError && touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
+        <div *ngIf="(usiError && formControlValue.touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
           <ng-container *ngTemplateOutlet="usiError">{{ usiError }}</ng-container>
         </div>
       </div>
 
-      <ul *ngIf="selectService.showOptions && usiData" class="usi-select__options" role="group">
+      <ul *ngIf="usiSelectService.showOptions && usiData" class="usi-select__options" role="group">
         <li *ngIf="manipulatedData.size === 0" class="usi-select__no-result">{{ usiNoResultMessage }}</li>
 
         <ng-container *ngFor="let options of manipulatedData | keyvalue: asIsOrder">
           <li *ngIf="options.key !== undefined" class="usi-select__group-label">{{ options.key }}</li>
-
           <li *ngIf="manipulatedData.size > 1 && options.key === undefined" class="usi-select__group-divider"></li>
 
           <ng-container *ngFor="let option of options.value; let i = index">
-            <li
-              class="usi-select__option"
-              [ngClass]="{
-                'usi-select__option--active': !isEmptyObject(selectService.valueObject) && selectService.valueObject[0].value === option.value,
-                'usi-select__option--disabled': option.disabled == true
-              }"
-              (click)="writeValue(option)"
-              (keyup.enter)="writeValue(option)"
-              (keyup.arrowUp)="selectService.moveFocus($any($event))"
-              (keyup.arrowDown)="selectService.moveFocus($any($event))"
-              [attr.aria-selected]="!isEmptyObject(selectService.valueObject) && selectService.valueObject[0].value === option.value"
-              tabindex="0"
-              role="option"
-            >
-              {{ option.label }}
-            </li>
+            <usi-option [usiValue]="option.value" [usiDisabled]="option.disabled">{{ option.label }}</usi-option>
           </ng-container>
         </ng-container>
       </ul>
 
-      <ul *ngIf="selectService.showOptions && !usiData" class="usi-select__options" role="group">
+      <ul *ngIf="usiSelectService.showOptions && !usiData" class="usi-select__options" role="group">
         <ng-content></ng-content>
       </ul>
     </div>
@@ -100,13 +102,7 @@ import { BooleanInput, InputBoolean, SelectData, UniqueId } from 'usi-campfire/u
     UsiSelectService,
   ],
 })
-export class UsiSelectComponent implements OnChanges, OnInit {
-  @Input()
-  usiLabel?: string = '';
-
-  @Input()
-  usiPlaceholder?: string = '';
-
+export class UsiSelectComponent extends UsiInputHarnessComponent implements AfterViewInit, OnChanges, OnInit {
   @Input()
   usiData?: SelectData[] = undefined;
 
@@ -114,58 +110,58 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   usiNoResultMessage?: string = 'No Result';
 
   @Input()
-  usiError: TemplateRef<any> | null = null;
-
-  @Input()
-  usiHint?: string;
-
-  @Input()
-  @InputBoolean()
-  usiForceError?: BooleanInput;
-
-  @Input()
   @InputBoolean()
   usiSearchable?: BooleanInput;
-
-  @Input()
-  @InputBoolean()
-  usiRequired?: BooleanInput = false;
-
-  @Input()
-  @InputBoolean()
-  usiDisabled?: BooleanInput = false;
 
   @Output()
   usiSearchValue: EventEmitter<string> = new EventEmitter<string>();
 
-  selectService: UsiSelectService;
-  hasError: boolean | null = false;
-  touched: boolean | null = false;
-  hasValue: boolean = false;
-  uid: string = '';
-
-  groupedData: Map<string, SelectData[]> = new Map();
-  manipulatedData: Map<string | undefined, SelectData[]> = new Map();
+  @Output()
+  usiSelectionChange: EventEmitter<string> = new EventEmitter<string>();
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(): void {
     this.usiSelectService.showOptions = false;
   }
 
-  constructor(protected elementRef: ElementRef, private usiSelectService: UsiSelectService) {
-    // Generate random name so we don't have matching ids
-    this.uid = UniqueId();
-    this.selectService = usiSelectService;
+  labelText: string | null = null;
+  groupedData: Map<string, SelectData[]> = new Map();
+  manipulatedData: Map<string | undefined, SelectData[]> = new Map();
+
+  constructor(
+    public usiSelectService: UsiSelectService,
+    parentFormGroup: FormGroupDirective,
+    cdr: ChangeDetectorRef,
+    platform: Platform,
+    autofillMonitor: AutofillMonitor,
+    elementRef: ElementRef
+  ) {
+    super(parentFormGroup, cdr, platform, autofillMonitor, elementRef);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
+
     // Group our data and then shallow copy it, so we can manipulate it
     if (this.usiData) {
       this.groupedData = this.groupBy(this.usiData, (data) => data.group);
       this.manipulatedData = this.groupedData;
     }
+
+    this.checkForNewValues();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  override ngAfterViewInit() {
+    super.ngAfterViewInit();
+
+    // Check if there is a default value set by the form
+    if (this.formControlValue.value) {
+      this.usiSelectService.initialChosenValues.next(this.formControlValue.value);
+    }
+  }
+
+  override ngOnChanges(changes: SimpleChanges): void {
+    super.ngOnChanges(changes);
+
     const { usiData } = changes;
 
     // If data changes, we need to re-group it
@@ -176,11 +172,27 @@ export class UsiSelectComponent implements OnChanges, OnInit {
   }
 
   /**
-   * Since we need to set focus on the first select option we have
-   * to call this function to do so.
+   * Since our value lives in our service, we need to subscribe to the changes
+   * so we can make the dropdown and label changes accordingly.
    * @return
    */
-  public showOption(): void {
+  public checkForNewValues(): void {
+    this.usiSelectService.chosenValues.subscribe((newValue: any) => {
+      if (newValue.length > 0) {
+        this.writeValue(newValue[0].value);
+        this.labelText = newValue[0].label;
+        this.usiSelectService.showOptions = false;
+        this.usiSelectionChange.emit(newValue[0].value);
+      }
+    });
+  }
+
+  /**
+   * Since we need to set focus on the first select option we have to call this
+   * function to do so.
+   * @return
+   */
+  public showOptionList(): void {
     this.usiSelectService.showOptions = true;
 
     setTimeout(() => {
@@ -215,70 +227,21 @@ export class UsiSelectComponent implements OnChanges, OnInit {
    */
   public searchOptions(query: string): void {
     if (query !== '') {
-      this.hasValue = true;
       this.usiSearchValue.emit(query);
+      this.usiValue = query;
+      this.checkValidations();
 
       this.manipulatedData = this.filterData(
         this.groupedData,
         this.usiSearchable == true,
         query,
         UsiSelectComponent.defaultFilter,
-        this.usiSelectService.value
+        this.usiSelectService.chosenValues.value
       );
     } else {
-      this.hasValue = false;
+      this.manipulatedData = this.groupedData;
     }
   }
-
-  /**
-   * This method determines if the multiselect value is empty or not.
-   * @param { object } obj | The object to check
-   * @return { boolean } boolean | True if the object is empty
-   */
-  public isEmptyObject(obj: {}): boolean {
-    return obj && Object.keys(obj).length === 0;
-  }
-
-  /**
-   * Write form value to the DOM element (model => view)
-   * @param { SelectData | string } value | the value to write
-   * @param { Event } event | the event that triggered the change
-   * @return
-   */
-  public writeValue(value: SelectData, event?: Event): void {
-    if (value && !value.disabled) {
-      this.usiSelectService.value = [value.value];
-      this.usiSelectService.valueObject[0] = value;
-      this.usiSelectService.showOptions = false;
-    }
-
-    this.manipulatedData = this.groupedData;
-    this.usiSelectService.updateChanges();
-  }
-
-  /**
-   * We need to register an onChange function since we need to overwrite the Angular onChange function
-   * @param { () => any } fn | The function to overwrite with
-   * @return
-   */
-  public registerOnChange(fn: any): void {
-    this.usiSelectService.onChange = fn;
-  }
-
-  /**
-   * As with the registerOnChange function we also need to register an onTouched function
-   * @param { () => any } fn | The function to overwrite with
-   * @return
-   */
-  public registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  /**
-   * This function is left empty to satisfy the ControlValueAccessor interface
-   * @return
-   */
-  public onTouched: () => void = () => {};
 
   /**
    * This method groups our data based on the group attribute if it is present

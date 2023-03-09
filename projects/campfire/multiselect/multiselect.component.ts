@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
-import { SelectData } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-multiselect',
@@ -10,8 +9,8 @@ import { SelectData } from 'usi-campfire/utils';
   template: `
     <div
       class="usi-select"
-      (usiClickOutside)="selectService.showOptions = false"
-      [attr.aria-expanded]="selectService.showOptions"
+      (usiClickOutside)="usiSelectService.showOptions = false"
+      [attr.aria-expanded]="usiSelectService.showOptions"
       [attr.aria-labelledby]="uid"
       role="listbox"
     >
@@ -19,28 +18,27 @@ import { SelectData } from 'usi-campfire/utils';
         <div
           class="usi-input-group__input usi-input-group__input--multiselect"
           [ngClass]="{
-            'usi-input-group__input--filled': selectService.value.length || hasValue,
+            'usi-input-group__input--filled': usiSelectService.chosenValues.value.length > 0 || !isEmpty,
             'usi-input-group__input--error': hasError || usiForceError
           }"
-          (click)="selectService.showOptions = !selectService.showOptions"
-          (keyup)="searchOptions($any($event).target.value)"
-          (keyup.enter)="showOption()"
+          (click)="usiSelectService.showOptions = !usiSelectService.showOptions"
+          (keyup.enter)="showOptionList()"
           [attr.aria-labelledby]="uid"
         >
-          <span *ngIf="selectService.value.length > 0">{{ selectService.value.length }} Selected</span>
+          <span *ngIf="usiSelectService.chosenValues.value.length > 0">{{ usiSelectService.chosenValues.value.length }} Selected</span>
         </div>
 
         <fa-icon
-          *ngIf="selectService.showOptions"
+          *ngIf="usiSelectService.showOptions"
           class="usi-input-group__suffix usi-input-group__suffix--password"
-          (click)="selectService.showOptions = false"
+          (click)="usiSelectService.showOptions = false"
           [icon]="['fal', 'angle-up']"
         ></fa-icon>
 
         <fa-icon
-          *ngIf="!selectService.showOptions"
+          *ngIf="!usiSelectService.showOptions"
           class="usi-input-group__suffix usi-input-group__suffix--password"
-          (click)="selectService.showOptions = true"
+          (click)="usiSelectService.showOptions = true"
           [icon]="['fal', 'angle-down']"
         ></fa-icon>
 
@@ -50,12 +48,12 @@ import { SelectData } from 'usi-campfire/utils';
           {{ usiHint }}
         </span>
 
-        <div *ngIf="(usiError && touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
+        <div *ngIf="(usiError && formControlValue.touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
           <ng-container *ngTemplateOutlet="usiError">{{ usiError }}</ng-container>
         </div>
       </div>
 
-      <ul *ngIf="selectService.showOptions && usiData" class="usi-select__options" role="group">
+      <ul *ngIf="usiSelectService.showOptions && usiData" class="usi-select__options" role="group">
         <li *ngIf="usiSearchable" class="usi-select__option--search usi-select__option--controls">
           <fa-icon class="usi-input-group__prefix usi-input-group__prefix--multiselect" [icon]="['fal', 'magnifying-glass']"></fa-icon>
           <input class="usi-select__search" (keyup)="searchOptions($any($event).target.value)" placeholder="Search" type="text" />
@@ -63,36 +61,24 @@ import { SelectData } from 'usi-campfire/utils';
 
         <li class="usi-select__option usi-select__option--controls">
           <label (usiChange)="showSelectedOnly($event)" usi-checkbox>Show Selected Only</label>
-          <span class="usi-select__clear-all" (click)="selectService.clearAll()">Clear All</span>
+          <span class="usi-select__clear-all" (click)="clearAll()">Clear All</span>
         </li>
 
         <li *ngIf="manipulatedData.size === 0" class="usi-select__no-result">{{ usiNoResultMessage }}</li>
 
         <ng-container *ngFor="let options of manipulatedData | keyvalue: asIsOrder">
           <li *ngIf="options.key !== undefined" class="usi-select__group-label">{{ options.key }}</li>
-
           <li *ngIf="manipulatedData.size > 1 && options.key === undefined" class="usi-select__group-divider"></li>
 
           <ng-container *ngFor="let option of options.value; let i = index">
-            <li
-              class="usi-select__option"
-              [ngClass]="{
-                'usi-select__option--disabled': option.disabled == true
-              }"
-              (click)="writeValue(option, $event)"
-              (keyup.arrowUp)="selectService.moveFocus($any($event))"
-              (keyup.arrowDown)="selectService.moveFocus($any($event))"
-              [attr.aria-selected]="selectService.value.includes(option.value)"
-              tabindex="0"
-              role="option"
-            >
-              <label [usiChecked]="selectService.value.includes(option.value)" usi-checkbox> {{ option.label }}</label>
-            </li>
+            <usi-option [usiValue]="option.value" [usiDisabled]="option.disabled" usiMultiselect>
+              {{ option.label }}
+            </usi-option>
           </ng-container>
         </ng-container>
       </ul>
 
-      <ul *ngIf="selectService.showOptions && !usiData" class="usi-select__options" role="group">
+      <ul *ngIf="usiSelectService.showOptions && !usiData" class="usi-select__options" role="group">
         <li *ngIf="usiSearchable" class="usi-select__option--search usi-select__option--controls">
           <fa-icon class="usi-input-group__prefix usi-input-group__prefix--multiselect" [icon]="['fal', 'magnifying-glass']"></fa-icon>
           <input class="usi-select__search" (keyup)="searchOptions($any($event).target.value)" placeholder="Search" type="text" />
@@ -100,7 +86,7 @@ import { SelectData } from 'usi-campfire/utils';
 
         <li class="usi-select__option usi-select__option--controls">
           <label (usiChange)="showSelectedOnly($event)" usi-checkbox>Show Selected Only</label>
-          <span class="usi-select__clear-all" (click)="selectService.clearAll()">Clear All</span>
+          <span class="usi-select__clear-all" (click)="clearAll()">Clear All</span>
         </li>
 
         <ng-content></ng-content>
@@ -124,11 +110,11 @@ export class UsiMultiselectComponent extends UsiSelectComponent {
    * @return
    */
   public showSelectedOnly(event: boolean): void {
-    this.selectService.showSelectedOnly = event;
+    this.usiSelectService.showSelectedOnly = event;
 
     if (event) {
       this.manipulatedData.clear();
-      this.manipulatedData.set(undefined, this.selectService.valueObject);
+      this.manipulatedData.set(undefined, this.usiSelectService.chosenValues.value);
     } else {
       if (this.usiData) {
         this.groupedData = this.groupBy(this.usiData, (data) => data.group);
@@ -139,40 +125,25 @@ export class UsiMultiselectComponent extends UsiSelectComponent {
   }
 
   /**
-   * Write form value to the DOM element (model => view)
-   * @param { SelectData | string } value | the value to write
-   * @param event
+   * Since our value lives in our service, we need to subscribe to the changes
+   * so we can make the dropdown and label changes accordingly.
    * @return
    */
-  public override writeValue(value: SelectData | SelectData[] | string, event?: Event): void {
-    event?.preventDefault();
-
-    if (value && Array.isArray(value)) {
-      for (let i = 0; i < value.length; i++) {
-        this.writeToService(value[i]);
+  public override checkForNewValues() {
+    this.usiSelectService.chosenValues.subscribe((newValue: any) => {
+      if (newValue.length > 0) {
+        this.writeValue(this.usiSelectService.chosenValues.value.map((obj: any) => obj.value));
+        this.usiSelectionChange.emit(this.formControlValue.value);
       }
-    } else if (value && typeof value === 'object') {
-      this.writeToService(value);
-    }
-
-    this.manipulatedData = this.groupedData;
-    this.selectService.updateChanges();
+    });
   }
 
   /**
-   * Since we store the values in our select service we need to write to that
-   * @param { SelectData } value | the value to write
-   * @private
+   * Clear all the selected values by emptying the value array
+   * @return
    */
-  private writeToService(value: SelectData): void {
-    if (!value.disabled) {
-      if (this.selectService.valueObject.includes(value)) {
-        this.selectService.value = [...this.selectService.value.filter((item: string) => item !== value.value)];
-        this.selectService.valueObject = [...this.selectService.valueObject.filter((item: SelectData) => item.value !== value.value)];
-      } else {
-        this.selectService.value = [...this.selectService.value, value.value];
-        this.selectService.valueObject = [...this.selectService.valueObject, value];
-      }
-    }
+  public clearAll(): void {
+    this.usiSelectService.chosenValues.next([]);
+    this.showSelectedOnly(false);
   }
 }
