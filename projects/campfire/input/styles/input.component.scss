@@ -60,15 +60,6 @@
       border-color: var(--input-border-color--error);
       outline-color: var(--input-outline-color--error);
     }
-
-    &.usi-input-group__input--multiselect {
-      align-items: center;
-      display: flex;
-      padding-bottom: 5px;
-      padding-right: 113px;
-      padding-top: 6px;
-      text-overflow: ellipsis;
-    }
   }
 }
 
