@@ -15,18 +15,22 @@ import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
       role="listbox"
     >
       <div class="usi-input-group">
-        <div
-          class="usi-input-group__input usi-input-group__input--multiselect"
+        <input
+          class="usi-input-group__input"
           [ngClass]="{
             'usi-input-group__input--filled': usiSelectService.chosenValues.value.length > 0 || !isEmpty,
             'usi-input-group__input--error': hasError || usiForceError
           }"
           (click)="usiSelectService.showOptions = !usiSelectService.showOptions"
+          (keyup)="searchOptions($any($event).target.value)"
           (keyup.enter)="showOptionList()"
+          [formControl]="formControlValue"
+          [value]="!isEmpty ? usiSelectService.chosenValues.value.length + ' Selected' : ''"
+          [placeholder]="usiPlaceholder"
+          [disabled]="usiDisabled == true"
           [attr.aria-labelledby]="uid"
-        >
-          <span *ngIf="usiSelectService.chosenValues.value.length > 0">{{ usiSelectService.chosenValues.value.length }} Selected</span>
-        </div>
+          readonly
+        />
 
         <fa-icon
           *ngIf="usiSelectService.showOptions"
@@ -130,11 +134,9 @@ export class UsiMultiselectComponent extends UsiSelectComponent {
    * @return
    */
   public override checkForNewValues() {
-    this.usiSelectService.chosenValues.subscribe((newValue: any) => {
-      if (newValue.length > 0) {
-        this.writeValue(this.usiSelectService.chosenValues.value.map((obj: any) => obj.value));
-        this.usiSelectionChange.emit(this.formControlValue.value);
-      }
+    this.usiSelectService.chosenValues.subscribe(() => {
+      this.writeValue(this.usiSelectService.chosenValues.value.map((obj: any) => obj.value));
+      this.usiSelectionChange.emit(this.formControlValue.value);
     });
   }
 

@@ -180,7 +180,7 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
       this.parentFormGroup.control.controls[this.formControlName].markAsTouched();
     }
 
-    this.isEmpty = !this.usiValue;
+    this.isEmpty = this.usiValue === '' || (Array.isArray(this.usiValue) && this.usiValue.length === 0);
     this.hasError = this.formControlValue.invalid && (this.formControlValue.dirty || this.formControlValue.touched || this.parentFormGroup.submitted);
   }
 }

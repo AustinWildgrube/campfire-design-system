@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { UsiSharedModule } from 'usi-campfire/shared';
 import { UsiUtilsModule } from 'usi-campfire/utils';
@@ -11,7 +11,7 @@ import { UsiMultiselectComponent } from './multiselect.component';
 
 @NgModule({
   declarations: [UsiMultiselectComponent],
-  imports: [CommonModule, FormsModule, UsiSharedModule, UsiUtilsModule, UsiSelectModule, UsiCheckboxModule],
+  imports: [CommonModule, ReactiveFormsModule, UsiSharedModule, UsiUtilsModule, UsiSelectModule, UsiCheckboxModule],
   exports: [UsiMultiselectComponent],
 })
 export class UsiMultiselectModule {}

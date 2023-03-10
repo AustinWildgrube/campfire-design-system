@@ -35,7 +35,7 @@ import { BooleanInput, InputBoolean, SelectData } from 'usi-campfire/utils';
         <input
           class="usi-input-group__input"
           [ngClass]="{
-            'usi-input-group__input--filled': usiSelectService.chosenValues.value.length > 0 || !isEmpty,
+            'usi-input-group__input--filled': !isEmpty,
             'usi-input-group__input--error': hasError || usiForceError
           }"
           (click)="usiSelectService.showOptions = !usiSelectService.showOptions"
