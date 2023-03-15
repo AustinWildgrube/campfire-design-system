@@ -1,7 +1,8 @@
 import {
-  AfterViewInit,
+  AfterContentInit,
   ChangeDetectorRef,
   Component,
+  ContentChildren,
   ElementRef,
   EventEmitter,
   forwardRef,
@@ -10,6 +11,7 @@ import {
   OnChanges,
   OnInit,
   Output,
+  QueryList,
   SimpleChanges,
 } from '@angular/core';
 import { FormGroupDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -19,6 +21,7 @@ import { Platform } from '@angular/cdk/platform';
 import { UsiInputHarnessComponent } from 'usi-campfire/shared';
 
 import { UsiSelectService } from './select.service';
+import { UsiOptionComponent } from './option/option.component';
 import { BooleanInput, InputBoolean, SelectData } from 'usi-campfire/utils';
 
 @Component({
@@ -42,7 +45,6 @@ import { BooleanInput, InputBoolean, SelectData } from 'usi-campfire/utils';
           (keyup)="searchOptions($any($event).target.value)"
           (keyup.enter)="showOptionList()"
           [value]="labelText"
-          [formControl]="formControlValue"
           [placeholder]="usiPlaceholder"
           [disabled]="usiDisabled == true"
           [readonly]="!usiSearchable"
@@ -102,7 +104,7 @@ import { BooleanInput, InputBoolean, SelectData } from 'usi-campfire/utils';
     UsiSelectService,
   ],
 })
-export class UsiSelectComponent extends UsiInputHarnessComponent implements AfterViewInit, OnChanges, OnInit {
+export class UsiSelectComponent extends UsiInputHarnessComponent implements AfterContentInit, OnChanges, OnInit {
   @Input()
   usiData?: SelectData[] = undefined;
 
@@ -117,13 +119,15 @@ export class UsiSelectComponent extends UsiInputHarnessComponent implements Afte
   usiSearchValue: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
-  usiSelectionChange: EventEmitter<string> = new EventEmitter<string>();
+  usiSelectionChange: EventEmitter<string | string[]> = new EventEmitter<string | string[]>();
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(): void {
     this.usiSelectService.showOptions = false;
   }
 
-  labelText: string | null = null;
+  @ContentChildren(UsiOptionComponent) private options: QueryList<UsiOptionComponent> | undefined;
+
+  labelText: string = '';
   groupedData: Map<string, SelectData[]> = new Map();
   manipulatedData: Map<string | undefined, SelectData[]> = new Map();
 
@@ -147,16 +151,24 @@ export class UsiSelectComponent extends UsiInputHarnessComponent implements Afte
       this.manipulatedData = this.groupedData;
     }
 
-    this.checkForNewValues();
+    // Pass our form control to the service so the option component can access it
+    this.usiSelectService.formControlValueCopy = this.formControlValue;
   }
 
-  override ngAfterViewInit() {
-    super.ngAfterViewInit();
+  ngAfterContentInit() {
+    // When the form control value changes we need to loop through our option component
+    // to grab the label.
+    this.formControlValue.valueChanges.subscribe((value: string | string[]) => {
+      this.options?.forEach((usiOption: UsiOptionComponent) => {
+        if (value === usiOption.usiValue) {
+          this.labelText = usiOption.content?.nativeElement.textContent;
+        }
+      });
 
-    // Check if there is a default value set by the form
-    if (this.formControlValue.value) {
-      this.usiSelectService.initialChosenValues.next(this.formControlValue.value);
-    }
+      this.usiSelectionChange.emit(value);
+      this.usiValue = this.formControlValue.value;
+      this.checkValidations();
+    });
   }
 
   override ngOnChanges(changes: SimpleChanges): void {
@@ -169,22 +181,6 @@ export class UsiSelectComponent extends UsiInputHarnessComponent implements Afte
       this.groupedData = this.groupBy(this.usiData, (data) => data.group);
       this.manipulatedData = this.groupedData;
     }
-  }
-
-  /**
-   * Since our value lives in our service, we need to subscribe to the changes
-   * so we can make the dropdown and label changes accordingly.
-   * @return
-   */
-  public checkForNewValues(): void {
-    this.usiSelectService.chosenValues.subscribe((newValue: any) => {
-      if (newValue.length > 0) {
-        this.writeValue(newValue[0].value);
-        this.labelText = newValue[0].label;
-        this.usiSelectService.showOptions = false;
-        this.usiSelectionChange.emit(newValue[0].value);
-      }
-    });
   }
 
   /**
@@ -236,7 +232,7 @@ export class UsiSelectComponent extends UsiInputHarnessComponent implements Afte
         this.usiSearchable == true,
         query,
         UsiSelectComponent.defaultFilter,
-        this.usiSelectService.chosenValues.value
+        this.formControlValue.value
       );
     } else {
       this.manipulatedData = this.groupedData;

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 import { UsiSelectService } from '../select.service';
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
@@ -13,8 +13,8 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
         'usi-select__option--active': !usiMultiselect && usiSelectService.isValueIncluded(usiValue),
         'usi-select__option--disabled': usiDisabled == true
       }"
-      (click)="writeOptionValue(usiValue)"
-      (keyup.enter)="writeOptionValue(usiValue)"
+      (click)="writeValue(usiValue)"
+      (keyup.enter)="writeValue(usiValue)"
       (keyup.arrowUp)="usiSelectService.moveFocus($any($event))"
       (keyup.arrowDown)="usiSelectService.moveFocus($any($event))"
       [attr.aria-selected]="usiSelectService.isValueIncluded(usiValue)"
@@ -44,7 +44,7 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
   `,
   styleUrls: ['../styles/select.component.scss', '../../input/styles/input.component.scss', '../../checkbox/styles/checkbox.component.scss'],
 })
-export class UsiOptionComponent implements AfterViewInit, OnInit {
+export class UsiOptionComponent implements OnInit {
   @ViewChild('contentWrapper') content: ElementRef | undefined;
 
   @Input()
@@ -66,44 +66,27 @@ export class UsiOptionComponent implements AfterViewInit, OnInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    this.usiSelectService.initialChosenValues.subscribe((newValue: any) => {
-      if (newValue === this.usiValue) {
-        this.writeOptionValue(newValue);
-      }
-    });
-  }
-
   /**
-   * This handles writing our value to the service for both our normal select
-   * and our multiselect. We add the value by default and remove it if it is
-   * already included.
-   * @param { any } value | our value we need to write to our service
+   * The value of the select option needs to be written to our service so the
+   * select component and the multiselect component can access it.
+   * @param { string } value | the value to be added or removed
    */
-  public writeOptionValue(value: any): void {
-    if (this.usiDisabled !== null && this.usiDisabled !== true) {
-      if (!this.usiMultiselect) {
-        this.usiSelectService.chosenValues.next([{ label: this.content?.nativeElement.textContent, value: value }]);
+  public writeValue(value: string): void {
+    if (this.usiMultiselect) {
+      if (this.usiSelectService.isValueIncluded(value)) {
+        // remove value
+        const updatedValue = this.usiSelectService.formControlValueCopy.value.filter((val: any) => val !== value);
+        this.usiSelectService.formControlValueCopy.setValue(updatedValue);
       } else {
-        // remove value if it is already chosen
-        if (this.usiSelectService.chosenValues.value.some((e: any) => e.value === value)) {
-          this.usiSelectService.chosenValues.next(
-            this.usiSelectService.chosenValues.getValue().filter((item: any) => {
-              return item.value !== value;
-            })
-          );
-        } else {
-          // add the value
-          this.usiSelectService.chosenValues.next(
-            this.usiSelectService.chosenValues.getValue().concat([
-              {
-                label: this.content?.nativeElement.textContent,
-                value: value,
-              },
-            ])
-          );
-        }
+        // add value
+        this.usiSelectService.formControlValueCopy.setValue([...this.usiSelectService.formControlValueCopy.value, value]);
       }
+    } else {
+      this.usiSelectService.formControlValueCopy.setValue(value);
+    }
+
+    if (!this.usiMultiselect) {
+      this.usiSelectService.showOptions = false;
     }
   }
 }

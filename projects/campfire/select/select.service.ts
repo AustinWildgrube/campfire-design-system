@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
-import { BehaviorSubject } from 'rxjs';
+// TODO: reimplement or remove
+// import { SelectData } from 'usi-campfire/utils';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsiSelectService {
-  public chosenValues: BehaviorSubject<any> = new BehaviorSubject([]);
-  public initialChosenValues: BehaviorSubject<string> = new BehaviorSubject('');
-
   public showOptions: boolean = false;
   public showSelectedOnly: boolean = false;
+  public formControlValueCopy: FormControl = new FormControl();
 
   private optionIndex: number = 0;
 
@@ -50,7 +50,11 @@ export class UsiSelectService {
    * see if the value is included.
    * @return { boolean } | true if value is in the array
    */
-  public isValueIncluded(value: any): boolean {
-    return !!this.chosenValues.value.some((arrayValue: any) => arrayValue.value === value);
+  public isValueIncluded(value: string): boolean {
+    if (this.formControlValueCopy.value) {
+      return this.formControlValueCopy.value.indexOf(value) > -1;
+    }
+
+    return false;
   }
 }

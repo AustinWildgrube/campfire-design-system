@@ -18,14 +18,13 @@ import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
         <input
           class="usi-input-group__input"
           [ngClass]="{
-            'usi-input-group__input--filled': usiSelectService.chosenValues.value.length > 0 || !isEmpty,
+            'usi-input-group__input--filled': (formControlValue.value && formControlValue.value.length > 0) || !isEmpty,
             'usi-input-group__input--error': hasError || usiForceError
           }"
           (click)="usiSelectService.showOptions = !usiSelectService.showOptions"
           (keyup)="searchOptions($any($event).target.value)"
           (keyup.enter)="showOptionList()"
-          [formControl]="formControlValue"
-          [value]="!isEmpty ? usiSelectService.chosenValues.value.length + ' Selected' : ''"
+          [value]="!isEmpty && formControlValue.value ? formControlValue.value.length + ' Selected' : ''"
           [placeholder]="usiPlaceholder"
           [disabled]="usiDisabled == true"
           [attr.aria-labelledby]="uid"
@@ -118,7 +117,7 @@ export class UsiMultiselectComponent extends UsiSelectComponent {
 
     if (event) {
       this.manipulatedData.clear();
-      this.manipulatedData.set(undefined, this.usiSelectService.chosenValues.value);
+      // this.manipulatedData.set(undefined, this.usiSelectService.chosenValues.value);
     } else {
       if (this.usiData) {
         this.groupedData = this.groupBy(this.usiData, (data) => data.group);
@@ -129,23 +128,11 @@ export class UsiMultiselectComponent extends UsiSelectComponent {
   }
 
   /**
-   * Since our value lives in our service, we need to subscribe to the changes
-   * so we can make the dropdown and label changes accordingly.
-   * @return
-   */
-  public override checkForNewValues() {
-    this.usiSelectService.chosenValues.subscribe(() => {
-      this.writeValue(this.usiSelectService.chosenValues.value.map((obj: any) => obj.value));
-      this.usiSelectionChange.emit(this.formControlValue.value);
-    });
-  }
-
-  /**
    * Clear all the selected values by emptying the value array
    * @return
    */
   public clearAll(): void {
-    this.usiSelectService.chosenValues.next([]);
+    this.writeValue([]);
     this.showSelectedOnly(false);
   }
 }
