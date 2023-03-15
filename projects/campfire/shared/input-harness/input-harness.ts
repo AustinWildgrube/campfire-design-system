@@ -54,10 +54,10 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
 
   constructor(
     public parentFormGroup: FormGroupDirective,
-    private cdr: ChangeDetectorRef,
-    private platform: Platform,
-    private autofillMonitor: AutofillMonitor,
-    private elementRef: ElementRef
+    protected cdr: ChangeDetectorRef,
+    protected platform: Platform,
+    protected autofillMonitor: AutofillMonitor,
+    protected elementRef: ElementRef
   ) {
     this.uid = UniqueId();
 

@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 import { UsiSelectService } from '../select.service';
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'usi-option',
@@ -58,6 +59,9 @@ export class UsiOptionComponent implements OnInit {
   @InputBoolean()
   usiMultiselect?: BooleanInput = false;
 
+  // Emits when the state of the option changes and any parents have to be notified
+  readonly stateChanges = new Subject<void>();
+
   constructor(public usiSelectService: UsiSelectService) {}
 
   ngOnInit(): void {
@@ -85,8 +89,12 @@ export class UsiOptionComponent implements OnInit {
       this.usiSelectService.formControlValueCopy.setValue(value);
     }
 
+    // close our options list if it is not a multiselect
     if (!this.usiMultiselect) {
       this.usiSelectService.showOptions = false;
     }
+
+    // change the state so our parent component can pick it up
+    this.stateChanges.next();
   }
 }

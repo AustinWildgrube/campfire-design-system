@@ -1,5 +1,5 @@
 import {
-  AfterContentInit,
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -18,11 +18,14 @@ import { FormGroupDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
 
+import { merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { UsiInputHarnessComponent } from 'usi-campfire/shared';
+import { BooleanInput, InputBoolean, SelectData } from 'usi-campfire/utils';
 
 import { UsiSelectService } from './select.service';
 import { UsiOptionComponent } from './option/option.component';
-import { BooleanInput, InputBoolean, SelectData } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-select',
@@ -104,7 +107,7 @@ import { BooleanInput, InputBoolean, SelectData } from 'usi-campfire/utils';
     UsiSelectService,
   ],
 })
-export class UsiSelectComponent extends UsiInputHarnessComponent implements AfterContentInit, OnChanges, OnInit {
+export class UsiSelectComponent extends UsiInputHarnessComponent implements AfterViewInit, OnChanges, OnInit {
   @Input()
   usiData?: SelectData[] = undefined;
 
@@ -121,13 +124,14 @@ export class UsiSelectComponent extends UsiInputHarnessComponent implements Afte
   @Output()
   usiSelectionChange: EventEmitter<string | string[]> = new EventEmitter<string | string[]>();
 
+  @ContentChildren(UsiOptionComponent) private options: QueryList<UsiOptionComponent> | undefined;
+
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(): void {
     this.usiSelectService.showOptions = false;
   }
 
-  @ContentChildren(UsiOptionComponent) private options: QueryList<UsiOptionComponent> | undefined;
-
   labelText: string = '';
+  combinedSelections: Observable<string[]> | undefined;
   groupedData: Map<string, SelectData[]> = new Map();
   manipulatedData: Map<string | undefined, SelectData[]> = new Map();
 
@@ -155,19 +159,25 @@ export class UsiSelectComponent extends UsiInputHarnessComponent implements Afte
     this.usiSelectService.formControlValueCopy = this.formControlValue;
   }
 
-  ngAfterContentInit() {
-    // When the form control value changes we need to loop through our option component
-    // to grab the label.
-    this.formControlValue.valueChanges.subscribe((value: string | string[]) => {
-      this.options?.forEach((usiOption: UsiOptionComponent) => {
-        if (value === usiOption.usiValue) {
-          this.labelText = usiOption.content?.nativeElement.textContent;
-        }
-      });
+  override ngAfterViewInit() {
+    if (this.options) {
+      // Since there can be many option components we will just combine them into one observable
+      this.combinedSelections = merge<any>(...this.options.map((option: UsiOptionComponent) => option.stateChanges.pipe(map(() => option.usiValue))));
+    }
 
-      this.usiSelectionChange.emit(value);
-      this.usiValue = this.formControlValue.value;
-      this.checkValidations();
+    // Initial value
+    if (this.formControlValue.value) {
+      this.getLabelByValue(this.formControlValue.value);
+    }
+
+    // Subscribe to form control changes so we can get a label
+    this.formControlValue.valueChanges.subscribe((value: string | string[]) => {
+      this.getLabelByValue(value);
+    });
+
+    // Only emit a change on user input
+    this.combinedSelections?.subscribe(() => {
+      this.usiSelectionChange.emit(this.formControlValue.value);
     });
   }
 
@@ -181,6 +191,30 @@ export class UsiSelectComponent extends UsiInputHarnessComponent implements Afte
       this.groupedData = this.groupBy(this.usiData, (data) => data.group);
       this.manipulatedData = this.groupedData;
     }
+  }
+
+  /**
+   * Loop through our options until we find a matching value, so we can set the
+   * text content as the label.
+   * @param { string | string[] } value | what we are matching to the option value
+   */
+  public getLabelByValue(value: string | string[]): void {
+    let hasLabel: boolean = false;
+    this.options?.forEach((usiOption: UsiOptionComponent) => {
+      if (value === usiOption.usiValue) {
+        this.labelText = usiOption.content?.nativeElement.textContent;
+        hasLabel = true;
+      }
+    });
+
+    if (!hasLabel) {
+      this.labelText = '';
+      hasLabel = false;
+    }
+
+    this.usiValue = this.formControlValue.value;
+    this.checkValidations();
+    this.cdr.detectChanges();
   }
 
   /**
