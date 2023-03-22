@@ -52,7 +52,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
           {{ usiHint }}
         </span>
 
-        <div *ngIf="(usiError && touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
+        <div *ngIf="(hasError && formControlValue.touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
           <ng-container *ngTemplateOutlet="usiError">{{ usiError }}</ng-container>
         </div>
       </div>
@@ -283,13 +283,11 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
   @Input()
   usiLocalization?: string;
 
-  showOptions: boolean = false;
-  touched: boolean | null = false;
-
   months: UsiMonth[] = [];
   numberOfMonths: number = 1;
   selectedMonth: number = dayjs().month();
   selectedYear: number = dayjs().year();
+  showOptions: boolean = false;
 
   view: 'day' | 'month' | 'year' = 'day';
   narrowDaysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];

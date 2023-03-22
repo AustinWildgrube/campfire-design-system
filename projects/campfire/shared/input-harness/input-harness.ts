@@ -78,10 +78,8 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
 
     if (this.formControlName) {
       // copy errors from parent form control to mark input as invalid
-      this.parentFormGroup.control.controls[this.formControlName].valueChanges.subscribe(() => {
-        if (this.parentFormGroup.control.controls[this.formControlName!].errors) {
-          this.formControlValue.setErrors(this.parentFormGroup.control.controls[this.formControlName!].errors);
-        }
+      this.parentFormGroup.valueChanges?.subscribe(() => {
+        this.checkValidations();
       });
 
       if (this.parentFormGroup.control.controls[this.formControlName].hasError('required')) {
@@ -177,10 +175,13 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
     this.formControlValue.markAsTouched();
 
     if (this.formControlName) {
-      this.parentFormGroup.control.controls[this.formControlName].markAsTouched();
+      const parentFormControl = this.parentFormGroup.control.controls[this.formControlName];
+      parentFormControl.markAsTouched();
+      this.hasError = parentFormControl.invalid && (parentFormControl.dirty || parentFormControl.touched || this.parentFormGroup.submitted);
+    } else {
+      this.hasError = this.formControlValue.invalid && (this.formControlValue.dirty || this.formControlValue.touched || this.parentFormGroup.submitted);
     }
 
     this.isEmpty = this.usiValue === '' || (Array.isArray(this.usiValue) && this.usiValue.length === 0);
-    this.hasError = this.formControlValue.invalid && (this.formControlValue.dirty || this.formControlValue.touched || this.parentFormGroup.submitted);
   }
 }
