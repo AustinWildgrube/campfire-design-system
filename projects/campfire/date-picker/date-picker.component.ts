@@ -1,17 +1,20 @@
-import { Component, forwardRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ChangeDetectorRef, Component, ElementRef, forwardRef, Input, OnInit, ViewChild } from '@angular/core';
+import { FormGroupDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AutofillMonitor } from '@angular/cdk/text-field';
+import { Platform } from '@angular/cdk/platform';
 
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import localeData from 'dayjs/plugin/localeData';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 
-import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-campfire/utils';
+import { UsiCalendar, UsiDate, UsiMonth } from 'usi-campfire/utils';
+import { UsiInputHarnessComponent } from 'usi-campfire/shared';
 
 @Component({
   selector: 'usi-date-picker',
   template: `
-    <div class="usi-date-picker" role="listbox" [attr.aria-expanded]="showOptions" [attr.aria-labelledby]="uid">
+    <div class="usi-date-picker" (usiClickOutside)="showOptions = false" [attr.aria-expanded]="showOptions" [attr.aria-labelledby]="uid" role="listbox">
       <div class="usi-input-group">
         <fa-icon
           class="usi-input-group__suffix"
@@ -27,9 +30,10 @@ import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-
           }"
           (click)="showOptions = !showOptions"
           (input)="onChange($any($event).target.value)"
+          [value]="value"
           [placeholder]="usiPlaceholder"
-          [disabled]="usiDisabled == true"
-          [required]="usiRequired"
+          [disabled]="!!usiDisabled"
+          [required]="!!usiRequired"
           [attr.aria-labelledby]="uid"
           #dateInput
         />
@@ -53,15 +57,10 @@ import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-
         </div>
       </div>
 
-      <div
-        *ngIf="showOptions && view === 'day'"
-        class="usi-date-picker__calendar usi-date-picker__calendar--flex"
-        (usiClickOutside)="showOptions = false"
-        [style.width.px]="316 * numberOfMonths"
-      >
+      <div *ngIf="showOptions && view === 'day'" class="usi-date-picker__calendar usi-date-picker__calendar--flex" [style.width.px]="316 * numberOfMonths">
         <div class="usi-date-picker__wrapper" *ngFor="let month of months; let i = index">
           <div class="usi-date-picker__header">
-            <button class="usi-date-picker__selected-month-year" (click)="changeCalendarView('month')">
+            <button class="usi-date-picker__selected-month-year" (click)="changeCalendarView('month'); $event.stopPropagation()">
               {{ monthName[months[i].month] }} {{ months[i]['year'] }}
               <fa-icon class="usi-date-picker__icons usi-date-picker__icons--down" [icon]="['far', 'angle-down']"></fa-icon>
             </button>
@@ -71,14 +70,14 @@ import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-
                 *ngIf="i === months.length - 1"
                 class="usi-date-picker__icons usi-date-picker__icons--left"
                 [icon]="['fal', 'chevron-left']"
-                (click)="decreaseMonth()"
+                (click)="decreaseMonth(); $event.stopPropagation()"
               ></fa-icon>
 
               <fa-icon
                 *ngIf="i === months.length - 1"
                 class="usi-date-picker__icons usi-date-picker__icons--right"
                 [icon]="['fal', 'chevron-right']"
-                (click)="increaseMonth()"
+                (click)="increaseMonth(); $event.stopPropagation()"
               ></fa-icon>
             </div>
           </div>
@@ -167,16 +166,25 @@ import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-
         </div>
       </div>
 
-      <div *ngIf="showOptions && view === 'month'" class="usi-date-picker__calendar" (usiClickOutside)="showOptions = false">
+      <div *ngIf="showOptions && view === 'month'" class="usi-date-picker__calendar">
         <div class="usi-date-picker__header usi-date-picker__header--months">
-          <button class="usi-date-picker__selected-month-year" (click)="changeCalendarView('year')">
+          <button class="usi-date-picker__selected-month-year" (click)="changeCalendarView('year'); $event.stopPropagation()">
             {{ months[0]['year'] }}
             <fa-icon class="usi-date-picker__icons usi-date-picker__icons--down" [icon]="['far', 'angle-down']"></fa-icon>
           </button>
 
           <div>
-            <fa-icon class="usi-date-picker__icons usi-date-picker__icons--left" [icon]="['fal', 'chevron-left']" (click)="decreaseYear()"></fa-icon>
-            <fa-icon class="usi-date-picker__icons usi-date-picker__icons--right" [icon]="['fal', 'chevron-right']" (click)="increaseYear()"></fa-icon>
+            <fa-icon
+              class="usi-date-picker__icons usi-date-picker__icons--left"
+              [icon]="['fal', 'chevron-left']"
+              (click)="decreaseYear(1); $event.stopPropagation()"
+            ></fa-icon>
+
+            <fa-icon
+              class="usi-date-picker__icons usi-date-picker__icons--right"
+              [icon]="['fal', 'chevron-right']"
+              (click)="increaseYear(1); $event.stopPropagation()"
+            ></fa-icon>
           </div>
         </div>
 
@@ -186,7 +194,7 @@ import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-
               *ngFor="let month of monthName; let i = index"
               class="usi-date-picker__months-years-text"
               [ngClass]="{ 'usi-date-picker__months-years--selected': selectedMonth === i }"
-              (click)="selectMonth(i); createMonths(i, months[0].year); changeCalendarView('day')"
+              (click)="selectMonth(i); createMonths(i, months[0].year); changeCalendarView('day'); $event.stopPropagation()"
             >
               {{ month }}
             </span>
@@ -194,16 +202,24 @@ import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-
         </div>
       </div>
 
-      <div *ngIf="showOptions && view === 'year'" class="usi-date-picker__calendar" (usiClickOutside)="showOptions = false">
+      <div *ngIf="showOptions && view === 'year'" class="usi-date-picker__calendar">
         <div class="usi-date-picker__header usi-date-picker__header--months">
           <button class="usi-date-picker__selected-month-year">
-            {{ months[0]['year'] - 6 }} - {{ months[0]['year'] + 5 }}
+            {{ months[0]['year'] - (months[0]['year'] % 12) }} - {{ months[0]['year'] - (months[0]['year'] % 12) + 11 }}
             <fa-icon class="usi-date-picker__icons usi-date-picker__icons--down" [icon]="['far', 'angle-down']"></fa-icon>
           </button>
 
           <div>
-            <fa-icon class="usi-date-picker__icons usi-date-picker__icons--left" [icon]="['fal', 'chevron-left']" (click)="decreaseYear()"></fa-icon>
-            <fa-icon class="usi-date-picker__icons usi-date-picker__icons--right" [icon]="['fal', 'chevron-right']" (click)="increaseYear()"></fa-icon>
+            <fa-icon
+              class="usi-date-picker__icons usi-date-picker__icons--left"
+              [icon]="['fal', 'chevron-left']"
+              (click)="decreaseYear(12); $event.stopPropagation()"
+            ></fa-icon>
+            <fa-icon
+              class="usi-date-picker__icons usi-date-picker__icons--right"
+              [icon]="['fal', 'chevron-right']"
+              (click)="increaseYear(12); $event.stopPropagation()"
+            ></fa-icon>
           </div>
         </div>
 
@@ -213,7 +229,7 @@ import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-
               *ngFor="let year of createYears(months[0].year)"
               class="usi-date-picker__months-years-text"
               [ngClass]="{ 'usi-date-picker__months-years--selected': selectedYear === year }"
-              (click)="selectYear(year); createMonths(0, year); changeCalendarView('month')"
+              (click)="selectYear(year); createMonths(0, year); changeCalendarView('month'); $event.stopPropagation()"
             >
               {{ year }}
             </span>
@@ -231,20 +247,8 @@ import { BooleanInput, InputBoolean, UsiCalendar, UsiDate, UsiMonth } from 'usi-
     },
   ],
 })
-export class UsiDatePickerComponent implements OnInit {
+export class UsiDatePickerComponent extends UsiInputHarnessComponent implements OnInit {
   @ViewChild('dateInput') dateInput: { nativeElement: { value: string | string[] } } | undefined;
-
-  @Input()
-  usiError: TemplateRef<any> | null = null;
-
-  @Input()
-  usiLabel?: string;
-
-  @Input()
-  usiPlaceholder?: string = '';
-
-  @Input()
-  usiHint?: string;
 
   @Input()
   usiDisabledDays?: number[];
@@ -279,20 +283,7 @@ export class UsiDatePickerComponent implements OnInit {
   @Input()
   usiLocalization?: string;
 
-  @Input()
-  @InputBoolean()
-  usiDisabled?: BooleanInput = false;
-
-  @Input()
-  @InputBoolean()
-  usiRequired?: BooleanInput = false;
-
-  @Input()
-  @InputBoolean()
-  usiForceError?: BooleanInput;
-
   showOptions: boolean = false;
-  hasError: boolean | null = false;
   touched: boolean | null = false;
 
   months: UsiMonth[] = [];
@@ -305,17 +296,20 @@ export class UsiDatePickerComponent implements OnInit {
   daysOfWeek: string[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
   monthName: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-  uid: string = (Math.random() + 1).toString(36).substring(7);
   hoveredDate: string = '';
   value: string[] | string = [];
 
-  constructor() {
+  constructor(parentFormGroup: FormGroupDirective, cdr: ChangeDetectorRef, platform: Platform, autofillMonitor: AutofillMonitor, elementRef: ElementRef) {
+    super(parentFormGroup, cdr, platform, autofillMonitor, elementRef);
+
     dayjs.extend(isBetween);
     dayjs.extend(localeData);
     dayjs.extend(localizedFormat);
   }
 
-  async ngOnInit(): Promise<void> {
+  override async ngOnInit(): Promise<void> {
+    super.ngOnInit();
+
     if (this.usiLocalization) {
       await this.dynamicLocalizationImport();
     }
@@ -332,6 +326,34 @@ export class UsiDatePickerComponent implements OnInit {
     const date = new Date();
     this.createMonths(date.getMonth(), date.getFullYear());
     this.createWeekDays();
+
+    // Format changes made to the form value and display them.
+    this.formControlValue.valueChanges.subscribe((newValue: string | string[]) => {
+      if (!newValue) {
+        return;
+      }
+
+      const dates = Array.isArray(newValue) ? newValue : [newValue];
+      this.value = dates.map((singleDate: string) => {
+        const parsedDate = new Date(singleDate);
+        const parsedYear = parsedDate.getFullYear();
+        const parsedMonth = parsedDate.getMonth();
+        const parsedDay = parsedDate.getDate();
+
+        this.selectedYear = parsedYear;
+        this.selectedMonth = parsedMonth;
+
+        this.createMonths(parsedMonth, parsedYear);
+        this.createWeekDays();
+
+        return this.getFormattedDate({
+          day: parsedDay,
+          month: parsedMonth,
+          year: parsedYear,
+          today: this.isToday(date, parsedDay, parsedMonth, parsedYear),
+        });
+      });
+    });
   }
 
   /**
@@ -495,8 +517,8 @@ export class UsiDatePickerComponent implements OnInit {
    * we need to decrease the year
    * @return
    */
-  public decreaseYear(): void {
-    this.createMonths(this.months[0].month, this.months[0].year - 12);
+  public decreaseYear(amount: number): void {
+    this.createMonths(this.months[0].month, this.months[0].year - amount);
   }
 
   /**
@@ -504,8 +526,8 @@ export class UsiDatePickerComponent implements OnInit {
    * we need to increase the year
    * @return
    */
-  public increaseYear(): void {
-    this.createMonths(this.months[0].month, this.months[0].year + 12);
+  public increaseYear(amount: number): void {
+    this.createMonths(this.months[0].month, this.months[0].year + amount);
   }
 
   /**
@@ -662,7 +684,7 @@ export class UsiDatePickerComponent implements OnInit {
     switch (this.usiSelectionMode) {
       case 'single':
         this.value = this.getFormattedDate(date);
-        this.onChange(dayjs(this.value).format(this.usiDateOutputFormat));
+        this.writeValue(dayjs(this.value).format(this.usiDateOutputFormat));
         this.showOptions = false;
 
         if (this.dateInput) {
@@ -683,7 +705,7 @@ export class UsiDatePickerComponent implements OnInit {
             outputDates.push(dayjs(date).format(this.usiDateOutputFormat));
           });
 
-          this.onChange(outputDates);
+          this.writeValue(outputDates);
 
           if (this.dateInput) {
             this.dateInput.nativeElement.value = this.value;
@@ -705,7 +727,7 @@ export class UsiDatePickerComponent implements OnInit {
             outputDatesRange.push(dayjs(date).format(this.usiDateOutputFormat));
           });
 
-          this.onChange(outputDatesRange);
+          this.writeValue(outputDatesRange);
 
           if (this.value.length === 2) {
             this.showOptions = false;
@@ -739,44 +761,6 @@ export class UsiDatePickerComponent implements OnInit {
   public selectYear(year: number): void {
     this.selectedYear = year;
   }
-
-  /**
-   * Write form value to the DOM element (model => view)
-   * @param { string } value | the chosen calendar date
-   * @return
-   */
-  public writeValue(value: string): void {}
-
-  /**
-   * We need to register an onChange function since we need to overwrite the Angular onChange function
-   * @param { () => any } fn | The function to overwrite with
-   * @return
-   */
-  public registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  /**
-   * As with the registerOnChange function we also need to register an onTouched function
-   * @param { () => any } fn | The function to overwrite with
-   * @return
-   */
-  public registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  /**
-   * This function is left empty to satisfy the ControlValueAccessor interface
-   * @param { any } _ | Unused
-   * @return
-   */
-  public onChange(_: any): void {}
-
-  /**
-   * This function is left empty to satisfy the ControlValueAccessor interface
-   * @return
-   */
-  public onTouched: () => void = () => {};
 
   /**
    * Daylight savings can mess with what day the 1st will fall on, so
@@ -915,7 +899,7 @@ export class UsiDatePickerComponent implements OnInit {
         this.monthName = dayjs.monthsShort();
       })
       .catch(() => {
-        console.warn(`Campfire Date Picker: No ${this.usiLocalization} localization was not found; defaulting to English..`);
+        console.warn(`Campfire Date Picker: No ${this.usiLocalization} localization was not found; defaulting to English.`);
         this.monthName = dayjs.monthsShort();
       });
   }
