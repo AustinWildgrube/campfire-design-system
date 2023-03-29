@@ -5,7 +5,8 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 import { UsiInputHarnessComponent } from 'usi-campfire/shared';
 
 @Component({
-  selector: 'usi-time-picker, usi-time-alt',
+  // TODO: re-introduce the usi-time-picker selector once usi-components is removed
+  selector: 'usi-time-selector',
   template: `
     <div class="usi-select usi-time" (usiClickOutside)="showOptions = false" role="listbox" [attr.aria-expanded]="showOptions" [attr.aria-labelledby]="uid">
       <div class="usi-input-group">
