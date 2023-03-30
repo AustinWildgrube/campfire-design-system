@@ -85,4 +85,8 @@ describe('UsiBreadcrumbsComponent', () => {
   it('should semi-bold the last breadcrumb', () => {
     expect(debugElement.nativeElement.querySelectorAll('.usi-breadcrumb')[2].classList.contains('usi-breadcrumb--active')).toBeTruthy();
   });
+
+  it('should have the correct aria-current if the last item is a link', () => {
+    expect(debugElement.nativeElement.querySelectorAll('.usi-breadcrumb')[2].getAttribute('aria-current')).toEqual('page');
+  });
 });
