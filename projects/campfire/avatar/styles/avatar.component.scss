@@ -22,10 +22,6 @@
   }
 }
 
-:host.usi-avatar--text {
-  padding: 8px;
-}
-
 /* Shape */
 :host.usi-avatar--square {
   border-radius: var(--avatar-corner-radius--square);

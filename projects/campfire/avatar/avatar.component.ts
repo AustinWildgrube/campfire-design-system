@@ -29,11 +29,6 @@ export class UsiAvatarComponent {
   @Input()
   usiIcon?: IconName;
 
-  @HostBinding(`class.usi-avatar--text`)
-  public get isText(): string | undefined {
-    return this.usiIcon || this.usiText;
-  }
-
   @Input()
   usiShape?: 'circle' | 'square' = 'circle';
 
