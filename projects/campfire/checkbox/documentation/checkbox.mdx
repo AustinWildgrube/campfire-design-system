@@ -3,22 +3,21 @@ import { UsiCheckboxModule } from 'usi-campfire/checkbox';
 ```
 
 # Checkboxes
-Checkboxes are an easily understandable way to indicate that users can select one or more answers to a question or items
-from a list. They’re always followed by a label or instructions that clearly indicate what checking the box represents.
+Checkboxes provide a user-friendly method for selecting one or multiple options from a list or answering a question. A label or instructions that clearly
+indicates the outcome of selecting the checkbox should always follow it.
 
-Each checkbox has two different states: selected or unselected, which are similar to an on and off switch. If a checkbox
-label says “Yes, email me,” it’s clear what checking that box (or not checking it) will accomplish.
+Each checkbox has two states: selected or unselected, akin to an on and off switch. For instance, if the checkbox label reads "Yes, email me," it's evident
+what selecting or not selecting the checkbox will achieve.
 
-Checkboxes also visibly show users what’s been selected and makes it easy for them to "uncheck" an option, which can be
-difficult with other selection methods on a form (such as radio buttons or dropdown boxes).
+Furthermore, checkboxes display users' selections, allowing them to deselect an option, which may be challenging with other selection methods on a form, such
+as radio buttons or dropdown boxes.
 
 ```html
-  <label usi-checkbox>This is the label</label>
+  <usi-checkbox>This is the label</usi-checkbox>
 ```
 
 ## Checkboxes in Forms
-Checkboxes will almost always be used in forms. Campfire checkboxes can be used in reactive forms as well as in
-template driven forms via the methods below.
+Checkboxes are frequently employed in forms. Campfire checkboxes can be used in reactive forms and template-driven forms using the methods outlined below.
 
 ```ts
 checkNgModel: boolean = false;
@@ -32,34 +31,33 @@ constructor(private formBuilder: FormBuilder) {
 ```
 
 ```html
-<label [(ngModel)]="checkNgModel" usi-checkbox>Checkbox Label</label>
+<usi-checkbox [(ngModel)]="checkNgModel">Checkbox Label</usi-checkbox>
 
 <form [formGroup]="checkFormGroup">
-  <label formControlName="checkOne" usi-checkbox>Checkbox One</label>
+  <usi-checkbox formControlName="checkOne">Checkbox One</usi-checkbox>
 </form>
 ```
 
 ## Required Checkboxes
-Checkboxes can be required by adding the `usiRequired` attribute to the checkbox label. This will ensure that the user checks
-the checkbox before submitting the form. This is useful for when a user must agree to a term of service for example.
+Adding the usiRequired attribute to the checkbox label makes the checkbox mandatory. This ensures that the user selects the checkbox before submitting the
+form. This is useful when users must agree to terms of service, for example.
 
 ```html
-<label usi-checkbox usiRequired>This is the label</label>
+<usi-checkbox usiRequired>This is the label</usi-checkbox>
 ```
 
 ## Disabled Checkboxes
-Checkboxes may be disabled to indicate to a user that the choice is unavailable. It should be clear to the user
-why the checkbox is disabled, and users should be directed how enable the checkbox if that is possible.
+Disabling checkboxes indicates to users that the option is unavailable. Users should be informed why the checkbox is disabled and how to enable it if possible.
 
 ```html
-<label usi-checkbox usiDisabled>This is the label</label>
+<usi-checkbox usiDisabled>This is the label</usi-checkbox>
 ```
 
 ## Checked Checkboxes
-Checkboxes can be checked by default if needed. The value will be true and the user will not be able to change it.
+Checkboxes can be preselected if necessary. The value will be true, and the user will not be able to modify it.
 
 ```html
-<label usi-checkbox usiChecked>This is the label</label>
+<usi-checkbox usiChecked>This is the label</usi-checkbox>
 ```
 
 ## Customization
@@ -76,6 +74,7 @@ overriding our CSS variables in the root selector. The list of overridable varia
   --checkbox-check-color--checked: var(--white);
 
   --checkbox-border-color--hover: var(--primary);
+  --checkbox-border-color--checked--hover: var(--black);
 
   --checkbox-background-color--disabled: #dfdfe3;
   --checkbox-check-color--disabled: var(--gray);
@@ -84,5 +83,5 @@ overriding our CSS variables in the root selector. The list of overridable varia
 ```
 
 ```html
-<label class="custom-checkbox" usi-checkbox>This is the label</label>
+<usi-checkbox class="custom-checkbox">This is the label</usi-checkbox>
 ```

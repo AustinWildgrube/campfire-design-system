@@ -168,6 +168,7 @@
   --checkbox-check-color--checked: var(--white);
 
   --checkbox-border-color--hover: var(--primary);
+  --checkbox-border-color--checked--hover: var(--black);
 
   --checkbox-background-color--disabled: #dfdfe3;
   --checkbox-check-color--disabled: var(--gray);

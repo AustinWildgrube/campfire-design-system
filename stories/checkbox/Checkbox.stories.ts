@@ -99,14 +99,9 @@ export default {
 const Template: Story<UsiCheckboxComponent> = (args: UsiCheckboxComponent) => ({
   props: args,
   template: `
-    <label
-      [usiChecked]="usiChecked"
-      [usiRequired]="usiRequired"
-      [usiDisabled]="usiDisabled"
-      usi-checkbox
-    >
+    <usi-checkbox [usiChecked]="usiChecked" [usiRequired]="usiRequired" [usiDisabled]="usiDisabled">
       Checkbox Label
-    </label>`,
+    </usi-checkbox>`,
 });
 
 export const Normal = Template.bind({});

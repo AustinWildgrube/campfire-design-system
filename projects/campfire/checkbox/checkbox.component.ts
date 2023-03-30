@@ -4,22 +4,26 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 
 @Component({
-  selector: 'label[usi-checkbox]',
+  selector: 'usi-checkbox',
   template: `
-    <span class="usi-checkbox">
+    <div class="usi-checkbox">
       <input
+        [id]="uid"
         class="usi-checkbox__input"
-        [ngClass]="{ 'usi-checkbox__input--checked': value === true }"
+        [ngClass]="{ 'usi-checkbox__input--checked': value }"
         (click)="this.writeValue($any($event.target).checked)"
-        [disabled]="usiDisabled == true"
-        [required]="usiRequired == true"
+        [disabled]="usiDisabled"
+        [required]="usiRequired"
         [attr.aria-labelledby]="uid"
+        [attr.aria-checked]="value"
         type="checkbox"
+        tabindex="0"
       />
-      <span [id]="uid" class="usi-checkbox__label" [ngClass]="{ 'usi-checkbox--disabled': usiDisabled }">
+
+      <label class="usi-checkbox__label" [ngClass]="{ 'usi-checkbox--disabled': usiDisabled }" [for]="uid">
         <ng-content></ng-content> <span *ngIf="usiRequired"> *</span>
-      </span>
-    </span>
+      </label>
+    </div>
   `,
   styleUrls: ['./styles/checkbox.component.scss'],
   providers: [
@@ -63,7 +67,7 @@ export class UsiCheckboxComponent implements ControlValueAccessor, OnChanges, On
   ngOnChanges(changes: SimpleChanges): void {
     const { usiChecked } = changes;
 
-    if (usiChecked.currentValue !== usiChecked.previousValue) {
+    if (usiChecked && usiChecked.currentValue !== usiChecked.previousValue) {
       this.value = usiChecked.currentValue;
       this.updateChanges();
     }

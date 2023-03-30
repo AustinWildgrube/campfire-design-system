@@ -54,8 +54,14 @@
     }
   }
 
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled):not(:checked),
+  &:focus:not(:disabled):not(:checked) {
     border-color: var(--checkbox-border-color--hover);
+  }
+
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    border-color: var(--checkbox-border-color--checked--hover);
   }
 
   &:disabled {
