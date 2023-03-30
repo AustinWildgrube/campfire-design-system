@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UsiChipsComponent } from './chips.component';
-import { UsiChipComponent } from './chip/chip.component';
+import { UsiChipGroupComponent } from './chip-group/chip-group.component';
+import { UsiChipButtonComponent } from './chip-button/chip-button.component';
 import { UsiButtonModule } from 'usi-campfire/button';
 
 @NgModule({
-  declarations: [UsiChipsComponent, UsiChipComponent],
+  declarations: [UsiChipGroupComponent, UsiChipButtonComponent],
   imports: [CommonModule, UsiButtonModule],
-  exports: [UsiChipsComponent, UsiChipComponent],
+  exports: [UsiChipGroupComponent, UsiChipButtonComponent],
 })
 export class UsiChipsModule {}

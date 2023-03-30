@@ -1,7 +1,7 @@
 import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { UsiChipsService } from './chips.service';
+import { UsiChipsService } from '../chips.service';
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 
 @Component({
@@ -11,16 +11,16 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
       <ng-content></ng-content>
     </ul>
   `,
-  styleUrls: ['./styles/chips.component.scss'],
+  styleUrls: ['./styles/chip-group.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => UsiChipsComponent),
+      useExisting: forwardRef(() => UsiChipGroupComponent),
       multi: true,
     },
   ],
 })
-export class UsiChipsComponent implements ControlValueAccessor, OnInit {
+export class UsiChipGroupComponent implements ControlValueAccessor, OnInit {
   @Input()
   usiSelected?: any;
 

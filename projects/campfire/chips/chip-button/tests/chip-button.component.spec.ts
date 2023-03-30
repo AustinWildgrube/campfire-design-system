@@ -2,9 +2,9 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { UsiChipsComponent } from '../chips.component';
-import { UsiChipComponent } from '../chip/chip.component';
-import { UsiChipsService } from '../chips.service';
+import { UsiChipGroupComponent } from '../../chip-group/chip-group.component';
+import { UsiChipButtonComponent } from '../chip-button.component';
+import { UsiChipsService } from '../../chips.service';
 
 @Component({
   template: `
@@ -15,9 +15,9 @@ import { UsiChipsService } from '../chips.service';
     </usi-chip-group>
   `,
 })
-class TestComponent extends UsiChipsComponent {}
+class TestComponent extends UsiChipGroupComponent {}
 
-describe('ChipComponent', () => {
+describe('UsiChipComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let debugElement: DebugElement;
@@ -25,7 +25,7 @@ describe('ChipComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsiChipsComponent, UsiChipComponent, TestComponent],
+      declarations: [UsiChipGroupComponent, UsiChipButtonComponent, TestComponent],
       providers: [UsiChipsService],
     }).compileComponents();
   });

@@ -17,9 +17,9 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
       <ng-content></ng-content>
     </div>
   `,
-  styleUrls: ['../styles/chip.component.scss'],
+  styleUrls: ['./styles/chip-button.component.scss'],
 })
-export class UsiChipComponent implements OnInit {
+export class UsiChipButtonComponent implements OnInit {
   @Input()
   usiValue: string | number = '';
 
