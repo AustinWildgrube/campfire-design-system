@@ -19,6 +19,7 @@ import { IconName } from '@fortawesome/fontawesome-common-types';
         <fa-icon *ngSwitchCase="'info'" [icon]="['fal', 'spinner']"></fa-icon>
         <fa-icon *ngSwitchCase="'error'" [icon]="['fal', 'ban']"></fa-icon>
         <fa-icon *ngSwitchCase="'warning'" [icon]="['fal', 'circle-notch']"></fa-icon>
+        <fa-icon *ngSwitchDefault [icon]="['fal', 'spinner']"></fa-icon>
       </ng-container>
 
       <fa-icon *ngIf="usiIcon && usiType === 'default'" [icon]="['fal', usiIcon]"></fa-icon>
