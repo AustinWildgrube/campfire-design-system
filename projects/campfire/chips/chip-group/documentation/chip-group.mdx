@@ -1,0 +1,99 @@
+```ts
+import { UsiChipsModule } from 'usi-campfire/chips';
+```
+
+# Chips
+Chip buttons are a great alternative to radio buttons when you want to display a list of options with a more visual and compact design. Radio buttons are ideal
+for small lists of mutually exclusive options, but for larger lists or when the options are not mutually exclusive, chip buttons may be a better option. With
+chip buttons, users can select multiple options at once by clicking on each chip.
+
+To use chip buttons, you should always group them together using the `<usi-chip-group>` element. This is similar to a solo chip button, which is called using
+the `<usi-chip>` element. You can also add custom attributes to the chip button element for additional functionality. However, keep in mind that it is best to
+limit the number of options to a reasonable amount to prevent overwhelming the user with too many choices.
+
+```html
+<usi-chip usiValue="one">Chip Button Text</usi-chip>
+
+<usi-chip-group>
+  <usi-chip usiValue="one">Chip Button One</usi-chip>
+  <usi-chip usiValue="two">Chip Button Two</usi-chip>
+  <usi-chip usiValue="three">Chip Button Three</usi-chip>
+</usi-chip-group>
+```
+
+## Chips in Forms
+Campfire chip buttons can be used in reactive forms as well as in template driven forms via the methods below.
+
+```ts
+chipsNgModel: string = 'two';
+chipsFormGroup: FormGroup;
+
+constructor(private formBuilder: FormBuilder) {
+  this.chipsFormGroup = this.formBuilder.group({
+    controlOne: 'one'
+  });
+}
+```
+
+```html
+<usi-chip-group [(ngModel)]="chipsNgModel">
+  <usi-chip usiValue="one">Chip Button One</usi-chip>
+  <usi-chip usiValue="two">Chip Button Two</usi-chip>
+  <usi-chip usiValue="three">Chip Button Three</usi-chip>
+</usi-chip-group>
+
+<form [formGroup]="chipsFormGroup">
+  <usi-radio-group formControlName="controlOne">
+    <usi-chip usiValue="one">Chip Button One</usi-chip>
+    <usi-chip usiValue="two">Chip Button Two</usi-chip>
+    <usi-chip usiValue="three">Chip Button Three</usi-chip>
+  </usi-radio-group>
+</form>
+```
+
+## Chip Button Values
+To assign a value to a chip button, simply use the `usiValue` attribute. This attribute is mandatory for all chip buttons, as it determines which option is
+currently selected. It's important to note that the component will throw an error if a chip button is missing a value. While the value can be any type of data,
+using strings or numbers is recommended for consistency and ease of use.
+
+```html
+<usi-chip usiValue="one">Chip Button One</usi-chip>
+<usi-chip [usiValue]="2">Chip Button One</usi-chip>
+<usi-chip [usiValue]="randomTypedObject">Chip Button One</usi-chip>
+```
+
+## Disabled Chip Buttons
+You can disable chip buttons to signal to users that certain options are temporarily unavailable. However, it's crucial to provide clear and concise information
+about why a chip button is disabled and how the user can enable it if possible. If all chip buttons in a group are disabled, you can use the usiDisabled
+attribute on the group element. When this happens, it's recommended to display a message explaining why all options are disabled, and offer alternative options
+or a timeframe for when the options will become available again.
+
+```html
+<usi-chip usiValue="one" usiDisabled>Chip Button One</usi-chip>
+
+<usi-chip-group usiDisabled>
+  <usi-chip usiValue="one">Chip Button One</usi-chip>
+  <usi-chip usiValue="two">Chip Button Two</usi-chip>
+  <usi-chip usiValue="three">Chip Button Three</usi-chip>
+</usi-chip-group>
+```
+
+## Chip Customizations
+Campfire chips were made to be easily customizable. Styling a chip is as simple as just overriding our CSS variables in the root selector. The list of
+overridable variables are as follows:
+
+```css
+:root {
+  --chip-background-color: var(--white);
+  --chip-border-color: var(--gray);
+  --chip-text-color: var(--black);
+  --chip-corner-radius: 22px;
+
+  --chip-background-color--disabled: #D8D9DA;
+  --checkbox-border-color--focus: var(--primary);
+  --checkbox-border-color--selected--focus: var(--black);
+
+  --chip-background-color--selected: var(--primary);
+  --chip-text-color--slected: var(--white);
+}
+```
