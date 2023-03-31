@@ -20,12 +20,12 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiChipGroupComponent implements ControlValueAccessor, OnInit {
+export class UsiChipGroupComponent<T = unknown> implements ControlValueAccessor, OnInit {
   @Input()
-  usiSelected?: any;
+  usiSelected?: T | T[];
 
   @Output()
-  usiSelectedChange: EventEmitter<any> = new EventEmitter<any>();
+  usiSelectedChange: EventEmitter<T | T[]> = new EventEmitter<T | T[]>();
 
   @Input()
   @InputBoolean()
@@ -35,9 +35,9 @@ export class UsiChipGroupComponent implements ControlValueAccessor, OnInit {
   @InputBoolean()
   usiUnselectable?: BooleanInput;
 
-  value: any = '';
+  value: T | T[] | null = null;
 
-  constructor(private usiChipService: UsiChipsService) {}
+  constructor(private usiChipService: UsiChipsService<T>) {}
 
   ngOnInit(): void {
     if (this.usiMultiple) {
@@ -58,7 +58,7 @@ export class UsiChipGroupComponent implements ControlValueAccessor, OnInit {
       }
     }
 
-    this.usiChipService.selected.subscribe((value: any) => {
+    this.usiChipService.selected.subscribe((value: T[]) => {
       this.writeValue(value);
     });
   }
@@ -68,7 +68,7 @@ export class UsiChipGroupComponent implements ControlValueAccessor, OnInit {
    * @param { any } value | the value to write
    * @return
    */
-  writeValue(value: any): void {
+  public writeValue(value: T[]): void {
     this.value = value;
     this.onChange(this.value);
     this.usiSelectedChange.emit(this.value);
@@ -79,7 +79,7 @@ export class UsiChipGroupComponent implements ControlValueAccessor, OnInit {
    * @param { () => any } fn | The function to overwrite with
    * @return
    */
-  registerOnChange(fn: any): void {
+  public registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
@@ -88,7 +88,7 @@ export class UsiChipGroupComponent implements ControlValueAccessor, OnInit {
    * @param { () => any } fn | The function to overwrite with
    * @return
    */
-  registerOnTouched(fn: any): void {
+  public registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
@@ -97,11 +97,11 @@ export class UsiChipGroupComponent implements ControlValueAccessor, OnInit {
    * @param { any } _ | Unused
    * @return
    */
-  onChange: (_: any) => void = (_: any) => {};
+  public onChange: (_: any) => void = (_: any) => {};
 
   /**
    * This function is left empty to satisfy the ControlValueAccessor interface
    * @return
    */
-  onTouched: () => void = () => {};
+  public onTouched: () => void = () => {};
 }

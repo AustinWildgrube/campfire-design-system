@@ -10,13 +10,17 @@
   display: flex;
   font-family: var(--font-family);
   height: 38px;
-  margin-right: 8px;
   padding-left: 24px;
   padding-right: 24px;
   user-select: none;
 
   &:hover:not(.usi-chip--disabled):not(.usi-chip--selected) {
     background-color: #F5F5F5;
+  }
+
+  &:focus {
+    border: 2px solid var(--checkbox-border-color--focus);
+    outline: none;
   }
 }
 
@@ -28,4 +32,9 @@
 .usi-chip--selected {
   background-color: var(--chip-background-color--selected);
   color: var(--chip-text-color--slected);
+
+  &:focus:not(.usi-chip--disabled) {
+    border: 2px solid var(--checkbox-border-color--selected--focus);
+    outline: none;
+  }
 }
