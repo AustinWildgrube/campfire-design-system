@@ -13,13 +13,14 @@
   padding-left: 24px;
   padding-right: 24px;
   user-select: none;
+  width: max-content;
 
   &:hover:not(.usi-chip--disabled):not(.usi-chip--selected) {
     background-color: #F5F5F5;
   }
 
-  &:focus {
-    border: 2px solid var(--checkbox-border-color--focus);
+  &:focus:not(.usi-chip--disabled) {
+    border: 1px solid var(--checkbox-border-color--focus);
     outline: none;
   }
 }
@@ -34,7 +35,7 @@
   color: var(--chip-text-color--slected);
 
   &:focus:not(.usi-chip--disabled) {
-    border: 2px solid var(--checkbox-border-color--selected--focus);
+    border: 1px solid var(--checkbox-border-color--selected--focus);
     outline: none;
   }
 }

@@ -82,9 +82,9 @@ export class UsiChipsService<T> {
    * @return
    */
   public remove(value: T): void {
-    const selectedArray: any[] = this.selected.getValue();
+    const selectedArray: T[] = this.selected.getValue();
 
-    selectedArray.forEach((item, index) => {
+    selectedArray.forEach((item: T, index: number) => {
       if (item === value) {
         selectedArray.splice(index, 1);
       }

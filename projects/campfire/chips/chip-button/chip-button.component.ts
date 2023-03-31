@@ -24,10 +24,8 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
   styleUrls: ['./styles/chip-button.component.scss'],
 })
 export class UsiChipButtonComponent<T = unknown> implements OnInit {
-  // not actually null but we need the ? to make the
-  // compiler happy with the generic type
   @Input()
-  usiValue?: T;
+  usiValue: T = null as unknown as T;
 
   @Input()
   @InputBoolean()
@@ -61,12 +59,13 @@ export class UsiChipButtonComponent<T = unknown> implements OnInit {
    * @return
    */
   public selectChip(): void {
-    if (!this.usiDisabled) {
-      if (this.usiChipsService.isUnselectable && this.isSelected) {
-        this.usiChipsService.remove(this.usiValue);
-      } else {
-        this.usiChipsService.select(this.usiValue);
-      }
+    if (this.usiDisabled) return;
+
+    const isUnselectable = this.usiChipsService.isUnselectable.value;
+    if (isUnselectable && this.isSelected) {
+      this.usiChipsService.remove(this.usiValue);
+    } else if (!this.isSelected) {
+      this.usiChipsService.select(this.usiValue);
     }
   }
 }
