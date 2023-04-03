@@ -1,4 +1,6 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
+import { FormGroupDirective } from '@angular/forms';
+
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
@@ -12,6 +14,7 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [UsiDatePickerModule],
+      providers: [FormGroupDirective],
     }),
   ],
   parameters: {

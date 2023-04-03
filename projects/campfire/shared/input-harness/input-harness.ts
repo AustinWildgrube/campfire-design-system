@@ -1,7 +1,8 @@
-import { AfterViewInit, ChangeDetectorRef, Directive, ElementRef, Input, OnChanges, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroupDirective, Validators } from '@angular/forms';
 import { AutofillEvent, AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
+import { Subject, takeUntil } from 'rxjs';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
@@ -10,7 +11,7 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 @Directive({
   selector: 'usi-input-harness',
 })
-export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
+export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAccessor, OnChanges, OnDestroy, OnInit {
   @Input()
   usiPlaceholder: string = '';
 
@@ -51,6 +52,8 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
   isEmpty: boolean = true;
   hasError: boolean | null = false;
   formControlValue: FormControl = new FormControl();
+
+  protected unsubscribe = new Subject<boolean>();
 
   constructor(
     public parentFormGroup: FormGroupDirective,
@@ -95,9 +98,12 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
 
     // check if the value was autofilled
     if (this.elementRef.nativeElement.querySelector('input')) {
-      this.autofillMonitor.monitor(this.elementRef.nativeElement.querySelector('input')).subscribe((event: AutofillEvent) => {
-        this.isEmpty = !event.isAutofilled;
-      });
+      this.autofillMonitor
+        .monitor(this.elementRef.nativeElement.querySelector('input'))
+        .pipe(takeUntil(this.unsubscribe))
+        .subscribe((event: AutofillEvent) => {
+          this.isEmpty = !event.isAutofilled;
+        });
     }
 
     this.cdr.detectChanges();
@@ -123,6 +129,11 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
     if (usiValue) {
       this.writeValue(usiValue.currentValue);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next(true);
+    this.unsubscribe.complete();
   }
 
   /**

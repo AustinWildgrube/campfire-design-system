@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, forwardRef, Input, OnInit, Vi
 import { FormGroupDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
+import { takeUntil } from 'rxjs';
 
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
@@ -14,12 +15,12 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
 @Component({
   selector: 'usi-date-picker',
   template: `
-    <div class="usi-date-picker" (usiClickOutside)="showOptions = false" [attr.aria-expanded]="showOptions" [attr.aria-labelledby]="uid" role="listbox">
+    <div class="usi-date-picker" (usiClickOutside)="showOptions = false" [attr.aria-expanded]="showOptions" [attr.aria-labelledby]="uid">
       <div class="usi-input-group">
         <fa-icon
           class="usi-input-group__suffix"
-          [icon]="['fal', 'calendar-day']"
           [ngClass]="{ 'usi-input-group__suffix--error': hasError || usiForceError }"
+          [icon]="['fal', 'calendar-day']"
         ></fa-icon>
 
         <input
@@ -32,8 +33,8 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
           (input)="onChange($any($event).target.value)"
           [value]="value"
           [placeholder]="usiPlaceholder"
-          [disabled]="!!usiDisabled"
-          [required]="!!usiRequired"
+          [disabled]="usiDisabled"
+          [required]="usiRequired"
           [attr.aria-labelledby]="uid"
           #dateInput
         />
@@ -326,10 +327,8 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
     this.createWeekDays();
 
     // Format changes made to the form value and display them.
-    this.formControlValue.valueChanges.subscribe((newValue: string | string[]) => {
-      if (!newValue) {
-        return;
-      }
+    this.formControlValue.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe((newValue: string | string[]) => {
+      if (!newValue) return;
 
       const dates = Array.isArray(newValue) ? newValue : [newValue];
       this.value = dates.map((singleDate: string) => {
@@ -383,89 +382,6 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
   }
 
   /**
-   * Creates a month object to use for the calendar interface.
-   * @param { number } month | The month to create the calendar for
-   * @param { number } year | The year to create the calendar for
-   * @private { CalendarInterface } | All the data we need to create the calendar
-   */
-  private createMonth(month: number, year: number): UsiCalendar {
-    let dates = [];
-    let dayNo = 1;
-    let today = new Date();
-    let firstDay = this.getFirstDayOfMonthIndex(month, year);
-    let daysLength = this.getDaysCountInMonth(month, year);
-    let prevMonthDaysLength = this.getDaysCountInPrevMonth(month, year);
-    let monthRows = Math.ceil((daysLength + firstDay) / 7);
-
-    for (let i = 0; i < monthRows; i++) {
-      let week: UsiDate[] = [];
-
-      if (i == 0) {
-        if (this.numberOfMonths === 1) {
-          for (let j = prevMonthDaysLength - firstDay + 1; j <= prevMonthDaysLength; j++) {
-            let prev = this.getPreviousMonthAndYear(month, year);
-
-            week.push({
-              day: j,
-              month: prev.month,
-              year: prev.year,
-              otherMonth: true,
-              today: this.isToday(today, j, prev.month, prev.year),
-            });
-          }
-        }
-
-        let remainingDaysLength = 7 - week.length;
-        for (let j = 0; j < remainingDaysLength; j++) {
-          week.push({
-            day: dayNo,
-            month: month,
-            year: year,
-            beforeToday: dayNo < today.getDate(),
-            today: this.isToday(today, dayNo, month, year),
-          });
-
-          dayNo++;
-        }
-      } else {
-        for (let j = 0; j < 7; j++) {
-          if (dayNo > daysLength) {
-            if (this.numberOfMonths === 1) {
-              let next = this.getNextMonthAndYear(month, year);
-
-              week.push({
-                day: dayNo - daysLength,
-                month: next.month,
-                year: next.year,
-                otherMonth: true,
-                today: this.isToday(today, dayNo - daysLength, next.month, next.year),
-              });
-            }
-          } else {
-            week.push({
-              day: dayNo,
-              month: month,
-              year: year,
-              beforeToday: dayNo < today.getDate(),
-              today: this.isToday(today, dayNo, month, year),
-            });
-          }
-
-          dayNo++;
-        }
-      }
-
-      dates.push(week);
-    }
-
-    return {
-      dates: dates,
-      month: month,
-      year: year,
-    };
-  }
-
-  /**
    * Since we show 11 years in the year view we need to
    * determine the start and end.
    * @param { number } startingYear | Which year we need to count from
@@ -480,24 +396,6 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
     }
 
     return yearPickerValues;
-  }
-
-  /**
-   * Since some countries use a date system that starts with
-   * Monday we need to be able to dynamically create our weekdays
-   * @return
-   */
-  public createWeekDays(): void {
-    let weekDays = [];
-    let dayIndex = this.getFirstDateOfWeek();
-    const weekDaysMin = dayjs.weekdaysMin();
-
-    for (let i = 0; i < 7; i++) {
-      weekDays.push(weekDaysMin[dayIndex]);
-      dayIndex = dayIndex == 6 ? 0 : ++dayIndex;
-    }
-
-    this.narrowDaysOfWeek = weekDays;
   }
 
   /**
@@ -761,6 +659,107 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
   }
 
   /**
+   * Since some countries use a date system that starts with
+   * Monday we need to be able to dynamically create our weekdays
+   * @private
+   */
+  private createWeekDays(): void {
+    let weekDays = [];
+    let dayIndex = this.getFirstDateOfWeek();
+    const weekDaysMin = dayjs.weekdaysMin();
+
+    for (let i = 0; i < 7; i++) {
+      weekDays.push(weekDaysMin[dayIndex]);
+      dayIndex = dayIndex == 6 ? 0 : ++dayIndex;
+    }
+
+    this.narrowDaysOfWeek = weekDays;
+  }
+
+  /**
+   * Creates a month object to use for the calendar interface.
+   * @param { number } month | The month to create the calendar for
+   * @param { number } year | The year to create the calendar for
+   * @private { CalendarInterface } | All the data we need to create the calendar
+   */
+  private createMonth(month: number, year: number): UsiCalendar {
+    let dates = [];
+    let dayNo = 1;
+    let today = new Date();
+    let firstDay = this.getFirstDayOfMonthIndex(month, year);
+    let daysLength = this.getDaysCountInMonth(month, year);
+    let prevMonthDaysLength = this.getDaysCountInPrevMonth(month, year);
+    let monthRows = Math.ceil((daysLength + firstDay) / 7);
+
+    for (let i = 0; i < monthRows; i++) {
+      let week: UsiDate[] = [];
+
+      if (i == 0) {
+        if (this.numberOfMonths === 1) {
+          for (let j = prevMonthDaysLength - firstDay + 1; j <= prevMonthDaysLength; j++) {
+            let prev = this.getPreviousMonthAndYear(month, year);
+
+            week.push({
+              day: j,
+              month: prev.month,
+              year: prev.year,
+              otherMonth: true,
+              today: this.isToday(today, j, prev.month, prev.year),
+            });
+          }
+        }
+
+        let remainingDaysLength = 7 - week.length;
+        for (let j = 0; j < remainingDaysLength; j++) {
+          week.push({
+            day: dayNo,
+            month: month,
+            year: year,
+            beforeToday: dayNo < today.getDate(),
+            today: this.isToday(today, dayNo, month, year),
+          });
+
+          dayNo++;
+        }
+      } else {
+        for (let j = 0; j < 7; j++) {
+          if (dayNo > daysLength) {
+            if (this.numberOfMonths === 1) {
+              let next = this.getNextMonthAndYear(month, year);
+
+              week.push({
+                day: dayNo - daysLength,
+                month: next.month,
+                year: next.year,
+                otherMonth: true,
+                today: this.isToday(today, dayNo - daysLength, next.month, next.year),
+              });
+            }
+          } else {
+            week.push({
+              day: dayNo,
+              month: month,
+              year: year,
+              beforeToday: dayNo < today.getDate(),
+              today: this.isToday(today, dayNo, month, year),
+            });
+          }
+
+          dayNo++;
+        }
+      }
+
+      dates.push(week);
+    }
+
+    return {
+      dates: dates,
+      month: month,
+      year: year,
+    };
+  }
+
+  /**
    * Daylight savings can mess with what day the 1st will fall on, so
    * we account for and adjust it here.
    * @param { number } month | The month to get the day count for
@@ -769,7 +768,6 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
    */
   private getDaysCountInMonth(month: number, year: number): number {
     const daylightSavingAdjust = this.daylightSavingAdjust(new Date(year, month, 32));
-
     if (daylightSavingAdjust) {
       return 32 - daylightSavingAdjust.getDate();
     }
@@ -839,9 +837,7 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
    * @protected { Date | null } Returns the date adjusted for daylight savings
    */
   protected daylightSavingAdjust(date: Date): Date | null {
-    if (!date) {
-      return null;
-    }
+    if (!date) return null;
 
     date.setHours(date.getHours() > 12 ? date.getHours() + 2 : 0);
     return date;
