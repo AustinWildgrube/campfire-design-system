@@ -286,6 +286,8 @@
 
 .usi-date-picker__months-years-text {
   align-items: center;
+  background-color: var(--white);
+  border: none;
   border-radius: 3px;
   color: var(--date-picker-data-text-color);
   cursor: pointer;

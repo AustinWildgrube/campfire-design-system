@@ -21,6 +21,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
           class="usi-input-group__suffix"
           [ngClass]="{ 'usi-input-group__suffix--error': hasError || usiForceError }"
           [icon]="['fal', 'calendar-day']"
+          [attr.aria-label]="usiValue ? 'Change date, ' + value : 'Choose date'"
         ></fa-icon>
 
         <input
@@ -58,7 +59,13 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
         </div>
       </div>
 
-      <div *ngIf="showOptions && view === 'day'" class="usi-date-picker__calendar usi-date-picker__calendar--flex" [style.width.px]="316 * numberOfMonths">
+      <div
+        *ngIf="showOptions && view === 'day'"
+        class="usi-date-picker__calendar usi-date-picker__calendar--flex"
+        [style.width.px]="316 * numberOfMonths"
+        role="dialog"
+        aria-modal="true"
+      >
         <div class="usi-date-picker__wrapper" *ngFor="let month of months; let i = index">
           <div class="usi-date-picker__header">
             <button class="usi-date-picker__selected-month-year" (click)="changeCalendarView('month'); $event.stopPropagation()">
@@ -72,6 +79,10 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
                 class="usi-date-picker__icons usi-date-picker__icons--left"
                 [icon]="['fal', 'chevron-left']"
                 (click)="decreaseMonth(); $event.stopPropagation()"
+                (keydown.enter)="decreaseMonth(); $event.stopPropagation()"
+                (keydown.space)="decreaseMonth(); $event.stopPropagation()"
+                aria-label="Previous month"
+                tabindex="0"
               ></fa-icon>
 
               <fa-icon
@@ -79,12 +90,16 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
                 class="usi-date-picker__icons usi-date-picker__icons--right"
                 [icon]="['fal', 'chevron-right']"
                 (click)="increaseMonth(); $event.stopPropagation()"
+                (keydown.enter)="increaseMonth(); $event.stopPropagation()"
+                (keydown.space)="increaseMonth(); $event.stopPropagation()"
+                aria-label="Next month"
+                tabindex="0"
               ></fa-icon>
             </div>
           </div>
 
           <div class="usi-date-picker__body">
-            <table class="usi-date-picker__days">
+            <table class="usi-date-picker__days" role="grid">
               <thead>
                 <tr>
                   <th *ngFor="let weekDay of narrowDaysOfWeek" scope="col">{{ weekDay }}</th>
@@ -149,6 +164,10 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
                     }"
                     (click)="selectDate(date)"
                     (mouseenter)="hoveredDate = getFormattedDate(date)"
+                    (keydown.space)="selectDate(date)"
+                    (keydown.enter)="selectDate(date)"
+                    [attr.aria-selected]="value.includes(getFormattedDate(date))"
+                    [tabindex]="isDateDisabled(date.day, date.month, date.year) ? -1 : 0"
                   >
                     <span
                       [ngClass]="{
@@ -179,26 +198,34 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
               class="usi-date-picker__icons usi-date-picker__icons--left"
               [icon]="['fal', 'chevron-left']"
               (click)="decreaseYear(1); $event.stopPropagation()"
+              (keydown.space)="decreaseYear(1); $event.stopPropagation()"
+              (keydown.enter)="decreaseYear(1); $event.stopPropagation()"
+              aria-label="Previous year"
+              tabindex="0"
             ></fa-icon>
 
             <fa-icon
               class="usi-date-picker__icons usi-date-picker__icons--right"
               [icon]="['fal', 'chevron-right']"
               (click)="increaseYear(1); $event.stopPropagation()"
+              (keydown.enter)="increaseYear(1); $event.stopPropagation()"
+              (keydown.space)="increaseYear(1); $event.stopPropagation()"
+              aria-label="Next year"
+              tabindex="0"
             ></fa-icon>
           </div>
         </div>
 
         <div class="usi-date-picker__body usi-date-picker__body--months">
           <div class="usi-date-picker__months-years">
-            <span
+            <button
               *ngFor="let month of monthName; let i = index"
               class="usi-date-picker__months-years-text"
               [ngClass]="{ 'usi-date-picker__months-years--selected': selectedMonth === i }"
               (click)="selectMonth(i); createMonths(i, months[0].year); changeCalendarView('day'); $event.stopPropagation()"
             >
               {{ month }}
-            </span>
+            </button>
           </div>
         </div>
       </div>
@@ -215,25 +242,34 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
               class="usi-date-picker__icons usi-date-picker__icons--left"
               [icon]="['fal', 'chevron-left']"
               (click)="decreaseYear(12); $event.stopPropagation()"
+              (keydown.enter)="decreaseYear(12); $event.stopPropagation()"
+              (keydown.space)="decreaseYear(12); $event.stopPropagation()"
+              aria-label="Previous 12 years"
+              tabindex="0"
             ></fa-icon>
+
             <fa-icon
               class="usi-date-picker__icons usi-date-picker__icons--right"
               [icon]="['fal', 'chevron-right']"
               (click)="increaseYear(12); $event.stopPropagation()"
+              (keydown.enter)="increaseYear(12); $event.stopPropagation()"
+              (keydown.space)="increaseYear(12); $event.stopPropagation()"
+              aria-label="Next 12 years"
+              tabindex="0"
             ></fa-icon>
           </div>
         </div>
 
         <div class="usi-date-picker__body usi-date-picker__body--months">
           <div class="usi-date-picker__months-years">
-            <span
+            <button
               *ngFor="let year of createYears(months[0].year)"
               class="usi-date-picker__months-years-text"
               [ngClass]="{ 'usi-date-picker__months-years--selected': selectedYear === year }"
               (click)="selectYear(year); createMonths(0, year); changeCalendarView('month'); $event.stopPropagation()"
             >
               {{ year }}
-            </span>
+            </button>
           </div>
         </div>
       </div>
