@@ -43,7 +43,7 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
   usiLabel?: string;
 
   @Input()
-  usiValue?: string | number;
+  usiValue?: any;
 
   @Input()
   formControlName?: string;
@@ -167,6 +167,7 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
    */
   public registerOnChange(fn: any): void {
     this.formControlValue.valueChanges.subscribe(fn);
+    this.onChange = fn;
   }
 
   /**
@@ -176,6 +177,7 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
    */
   public registerOnTouched(fn: any): void {
     this.formControlValue.markAsTouched();
+    this.onTouched = fn;
   }
 
   /**

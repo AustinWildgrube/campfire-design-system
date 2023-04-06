@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { takeUntil } from 'rxjs';
 
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 import { UsiInputHarnessComponent } from 'usi-campfire/shared';
@@ -75,7 +76,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
             *ngFor="let hour of hours"
             class="usi-select__option"
             [ngClass]="{ 'usi-select__option--active': formControlValueHours.value === hour }"
-            (click)="formControlValueHours.setValue(hour); formatTimeForOutput()"
+            (click)="formControlValueHours.setValue(hour); sendFormattedTimeToOnChange()"
             tabindex="0"
             role="option"
           >
@@ -88,7 +89,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
             *ngFor="let minute of minutes"
             class="usi-select__option"
             [ngClass]="{ 'usi-select__option--active': formControlValueMinutes.value === minute }"
-            (click)="formControlValueMinutes.setValue(minute); formatTimeForOutput()"
+            (click)="formControlValueMinutes.setValue(minute); sendFormattedTimeToOnChange()"
             tabindex="0"
             role="option"
           >
@@ -101,7 +102,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
             *ngFor="let meridiemValue of meridiem"
             class="usi-select__option"
             [ngClass]="{ 'usi-select__option--active': formControlValueMeridiem.value === meridiemValue }"
-            (click)="formControlValueMeridiem.setValue(meridiemValue); formatTimeForOutput()"
+            (click)="formControlValueMeridiem.setValue(meridiemValue); sendFormattedTimeToOnChange()"
             tabindex="0"
             role="option"
           >
@@ -160,7 +161,13 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
   formControlValueMeridiem: FormControl = new FormControl();
 
   override ngOnInit() {
-    super.ngOnInit();
+    if (this.formControlName) {
+        const defaultControl = this.parentFormGroup.form.controls[this.formControlName];
+        if (typeof defaultControl.value !== 'string') return;
+
+        this.selectInterval(defaultControl.value)
+        defaultControl.setValue(this.formatTimeForOutput());
+    }
 
     if (this.usiValue) {
       this.selectInterval(this.usiValue as string);
@@ -250,13 +257,12 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
     this.formControlValueMinutes.setValue(minutes);
     this.formControlValueMeridiem.setValue(ampm);
 
-    this.formatTimeForOutput();
+    this.sendFormattedTimeToOnChange();
   }
 
   /**
    * This is more of an autocomplete for the meridiem input. If a user types the letter
-   * A then AM is selected, but if the user presses the letter P it will switch over to
-   * PM
+   * A then AM is selected, but if the user presses the letter P it will switch over to PM
    * @param { Event } event | the keyboard event that occurred
    */
   public formatMeridiem(event: any): void {
@@ -275,7 +281,7 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
       this.formControlValueMeridiem.reset();
     }
 
-    this.formatTimeForOutput();
+    this.sendFormattedTimeToOnChange();
   }
 
   /**
@@ -303,7 +309,7 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
       }
     }
 
-    this.formatTimeForOutput();
+    this.sendFormattedTimeToOnChange();
   }
 
   /**
@@ -342,9 +348,9 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
 
   /**
    * We set the hour and minutes value to output to the form.
-   * @private
+   * @return
    */
-  public formatTimeForOutput(): void {
+  public formatTimeForOutput(): { hours: string; minutes: string } {
     let outputHours = this.formControlValueHours.value;
     if (this.formControlValueMeridiem.value === 'PM' && this.formControlValueHours.value !== '12') {
       outputHours = parseInt(this.formControlValueHours.value) + 12;
@@ -354,11 +360,35 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
       outputHours = 0;
     }
 
-    this.formControlValue.setValue({
-      hours: outputHours,
+    return {
+      hours: outputHours.toString(),
       minutes: this.formControlValueMinutes.value,
+    }
+  }
+
+  /**
+   * We need to update our formControlValue with the formatted output.
+   * @return
+   */
+  public sendFormattedTimeToOnChange(): void {
+    this.onChange(this.formatTimeForOutput());
+    this.onTouched();
+  }
+
+  /**
+   * We need to register an onChange function since we need to overwrite the Angular onChange function
+   * @param { (value: string) => void } fn | The function to overwrite with
+   * @return
+   */
+  public override registerOnChange(fn: any): void {
+    this.formControlValue.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe((newValue: any) => {
+      if (!newValue || typeof newValue !== 'string') return;
+
+      // If the value is a string we know it was programmatically set since we
+      // format our value as an object for output.
+      this.selectInterval(newValue);
     });
 
-    this.writeValue(this.formControlValue.value);
+    this.onChange = fn;
   }
 }
