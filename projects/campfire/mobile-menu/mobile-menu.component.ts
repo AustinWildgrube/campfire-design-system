@@ -33,14 +33,30 @@ export interface MobileMenuLayout {
 @Component({
   selector: 'usi-mobile-menu',
   template: `
-    <aside *ngIf="usiShowMenu" class="usi-mobile-menu" [ngClass]="{ 'usi-mobile-menu--animate-in': usiShowMenu, 'usi-mobile-menu--animate-out': !usiShowMenu }">
+    <aside
+      *ngIf="usiShowMenu"
+      class="usi-mobile-menu"
+      [ngClass]="{ 'usi-mobile-menu--animate-in': usiShowMenu, 'usi-mobile-menu--animate-out': !usiShowMenu }"
+      cdkTrapFocus
+      cdkTrapFocusAutoCapture
+    >
       <div *ngIf="usiLayer === 'main'">
         <header *ngIf="isLoggedIn" class="usi-mobile-menu__header">
           <span class="usi-mobile-menu__initials">{{ usiAuth.initials }}</span>
           <span class="usi-mobile-menu__name">{{ usiAuth.name }}</span>
           <span class="usi-mobile-menu__company">{{ usiAuth.company }}</span>
 
-          <fa-icon class="usi-mobile-menu__close-button" [icon]="['fal', 'times']" (click)="closeMenu()" aria-label="Close mobile menu" role="button"></fa-icon>
+          <fa-icon
+            class="usi-mobile-menu__close-button"
+            [icon]="['fal', 'times']"
+            (click)="closeMenu()"
+            (keydown.enter)="closeMenu()"
+            (keydown.space)="closeMenu()"
+            aria-label="Close mobile menu"
+            role="button"
+            tabindex="0"
+            cdkFocusInitial
+          ></fa-icon>
         </header>
 
         <header *ngIf="!isLoggedIn" class="usi-mobile-menu__header">
@@ -54,7 +70,17 @@ export interface MobileMenuLayout {
             Don't have an account? <a class="usi-mobile-menu__auth usi-mobile-menu__signup" [routerLink]="usiAuth.registerLink">Sign Up</a>
           </span>
 
-          <fa-icon class="usi-mobile-menu__close-button" [icon]="['fal', 'times']" (click)="closeMenu()" aria-label="Close mobile menu" role="button"></fa-icon>
+          <fa-icon
+            class="usi-mobile-menu__close-button"
+            [icon]="['fal', 'times']"
+            (click)="closeMenu()"
+            (keydown.enter)="closeMenu()"
+            (keydown.space)="closeMenu()"
+            aria-label="Close mobile menu"
+            role="button"
+            tabindex="0"
+            cdkFocusInitial
+          ></fa-icon>
         </header>
 
         <div *ngFor="let menu of usiLayout" class="usi-mobile-menu__content">
@@ -101,13 +127,13 @@ export interface MobileMenuLayout {
           </div>
         </div>
 
-        <div *ngIf="isLoggedIn" class="usi-mobile-menu__logout" (click)="logout()">
+        <button *ngIf="isLoggedIn" class="usi-mobile-menu__logout" (click)="logout()">
           <span class="usi-mobile-menu__icon">
             <fa-icon [icon]="['fal', 'arrow-right-from-bracket']"></fa-icon>
           </span>
 
           <span class="usi-mobile-menu__logout-text">Sign out</span>
-        </div>
+        </button>
       </div>
 
       <div *ngIf="usiLayer === 'languages'">
@@ -144,7 +170,16 @@ export interface MobileMenuLayout {
             role="button"
           ></fa-icon>
 
-          <fa-icon class="usi-mobile-menu__close-button" [icon]="['fal', 'times']" (click)="closeMenu()" aria-label="Close mobile menu" role="button"></fa-icon>
+          <fa-icon
+            class="usi-mobile-menu__close-button"
+            [icon]="['fal', 'times']"
+            (click)="closeMenu()"
+            (keyup.enter)="closeMenu()"
+            (keyup.space)="closeMenu()"
+            aria-label="Close mobile menu"
+            role="button"
+            tabindex="0"
+          ></fa-icon>
         </header>
 
         <div class="usi-mobile-menu__content">
@@ -162,8 +197,11 @@ export interface MobileMenuLayout {
             class="usi-mobile-menu__back-button"
             [icon]="['fal', 'arrow-left-long']"
             (click)="changeLayer('main')"
+            (keyup.enter)="changeLayer('main')"
+            (keyup.space)="changeLayer('main')"
             aria-label="Go back"
             role="button"
+            tabindex="0"
           ></fa-icon>
 
           <fa-icon class="usi-mobile-menu__close-button" [icon]="['fal', 'times']" (click)="closeMenu()" aria-label="Close mobile menu" role="button"></fa-icon>

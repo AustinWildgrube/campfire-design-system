@@ -13,7 +13,7 @@ important aspects that aims to guide users in the right direction. Good menu des
 ```ts
 import { MobileMenuAuth, MobileMenuLayout } from 'usi-campfire/mobile-menu';
 
-menuLayout: string = 'main';
+menuLayer: string = 'main';
 
 menuAuth: MobileMenuAuth = {
   initials: 'HS',
@@ -26,7 +26,7 @@ menuAuth: MobileMenuAuth = {
 menuLayout: MobileMenuLayout[] = [
   {
     type: 'link',
-    text: 'Space Booking',
+    label: 'Space Booking',
     href: '/',
     show: 'guest',
   },
@@ -65,7 +65,7 @@ export interface MobileMenuLayout {
   type: 'section' | 'layer' | 'link';
   show: 'all' | 'logged' | 'guest';
   id?: 'settings' | string;
-  text?: string;
+  label?: string;
   title?: string;
   icon?: IconName;
   href?: string;
@@ -84,7 +84,7 @@ export interface MobileMenuLanguages {
 menuLayout: MobileMenuLayout[] = [
   {
     type: 'link',
-    text: 'Space Booking',
+    label: 'Space Booking',
     href: '/',
     show: 'guest',
   },
@@ -135,7 +135,7 @@ the `*ngIf` statement will determine when the layer is shown.
 menuLayout: MobileMenuLayout[] = [
  {
     type: 'layer',
-    text: 'Documents',
+    label: 'Documents',
     id: 'documents',
     show: 'logged',
   },
@@ -167,7 +167,7 @@ menuLayout: MobileMenuLayout[] = [
     section: [
       {
         type: 'link',
-        text: 'Contact Salesperson',
+        label: 'Contact Salesperson',
         icon: 'phone-flip',
         href: '/',
         show: 'logged',
@@ -245,7 +245,7 @@ they are navigating to.
 ```ts
 menuLayout: MobileMenuLayout[] = [
   {
-    text: 'Space Booking',
+    label: 'Space Booking',
     type: 'link',
     show: 'guest',
   },
