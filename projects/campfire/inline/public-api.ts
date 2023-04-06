@@ -1,2 +1,2 @@
-export * from '../inline/inline.component';
-export * from '../inline/inline.module';
+export * from './inline.component';
+export * from './inline.module';

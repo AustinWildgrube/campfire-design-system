@@ -21,6 +21,9 @@ describe('UsiInlineComponent', () => {
     fixture = TestBed.createComponent(UsiInlineComponent);
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
+
+    component.usiTitle = 'Title';
+    component.usiMessage = 'Message';
     fixture.detectChanges();
   });
 
@@ -29,12 +32,12 @@ describe('UsiInlineComponent', () => {
     expect(debugElement.nativeElement.querySelector('.usi-inline')).toBeTruthy();
   });
 
-  it('should have a title', () => {
+  it('should have a title and message', () => {
     expect(debugElement.nativeElement.querySelector('.usi-inline__title')).toBeTruthy();
-  });
+    expect(debugElement.nativeElement.querySelector('.usi-inline__title').textContent).toContain('Title');
 
-  it('should have a message', () => {
     expect(debugElement.nativeElement.querySelector('.usi-inline__message')).toBeTruthy();
+    expect(debugElement.nativeElement.querySelector('.usi-inline__message').textContent).toContain('Message');
   });
 
   it('should have an icon', () => {
@@ -49,5 +52,21 @@ describe('UsiInlineComponent', () => {
     fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelector('.usi-inline--success')).toBeTruthy();
+  });
+
+  it('should throw an error if no title is provided', () => {
+    expect(() => {
+    component.usiTitle = '';
+    component.ngOnInit();
+    fixture.detectChanges();
+    }).toThrowError('UsiInline: A title and message are required.');
+  });
+
+  it('should throw an error if no message is provided', () => {
+    expect(() => {
+      component.usiMessage = '';
+      component.ngOnInit();
+      fixture.detectChanges();
+    }).toThrowError('UsiInline: A title and message are required.');
   });
 });

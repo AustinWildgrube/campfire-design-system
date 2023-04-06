@@ -29,10 +29,10 @@ import { IconName } from '@fortawesome/pro-light-svg-icons';
 })
 export class UsiInlineComponent {
   @Input()
-  usiTitle = '';
+  usiTitle: string = ''
 
   @Input()
-  usiMessage = '';
+  usiMessage: string = '';
 
   @Input()
   usiIcon?: IconName | null;
@@ -41,4 +41,10 @@ export class UsiInlineComponent {
   usiType?: 'success' | 'info' | 'warning' | 'error' | 'default' = 'default';
 
   constructor() {}
+
+  ngOnInit(): void {
+    if (!this.usiTitle || !this.usiMessage) {
+      throw new Error('UsiInline: A title and message are required.');
+    }
+  }
 }

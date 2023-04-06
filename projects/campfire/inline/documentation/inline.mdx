@@ -3,38 +3,36 @@ import { UsiInlineModule } from 'usi-campfire/notifications';
 ```
 
 # Inline Notifications
-Inline Notifications are used for contextual information, including positive feedback or confirmation about an action,
-warnings about possible issues or errors. They are used to provide context in proximity to a piece of content
-preferably at the top.
+Inline Notifications are used for contextual information, including positive feedback or confirmation about an action, warnings about possible issues, and
+errors. They are used to provide context in close proximity to a piece of content, preferably at the top.
 
-Campfire inline notifications are called via the `<usi-inline>` element. Inline notifications only require two properties as
-shown below.
+Campfire inline notifications are called via the `<usi-inline>` element. Inline notifications only require two properties as shown below.
 
 ```html
 <usi-inline usiTitle="Lorem Ipsum" usiMessage="Lorem ipsum dolor sit amet"></usi-inline>
 ```
 
 ## Inline Notification Types
-There are five different inline notification types: `success`, `warning`, `error`, `info`, `default`. Order inline
-notifications by the urgency in which the user needs to pay attention to: error, warning, info, then success. In the
-case there are multiple of each type, all of them are shown before another type is reached.
+There are five different inline notification types: `success`, `warning`, `error`, `info`, `default`. Order inline notifications by the urgency with which the
+user needs to pay attention to: error, warning, info, and then success. In the case where there are multiples of each type, all of them are shown before another
+type is reached.
 
 ### Success
-Reserved to provide to a static persistent success message.
+Reserved to provide a static, persistent success message.
 
 ```html
 <usi-inline usiTitle="Lorem Ipsum" usiMessage="Lorem ipsum dolor sit amet" usiType="success"></usi-inline>
 ```
 
 ### Warning
-Reserved for warnings: a message that needs the user attention and acknowledgment but might not cause errors.
+Reserved for warnings: a message that needs the user's attention and acknowledgement but might not cause errors.
 
 ```html
 <usi-inline usiTitle="Lorem Ipsum" usiMessage="Lorem ipsum dolor sit amet" usiType="warning"></usi-inline>
 ```
 
 ### Error
-Reserved for errors, malfunctions, as well as critical issues like license expiration.
+Reserved for errors, malfunctions, and critical issues like license expiration.
 
 ```html
 <usi-inline usiTitle="Lorem Ipsum" usiMessage="Lorem ipsum dolor sit amet" usiType="error"></usi-inline>
@@ -50,7 +48,7 @@ Reserved for non-critical information that can be used to assist the user.
 ### Default
 Reserved for custom inline notifications.
 
-> While using the default inline notification it is best to use the icon property to help convey the custom message.
+> While using the default inline notification, it is best to use the icon property to help convey the custom message.
 
 ```html
 <usi-inline usiTitle="Lorem Ipsum" usiMessage="Lorem ipsum dolor sit amet"></usi-inline>
@@ -59,23 +57,21 @@ Reserved for custom inline notifications.
 ```
 
 ## Custom Inline Notification Icons
-Icons can be used inside inline notifications to decorate the call-to-action with a visual indicator. Icons should be
-used alongside text that clearly indicates what the interaction is expected to do.
+Icons can be used inside inline notifications to decorate the call-to-action with a visual indicator. Icons should be used alongside text that clearly
+indicates what the interaction is expected to do.
 
-> FontAwesome is currently the ***only*** icon library Breakfast supports.
+> FontAwesome is currently the ***only*** icon library Campfire supports.
 
 ```html
 <usi-inline usiTitle="Lorem Ipsum" usiMessage="Lorem ipsum dolor sit amet" usiIcon="alien"></usi-inline>
 ```
 
 ## Inline Notification Customization
-Campfire inline notifications were made to be easily customizable. Styling an inline notification is as simple as just adding
-a class onto the tag or overriding our CSS variables in the root selector. The list of overridable variables are as
-follows:
+Campfire inline notifications were made to be easily customizable. Styling an inline notification is as simple as just adding a class to the tag or
+overriding our CSS variables in the root selector. The list of overridable variables is as follows:
 
 ```css
 :root {
-  // Inline notifications
   --inline-background-color: var(--white);
   --inline-border-color: var(--black);
   --inline-title-text-color: var(--black);
