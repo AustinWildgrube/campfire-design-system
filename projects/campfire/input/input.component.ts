@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, forwardRef, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
@@ -126,7 +126,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
 
       <span *ngIf="usiHint && !hasError && !usiForceError" class="usi-input-group__hint">{{ usiHint }}</span>
 
-      <div *ngIf="(usiError && formControlValue.touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
+      <div *ngIf="(hasError && formControlValue.touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
         <ng-container *ngTemplateOutlet="usiError">{{ usiError }}</ng-container>
       </div>
     </div>
@@ -140,7 +140,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
     },
   ],
 })
-export class UsiInputComponent extends UsiInputHarnessComponent implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit {
+export class UsiInputComponent extends UsiInputHarnessComponent implements ControlValueAccessor {
   @Input()
   usiType: 'text' | 'email' | 'password' | 'number' = 'text';
 

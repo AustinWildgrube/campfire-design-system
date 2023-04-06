@@ -3,16 +3,16 @@ import { UsiInputModule } from 'usi-campfire/input';
 ```
 
 # Inputs
-Inputs are a way to allow the user to enter a value associated with a key, such as entering their name in a field
-labeled name. Attributes that can be used on normal inputs do not contain the `usi` prefix.
+The input UI element is a crucial building block for creating dynamic and engaging web experiences. The input element is used to collect various types of user
+input, such as text, numbers, emails, and passwords, to send to a server for processing. Campfire inputs can be created by using the `<usi-input>` element.
 
 ```html
 <usi-input usiPlaceholder="placeholder" usiLabel="label"></usi-input>
 ```
 
 ## Inputs in Forms
-Inputs will almost always be used in forms. Campfire inputs can be used in reactive forms as well as in
-template driven forms via the methods below.
+Inputs are a fundamental element in web forms, and Campfire provides versatile input options that can be used in both reactive and template-driven forms, using
+the methods outlined below.
 
 ```ts
 inputNgModel: boolean = false;
@@ -34,32 +34,32 @@ constructor(private formBuilder: FormBuilder) {
 ```
 
 ## Label
-The label attribute is used to provide a label for the input. When a Campfire input is being focused the label will float
-above the input. Labels are required as they provide crucial information to the users.
+The `usiLabel` attribute is used to provide a label for the input. When a Campfire input is being focused the label will float above the input. Labels are
+required as they provide crucial information to the users.
 
 ```html
-<usi-input usiPlaceholder="placeholder" usiLabel="label"></usi-input>
+<usi-input usiLabel="label" usiPlaceholder="placeholder"></usi-input>
 ```
 
 ## Placeholder
-The placeholder attribute is used to provide a hint to the user of what can be entered in the input. Placeholders are
-required as they provide crucial information to the users.
+The `usiPlaceholder` attribute is used to provide a hint to the user of what can be entered in the input. Placeholders are required as they provide crucial
+information to the users.
 
 ```html
 <usi-input usiPlaceholder="placeholder" usiLabel="label"></usi-input>
 ```
 
 ## Types
-Campfire inputs only take a few types that a native input can take. This is because there are other Campfire components
-that cover the other types. The included types are `text`, `number`, `email`, and `password`.
+Campfire inputs only take a few types that a native input can take. This is because there are other Campfire components that cover the other types. The
+included types are `text`, `number`, `email`, and `password`.
 
 ```html
 <usi-input usiPlaceholder="placeholder" usiType="email" usiLabel="label"></usi-input>
 ```
 
 ## Password Control
-Although type is used to determine the type of input, Campfire inputs can also take the `usiPassword` attribute. This
-allows the input to use custom controls for passwords that are baked into Campfire.
+Although type is used to determine the type of input, Campfire inputs can also take the `usiPassword` attribute. This allows the input to use custom controls
+for passwords that are baked into Campfire.
 
 > `type="password"` can be used with `usiPassword` but the inverse is not true.
 
@@ -68,8 +68,8 @@ allows the input to use custom controls for passwords that are baked into Campfi
 ```
 
 ## Required Inputs
-The required attribute is used to indicate that the input must be filled out before submitting the form. If it does not
-contain a value the input will be marked as invalid.
+The required attribute is used to indicate that the input must be filled out before submitting the form. If it does not contain a value the input will be
+marked as invalid.
 
 ```html
 <usi-input usiPlaceholder="placeholder" usiLabel="label" usiRequired></usi-input>
@@ -77,30 +77,35 @@ contain a value the input will be marked as invalid.
 
 ## Error Handling
 Campfire inputs can have custom error templates. This is done by providing the `usiError` attribute with an
-[Angular template](https://angular.io/api/core/ng-template). The template will be rendered when the input is invalid.
-It is up to the developer to provide the correct error message.
+[Angular template](https://angular.io/api/core/ng-template). The template will be rendered when the input is invalid. It is up to the developer to provide the
+correct error message. If there is more than one error message that can be rendered, it is advised to use an `*ngIf` condition so only the relevant message is
+shown. However, for singular messages the `*ngIf` is not required.
 
 ```html
-<usi-input usiPlaceholder="placeholder" usiLabel="label" [usiError]="errorTemplate"></usi-input>
+<usi-input usiPlaceholder="placeholder" usiLabel="label" [usiError]="multiErrorTemplate"></usi-input>
 
-<ng-template #errorTemplate>
+<ng-template #multiErrorTemplate>
   <p *ngIf="tooShort">Input is too short</p>
   <p *ngIf="tooLong">Input is too long</p>
 </ng-template>
+
+<usi-input usiPlaceholder="placeholder" usiLabel="label" [usiError]="singleErrorTemplate"></usi-input>
+
+<ng-template #singleErrorTemplate>
+  <p>I can be any error message</p>
+</ng-template>
 ```
 
-Errors can be forced by setting the `usiError` attribute. This will display the error message in the input even if the
-input is not touched by the user. If an error template is not provided the input will only display the default error
-color and omit a message.
+Errors can be forced by setting the `usiError` attribute. This will display the error message in the input even if the input has not been touched by the user.
+If an error template is not provided, the input will only display the default error color and omit a message.
 
 ```html
 <usi-input usiPlaceholder="placeholder" usiForceError usiLabel="label"></usi-input>
 ```
 
 ## Using Icons
-Icons are commonly used in inputs to quickly convey the purpose of the input to the user. Usually the icon is used in
-addition to a label and a placeholder. Icons can be used as prefixes, meaning they are placed before the input, but they
-can also be used as suffixes, meaning they are placed after the input.
+Icons are commonly used in inputs to quickly convey the purpose of the input to the user. Usually the icon is used in addition to a label and a placeholder.
+Icons can be used as prefixes, meaning they are placed before the input, but they can also be used as suffixes, meaning they are placed after the input.
 
 ```html
 <usi-input usiPlaceholder="placeholder" usiLabel="label" usiPrefix="user"></usi-input>
@@ -108,43 +113,41 @@ can also be used as suffixes, meaning they are placed after the input.
 ```
 
 ## Hints
-Sometimes when the label and placeholder are not enough to convey the purpose of the input to the user, hints are
-commonly used. Hints are displayed below the input and are not required. A hint is different from an error message though.
-In Campfire a hint will not be displayed if the input is invalid.
+Occasionally, the label and placeholder are not enough to convey the purpose of the input to the user, so a hint is needed. Hints are displayed below the input
+and are not required. A hint is different from an error message, though. In Campfire, a hint will not be displayed if the input is invalid.
 
 ```html
 <usi-input usiPlaceholder="placeholder" usiLabel="label" usiHint="hint"></usi-input>
 ```
 
 ## Default Values
-A lot of the time inputs already have had information provided to them. This is common when a user is to edit some
-information they have previously provided. This is done by setting the `usiDefault` attribute. If an input is connected
-to a form the value will be set there as well.
+A lot of the time, inputs have already had information provided to them. This is common when a user wants to edit some information they have previously
+provided. This is done by setting the `usiValue` attribute. If an input is connected to a form, the value will need to be set there, and the `usiValue`
+attribute can be omitted.
 
 ```html
 <usi-input usiPlaceholder="placeholder" usiValue="default" usiLabel="label"></usi-input>
 ```
 
 ## Minimum & Maximum Values
-Occasionally, there will be a need for minimum and maximum values when it comes to an input. Whether this is in reference
-to numbers or the amount of characters the input can have, this can be done by setting the `usiMin` and `usiMax` attributes.
+Occasionally, there will be a need for minimum and maximum values when it comes to an input. Whether this is in reference to numbers or the amount of
+characters the input can have, this can be done by setting the `usiMin` and `usiMax` attributes.
 
 ```html
 <usi-input usiPlaceholder="placeholder" usiLabel="label" usiType="text" usiMin="2" usiMax="10"></usi-input>
 ```
 
 ## Patterns
-Being able to enforce a pattern on the input can help guide users to what is needed for completing the form. If the pattern
-is incorrect, an error state will be shown, informing the user that a different value needs to be given. The `usiPattern`
-attribute can be given a `string` or a `RegExp`.
+Being able to enforce a pattern on the input can help guide users to what is needed for completing the form. If the pattern is incorrect, an error state will
+be shown, informing the user that a different value needs to be given. The `usiPattern` attribute can be given a `string` or a `RegExp`.
 
 ```html
 <usi-input usiPlaceholder="placeholder" usiLabel="label" usiPattern="[A-Za-z]{3}"></usi-input>
 ```
 
 ## Customization
-Inputs were made to be easily customizable. Styling an input is as simple as just adding a class onto the tag or
-overriding our CSS variables in the root selector. The list of overridable variables are as follows:
+Inputs were made to be easily customizable. Styling an input is as simple as just adding a class to the tag or overriding our CSS variables in the root
+selector. The list of overridable variables is as follows:
 
 ```css
 :root {
