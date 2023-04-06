@@ -11,9 +11,18 @@
   --info: #00477A;
 
   /* Ghosting */
-  --ghost-line-color: rgba(228, 228, 228, 0.863);
-  --ghost-color: var(--gray);
-  --ghost-animation-duration: 3s;
+  --ghost-line-color: #676879;
+  --ghost-background: #e6e9ef;
+  --ghost-corner-radius: 3px;
+
+  --ghost-height: 60px;
+  --ghost-width: 60px;
+
+  --ghost-width--rectangle: 120px;
+
+  --ghost-height--circle: 60px;
+  --ghost-width--circle: 60px;
+  --ghost-corner-radius--circle: 50%;
 
   /* Buttons */
   --button-background-color: var(--primary);

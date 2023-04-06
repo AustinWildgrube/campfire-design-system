@@ -8,7 +8,6 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
     <div
       class="usi-ghost"
       [ngClass]="{
-        'usi-ghost': true,
         'usi-ghost--inline': usiInline,
         'usi-ghost--rectangle': usiType === 'rectangle',
         'usi-ghost--circle': usiType === 'circle',
@@ -18,8 +17,7 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
         'usi-ghost--h3': usiType === 'h3',
         'usi-ghost--h4': usiType === 'h4',
         'usi-ghost--h5': usiType === 'h5',
-        'usi-ghost--h6': usiType === 'h6',
-        class: class || ''
+        'usi-ghost--h6': usiType === 'h6'
       }"
       [style.height.px]="usiHeight"
       [style.width.px]="usiWidth"
@@ -28,9 +26,6 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
   styleUrls: ['./styles/ghost.component.scss'],
 })
 export class UsiGhostComponent {
-  @Input()
-  class?: string;
-
   @Input()
   @InputBoolean()
   usiInline?: BooleanInput;

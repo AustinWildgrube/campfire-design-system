@@ -9,7 +9,7 @@
     animation-iteration-count: infinite;
     animation-name: shine;
     animation-timing-function: cubic-bezier(0, 0, 0.35, 1);
-    background-image: linear-gradient(90deg, transparent 0%, #676879 30%, #676879 70%, transparent 100%);
+    background-image: linear-gradient(90deg, transparent 0%, var(--ghost-line-color) 30%, var(--ghost-line-color) 70%, transparent 100%);
     content: "";
     display: inline-block;
     height: 300%;
@@ -28,19 +28,17 @@
   }
 }
 
-@mixin skeleton($radius: 3px) {
-  background: #e6e9ef;
+@mixin skeleton($radius: var(--ghost-corner-radius)) {
+  background: var(--ghost-background);
   border-radius: $radius;
 
   @include shine-animation;
 }
 
 .usi-ghost {
-  $square-default-size: 60px;
-
   display: block;
-  height: $square-default-size;
-  width: $square-default-size;
+  height: var(--ghost-height);
+  width: var(--ghost-width);
 
   @include skeleton;
 
@@ -49,22 +47,17 @@
   }
 
   &--rectangle {
-    $rectangle-default-size: 60px;
-
-    height: $rectangle-default-size;
-    width: $rectangle-default-size * 2;
+    height: var(--ghost-height);
+    width: var(--ghost-width--rectangle);
 
     @include skeleton;
   }
 
   &--circle {
-    $circle-default-size: 40px;
-    $circle-radius: 50%;
+    height: var(--ghost-height--circle);
+    width: var(--ghost-width--circle);
 
-    height: $circle-default-size;
-    width: $circle-default-size;
-
-    @include skeleton($circle-radius);
+    @include skeleton(--ghost-corner-radius--circle);
   }
 
   &--h1 {

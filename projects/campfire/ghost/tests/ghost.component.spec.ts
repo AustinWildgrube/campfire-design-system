@@ -31,7 +31,7 @@ describe('GhostComponent', () => {
     expect(debugElement.nativeElement.querySelector('.usi-ghost')).toBeTruthy();
   });
 
-  it('should create an inline ghost element', () => {
+  it('should create an inline element', () => {
     component.usiInline = true;
     fixture.detectChanges();
 

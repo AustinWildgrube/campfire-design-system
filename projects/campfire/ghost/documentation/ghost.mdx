@@ -3,3 +3,59 @@ import { UsiGhostModule } from 'usi-campfire/ghost';
 ```
 
 # Ghost
+A skeleton screen is an animated placeholder that simulates the layout of a website while data is being loaded by using ghost elements. They let the user know
+that some content is loading and, more importantly, provide an indication of what is loading, whether it's an image, text, card, and so on. This gives the user
+the impression that the website is faster because they already know what type of content is loading before it appears. This is referred to as perceived
+performance.
+
+```html
+<usi-ghost></usi-ghost>
+```
+
+## Inline
+By default, the ghost will be a block element. If you want to use it inline, you can use the `usiInline` attribute.
+
+```html
+<usi-ghost usiInline></usi-ghost>
+```
+
+## Types
+The ghost component supports a few different types of shapes that follow Campfire design guidelines. The default is a `square`, but you can also use a
+`rectangle`, `circle`, `text`, `h1`, `h2`, `h3`, `h4`, `h5`, or `h6`.
+
+```html
+<usi-ghost usiType="text"></usi-ghost>
+```
+
+## Sizing
+In order to accommodate a variety of shapes and sizes, the ghost elements should be configured using the usiWidth and usiHeight attributes. These attributes
+can be set to the desired width and height of the element by utilizing the square bracket syntax and providing a px value.
+
+```html
+<usi-ghost [usiHeight]="99" [usiWidth]="99"></usi-ghost>
+```
+
+## Ghost Customization
+Campfire ghost elements were made to be easily customizable. Styling a ghost element is as simple as just adding a class to the tag or overriding our CSS
+variables in the root selector. The list of overridable variables is as follows:
+
+```css
+:root {
+  --ghost-line-color: #676879;
+  --ghost-background: #e6e9ef;
+  --ghost-corner-radius: 3px;
+
+  --ghost-height: 60px;
+  --ghost-width: 60px;
+
+  --ghost-width--rectangle: 120px;
+
+  --ghost-height--circle: 60px;
+  --ghost-width--circle: 60px;
+  --ghost-corner-radius--circle: 50%;
+}
+```
+
+```html
+<usi-ghost class="custom-ghost"></usi-ghost>
+```
