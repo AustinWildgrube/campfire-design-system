@@ -1,4 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { takeUntil } from 'rxjs';
+
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
 import { UsiMobileMenuService } from './mobile-menu.service';
@@ -332,7 +334,7 @@ export class UsiMobileMenuComponent implements OnInit {
    * @private
    */
   private isLoggedInCheck(): void {
-    this.usiMobileMenuService.isAuthed.subscribe((authed: boolean) => {
+    this.usiMobileMenuService.isAuthed.pipe(takeUntil(this.usiMobileMenuService.unsubscribe)).subscribe((authed: boolean) => {
       this.isLoggedIn = authed;
     });
   }
@@ -342,7 +344,7 @@ export class UsiMobileMenuComponent implements OnInit {
    * @private
    */
   private isOpen(): void {
-    this.usiMobileMenuService.isOpen.subscribe((open: boolean) => {
+    this.usiMobileMenuService.isOpen.pipe(takeUntil(this.usiMobileMenuService.unsubscribe)).subscribe((open: boolean) => {
       this.usiShowMenu = open;
     });
   }

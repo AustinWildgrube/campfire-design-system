@@ -1,19 +1,26 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 import { MobileMenuLayout } from './mobile-menu.component';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UsiMobileMenuService {
+export class UsiMobileMenuService implements OnDestroy {
   isOpen = new BehaviorSubject<boolean>(false);
   isAuthed = new BehaviorSubject<boolean>(false);
   isDarkMode = new BehaviorSubject<boolean>(false);
   route = new BehaviorSubject<MobileMenuLayout>({ type: 'section', id: '', show: 'all' });
   language = new BehaviorSubject<string>('');
 
+  unsubscribe = new Subject<boolean>();
+
   constructor() {}
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next(true);
+    this.unsubscribe.complete();
+  }
 
   /**
    * Reflects the open state of the application.
