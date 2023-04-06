@@ -15,7 +15,11 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
         *ngIf="usiPassword === true && usiType === 'password'"
         class="usi-input-group__suffix usi-input-group__suffix--password"
         (click)="revealPassword()"
+        (keydown.enter)="revealPassword()"
+        (keydown.space)="revealPassword()"
         [icon]="['fal', 'eye-slash']"
+        aria-label="Reveal password"
+        tabindex="0"
       >
       </fa-icon>
 
@@ -23,7 +27,11 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
         *ngIf="usiPassword && usiType !== 'password'"
         class="usi-input-group__suffix usi-input-group__suffix--password"
         (click)="revealPassword()"
+        (keydown.enter)="revealPassword()"
+        (keydown.space)="revealPassword()"
         [icon]="['fal', 'eye']"
+        aria-label="Hide password"
+        tabindex="0"
       >
       </fa-icon>
 
