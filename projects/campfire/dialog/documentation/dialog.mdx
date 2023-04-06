@@ -3,9 +3,8 @@ import { UsiModalModule } from 'usi-campfire/modals';
 ```
 
 # Dialog Modals
-A modal is a web page element that displays in front of and deactivates all other page content. To return to the main
-content, the user must engage with the modal by completing an action or by closing it. Modals are often used to direct
-users' attention to an important action or piece of information on a website or application.
+Dialog modals are pop-up windows that appear on top of a web page, blocking all other page content until the user completes an action or closes the modal. They
+are commonly used to draw users' attention to important information or actions on a website or application.
 
 ```ts
 import { UsiModalsService } from "usi-campfire/modals";
@@ -38,9 +37,8 @@ this.usiModalService.add(globalModalConfig);
 ```
 
 ## Button Text
-Although the modal has generic button text, it is recommended that you use the button text to indicate the correct
-action that needs to be taken. Because of the `usiOnAction` the modal may not always close when clicking the action
-button.
+Although the modal has default button text, it is recommended that you customize it to provide clear and concise instructions for the user. The `usiOnAction`
+function can be used to override the default behavior of the action button.
 
 ```ts
 const globalModalConfig: UsiModal = {
@@ -53,8 +51,8 @@ this.usiModalService.add(globalModalConfig);
 ```
 
 ## ID's
-By default, modals are assigned a random numeric ID. This ID is returned after calling the `.add()` method. If you need
-to reference a modal by ID before it is added to the DOM, you can use the `usiId` property.
+By default, modals are assigned a random numeric ID. This ID is returned after calling the `.add()` method. If you need to reference a modal by ID before it
+is added to the DOM, you can use the `usiId` property.
 
 ```ts
 const globalModalConfig: UsiModal = {
@@ -67,9 +65,8 @@ const willBeRandomId = this.usiModalService.add('title');
 ```
 
 ## Popup Limit
-Since the modal module is really just an extension of the notification module, the `usiLimit` property is also available
-and enforced. By default, the limit is set to 1 but sometimes there is a need to have multiple modals open at the same
-time. This usually happens if the action button leads to another component inside the modal.
+The usiLimit property is available to limit the number of modals that can be open at the same time. By default, the limit is set to 1. However, if needed, you
+can increase the limit to allow for multiple modals to be open simultaneously.
 
 ```ts
 const globalModalConfig: UsiModal = {
@@ -81,8 +78,7 @@ this.usiModalService.add(globalModalConfig);
 ```
 
 ## Messages
-Dialog and validation modals should always contain a message. This message should be descriptive and explain the purpose
-of the modal
+Dialog modals should always contain a descriptive message that explains their purpose.
 
 ```ts
 const globalModalConfig: UsiModal = {
@@ -94,9 +90,9 @@ this.usiModalService.add(globalModalConfig);
 ```
 
 ## Type
-Campfire comes with two types of modals: `dialog` and `validation`. The `dialog` modal is used to display information in
-regard to an action that still **needs** to be taken by the user. The `validation` modal is used to display information
-to an action that has **already** happened. `Dialog` modals are the default type if not specified.
+Campfire comes with two types of modals: `dialog` and `validation`. The dialog modal displays information in regard to an action that still **needs** to be
+taken by the user. The validation modal displays information to an action that has already happened. The dialog modals are the default type if not specified.
+
 
 ```ts
 const dialogModalConfig: UsiModal = {
@@ -115,8 +111,8 @@ this.usiModalService.add(dialogModalConfig);
 ```
 
 ## On Action
-Custom actions can be taken when the primary action button is clicked. This is useful for when additional validation is
-required or another action needs to be taken.
+Custom actions can be taken when the primary action button is clicked. This feature is useful when additional validation is required, or another action needs
+to be taken.
 
 ```ts
 const globalModalConfig: UsiModal = {
@@ -130,8 +126,7 @@ this.usiModalService.add(globalModalConfig);
 ```
 
 ## On Add
-Custom actions can be taken when the modal is added to the DOM. These custom actions will be run after the modal has been
-displayed to the user.
+Custom actions can be taken when the modal is added to the DOM. These custom actions will be run after the modal has been displayed to the user.
 
 ```ts
 const globalModalConfig: UsiModal = {
@@ -145,8 +140,8 @@ this.usiModalService.add(globalModalConfig);
 ```
 
 ## On Remove
-Just like `usiOnAdd`, custom actions can be taken when the modal is removed from the DOM. These custom actions will
-be run after the modal has been removed from the DOM.
+Just like `usiOnAdd`, custom actions can be taken when the modal is removed from the DOM. These custom actions will be run after the modal has been removed
+from the DOM.
 
 ```ts
 const globalModalConfig: UsiModal = {
@@ -178,22 +173,21 @@ this.usiModalService.add(globalModalConfig);
 ```
 
 ## Timeout
-Occasionally a modal will need to be closed automatically if there is no response from the user. By default, the timeout
-is set to `0` which means that the modal will stay open until the user closes it or an action is taken. The timeout should
-be given in milliseconds.
+Occasionally a modal will need to be closed automatically if there is no response from the user. By default, the timeout is set to `0` which means that the
+modal will stay open until the user closes it or an action is taken. The timeout should be given in milliseconds.
 
 ```ts
 const globalModalConfig: UsiModal = {
   usiTitle: 'Lorem ipsum dolor sit amet, consectetur.',
-usiTimeout: 5000,
+  usiTimeout: 5000,
 };
 
 this.usiModalService.add(globalModalConfig);
 ```
 
 ## Customization
-When it comes to customizing modals it can be a little more difficult than other components. CSS variables may still be
-overwritten in the `root` selector, but classes will not be able to be added since there is no element added to the HTML.
+When it comes to customizing modals it can be a little more difficult than other components. CSS variables may still be overwritten in the `root` selector,
+but classes will not be able to be added since there is no element added to the HTML.
 
 ```css
 :root {

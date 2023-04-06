@@ -10,7 +10,6 @@ import { isFunction, UsiModal } from 'usi-campfire/utils';
       <div class="usi-modal__content">
         <div class="usi-modal__header">
           <h5 class="usi-modal__title">{{ dialog.usiTitle }}</h5>
-
           <fa-icon class="usi-modal__close-button" (click)="closeModal(dialog)" [icon]="['fal', 'times']" aria-label="Close modal" role="button"></fa-icon>
         </div>
 

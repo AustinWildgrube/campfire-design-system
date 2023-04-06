@@ -63,7 +63,7 @@ describe('UsiDialogModalComponent', () => {
     const toastId = service.add('test');
     modalsService.clear(toastId);
 
-    expect(modalsService.clear).toHaveBeenCalled();
+    expect(modalsService.clear).toHaveBeenCalledTimes(1);
   });
 
   it('should error if no title is provided', () => {
@@ -89,6 +89,6 @@ describe('UsiDialogModalComponent', () => {
     };
 
     modalsService.add(globalModalConfig);
-    expect(modalsService.add).toHaveBeenCalled();
+    expect(modalsService.add).toHaveBeenCalledWith(globalModalConfig);
   });
 });
