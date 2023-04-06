@@ -56,7 +56,7 @@ export class UsiModalsService extends UsiNotificationService {
 
     // Title is required
     if (!customModalConfig || !customModalConfig.usiTitle) {
-      throw new Error('UsiModal: Modal must contain at least a title!');
+      throw new Error('UsiModal: Modal must contain at least a title.');
     }
 
     // Set config items of snackbar
