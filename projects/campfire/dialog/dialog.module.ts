@@ -1,5 +1,6 @@
 import { Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { A11yModule } from '@angular/cdk/a11y';
 
 import { UsiDialogModalComponent } from './dialog.component';
 import { UsiDialogComponentContainer } from './dialog-container.component';
@@ -11,7 +12,7 @@ import { ComponentPortal, NotificationContainerDirective, Overlay, UsiNotificati
 
 @NgModule({
   declarations: [UsiDialogModalComponent, UsiDialogComponentContainer],
-  imports: [CommonModule, UsiSharedModule, UsiUtilsModule, UsiButtonModule],
+  imports: [CommonModule, A11yModule, UsiSharedModule, UsiUtilsModule, UsiButtonModule],
   exports: [UsiDialogModalComponent, UsiDialogComponentContainer],
   providers: [UsiNotificationService],
 })

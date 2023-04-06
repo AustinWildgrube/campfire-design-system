@@ -6,19 +6,40 @@ import { isFunction, UsiModal } from 'usi-campfire/utils';
 @Component({
   selector: 'usi-dialog-modal',
   template: `
-    <div *ngIf="dialog" class="usi-modal" (usiClickOutside)="closeModal(dialog)" role="document">
+    <div
+      *ngIf="dialog"
+      class="usi-modal"
+      (usiClickOutside)="closeModal(dialog)"
+      (keydown.escape)="closeModal(dialog)"
+      aria-labelledby="dialog-title"
+      aria-describedby="dialog-description"
+      aria-modal="true"
+      role="alertdialog"
+      cdkTrapFocus
+      cdkTrapFocusAutoCapture
+    >
       <div class="usi-modal__content">
         <div class="usi-modal__header">
-          <h5 class="usi-modal__title">{{ dialog.usiTitle }}</h5>
-          <fa-icon class="usi-modal__close-button" (click)="closeModal(dialog)" [icon]="['fal', 'times']" aria-label="Close modal" role="button"></fa-icon>
+          <h5 id="dialog-title" class="usi-modal__title">{{ dialog.usiTitle }}</h5>
+
+          <fa-icon
+            class="usi-modal__close-button"
+            (click)="closeModal(dialog)"
+            (keydown.enter)="closeModal(dialog)"
+            (keydown.space)="closeModal(dialog)"
+            [icon]="['fal', 'times']"
+            aria-label="Close modal"
+            role="button"
+            tabindex="0"
+          ></fa-icon>
         </div>
 
         <div class="usi-modal__body">
-          <p class="usi-modal__text">{{ dialog.usiMessage }}</p>
+          <p id="dialog-description" class="usi-modal__text">{{ dialog.usiMessage }}</p>
         </div>
 
         <div class="usi-modal__footer">
-          <button (click)="closeModal(dialog)" aria-label="Close modal" role="button" usiType="secondary" usi-button>
+          <button (click)="closeModal(dialog)" usiType="secondary" aria-label="Close modal" usi-button cdkFocusInitial>
             {{ dialog.usiCancelText }}
           </button>
 
