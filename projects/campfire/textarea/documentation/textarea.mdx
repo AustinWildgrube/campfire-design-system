@@ -14,7 +14,7 @@ the `<usi-textarea>` component. This includes the following attributes:
   * `usiLabel` - The label text of the textarea component.
   * `usiDisabled` - Whether the textarea component is disabled.
   * `usiRequired` - Whether the textarea component is required.
-  * `usiError` - The error message to display when the select component is invalid.
+  * `usiError` - The error message to display when the textarea component is invalid.
   * `usiForceError` - Whether to display the error message even when the textarea component is valid.
   * `usiHint` - The hint text to display below the textarea component.
   * `usiValue` - The default value of the textarea component.
@@ -24,16 +24,16 @@ the `<usi-textarea>` component. This includes the following attributes:
 ```
 
 ## Resizing
-By default, Campfire textareas are not resizable to keep design standards consistent. In instances where a user may type longer pieces of text it is beneficial
-to allow them to resize the textarea.
+By default, Campfire textareas are not resizable to keep design standards consistent. In instances where a user may type longer pieces of text, it is
+beneficial to allow them to resize the textarea.
 
 ```html
 <usi-textarea usiResizeable></usi-textarea>
 ```
 
 ## Auto-resizing
-Occasionally it is best to allow the textarea to be autosized. While doing so a minimum and maximum number of rows can be specified. If neither of these are
-specified then the textarea will resize to an infinite amount of rows.
+Occasionally, it is best to allow the textarea to be autosized. While doing so, a minimum and maximum number of rows can be specified. If neither of these are
+specified, then the textarea will resize to an infinite number of rows.
 
 ```html
 <usi-textarea usiAutosize></usi-textarea>
@@ -41,8 +41,8 @@ specified then the textarea will resize to an infinite amount of rows.
 ```
 
 ## Customization
-Campfire textareas were made to be easily customizable. Styling a time input is as simple as just adding a class onto the tag or overriding our CSS variables
-in the root selector. Since textareas are just an extension of our normal input the list of overridable variables are the same:
+Campfire textareas were made to be easily customizable. Styling a textarea is as simple as just adding a class to the tag or overriding our CSS variables in
+the root selector. Since textareas are just an extension of our normal input, the list of overridable variables is the same:
 
 ```css
 :root {

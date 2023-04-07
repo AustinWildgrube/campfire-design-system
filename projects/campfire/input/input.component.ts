@@ -40,7 +40,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
           class="usi-input-group__input"
           [ngClass]="{
             'usi-input-group__input--error': hasError || usiForceError,
-            'usi-input-group__input--filled': isEmpty == false,
+            'usi-input-group__input--filled': !isEmpty,
             'usi-input-group__input--prefix': usiPrefix,
             'usi-input-group__input--suffix': usiSuffix || usiPassword
           }"
@@ -61,7 +61,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
           class="usi-input-group__input"
           [ngClass]="{
             'usi-input-group__input--error': hasError || usiForceError,
-            'usi-input-group__input--filled': isEmpty == false,
+            'usi-input-group__input--filled': !isEmpty,
             'usi-input-group__input--prefix': usiPrefix,
             'usi-input-group__input--suffix': usiSuffix || usiPassword
           }"
@@ -82,7 +82,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
           class="usi-input-group__input"
           [ngClass]="{
             'usi-input-group__input--error': hasError || usiForceError,
-            'usi-input-group__input--filled': isEmpty == false,
+            'usi-input-group__input--filled': !isEmpty,
             'usi-input-group__input--prefix': usiPrefix,
             'usi-input-group__input--suffix': usiSuffix || usiPassword
           }"
