@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UsiTitleComponent } from '../title.component';
 
 @Component({
-  template: ` <h1 [usiAlign]="usiAlign" [usiDisplay]="usiDisplay" usi-title>test title</h1> `,
+  template: `<h1 [usiAlign]="usiAlign" [usiDisplay]="usiDisplay" usi-title>test title</h1>`,
 })
 class TestComponent extends UsiTitleComponent {}
 

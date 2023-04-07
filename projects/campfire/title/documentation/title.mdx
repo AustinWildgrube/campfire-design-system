@@ -3,17 +3,15 @@ import { UsiTitleModule } from 'usi-campfire/title';
 ```
 
 # Titles
-The title's module was created as an easy way to apply Campfire titles to the application you are working on. This way
-titles can have the correct color, font size, font family, and line height without having to worry about adding the
-correct class every time.
+The title module was created as an easy way to apply Campfire titles to the application you are working on. This way, titles can have the correct color, font
+size, font family, and line height without having to worry about adding the correct class every time.
 
 ```html
 <h1 usi-title>Title</h1>
 ```
 ## Order
 Campfire titles use a directive,so it is up to you to make sure they are
-[semantically](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) correct. They follow order
-of 1-6 respectively.
+[semantically](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) correct. They follow an order of 1-6, respectively.
 
 ```html
 <h1 usi-title>H1 Title</h1>
@@ -25,8 +23,8 @@ of 1-6 respectively.
 ```
 
 ## Alignment
-To make aligning titles easier Campfire comes with an alignment attribute. This attribute can be used to align titles
-to the left, center, right, or even justify them.
+To make aligning titles easier, Campfire comes with an alignment attribute. This attribute can be used to align titles to the left, center, or right, or even
+justify them.
 
 ```html
 <h1 usiAlign="center" usi-title>H1 Title</h1>
@@ -35,16 +33,16 @@ to the left, center, right, or even justify them.
 ```
 
 ## Display
-Occasionally there will be titles that just need to be a bit bigger than an H1. This can be done by using a "display"
-title. This type of title should almost always be used with an H1 tag.
+Occasionally, there will be titles that just need to be a bit bigger than an H1. This can be done by using a "display" title. This type of title should almost
+always be used with an H1 tag.
 
 ```html
 <h1 usiDisplay usi-title>H1 Title</h1>
 ```
 
 ## Customization
-Campfire titles were made to be easily customizable. Styling a title is as simple as just adding a class onto the tag or
-overriding our CSS variables in the root selector. The list of overridable variables are as follows:
+Campfire titles were made to be easily customizable. Styling a title is as simple as just adding a class to the tag or overriding our CSS variables in the
+root selector. The list of overridable variables is as follows:
 
 ```css
 :root {
