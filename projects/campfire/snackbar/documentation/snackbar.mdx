@@ -3,13 +3,12 @@ import { UsiSnackbarModule } from 'usi-campfire/snackbar';
 ```
 
 # Snackbar Notifications
-Snackbars inform users of a process that an app has performed or will perform. They appear temporarily, towards the
-bottom of the screen. They shouldn't interrupt the user experience, and usually don't require user input to disappear.
-Snackbar notification have a default show time of 4 seconds which proves enough time to comprehend the message and act
-on it.
+Snackbars inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn't
+interrupt the user experience and usually don't require user input to disappear. Snackbar notifications have a default show time of 4 seconds, which is enough
+time to comprehend the message and act on it.
 
-Campfire snackbar notifications are called via a service. The service will first need to be injected into the component on
-which the snackbar will be used. It can then be called using various methods.
+Campfire snackbar notifications are sent via a service. The service will first need to be injected into the component on which the snackbar will be used. It
+can then be called using various methods.
 
 ```ts
 import { UsiSnackbarService } from 'usi-campfire/snackbar';
@@ -40,20 +39,19 @@ this.usiSnackbarService.success('Title', { })
 ```
 
 ## Snackbar Notification Types
-There are four different snackbar notification types: `success`, `error`, `info`, `default`. Snackbar notifications
-should typically only be shown one at a time as to not obstruct view of the content. Order snackbar notifications by the
-urgency in which the user needs to pay attention to: error, warning, info, then success. In the case there are multiple
-of each type, all of them are shown before another type is reached.
+There are four different snackbar notification types: `success`, `error`, `info`, and `default`. Snackbar notifications should typically only be shown one at
+a time so as not to obstruct the content. Order snackbar notifications by the urgency with which the user needs to pay attention: error, warning, info, then
+success. In the case where there are multiples of each type, all of them are shown before another type is reached.
 
 ### Success
-Reserved to provide to a static persistent success message.
+Reserved to provide a static, persistent success message.
 
 ```ts
 this.usiSnackbarService.success('Title');
 ```
 
 ### Error
-Reserved for errors, malfunctions, as well as critical issues like license expiration.
+Reserved for errors, malfunctions, and critical issues like license expiration.
 
 ```ts
 this.usiSnackbarService.error('Title');
@@ -69,18 +67,18 @@ this.usiSnackbarService.info('Title');
 ### Default
 Reserved for custom inline notifications.
 
-> While using the default inline notification it is best to use the icon property to help convey the custom message.
+> While using the default inline notification, it is best to use the icon property to help convey the custom message.
 
 ```ts
 this.usiSnackbarService.default('Title', { usiIcon: 'alien' });
 ```
 
 ## Snackbar Notification Custom Methods
-Snackbars have 5 methods which can be used in various ways.
+Snackbars have five methods that can be used in various ways.
 
 ### usiOnAdd()
-The on add method is called right when the snackbar is added to the dom. This could be useful for when preforming an
-action in sync with the addition of a notification.
+The on-add method is called right when the snackbar is added to the DOM. This could be useful when performing an action in sync with the addition of a
+notification.
 
 ```ts
 const globalSnackbarConfig: UsiSnackbar = {
@@ -107,8 +105,8 @@ this.usiSnackbarService.success(globalSnackbarConfig);
 ```
 
 ### usiOnRemove()
-The on remove method is called right when the snackbar is removed from the dom. This could be useful for when preforming
-an action in sync with the removal of a notification.
+The on-remove method is called right when the snackbar is removed from the DOM. This could be useful when performing an action in sync with the removal of a
+notification.
 
 ```ts
 const globalSnackbarConfig: UsiSnackbar = {
@@ -135,7 +133,7 @@ this.usiSnackbarService.success(globalSnackbarConfig);
 ```
 
 ### usiOnAction()
-A custom action can be preformed upon the pressing of the button.
+A custom action can be performed upon the pressing of the button.
 
 ```ts
 const globalSnackbarConfig: UsiSnackbar = {
@@ -172,7 +170,7 @@ this.usiSnackbarService.clear(snackbarId);
 ```
 
 ### clearAll()
-A clear all method is provided that will close all snackbar notifications that are currently displayed in the DOM.
+A clear-all method is provided that will close all snackbar notifications that are currently displayed in the DOM.
 
 ```ts
 this.usiSnackbarService.clearAll();
@@ -180,7 +178,7 @@ this.usiSnackbarService.clearAll();
 
 ## Snackbar Notification Positioning
 By default, snackbar notifications are displayed in the bottom center of the screen. There are 7 different positions a
-snackbar can be shown at: `top-left`, `top-center`, `top-right`, `center-center`, `bottom-left`, `bottom-center`,
+snackbar can be shown in: `top-left`, `top-center`, `top-right`, `center-center`, `bottom-left`, `bottom-center`,
 `bottom-right`.
 
 ```ts
@@ -196,15 +194,15 @@ this.usiSnackbarService.success(globalSnackbarConfig);
 Icons can be used inside snackbar notifications to decorate the call-to-action with a visual indicator. Icons should be
 used alongside text that clearly indicates what the interaction is expected to do.
 
-> FontAwesome is currently the ***only*** icon library Breakfast supports.
+> FontAwesome is currently the ***only*** icon library that Campfire supports.
 
 ```ts
 this.usiSnackbarService.default('Title', { usiIcon: 'alien' });
 ```
 
 ## Snackbar Notification Customization
-Campfire snackbar notifications were made to be easily customizable. Styling an inline notification is as simple as just
-overriding our CSS variables in the root selector. The list of overridable variables are as follows:
+Campfire snackbar notifications were made to be easily customizable. Styling an inline notification is as simple as just overriding our CSS variables in the
+root selector. The list of overridable variables is as follows:
 
 ```css
 :root {

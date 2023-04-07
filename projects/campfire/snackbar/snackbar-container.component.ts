@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs';
 
 import { UsiSnackbarService } from './snackbar.service';
 
@@ -53,7 +54,7 @@ export class UsiSnackbarComponentContainer extends UsiNotificationComponentConta
 
   ngOnInit(): void {
     // Start listening to events from our service
-    this.usiSnackbarService.events.subscribe((event: NotificationEvent) => {
+    this.usiSnackbarService.events.pipe(takeUntil(this.usiSnackbarService.unsubscribe)).subscribe((event: NotificationEvent) => {
       if (event.type === NotificationEventType.ADD) {
         let snackbar: UsiSnackbar = event.value;
         super.add(snackbar);

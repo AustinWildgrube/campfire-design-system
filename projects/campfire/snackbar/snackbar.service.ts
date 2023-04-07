@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 
 import { NotificationEvent, NotificationEventType, UsiNotificationService } from 'usi-campfire/notifications';
 import { isFunction, isString, UsiSnackbar } from 'usi-campfire/utils';
+import { Subject } from 'rxjs';
 
 export const globalSnackbarConfig = {
   usiButtonText: 'Okay',
@@ -18,9 +19,16 @@ export const globalSnackbarConfig = {
 };
 
 @Injectable({ providedIn: 'root' })
-export class UsiSnackbarService extends UsiNotificationService {
+export class UsiSnackbarService extends UsiNotificationService implements OnDestroy {
+  unsubscribe = new Subject<boolean>();
+
   constructor() {
     super();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next(true);
+    this.unsubscribe.complete();
   }
 
   /**

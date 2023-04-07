@@ -21,7 +21,7 @@ import { isFunction, UsiSnackbar } from 'usi-campfire/utils';
         </span>
       </div>
 
-      <button class="usi-snackbar__action" (click)="snackbar.usiOnAction ? onAction() : closeToast(snackbar.usiId!)">
+      <button class="usi-snackbar__action" (click)="snackbar.usiOnAction ? onAction() : closeSnackbar(snackbar.usiId!)">
         {{ snackbar.usiButtonText }}
       </button>
     </div>
@@ -48,7 +48,7 @@ export class UsiSnackbarComponent {
    * @param { number } id | ID of snackbar message to close.
    * @return
    */
-  public closeToast(id: number): void {
+  public closeSnackbar(id: number): void {
     this.usiSnackbarService.clear(id!);
   }
 }
