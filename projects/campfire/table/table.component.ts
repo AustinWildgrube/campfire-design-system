@@ -3,6 +3,7 @@ import { AfterViewChecked, Component, ElementRef, Input, OnChanges, OnInit, Rend
 import { UsiTableService } from './table.service';
 
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
+import { takeUntil } from 'rxjs';
 
 interface Pagination {
   totalItems: number;
@@ -50,9 +51,22 @@ interface Pagination {
   styleUrls: ['./styles/table.component.scss'],
   providers: [UsiTableService],
 })
-export class UsiTableComponent implements AfterViewChecked, OnChanges, OnInit {
-  data: any;
+export class UsiTableComponent<T> implements AfterViewChecked, OnChanges, OnInit {
+  @Input()
+  @InputBoolean()
+  usiHeadless?: BooleanInput;
 
+  @Input()
+  usiData: T[] = [];
+
+  @Input()
+  @InputBoolean()
+  usiPagination?: BooleanInput;
+
+  @Input()
+  usiPageSize?: number = 5;
+
+  data: T[] = [];
   pageData: Pagination = {
     totalItems: 0,
     currentPage: 0,
@@ -65,26 +79,12 @@ export class UsiTableComponent implements AfterViewChecked, OnChanges, OnInit {
     pages: [],
   };
 
-  @Input()
-  @InputBoolean()
-  usiHeadless?: BooleanInput;
-
-  @Input()
-  usiData?: readonly any[] = [];
-
-  @Input()
-  @InputBoolean()
-  usiPagination?: BooleanInput;
-
-  @Input()
-  usiPageSize?: number = 5;
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private usiTableService: UsiTableService) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private usiTableService: UsiTableService<T>) {}
 
   ngOnInit(): void {
     if (this.usiData) {
       // Subscribe to data changes
-      this.usiTableService.data.subscribe((data) => {
+      this.usiTableService.data.pipe(takeUntil(this.usiTableService.unsubscribe)).subscribe((data: T[]) => {
         this.data = data;
       });
 

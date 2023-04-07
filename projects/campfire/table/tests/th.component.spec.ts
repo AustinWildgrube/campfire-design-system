@@ -27,7 +27,7 @@ import { UsiSharedModule } from 'usi-campfire/shared';
   `,
 })
 class TestComponent {
-  @ViewChild('testData', { static: true }) testData!: UsiTableComponent;
+  @ViewChild('testData', { static: true }) testData!: UsiTableComponent<{ id: number; idTwo: number }>;
 
   usiData: { id: number; idTwo: number }[] = [];
 
@@ -76,6 +76,7 @@ describe('UsiThComponent', () => {
 
   it('should sort the th element', () => {
     const sortButton = debugElement.nativeElement.querySelectorAll('.usi-table__sort')[0];
+
     expect(component.testData.data[0].id).toEqual(0);
 
     sortButton.click();

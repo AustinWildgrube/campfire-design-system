@@ -1,17 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 
-/**
- * Main table service that will be injected.
- */
 @Injectable()
-export class UsiTableService {
-  data = new BehaviorSubject<any>([]);
-  dataTwo: any;
+export class UsiTableService<T> implements OnDestroy {
+  data = new BehaviorSubject<T[]>([]);
+  dataTwo: T[] = [];
 
-  dataCopy = new BehaviorSubject<any>([]);
-  dataCopyTwo: any;
+  dataCopy = new BehaviorSubject<T[]>([]);
+  dataCopyTwo: T[] = [];
 
   startPage: number = 0;
   endPage: number = 0;
@@ -22,16 +19,23 @@ export class UsiTableService {
   totalPages: number = 0;
   pages: number[] = [];
 
+  unsubscribe = new Subject<boolean>();
+
   constructor() {
     // Subscribe to data changes
-    this.data.subscribe((data) => {
+    this.data.pipe(takeUntil(this.unsubscribe)).subscribe((data: T[]) => {
       this.dataTwo = data;
     });
 
     // Grab the data for the clone
-    this.dataCopy.subscribe((data) => {
+    this.dataCopy.pipe(takeUntil(this.unsubscribe)).subscribe((data: T[]) => {
       this.dataCopyTwo = data;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next(true);
+    this.unsubscribe.complete();
   }
 
   /**
@@ -40,7 +44,7 @@ export class UsiTableService {
    * @param { string } sortKey | Which piece of data is being sorted.
    * @param { Function } sortFunction | A custom function for sorting data.
    */
-  public sortData(sortMethod: 'asc' | 'desc' | 'unsorted', sortKey: string, sortFunction?: Function): void {
+  public sortData(sortMethod: 'asc' | 'desc' | 'unsorted', sortKey: string, sortFunction?: (a: T, b: T) => number): void {
     if (sortFunction !== undefined) {
       this.data.next(this.dataTwo.sort(sortFunction));
     } else if (sortMethod === 'unsorted') {
@@ -97,7 +101,7 @@ export class UsiTableService {
     this.endIndex = Math.min(this.startIndex + +pageSize - 1, totalItems - 1);
 
     // create an array of pages to ng-repeat in the pager control
-    this.pages = Array.from(Array(this.endPage + 1 - this.startPage).keys()).map((i) => {
+    this.pages = Array.from(Array(this.endPage + 1 - this.startPage).keys()).map((i: number) => {
       return this.startPage + i;
     });
 
@@ -122,7 +126,7 @@ export class UsiTableService {
    * @param { 'asc' | 'desc' | 'unsorted' } sortMethod | Specifies which direction the data should be sorted.
    * @private
    */
-  private dynamicSort(property: string, sortMethod: 'asc' | 'desc'): Function {
+  private dynamicSort(property: string, sortMethod: 'asc' | 'desc'): (a: T, b: T) => number {
     let sortOrder = 1;
 
     if (sortMethod === 'desc') {

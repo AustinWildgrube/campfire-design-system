@@ -25,7 +25,7 @@ import { UsiSharedModule } from 'usi-campfire/shared';
   `,
 })
 class TestComponent {
-  @ViewChild('testData', { static: true }) testData!: UsiTableComponent;
+  @ViewChild('testData', { static: true }) testData!: UsiTableComponent<{ id: number }>;
 
   usiData: { id: number }[] = [];
 

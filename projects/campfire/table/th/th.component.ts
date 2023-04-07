@@ -7,23 +7,48 @@ import { UsiTableService } from '../table.service';
   template: `
     <ng-content></ng-content>
 
-    <fa-icon *ngIf="usiSortKey && sortMethod === 'asc'" class="usi-table__sort" [icon]="['fal', 'arrow-up']" (click)="sort()"></fa-icon>
-    <fa-icon *ngIf="usiSortKey && sortMethod === 'desc'" class="usi-table__sort" [icon]="['fal', 'arrow-down']" (click)="sort()"></fa-icon>
-    <fa-icon *ngIf="usiSortKey && sortMethod === 'unsorted'" class="usi-table__sort" [icon]="['fal', 'sort-alt']" (click)="sort()"></fa-icon>
+    <fa-icon
+      *ngIf="usiSortKey && sortMethod === 'asc'"
+      class="usi-table__sort"
+      [icon]="['fal', 'arrow-up']"
+      (click)="sort()"
+      (keyup.enter)="sort()"
+      (keyup.space)="sort()"
+      aria-label="Sort ascending"
+      tabindex="0"
+    ></fa-icon>
+
+    <fa-icon
+      *ngIf="usiSortKey && sortMethod === 'desc'"
+      class="usi-table__sort"
+      [icon]="['fal', 'arrow-down']"
+      (click)="sort()"
+      (keyup.enter)="sort()"
+      (keyup.space)="sort()"
+      aria-label="Sort descending"
+      tabindex="0"
+    ></fa-icon>
+
+    <fa-icon
+      *ngIf="usiSortKey && sortMethod === 'unsorted'"
+      class="usi-table__sort"
+      [icon]="['fal', 'sort-alt']"
+      (click)="sort()"
+      (keyup.enter)="sort()"
+      (keyup.space)="sort()"
+      aria-label="Sort back to original order"
+      tabindex="0"
+    ></fa-icon>
   `,
   styleUrls: ['../styles/th.component.scss'],
 })
-export class UsiThComponent {
-  sortMethod: 'asc' | 'desc' | 'unsorted' = 'asc';
-
-  // Sorting
+export class UsiThComponent<T = unknown> {
   @Input()
   usiSortKey?: string;
 
   @Input()
-  usiSortFn?: Function;
+  usiSortFn?: (a: T, b: T) => number;
 
-  // Positioning
   @Input()
   usiAlign?: 'left' | 'center' | 'right';
 
@@ -37,7 +62,9 @@ export class UsiThComponent {
     return this.usiAlign === 'right';
   }
 
-  constructor(private elementRef: ElementRef, private usiTableService: UsiTableService) {}
+  sortMethod: 'asc' | 'desc' | 'unsorted' = 'asc';
+
+  constructor(private elementRef: ElementRef, private usiTableService: UsiTableService<T>) {}
 
   /**
    * We need to determine our sort method and then use our table service to
