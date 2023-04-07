@@ -4,16 +4,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 
 @Component({
-  selector: 'label[usi-switch]',
+  selector: 'usi-switch',
   template: `
     <span class="usi-switch" [attr.aria-checked]="value">
       <div class="usi-switch__input">
-        <input [(ngModel)]="value" (ngModelChange)="onChange(value)" [disabled]="!!usiDisabled" [attr.aria-labelledby]="uid" type="checkbox" role="switch" />
-
+        <input [id]="uid" [(ngModel)]="value" (ngModelChange)="onChange(value)" [disabled]="!!usiDisabled" type="checkbox" role="switch" />
         <fa-icon *ngIf="value" [icon]="['far', 'check']"></fa-icon>
       </div>
 
-      <span [id]="uid" class="usi-switch__label" [ngClass]="{ 'usi-switch__label--disabled': usiDisabled }"><ng-content></ng-content></span>
+      <label [for]="uid" class="usi-switch__label" [ngClass]="{ 'usi-switch__label--disabled': usiDisabled }"><ng-content></ng-content></label>
       <span class="usi-switch__status" [ngClass]="{ 'usi-switch__label--disabled': usiDisabled }" aria-hidden="true">{{ value ? 'On' : 'Off' }}</span>
     </span>
   `,

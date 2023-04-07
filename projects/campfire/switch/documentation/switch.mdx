@@ -8,7 +8,7 @@ allow users to choose between two opposing states. Toggle switches should take i
 apply the new state.
 
 ```html
-  <label usi-switch>This is the label</label>
+  <usi-switch>This is the label</usi-switch>
 ```
 
 ## Switches in Forms
@@ -26,10 +26,10 @@ constructor(private formBuilder: FormBuilder) {
 ```
 
 ```html
-<label [(ngModel)]="switchNgModel" usi-switch>Switch Label</label>
+<usi-switch [(ngModel)]="switchNgModel">Switch Label</usi-switch>
 
 <form [formGroup]="switchFormGroup">
-  <label formControlName="switchOne" usi-switch>Switch One</label>
+  <usi-switch formControlName="switchOne">Switch One</usi-switch>
 </form>
 ```
 
@@ -38,14 +38,14 @@ Switches may be disabled to indicate to the user that the choice is unavailable.
 directed on how to enable the switch if that is possible.
 
 ```html
-<label usi-switch usiDisabled>This is the label</label>
+<usi-switch usiDisabled>This is the label</usi-switch>
 ```
 
 ## Checked Switches
 Switches can be checked by default if needed. The value will be true, and the user will not be able to change it.
 
 ```html
-<label usi-switch usiChecked>This is the label</label>
+<usi-switch usiChecked>This is the label</usi-switch>
 ```
 
 ## Customization
@@ -70,5 +70,5 @@ selector. The list of overridable variables is as follows:
 ```
 
 ```html
-<label class="custom-switch" usi-switch>This is the label</label>
+<usi-switch class="custom-switch">This is the label</usi-switch>
 ```
