@@ -1,30 +1,32 @@
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UsiTabsComponent } from '../tabs.component';
-import { UsiTabComponent } from '../tab/tab.component';
-import { UsiTabDirective } from '../tab/tab.directive';
+import { UsiTabGroupComponent } from '../tab-group.component';
+import { UsiTabButtonComponent } from '../../tab-button/tab-button.component';
+import { UsiTabsModule } from '../../tabs.module';
 
 @Component({
   template: `
     <usi-tab-group [usiDisabled]="usiDisabled" [usiGrow]="usiGrow" [usiTabPosition]="usiTabPosition">
       <usi-tab usiLabel="Tab 1">
-        <p>{{ getTimeLoaded(1) | date: 'medium' }}</p>
+        <p>{{ getTimeLoaded(1) | date : 'medium' }}</p>
       </usi-tab>
 
-      <usi-tab usiLabel="Tab 2">
-        <p>{{ getTimeLoaded(2) | date: 'medium' }}</p>
+      <usi-tab usiLabel="Tab 2" #tab>
+        <p>{{ getTimeLoaded(2) | date : 'medium' }}</p>
       </usi-tab>
 
       <usi-tab usiLabel="Tab 3">
         <ng-template usi-lazy>
-          <p>{{ getTimeLoaded(3) | date: 'medium' }}</p>
+          <p>{{ getTimeLoaded(3) | date : 'medium' }}</p>
         </ng-template>
       </usi-tab>
     </usi-tab-group>
   `,
 })
-class TestComponent extends UsiTabsComponent {
+class TestComponent extends UsiTabGroupComponent {
+  @ViewChild(UsiTabButtonComponent, { static: true }) tab: UsiTabButtonComponent | undefined;
+
   tabLoadTimes: Date[] = [];
 
   getTimeLoaded(index: number) {
@@ -43,7 +45,8 @@ describe('UsiTabsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsiTabsComponent, UsiTabComponent, UsiTabDirective, TestComponent],
+      declarations: [UsiTabGroupComponent, TestComponent],
+      imports: [UsiTabsModule],
     }).compileComponents();
   });
 
@@ -104,9 +107,8 @@ describe('UsiTabsComponent', () => {
 
   it('should emit an event when a tab is clicked', () => {
     const spy = spyOn(component.usiTabChange, 'emit');
-    const tabs = debugElement.nativeElement.querySelectorAll('.usi-tab-group__tab');
 
-    component.selectTab(tabs[1], 1);
+    if (component.tab) component.selectTab(component.tab, 1);
     fixture.detectChanges();
 
     expect(spy).toHaveBeenCalledWith(1);

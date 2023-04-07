@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UsiTabsComponent } from './tabs.component';
-import { UsiTabComponent } from './tab/tab.component';
-import { UsiTabDirective } from './tab/tab.directive';
+import { UsiTabGroupComponent } from './tab-group/tab-group.component';
+import { UsiTabButtonComponent } from './tab-button/tab-button.component';
+import { UsiTabButtonDirective } from './tab-button/tab-button.directive';
 
 @NgModule({
-  declarations: [UsiTabsComponent, UsiTabComponent, UsiTabDirective],
+  declarations: [UsiTabGroupComponent, UsiTabButtonComponent, UsiTabButtonDirective],
   imports: [CommonModule],
-  exports: [UsiTabsComponent, UsiTabComponent, UsiTabDirective],
+  exports: [UsiTabGroupComponent, UsiTabButtonComponent, UsiTabButtonDirective],
 })
 export class UsiTabsModule {}

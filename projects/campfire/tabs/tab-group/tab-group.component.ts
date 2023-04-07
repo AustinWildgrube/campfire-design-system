@@ -12,7 +12,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 
-import { UsiTabComponent } from './tab/tab.component';
+import { UsiTabButtonComponent } from '../tab-button/tab-button.component';
 
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 
@@ -49,11 +49,11 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 
     <ng-content></ng-content>
   `,
-  styleUrls: ['./styles/tabs.component.scss'],
+  styleUrls: ['./styles/tab-group.component.scss'],
 })
-export class UsiTabsComponent implements AfterViewChecked {
-  @ContentChildren(UsiTabComponent)
-  tabs: QueryList<UsiTabComponent> | undefined;
+export class UsiTabGroupComponent implements AfterViewChecked {
+  @ContentChildren(UsiTabButtonComponent)
+  tabs: QueryList<UsiTabButtonComponent> | undefined;
 
   @ViewChildren('tabWidth')
   tabWidth!: QueryList<ElementRef>;
@@ -98,7 +98,7 @@ export class UsiTabsComponent implements AfterViewChecked {
   public async getActiveTab(): Promise<void> {
     let activeTabs = [];
 
-    this.tabs?.forEach((tab: UsiTabComponent, index: number) => {
+    this.tabs?.forEach((tab: UsiTabButtonComponent, index: number) => {
       if (tab.usiActive) {
         activeTabs.push(tab);
         this.selectTab(tab, index);
@@ -133,14 +133,14 @@ export class UsiTabsComponent implements AfterViewChecked {
 
   /**
    * Selects the tab and then gets the new tab's width since changing the font weight changes the width
-   * @param { UsiTabComponent } tab | The tab component instance that will be selected
+   * @param { UsiTabButtonComponent } tab | The tab component instance that will be selected
    * @param { number } index | Since we loop through the tabs, we need to know the index
    * @return
    */
-  public selectTab(tab: UsiTabComponent, index: number): void {
+  public selectTab(tab: UsiTabButtonComponent, index: number): void {
     if (tab && !tab.usiDisabled && !this.usiDisabled) {
       // deactivate all tabs
-      this.tabs?.toArray().forEach((tab: UsiTabComponent) => {
+      this.tabs?.toArray().forEach((tab: UsiTabButtonComponent) => {
         tab.usiActive = false;
         tab.setActive(false);
       });

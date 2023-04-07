@@ -1,8 +1,8 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 
-import { UsiTabComponent } from '../tab/tab.component';
-import { UsiTabsComponent } from '../tabs.component';
+import { UsiTabButtonComponent } from '../tab-button.component';
+import { UsiTabGroupComponent } from '../../tab-group/tab-group.component';
 
 @Component({
   template: `
@@ -21,7 +21,7 @@ import { UsiTabsComponent } from '../tabs.component';
     </usi-tab-group>
   `,
 })
-class TestComponent extends UsiTabComponent {}
+class TestComponent extends UsiTabButtonComponent {}
 
 describe('UsiTabComponent', () => {
   let component: TestComponent;
@@ -30,7 +30,7 @@ describe('UsiTabComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsiTabsComponent, UsiTabComponent, TestComponent],
+      declarations: [UsiTabGroupComponent, UsiTabButtonComponent, TestComponent],
     }).compileComponents();
   });
 

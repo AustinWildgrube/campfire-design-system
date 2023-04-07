@@ -1,8 +1,8 @@
 import { AfterContentInit, ChangeDetectorRef, Component, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import { UsiTabButtonDirective } from './tab-button.directive';
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
-import { UsiTabDirective } from './tab.directive';
 
 @Component({
   selector: 'usi-tab',
@@ -15,9 +15,9 @@ import { UsiTabDirective } from './tab.directive';
       </ng-container>
     </div>
   `,
-  styleUrls: ['../styles/tab.component.scss'],
+  styleUrls: ['./styles/tab-button.component.scss'],
 })
-export class UsiTabComponent implements AfterContentInit {
+export class UsiTabButtonComponent implements AfterContentInit {
   @Input()
   usiLabel: string = '';
 
@@ -29,10 +29,10 @@ export class UsiTabComponent implements AfterContentInit {
   @InputBoolean()
   usiDisabled?: BooleanInput = false;
 
-  @ContentChildren(UsiTabDirective)
-  templates: QueryList<any> | undefined;
+  @ContentChildren(UsiTabButtonDirective)
+  templates: QueryList<UsiTabButtonDirective> | undefined;
 
-  contentTemplate: TemplateRef<any> | undefined;
+  contentTemplate: TemplateRef<UsiTabButtonDirective> | undefined;
 
   private shouldHideTab = new BehaviorSubject<boolean>(false);
 
@@ -40,7 +40,7 @@ export class UsiTabComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     if (this.templates) {
-      this.templates.forEach((item) => {
+      this.templates.forEach((item: UsiTabButtonDirective) => {
         this.contentTemplate = item.template;
       });
     }
