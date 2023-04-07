@@ -12,8 +12,7 @@ apply the new state.
 ```
 
 ## Switches in Forms
-Switches will almost always be used in forms. Campfire switches can be used in reactive forms as well as in
-template driven forms via the methods below.
+Switches will almost always be used in forms. Campfire switches can be used in reactive as well as template-driven forms via the methods below.
 
 ```ts
 switchNgModel: boolean = false;
@@ -35,23 +34,23 @@ constructor(private formBuilder: FormBuilder) {
 ```
 
 ## Disabled Switches
-Switches may be disabled to indicate to a user that the choice is unavailable. It should be clear to the user
-why the switch is disabled, and users should be directed how enable the switch if that is possible.
+Switches may be disabled to indicate to the user that the choice is unavailable. It should be clear to the user why the switch is disabled, and users should be
+directed on how to enable the switch if that is possible.
 
 ```html
 <label usi-switch usiDisabled>This is the label</label>
 ```
 
 ## Checked Switches
-Switches can be checked by default if needed. The value will be true and the user will not be able to change it.
+Switches can be checked by default if needed. The value will be true, and the user will not be able to change it.
 
 ```html
 <label usi-switch usiChecked>This is the label</label>
 ```
 
 ## Customization
-Switches were made to be easily customizable. Styling a switch is as simple as just adding a class onto the tag or
-overriding our CSS variables in the root selector. The list of overridable variables are as follows:
+Switches were made to be easily customizable. Styling a switch is as simple as just adding a class to the tag or overriding our CSS variables in the root
+selector. The list of overridable variables is as follows:
 
 ```css
 :root {

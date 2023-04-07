@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsiSwitchComponent } from '../switch.component';
+import { UsiSharedModule } from 'usi-campfire/shared';
 
 describe('UsiSwitchComponent', () => {
   let component: UsiSwitchComponent;
@@ -12,7 +13,7 @@ describe('UsiSwitchComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UsiSwitchComponent],
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [FormsModule, ReactiveFormsModule, UsiSharedModule],
     }).compileComponents();
   });
 
@@ -53,5 +54,14 @@ describe('UsiSwitchComponent', () => {
 
     fixture.detectChanges();
     expect(component.value).toBe(false);
+  });
+
+  it('should set the switch to checked if usiChecked is used', () => {
+    component.usiChecked = true;
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(component.usiChecked).toBeTruthy();
+    expect(component.value).toBe(true);
   });
 });

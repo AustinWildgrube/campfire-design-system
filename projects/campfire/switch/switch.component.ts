@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
@@ -6,14 +6,15 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 @Component({
   selector: 'label[usi-switch]',
   template: `
-    <span class="usi-switch">
+    <span class="usi-switch" [attr.aria-checked]="value">
       <div class="usi-switch__input">
-        <input [(ngModel)]="value" (ngModelChange)="updateChanges()" [disabled]="usiDisabled == true" [attr.aria-labelledby]="uid" type="checkbox" />
+        <input [(ngModel)]="value" (ngModelChange)="onChange(value)" [disabled]="!!usiDisabled" [attr.aria-labelledby]="uid" type="checkbox" role="switch" />
+
         <fa-icon *ngIf="value" [icon]="['far', 'check']"></fa-icon>
       </div>
 
       <span [id]="uid" class="usi-switch__label" [ngClass]="{ 'usi-switch__label--disabled': usiDisabled }"><ng-content></ng-content></span>
-      <span class="usi-switch__status" [ngClass]="{ 'usi-switch__label--disabled': usiDisabled }">{{ value ? 'On' : 'Off' }}</span>
+      <span class="usi-switch__status" [ngClass]="{ 'usi-switch__label--disabled': usiDisabled }" aria-hidden="true">{{ value ? 'On' : 'Off' }}</span>
     </span>
   `,
   styleUrls: ['./styles/switch.component.scss'],
@@ -25,7 +26,7 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiSwitchComponent implements ControlValueAccessor, OnInit {
+export class UsiSwitchComponent implements ControlValueAccessor, OnChanges, OnInit {
   @Input()
   @InputBoolean()
   usiDisabled?: BooleanInput;
@@ -44,16 +45,15 @@ export class UsiSwitchComponent implements ControlValueAccessor, OnInit {
   ngOnInit(): void {
     if (this.usiChecked) {
       this.value = true;
-      this.updateChanges();
+      this.onChange(this.value);
     }
   }
 
-  /**
-   * Method that is invoked on an update of a model
-   * @return
-   */
-  public updateChanges(): void {
-    this.onChange(this.value);
+  ngOnChanges(changes: SimpleChanges): void {
+    const { usiChecked } = changes;
+
+    this.value = usiChecked.currentValue;
+    this.onChange(usiChecked.currentValue);
   }
 
   /**
@@ -63,7 +63,6 @@ export class UsiSwitchComponent implements ControlValueAccessor, OnInit {
    */
   public writeValue(value: boolean): void {
     this.value = value;
-    this.updateChanges();
   }
 
   /**
