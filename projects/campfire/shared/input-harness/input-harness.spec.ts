@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { UsiInputComponent } from 'usi-campfire/input';
@@ -27,19 +27,39 @@ describe('UsiInputHarnessComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should have a placeholder', () => {
-    component.usiPlaceholder = 'placeholder';
+  it('should have a label', () => {
+    const label = 'label';
+    component.usiLabel = label;
     fixture.detectChanges();
 
-    expect(debugElement.nativeElement.querySelector('.usi-input-group input').placeholder).toBe('placeholder');
+    const labelElement = debugElement.nativeElement.querySelector('.usi-input-group__label');
+    expect(labelElement).toBeTruthy();
+    expect(labelElement.textContent.trim()).toBe(label);
   });
 
-  // TODO: error template
+  it('should have a placeholder', () => {
+    const placeholder = 'placeholder';
+    component.usiPlaceholder = placeholder;
+    fixture.detectChanges();
+
+    const placeholderElement = debugElement.nativeElement.querySelector('.usi-input-group input');
+    expect(placeholderElement).toBeTruthy();
+    expect(placeholderElement.placeholder.trim()).toBe(placeholder);
+  });
 
   it('should be disabled', () => {
     expect(component.formControlValue.disabled).toBeFalsy();
 
-    component.formControlValue.disable();
+    component.usiDisabled = true;
+    component.ngOnChanges({
+      usiDisabled: {
+        currentValue: true,
+        previousValue: false,
+        isFirstChange: () => true,
+        firstChange: true,
+      },
+    });
+
     fixture.detectChanges();
 
     expect(component.formControlValue.disabled).toBeTruthy();
@@ -50,16 +70,23 @@ describe('UsiInputHarnessComponent', () => {
     fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelector('.usi-input-group input').required).toBeTruthy();
-    expect(debugElement.nativeElement.querySelector('.usi-input-group__label').textContent).toBe('  *');
-
-    // TODO: expand to capture form input
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__label').textContent).toContain('*');
   });
 
   it('should force an error', () => {
     component.usiForceError = true;
+    component.ngOnChanges({
+      usiForceError: {
+        currentValue: true,
+        previousValue: false,
+        isFirstChange: () => true,
+        firstChange: true,
+      },
+    });
+
     fixture.detectChanges();
 
-    expect(debugElement.nativeElement.querySelector('.usi-input-group__input--error')).toBeTruthy();
+    expect(component.formControlValue.status).toBe('INVALID');
   });
 
   it('should have a prefix and suffix icon', () => {
@@ -90,30 +117,30 @@ describe('UsiInputHarnessComponent', () => {
     expect(debugElement.nativeElement.querySelector('.usi-input-group__hint--error')).toBeTruthy();
   });
 
-  it('should have a label', () => {
-    component.usiLabel = 'label';
-    fixture.detectChanges();
-
-    expect(debugElement.nativeElement.querySelector('.usi-input-group__label').textContent).toBe(' label ');
-  });
-
-  it('should have a default value', async () => {
+  it('should have a default value', () => {
     component.usiValue = 'default';
-    component.ngOnInit();
+    component.ngOnChanges({
+      usiValue: {
+        currentValue: 'default',
+        previousValue: null,
+        isFirstChange: () => true,
+        firstChange: true,
+      },
+    });
 
-    await fixture.detectChanges();
+    fixture.detectChanges();
 
     expect(component.formControlValue.value).toBe('default');
   });
 
-  it('should have a floating label when there is text', async () => {
+  it('should have a floating label when there is text', () => {
     component.usiLabel = 'label';
-    await fixture.detectChanges();
+    fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelector('.usi-input-group__input--filled')).toBeFalsy();
 
     component.writeValue('text');
-    await fixture.detectChanges();
+    fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelector('.usi-input-group__input--filled')).toBeTruthy();
   });

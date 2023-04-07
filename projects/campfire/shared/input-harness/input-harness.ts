@@ -11,12 +11,12 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 @Directive({
   selector: 'usi-input-harness',
 })
-export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAccessor, OnChanges, OnDestroy, OnInit {
+export class UsiInputHarnessComponent<T = unknown> implements AfterViewInit, ControlValueAccessor, OnChanges, OnDestroy, OnInit {
   @Input()
   usiPlaceholder: string = '';
 
   @Input()
-  usiError: TemplateRef<any> | null = null;
+  usiError: TemplateRef<ElementRef> | null = null;
 
   @Input()
   @InputBoolean()
@@ -43,7 +43,7 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
   usiLabel?: string;
 
   @Input()
-  usiValue?: any;
+  usiValue?: T;
 
   @Input()
   formControlName?: string;
@@ -65,14 +65,31 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
     this.uid = UniqueId();
 
     // check if parent form is submitted
-    this.parentFormGroup.ngSubmit.subscribe(() => {
+    this.parentFormGroup.ngSubmit.pipe(takeUntil(this.unsubscribe)).subscribe(() => {
       this.checkValidations();
     });
   }
 
   ngOnInit(): void {
     if (this.usiValue) {
-      this.writeValue(this.usiValue);
+      this.formControlValue.setValue(this.usiValue);
+      this.checkValidations();
+    }
+
+    if (this.usiDisabled) {
+      this.formControlValue.disable();
+    }
+
+    if (this.usiRequired) {
+      this.formControlValue.setValidators(Validators.required);
+    }
+
+    if (this.usiForceError) {
+      this.formControlValue.setErrors({ usiForceError: true });
+
+      if (this.formControlName) {
+        this.parentFormGroup.control.controls[this.formControlName].setErrors({ usiForceError: true });
+      }
     }
   }
 
@@ -81,7 +98,7 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
 
     if (this.formControlName) {
       // copy errors from parent form control to mark input as invalid
-      this.parentFormGroup.valueChanges?.subscribe(() => {
+      this.parentFormGroup.valueChanges?.pipe(takeUntil(this.unsubscribe)).subscribe(() => {
         this.checkValidations();
       });
 
@@ -97,9 +114,10 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
     }
 
     // check if the value was autofilled
-    if (this.elementRef.nativeElement.querySelector('input')) {
+    let input = this.elementRef.nativeElement.querySelector('input');
+    if (input) {
       this.autofillMonitor
-        .monitor(this.elementRef.nativeElement.querySelector('input'))
+        .monitor(input)
         .pipe(takeUntil(this.unsubscribe))
         .subscribe((event: AutofillEvent) => {
           this.isEmpty = !event.isAutofilled;
@@ -110,7 +128,7 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { usiDisabled, usiRequired, usiValue } = changes;
+    const { usiDisabled, usiRequired, usiValue, usiForceError } = changes;
 
     if (usiDisabled) {
       this.usiDisabled = usiDisabled.currentValue;
@@ -127,7 +145,29 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
     }
 
     if (usiValue) {
-      this.writeValue(usiValue.currentValue);
+      this.formControlValue.setValue(usiValue.currentValue);
+    }
+
+    if (usiForceError) {
+      if (usiForceError.currentValue) {
+        this.usiForceError = true;
+        this.formControlValue.setErrors({ usiForceError: true });
+
+        if (this.formControlName) {
+          setTimeout(() => {
+            this.parentFormGroup.control.controls[this.formControlName!].setErrors({ usiForceError: true });
+          });
+        }
+      } else {
+        this.usiForceError = false;
+        this.formControlValue.setErrors(null);
+
+        if (this.formControlName) {
+          setTimeout(() => {
+            this.parentFormGroup.control.controls[this.formControlName!].setErrors(null);
+          });
+        }
+      }
     }
   }
 
@@ -166,7 +206,7 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
    * @return
    */
   public registerOnChange(fn: any): void {
-    this.formControlValue.valueChanges.subscribe(fn);
+    this.formControlValue.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe(fn);
     this.onChange = fn;
   }
 
@@ -187,14 +227,14 @@ export class UsiInputHarnessComponent implements AfterViewInit, ControlValueAcce
   public checkValidations(): void {
     this.formControlValue.markAsTouched();
 
-    if (this.formControlName) {
-      const parentFormControl = this.parentFormGroup.control.controls[this.formControlName];
-      parentFormControl.markAsTouched();
-      this.hasError = parentFormControl.invalid && (parentFormControl.dirty || parentFormControl.touched || this.parentFormGroup.submitted);
-    } else {
-      this.hasError = this.formControlValue.invalid && (this.formControlValue.dirty || this.formControlValue.touched || this.parentFormGroup.submitted);
+    this.hasError = this.formControlValue.invalid && (this.formControlValue.dirty || this.formControlValue.touched || this.parentFormGroup.submitted);
+
+    if (Array.isArray(this.usiValue)) {
+      this.isEmpty = this.usiValue.length === 0;
     }
 
-    this.isEmpty = this.usiValue === '' || (Array.isArray(this.usiValue) && this.usiValue.length === 0);
+    if (typeof this.usiValue === 'string') {
+      this.isEmpty = this.usiValue === '';
+    }
   }
 }
