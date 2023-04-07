@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { isFunction, isString, UsiModal } from 'usi-campfire/utils';
 import { NotificationEvent, NotificationEventType, UsiNotificationService } from 'usi-campfire/notifications';
@@ -22,9 +23,16 @@ export const globalModalConfig: UsiModal = {
 @Injectable({
   providedIn: 'root',
 })
-export class UsiModalsService extends UsiNotificationService {
+export class UsiModalsService extends UsiNotificationService implements OnDestroy {
+  unsubscribe = new Subject<boolean>();
+
   constructor() {
     super();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next(true);
+    this.unsubscribe.complete();
   }
 
   /**

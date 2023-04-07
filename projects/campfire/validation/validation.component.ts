@@ -7,25 +7,46 @@ import { isFunction } from 'usi-campfire/utils';
 @Component({
   selector: 'usi-validation-modal',
   template: `
-    <div *ngIf="validation" class="usi-modal" (usiClickOutside)="closeModal(validation)" role="document">
-      <fa-icon class="usi-modal__close-button" (click)="closeModal(validation)" [icon]="['fal', 'times']" aria-label="Close modal" role="button"></fa-icon>
+    <div
+      *ngIf="validation"
+      class="usi-modal"
+      (usiClickOutside)="closeModal(validation)"
+      (keydown.escape)="closeModal(validation)"
+      aria-labelledby="validation-title"
+      aria-describedby="validation-description"
+      aria-modal="true"
+      role="alertdialog"
+      cdkTrapFocus
+      cdkTrapFocusAutoCapture
+    >
+      <fa-icon
+        class="usi-modal__close-button"
+        (click)="closeModal(validation)"
+        (keydown.enter)="closeModal(validation)"
+        (keydown.space)="closeModal(validation)"
+        [icon]="['fal', 'times']"
+        aria-label="Close modal"
+        role="button"
+        tabindex="0"
+        cdkFocusInitial
+      ></fa-icon>
 
       <div class="usi-modal__content">
         <div class="usi-modal__header">
           <ng-container [ngSwitch]="validation.usiValidationType">
             <fa-icon *ngSwitchCase="'success'" class="usi-modal__icon" [icon]="['fal', 'check-circle']"></fa-icon>
-            <h5 *ngSwitchCase="'success'" class="usi-modal__title">Success</h5>
+            <h5 *ngSwitchCase="'success'" id="validation-title" class="usi-modal__title">Success</h5>
 
             <fa-icon *ngSwitchCase="'error'" class="usi-modal__icon usi-modal__icon--red" [icon]="['fal', 'frown']"></fa-icon>
-            <h5 *ngSwitchCase="'error'" class="usi-modal__title">Error</h5>
+            <h5 *ngSwitchCase="'error'" id="validation-title" class="usi-modal__title">Error</h5>
 
             <fa-icon *ngSwitchCase="'warning'" class="usi-modal__icon usi-modal__icon--yellow" [icon]="['fal', 'exclamation-triangle']"></fa-icon>
-            <h5 *ngSwitchCase="'warning'" class="usi-modal__title">Warning</h5>
+            <h5 *ngSwitchCase="'warning'" id="validation-title" class="usi-modal__title">Warning</h5>
           </ng-container>
         </div>
 
         <div class="usi-modal__body">
-          <p class="usi-modal__text">{{ validation.usiMessage }}</p>
+          <p id="validation-description" class="usi-modal__text">{{ validation.usiMessage }}</p>
         </div>
 
         <div class="usi-modal__footer">

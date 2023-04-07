@@ -68,7 +68,7 @@ describe('UsiValidationModalComponent', () => {
 
   it('should error if no title is provided', () => {
     // @ts-ignore
-    expect(() => service.add()).toThrowError('UsiModal: Modal must contain at least a title!');
+    expect(() => service.add()).toThrowError('UsiModal: Modal must contain at least a title.');
   });
 
   it('should accept a config object', () => {

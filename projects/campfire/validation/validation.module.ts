@@ -1,5 +1,6 @@
 import { Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { A11yModule } from '@angular/cdk/a11y';
 
 import { UsiValidationModalComponent } from './validation.component';
 import { UsiValidationComponentContainer } from './validation-container.component';
@@ -10,7 +11,7 @@ import { UsiButtonModule } from 'usi-campfire/button';
 import { ComponentPortal, NotificationContainerDirective, Overlay, UsiNotificationService } from 'usi-campfire/notifications';
 
 @NgModule({
-  imports: [CommonModule, UsiSharedModule, UsiUtilsModule, UsiButtonModule],
+  imports: [CommonModule, A11yModule, UsiSharedModule, UsiUtilsModule, UsiButtonModule],
   exports: [UsiValidationModalComponent, UsiValidationComponentContainer],
   declarations: [UsiValidationModalComponent, UsiValidationComponentContainer],
   providers: [UsiNotificationService],

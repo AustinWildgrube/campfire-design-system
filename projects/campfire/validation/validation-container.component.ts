@@ -4,6 +4,7 @@ import { UsiModalsService } from 'usi-campfire/modals';
 import { UsiModal } from 'usi-campfire/utils';
 import { UsiNotificationComponentContainer } from 'usi-campfire/notifications';
 import { NotificationEvent, NotificationEventType } from 'usi-campfire/notifications';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'usi-dialog-container',
@@ -28,7 +29,7 @@ export class UsiValidationComponentContainer extends UsiNotificationComponentCon
 
   ngOnInit(): void {
     // Start listening to events from our service
-    this.usiModalsService.events.subscribe((event: NotificationEvent) => {
+    this.usiModalsService.events.pipe(takeUntil(this.usiModalsService.unsubscribe)).subscribe((event: NotificationEvent) => {
       // Add dialog to array
       if (event.type === NotificationEventType.ADD) {
         let dialog: UsiModal = event.value;
