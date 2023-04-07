@@ -7,14 +7,17 @@ import { UsiToast } from 'usi-campfire/utils';
 @Component({
   selector: 'usi-toast',
   template: `
-    <div *ngIf="toast" class="usi-toast">
+    <div *ngIf="toast" class="usi-toast" role="alert">
       <fa-icon
         *ngIf="toast.usiShowClose"
         class="usi-toast__close"
         (click)="closeToast(toast)"
+        (keydown.enter)="closeToast(toast)"
+        (keydown.space)="closeToast(toast)"
         [icon]="['fal', 'times']"
         aria-label="Close notification"
         role="button"
+        tabindex="0"
       ></fa-icon>
 
       <ng-container [ngSwitch]="toast.usiType">

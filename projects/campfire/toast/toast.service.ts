@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { NotificationEvent, NotificationEventType, UsiNotificationService } from 'usi-campfire/notifications';
 import { isFunction, isString, UsiToast } from 'usi-campfire/utils';
@@ -18,9 +19,16 @@ export const globalToastConfig = {
 };
 
 @Injectable({ providedIn: 'root' })
-export class UsiToastService extends UsiNotificationService {
+export class UsiToastService extends UsiNotificationService implements OnDestroy {
+  unsubscribe = new Subject<boolean>();
+
   constructor() {
     super();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next(true);
+    this.unsubscribe.complete();
   }
 
   /**

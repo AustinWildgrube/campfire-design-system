@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs';
 
 import { UsiToastService } from './toast.service';
 
@@ -54,7 +55,7 @@ export class UsiToastComponentContainer extends UsiNotificationComponentContaine
 
   ngOnInit(): void {
     // Start listening to events from our service
-    this.usiToastService.events.subscribe((event: NotificationEvent) => {
+    this.usiToastService.events.pipe(takeUntil(this.usiToastService.unsubscribe)).subscribe((event: NotificationEvent) => {
       if (event.type === NotificationEventType.ADD) {
         let toast: UsiToast = event.value;
         super.add(toast);
