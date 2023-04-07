@@ -6,7 +6,7 @@ import { isFunction, UsiSnackbar } from 'usi-campfire/utils';
 @Component({
   selector: 'usi-snackbar',
   template: `
-    <div *ngIf="snackbar" class="usi-snackbar" [ngClass]="'usi-snackbar--' + snackbar.usiType">
+    <div *ngIf="snackbar" class="usi-snackbar" [ngClass]="'usi-snackbar--' + snackbar.usiType" role="alert">
       <div class="usi-snackbar__text">
         <ng-container [ngSwitch]="snackbar.usiType">
           <fa-icon *ngSwitchCase="'success'" class="usi-snackbar__icon" [icon]="['fal', snackbar.usiIcon || 'check-circle']"></fa-icon>
