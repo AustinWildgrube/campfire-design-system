@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { DOCUMENT } from '@angular/common';
-import { ApplicationRef, ComponentFactoryResolver, Inject, Injectable } from '@angular/core';
+import { ApplicationRef, ComponentFactoryResolver, Inject, Injectable, OnDestroy } from '@angular/core';
 
 import { DomPortalHost } from '../portal/dom-portal-host';
 import { NotificationContainerDirective } from '../notification.directive';
@@ -21,8 +21,9 @@ export class Overlay {
     private _overlayContainer: OverlayContainer,
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _appRef: ApplicationRef,
-    @Inject(DOCUMENT) private _document: any
+    @Inject(DOCUMENT) private _document: Document
   ) {}
+
   /**
    * Creates an overlay.
    * @returns A reference to the created overlay.
@@ -41,7 +42,6 @@ export class Overlay {
 
     if (!pane) {
       pane = this._document.createElement('div');
-
       pane.classList.add('usi-overlay-notifications');
 
       if (!overlayContainer) {
@@ -51,7 +51,7 @@ export class Overlay {
       }
     }
 
-    return pane;
+    return <HTMLElement>pane;
   }
 
   /**
@@ -68,7 +68,6 @@ export class Overlay {
    * @param pane DOM element for the overlay
    */
   private _createOverlayRef(pane: HTMLElement): OverlayRef {
-    // @ts-ignore
     return new OverlayRef(this._createPortalHost(pane));
   }
 }

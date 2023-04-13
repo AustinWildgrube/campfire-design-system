@@ -6,7 +6,7 @@ import { Inject, Injectable, OnDestroy } from '@angular/core';
 export class OverlayContainer implements OnDestroy {
   protected _containerElement!: HTMLElement;
 
-  constructor(@Inject(DOCUMENT) protected _document: any) {}
+  constructor(@Inject(DOCUMENT) protected _document: Document) {}
 
   ngOnDestroy() {
     if (this._containerElement && this._containerElement.parentNode) {

@@ -13,37 +13,36 @@ export class UsiNotificationComponentContainer {
   constructor() {}
 
   /**
-   * We need to sort notifications into the correct arrays to keep from running multiple
-   * for loops.
+   * We need to sort notifications into the correct arrays to keep from running multiple for loops.
    * @protected
    */
   protected prepareNotifications(): void {
-    this.topLeftNotifications = this.notifications.filter((toast) => toast.usiPosition === 'top-left');
-    this.topCenterNotifications = this.notifications.filter((toast) => toast.usiPosition === 'top-center');
-    this.topRightNotifications = this.notifications.filter((toast) => toast.usiPosition === 'top-right' || !toast.usiPosition);
-    this.centerCenterNotifications = this.notifications.filter((toast) => toast.usiPosition === 'center-center');
-    this.bottomLeftNotifications = this.notifications.filter((toast) => toast.usiPosition === 'bottom-left');
-    this.bottomCenterNotifications = this.notifications.filter((toast) => toast.usiPosition === 'bottom-center');
-    this.bottomRightNotifications = this.notifications.filter((toast) => toast.usiPosition === 'bottom-right');
+    this.topLeftNotifications = this.notifications.filter((notification) => notification.usiPosition === 'top-left');
+    this.topCenterNotifications = this.notifications.filter((notification) => notification.usiPosition === 'top-center');
+    this.topRightNotifications = this.notifications.filter((notification) => notification.usiPosition === 'top-right' || !notification.usiPosition);
+    this.centerCenterNotifications = this.notifications.filter((notification) => notification.usiPosition === 'center-center');
+    this.bottomLeftNotifications = this.notifications.filter((notification) => notification.usiPosition === 'bottom-left');
+    this.bottomCenterNotifications = this.notifications.filter((notification) => notification.usiPosition === 'bottom-center');
+    this.bottomRightNotifications = this.notifications.filter((notification) => notification.usiPosition === 'bottom-right');
   }
 
   /**
    * Add a new notification to our array.
-   * @param { UsiToast | UsiSnackbar | UsiModal } toast | The data for the notification.
+   * @param { UsiToast | UsiSnackbar | UsiModal } notification | The data for the notification.
    * @protected
    */
-  protected add(toast: UsiToast | UsiSnackbar | UsiModal): void {
+  protected add(notification: UsiToast | UsiSnackbar | UsiModal): void {
     // If we've gone over our limit, remove the earliest one from the array
-    if (this.notifications.length >= toast.usiLimit!) {
+    if (this.notifications.length >= notification.usiLimit!) {
       this.notifications.shift();
     }
 
-    // Add toast to array
-    this.notifications.push(toast);
+    // Add notification to array
+    this.notifications.push(notification);
 
-    // If there's a timeout individually or globally, set the toast to timeout
-    if (toast.usiTimeout) {
-      this.setTimeout(toast);
+    // If there's a timeout individually or globally, set the notification to timeout
+    if (notification.usiTimeout) {
+      this.setTimeout(notification);
     }
 
     // Sort notifications into respective arrays
@@ -56,7 +55,7 @@ export class UsiNotificationComponentContainer {
    * @protected
    */
   protected clear(id: number): void {
-    this.notifications.forEach((value: any, key: number) => {
+    this.notifications.forEach((value: UsiModal | UsiSnackbar | UsiToast, key: number) => {
       if (value.usiId === id) {
         // Custom close function was specified
         if (value.usiOnRemove && isFunction(value.usiOnRemove)) {
@@ -71,12 +70,12 @@ export class UsiNotificationComponentContainer {
   }
 
   /**
-   * Clear all toast notifications in the array.
+   * Clear all notification notifications in the array.
    * @protected
    */
   protected clearAll(): void {
     // Run on remove function if there is one.
-    this.notifications.forEach((value: any) => {
+    this.notifications.forEach((value: UsiModal | UsiSnackbar | UsiToast) => {
       if (value.usiOnRemove && isFunction(value.usiOnRemove)) {
         value.usiOnRemove.call(this, value);
       }

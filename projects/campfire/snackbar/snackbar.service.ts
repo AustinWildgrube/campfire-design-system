@@ -4,7 +4,7 @@ import { NotificationEvent, NotificationEventType, UsiNotificationService } from
 import { isFunction, isString, UsiSnackbar } from 'usi-campfire/utils';
 import { Subject } from 'rxjs';
 
-export const globalSnackbarConfig = {
+export const globalSnackbarConfig: UsiSnackbar = {
   usiButtonText: 'Okay',
   usiIcon: 'question-circle',
   usiId: 0,

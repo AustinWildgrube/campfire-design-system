@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-import { isFunction } from 'usi-campfire/utils';
+import { isFunction, UsiModal, UsiSnackbar, UsiToast } from 'usi-campfire/utils';
 
 export enum NotificationEventType {
   ADD,
@@ -12,8 +12,8 @@ export enum NotificationEventType {
 /**
  * Constructor for our notification event.
  */
-export class NotificationEvent {
-  constructor(public type: NotificationEventType, public value?: any) {}
+export class NotificationEvent<T = any> {
+  constructor(public type: NotificationEventType, public value?: T) {}
 }
 
 /**
@@ -30,7 +30,7 @@ export function notificationServiceFactory(): UsiNotificationService {
 @Injectable()
 export class UsiNotificationService {
   protected eventSource: Subject<NotificationEvent> = new Subject<NotificationEvent>();
-  public events: Observable<NotificationEvent> = this.eventSource.asObservable();
+  events: Observable<NotificationEvent> = this.eventSource.asObservable();
 
   constructor() {}
 
@@ -64,35 +64,56 @@ export class UsiNotificationService {
 
   /**
    * Checks whether the local option is set, if not it checks the global config.
-   * @param { any } options | Custom config to check local properties.
-   * @param optionalOptions
-   * @param { any } globalConfig | Global config to return if local is not set.
-   * @param { string } property | Specify which property to check.
+   * @param { UsiModal | UsiSnackbar | UsiToast | string } options | Custom config to check local properties.
+   * @param { Partial<UsiModal | UsiSnackbar | UsiToast> | undefined } optionalOptions | Optional config to check local properties.
+   * @param { UsiModal | UsiSnackbar | UsiToast } globalConfig | Global config to return if local is not set.
+   * @param { keyof UsiModal | UsiSnackbar | UsiToast & string } property | Specify which property to check.
    * @protected
    */
-  protected checkConfigItem(options: any, optionalOptions: any, globalConfig: any, property: string): any {
-    if (options.hasOwnProperty(property)) {
-      if (property === 'usiOnAdd' || property === 'usiOnRemove' || property === 'usiOnAction') {
-        if (!isFunction(options[property])) {
-          return null;
-        }
-      }
+  protected checkConfigItem<T extends UsiModal | UsiSnackbar | UsiToast>(
+    options: T | string,
+    optionalOptions: Partial<T> | undefined,
+    globalConfig: T,
+    property: keyof T & string
+  ): T[keyof T & string] | undefined {
+    if (typeof options === 'string') return;
 
-      return options[property];
-    } else if (optionalOptions && optionalOptions.hasOwnProperty(property)) {
-      if (property === 'usiOnAdd' || property === 'usiOnRemove' || property === 'usiOnAction') {
-        if (!isFunction(optionalOptions[property])) {
-          return null;
-        }
+    if (property in options) {
+      switch (property) {
+        case 'usiOnAdd':
+        case 'usiOnRemove':
+        case 'usiOnAction':
+          if (isFunction(options[property])) {
+            return options[property];
+          } else {
+            return undefined;
+          }
+        default:
+          return options[property];
       }
-
-      return optionalOptions[property];
+    } else if (optionalOptions && property in optionalOptions) {
+      switch (property) {
+        case 'usiOnAdd':
+        case 'usiOnRemove':
+        case 'usiOnAction':
+          if (isFunction(optionalOptions[property])) {
+            return optionalOptions[property];
+          } else {
+            return undefined;
+          }
+        default:
+          return optionalOptions[property];
+      }
     } else {
-      if (property === 'usiIcon' || property === 'usiOnAdd' || property === 'usiOnRemove' || property === 'usiOnAction') {
-        return null;
+      switch (property) {
+        case 'usiIcon':
+        case 'usiOnAdd':
+        case 'usiOnRemove':
+        case 'usiOnAction':
+          return undefined;
+        default:
+          return globalConfig[property];
       }
-
-      return globalConfig[property];
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Injector, NgModule } from '@angular/core';
+import { Injector, NgModule, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UsiSnackbarService } from './snackbar.service';
@@ -6,7 +6,7 @@ import { UsiSnackbarComponent } from './snackbar.component';
 import { UsiSnackbarComponentContainer } from './snackbar-container.component';
 
 import { UsiSharedModule } from 'usi-campfire/shared';
-import { ComponentPortal, NotificationContainerDirective, notificationServiceFactory, Overlay } from 'usi-campfire/notifications';
+import { ComponentPortal, NotificationContainerDirective, notificationServiceFactory, Overlay, OverlayRef } from 'usi-campfire/notifications';
 
 @NgModule({
   imports: [CommonModule, UsiSharedModule],
@@ -20,13 +20,17 @@ import { ComponentPortal, NotificationContainerDirective, notificationServiceFac
     },
   ],
 })
-export class UsiSnackbarModule {
+export class UsiSnackbarModule implements OnDestroy {
   overlayContainer?: NotificationContainerDirective;
+  overlayRef?: OverlayRef | undefined;
 
   constructor(private overlay: Overlay, private injector: Injector) {
-    const overlayRef = this.overlay.create(this.overlayContainer);
     const component = new ComponentPortal(UsiSnackbarComponentContainer, this.injector);
+    this.overlayRef = this.overlay.create(this.overlayContainer);
+    this.overlayRef.attach(component);
+  }
 
-    overlayRef.attach(component);
+  ngOnDestroy(): void {
+    this.overlayRef?.detach();
   }
 }

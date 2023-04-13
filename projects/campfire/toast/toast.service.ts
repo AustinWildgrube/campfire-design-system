@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { NotificationEvent, NotificationEventType, UsiNotificationService } from 'usi-campfire/notifications';
 import { isFunction, isString, UsiToast } from 'usi-campfire/utils';
 
-export const globalToastConfig = {
+export const globalToastConfig: UsiToast = {
   usiIcon: 'question-circle',
   usiId: 0,
   usiLimit: 4,
