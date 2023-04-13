@@ -14,7 +14,6 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
         (click)="this.writeValue($any($event.target).checked)"
         [disabled]="usiDisabled"
         [required]="usiRequired"
-        [attr.aria-labelledby]="uid"
         [attr.aria-checked]="value"
         type="checkbox"
         tabindex="0"
