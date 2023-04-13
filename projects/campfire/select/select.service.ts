@@ -1,20 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-
-// TODO: reimplement or remove
-// import { SelectData } from 'usi-campfire/utils';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UsiSelectService {
-  public showOptions: boolean = false;
-  public showSelectedOnly: boolean = false;
-  public formControlValueCopy: FormControl = new FormControl();
+export class UsiSelectService<T = unknown> implements OnDestroy {
+  activeFocus: any = 0;
+  showOptions: boolean = false;
+  showSelectedOnly: boolean = false;
+  formControlValueCopy: FormControl = new FormControl();
+  unsubscribe = new Subject<boolean>();
 
   private optionIndex: number = 0;
 
   constructor() {}
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next(true);
+    this.unsubscribe.complete();
+  }
 
   /**
    * For accessibility, we need to be able to navigate through the options with just arrow keys
@@ -24,7 +29,6 @@ export class UsiSelectService {
    */
   public moveFocus(event: KeyboardEvent): void {
     const options = document.querySelectorAll<HTMLLIElement>('.usi-select__option');
-
     switch (event.key) {
       case 'ArrowUp':
         if (this.optionIndex > 0) {
@@ -50,9 +54,9 @@ export class UsiSelectService {
    * see if the value is included.
    * @return { boolean } | true if value is in the array
    */
-  public isValueIncluded(value: string): boolean {
+  public isValueIncluded(value: T): boolean {
     if (this.formControlValueCopy.value) {
-      return this.formControlValueCopy.value.indexOf(value) > -1;
+      return this.formControlValueCopy.value === value;
     }
 
     return false;

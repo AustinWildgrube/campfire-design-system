@@ -81,6 +81,7 @@
   font-size: .875rem;
   margin: 4px 0;
   padding: 8px 12px;
+  user-select: none;
 
   &:hover:not(.usi-select__option--active):not(.usi-select__option--disabled):not(.usi-select__option--controls) {
     background-color: var(--select-options-background-color--hover);
@@ -106,4 +107,8 @@
 .usi-select__option--disabled {
   color: var(--select-options-text-color--disabled);
   cursor: not-allowed;
+}
+
+.usi-select__option--hidden {
+  display: none;
 }

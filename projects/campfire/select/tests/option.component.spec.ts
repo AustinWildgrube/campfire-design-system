@@ -1,17 +1,19 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { FormGroupDirective } from '@angular/forms';
 
+import { UsiSelectService } from '../select.service';
 import { UsiSelectComponent } from '../select.component';
+import { UsiOptionComponent } from '../option/option.component';
 import { UsiSharedModule } from 'usi-campfire/shared';
-import { UsiOptionComponent } from 'usi-campfire/select/option/option.component';
 
 @Component({
   template: `
     <usi-select [usiLabel]="usiLabel" [usiPlaceholder]="usiPlaceholder" [usiNoResultMessage]="usiNoResultMessage" [usiSearchable]="usiSearchable">
-      <usi-option usiValue="1">Option 1</usi-option>
-      <usi-option usiValue="2">Option 2</usi-option>
-      <usi-option usiValue="3" usiDisabled>Option 3</usi-option>
+      <usi-option [usiValue]="1">Option 1</usi-option>
+      <usi-option [usiValue]="2">Option 2</usi-option>
+      <usi-option [usiValue]="3" usiDisabled>Option 3</usi-option>
     </usi-select>
   `,
 })
@@ -26,6 +28,7 @@ describe('UsiSelectOptionComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [UsiSelectComponent, UsiOptionComponent, TestComponent],
       imports: [UsiSharedModule],
+      providers: [FormGroupDirective, UsiSelectService],
     }).compileComponents();
   });
 

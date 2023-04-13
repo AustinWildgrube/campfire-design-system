@@ -6,13 +6,14 @@ import { UsiSelectComponent } from './select.component';
 import { UsiOptionComponent } from './option/option.component';
 import { UsiGroupComponent } from './group/group.component';
 
+import { UsiCheckboxModule } from 'usi-campfire/checkbox';
 import { UsiInputModule } from 'usi-campfire/input';
 import { UsiSharedModule } from 'usi-campfire/shared';
 import { UsiUtilsModule } from 'usi-campfire/utils';
 
 @NgModule({
   declarations: [UsiSelectComponent, UsiOptionComponent, UsiGroupComponent],
-  imports: [CommonModule, ReactiveFormsModule, UsiSharedModule, UsiInputModule, UsiUtilsModule],
+  imports: [CommonModule, ReactiveFormsModule, UsiSharedModule, UsiInputModule, UsiUtilsModule, UsiCheckboxModule],
   exports: [UsiSelectComponent, UsiOptionComponent, UsiGroupComponent],
 })
 export class UsiSelectModule {}

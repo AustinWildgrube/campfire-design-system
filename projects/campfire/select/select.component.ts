@@ -6,23 +6,19 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  HostListener,
   Input,
-  OnChanges,
   OnInit,
   Output,
   QueryList,
-  SimpleChanges,
 } from '@angular/core';
 import { FormGroupDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
 
-import { merge, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, merge, Observable, takeUntil } from 'rxjs';
 
 import { UsiInputHarnessComponent } from 'usi-campfire/shared';
-import { BooleanInput, InputBoolean, SelectData } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 
 import { UsiSelectService } from './select.service';
 import { UsiOptionComponent } from './option/option.component';
@@ -32,9 +28,13 @@ import { UsiOptionComponent } from './option/option.component';
   template: `
     <div
       class="usi-select"
-      (usiClickOutside)="usiSelectService.showOptions = false"
+      (usiClickOutside)="usiSelectService.showOptions = false; usiSelectService.activeFocus = null"
+      (keyup)="onKeyUp($event)"
+      [attr.aria-activedescendant]="usiSelectService.activeFocus"
       [attr.aria-expanded]="usiSelectService.showOptions"
       [attr.aria-labelledby]="uid"
+      aria-haspopup="listbox"
+      aria-controls="listbox"
       role="listbox"
     >
       <div class="usi-input-group">
@@ -46,10 +46,9 @@ import { UsiOptionComponent } from './option/option.component';
           }"
           (click)="usiSelectService.showOptions = !usiSelectService.showOptions"
           (keyup)="searchOptions($any($event).target.value)"
-          (keyup.enter)="showOptionList()"
           [value]="labelText"
           [placeholder]="usiPlaceholder"
-          [disabled]="usiDisabled == true"
+          [disabled]="usiDisabled"
           [readonly]="!usiSearchable"
           [attr.aria-labelledby]="uid"
         />
@@ -74,25 +73,13 @@ import { UsiOptionComponent } from './option/option.component';
           {{ usiHint }}
         </span>
 
-        <div *ngIf="(usiError && formControlValue.touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
+        <div *ngIf="(hasError && formControlValue.touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
           <ng-container *ngTemplateOutlet="usiError">{{ usiError }}</ng-container>
         </div>
       </div>
 
-      <ul *ngIf="usiSelectService.showOptions && usiData" class="usi-select__options" role="group">
-        <li *ngIf="manipulatedData.size === 0" class="usi-select__no-result">{{ usiNoResultMessage }}</li>
-
-        <ng-container *ngFor="let options of manipulatedData | keyvalue: asIsOrder">
-          <li *ngIf="options.key !== undefined" class="usi-select__group-label">{{ options.key }}</li>
-          <li *ngIf="manipulatedData.size > 1 && options.key === undefined" class="usi-select__group-divider"></li>
-
-          <ng-container *ngFor="let option of options.value; let i = index">
-            <usi-option [usiValue]="option.value" [usiDisabled]="option.disabled">{{ option.label }}</usi-option>
-          </ng-container>
-        </ng-container>
-      </ul>
-
-      <ul *ngIf="usiSelectService.showOptions && !usiData" class="usi-select__options" role="group">
+      <ul *ngIf="usiSelectService.showOptions" id="listbox" class="usi-select__options" role="listbox">
+        <li *ngIf="hiddenOptions === options?.length" class="usi-select__no-result">{{ usiNoResultMessage }}</li>
         <ng-content></ng-content>
       </ul>
     </div>
@@ -107,33 +94,25 @@ import { UsiOptionComponent } from './option/option.component';
     UsiSelectService,
   ],
 })
-export class UsiSelectComponent extends UsiInputHarnessComponent implements AfterViewInit, OnChanges, OnInit {
-  @Input()
-  usiData?: SelectData[] = undefined;
-
-  @Input()
-  usiNoResultMessage?: string = 'No Result';
+export class UsiSelectComponent<T = unknown> extends UsiInputHarnessComponent implements AfterViewInit, OnInit {
+  @ContentChildren(UsiOptionComponent) options: QueryList<UsiOptionComponent> | undefined;
 
   @Input()
   @InputBoolean()
   usiSearchable?: BooleanInput;
 
-  @Output()
-  usiSearchValue: EventEmitter<string> = new EventEmitter<string>();
+  @Input()
+  usiNoResultMessage?: string = 'No Results Found';
 
   @Output()
   usiSelectionChange: EventEmitter<string | string[]> = new EventEmitter<string | string[]>();
 
-  @ContentChildren(UsiOptionComponent) private options: QueryList<UsiOptionComponent> | undefined;
-
-  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(): void {
-    this.usiSelectService.showOptions = false;
-  }
-
+  searchString: string = '';
   labelText: string = '';
-  combinedSelections: Observable<string[]> | undefined;
-  groupedData: Map<string, SelectData[]> = new Map();
-  manipulatedData: Map<string | undefined, SelectData[]> = new Map();
+  activeIndex: number = 0;
+  hiddenOptions: number = 0;
+  searchTimeout: number | null = null;
+  combinedSelections: Observable<T[]> | undefined;
 
   constructor(
     public usiSelectService: UsiSelectService,
@@ -149,47 +128,86 @@ export class UsiSelectComponent extends UsiInputHarnessComponent implements Afte
   override ngOnInit(): void {
     super.ngOnInit();
 
-    // Group our data and then shallow copy it, so we can manipulate it
-    if (this.usiData) {
-      this.groupedData = this.groupBy(this.usiData, (data) => data.group);
-      this.manipulatedData = this.groupedData;
-    }
-
     // Pass our form control to the service so the option component can access it
     this.usiSelectService.formControlValueCopy = this.formControlValue;
   }
 
   override ngAfterViewInit() {
-    if (this.options) {
-      // Since there can be many option components we will just combine them into one observable
-      this.combinedSelections = merge<any>(...this.options.map((option: UsiOptionComponent) => option.stateChanges.pipe(map(() => option.usiValue))));
-    }
-
     // Initial value
     if (this.formControlValue.value) {
       this.getLabelByValue(this.formControlValue.value);
     }
 
     // Subscribe to form control changes so we can get a label
-    this.formControlValue.valueChanges.subscribe((value: string | string[]) => {
+    this.formControlValue.valueChanges.pipe(takeUntil(this.usiSelectService.unsubscribe)).subscribe((value: T | T[]) => {
       this.getLabelByValue(value);
+      this.searchOptions('');
     });
 
+    if (this.options) {
+      // Since there can be many option components we will just combine them into one observable
+      this.combinedSelections = merge(...this.options.map((option: UsiOptionComponent) => option.stateChanges.pipe(map(() => option.usiValue as T[]))));
+    }
+
     // Only emit a change on user input
-    this.combinedSelections?.subscribe(() => {
+    this.combinedSelections?.pipe(takeUntil(this.usiSelectService.unsubscribe)).subscribe(() => {
       this.usiSelectionChange.emit(this.formControlValue.value);
     });
   }
 
-  override ngOnChanges(changes: SimpleChanges): void {
-    super.ngOnChanges(changes);
+  /**
+   * For accessibility, we need to be able to perform certain actions based on the
+   * key up event. This is based on the following example:
+   * https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
+   * @param  { KeyboardEvent } event | our keyup event
+   * @return
+   */
+  public onKeyUp(event: KeyboardEvent): void {
+    switch (event.key) {
+      case 'Escape':
+        this.usiSelectService.showOptions = false;
+        this.usiSelectService.activeFocus = null;
+        this.searchString = '';
+        break;
 
-    const { usiData } = changes;
+      case 'Enter':
+      case 'Space':
+        if (this.usiSelectService.showOptions) break;
+        this.usiSelectService.showOptions = true;
+        break;
 
-    // If data changes, we need to re-group it
-    if (usiData && this.usiData) {
-      this.groupedData = this.groupBy(this.usiData, (data) => data.group);
-      this.manipulatedData = this.groupedData;
+      case 'Home':
+        this.usiSelectService.showOptions = true;
+        setTimeout(() => setTimeout(() => this.options?.first.content?.nativeElement.focus()));
+        break;
+
+      case 'End':
+        this.usiSelectService.showOptions = true;
+        setTimeout(() => this.options?.last.content?.nativeElement.focus());
+        break;
+
+      case 'ArrowUp':
+        if (this.usiSelectService.showOptions) {
+          this.usiSelectService.moveFocus(event);
+        } else {
+          this.usiSelectService.showOptions = true;
+          setTimeout(() => this.options?.first.content?.nativeElement.focus());
+        }
+        break;
+
+      case 'ArrowDown':
+        if (this.usiSelectService.showOptions) {
+          this.usiSelectService.moveFocus(event);
+        } else {
+          this.usiSelectService.showOptions = true;
+        }
+        break;
+
+      default:
+        if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
+          this.searchOptionsByLetter(event);
+        }
+        break;
     }
   }
 
@@ -197,8 +215,9 @@ export class UsiSelectComponent extends UsiInputHarnessComponent implements Afte
    * Loop through our options until we find a matching value, so we can set the
    * text content as the label.
    * @param { string | string[] } value | what we are matching to the option value
+   * @return
    */
-  public getLabelByValue(value: string | string[]): void {
+  public getLabelByValue(value: T | T[]): void {
     let hasLabel: boolean = false;
     this.options?.forEach((usiOption: UsiOptionComponent) => {
       if (value === usiOption.usiValue) {
@@ -218,128 +237,70 @@ export class UsiSelectComponent extends UsiInputHarnessComponent implements Afte
   }
 
   /**
-   * Since we need to set focus on the first select option we have to call this
-   * function to do so.
-   * @return
-   */
-  public showOptionList(): void {
-    this.usiSelectService.showOptions = true;
-
-    setTimeout(() => {
-      document.querySelectorAll<HTMLLIElement>(`.usi-select__option`)[0]?.focus();
-    }, 10);
-  }
-
-  /**
-   * ES6 introduced an order for map items. Since we want to preserve
-   * the group order that the user specifies we can add our own ordering
-   * method. This also allows us to put non-grouped items at the end of
-   * the map.
-   * @param { any } a | The first item to compare
-   * @param { any } b | The second item to compare
-   * @return { number } number | 1 if it is a group, -1 if it is not a group
-   */
-  public asIsOrder(a: any, b: any): number {
-    if (a.key === undefined) {
-      return 1;
-    } else if (b.key === undefined) {
-      return -1;
-    }
-
-    return 1;
-  }
-
-  /**
-   * When we have a keyup event we want to search our map of data and
-   * filter it.
+   * When we have a keyup event we want to search our options and filter it.
    * @param { string } query | The value of our search
    * @return
    */
   public searchOptions(query: string): void {
-    if (query !== '') {
-      this.usiSearchValue.emit(query);
-      this.usiValue = query;
-      this.checkValidations();
+    // Has to be searchable
+    if (!this.usiSearchable) return;
 
-      this.manipulatedData = this.filterData(
-        this.groupedData,
-        this.usiSearchable == true,
-        query,
-        UsiSelectComponent.defaultFilter,
-        this.formControlValue.value
-      );
-    } else {
-      this.manipulatedData = this.groupedData;
-    }
-  }
-
-  /**
-   * This method groups our data based on the group attribute if it is present
-   * in the data provided.
-   * @param { SelectData[] } list | The list of data to group
-   * @param { () => any } keyGetter | The function to get the key from the data
-   * @return
-   */
-  protected groupBy(list: SelectData[], keyGetter: (arg0: any) => any): Map<string, SelectData[]> {
-    const map = new Map();
-
-    list.forEach((item: SelectData) => {
-      const key = keyGetter(item);
-      const collection = map.get(key);
-
-      if (!collection) {
-        map.set(key, [item]);
+    this.options?.forEach((option: UsiOptionComponent) => {
+      if (option.content?.nativeElement.textContent?.toLowerCase().includes(query.toLowerCase())) {
+        console.log(option.content?.nativeElement.textContent);
+        option.content?.nativeElement.classList.remove('usi-select__option--hidden');
       } else {
-        collection.push(item);
+        option.content?.nativeElement.classList.add('usi-select__option--hidden');
       }
     });
 
-    return map;
+    this.hiddenOptions = document.querySelectorAll('.usi-select__option--hidden').length;
   }
 
   /**
-   * This is our default filter that sees if the value is included in
-   * the label. If it is not it will trim the value from our data.
-   * @param { string } value | The value of our search
-   * @param { SelectData } option | A single piece of data to test our filter against
-   * @return
+   * According to W3 we need to "open the listbox if it is not already displayed and then moves visual focus to the first option that matches the typed
+   * character. If multiple keys are typed in quick succession, visual focus moves to the first option that matches the full string. If the same character is
+   * typed in succession, visual focus cycles among the options starting with that character".
+   * @param { KeyboardEvent } event | our keyup event
+   * @private
    */
-  private static defaultFilter(value: string, option: SelectData) {
-    return option.label.toLowerCase().trim().includes(value.toLowerCase().trim());
-  }
+  private searchOptionsByLetter(event: KeyboardEvent): void {
+    this.usiSelectService.showOptions = true;
 
-  /**
-   * When a search is performed we can invoke this method to filter our
-   * data. After filtering, we regroup our data and return it for the
-   * DOM to render.
-   * @param { Map<string, SelectData[]> } data | The data that we will filter through
-   * @param { boolean } searchable | Whether our data is searchable or not
-   * @param { string } searchValue | The value of our search
-   * @param { () => boolean } filter | The filter function to use. If none is provided we use our default filter
-   * @param { string | number | any[] } value | The value of our select
-   * @return
-   */
-  private filterData(
-    data: Map<string, SelectData[]>,
-    searchable: boolean,
-    searchValue: string,
-    filter: (value: string, item: SelectData) => boolean,
-    value: string | number | any[]
-  ) {
-    if (!searchable) {
-      return data;
+    if (typeof this.searchTimeout === 'number') {
+      window.clearTimeout(this.searchTimeout);
     }
 
-    let result: any = [];
-    for (const [_, value] of data.entries()) {
-      for (let i = 0; i < value.length; i += 1) {
-        if (filter(searchValue, value[i])) {
-          result.push(value[i]);
+    this.searchTimeout = window.setTimeout(() => {
+      this.searchString = '';
+    }, 500);
+
+    this.searchString += event.key;
+
+    const letterArray = this.searchString.split('');
+    const allSameLetter = letterArray.every((letter: string) => letter === letterArray[0]);
+
+    setTimeout(() => {
+      let foundOption: HTMLLIElement | undefined;
+      const options = Array.from(document.querySelectorAll<HTMLLIElement>(`.usi-select__option`));
+
+      if (!allSameLetter) {
+        foundOption = options.find((option: HTMLLIElement) => option.textContent?.toLowerCase().startsWith(this.searchString.toLowerCase()));
+      } else {
+        const filteredOptions = options.filter((option: HTMLLIElement) => option.textContent?.toLowerCase().startsWith(this.searchString[0].toLowerCase()));
+        foundOption = filteredOptions[this.activeIndex];
+        if (this.activeIndex >= filteredOptions.length - 1) {
+          this.activeIndex = 0;
+        } else {
+          this.activeIndex++;
         }
       }
-    }
 
-    result = this.groupBy(result, (data) => data.group);
-    return result;
+      foundOption?.focus();
+    });
+
+    if (this.searchString === '') {
+      this.activeIndex = 0;
+    }
   }
 }
