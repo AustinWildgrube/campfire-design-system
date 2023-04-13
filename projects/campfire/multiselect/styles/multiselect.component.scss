@@ -31,6 +31,8 @@
 }
 
 .usi-select__clear-all {
+  background: transparent;
+  border: none;
   color: var(--primary);
   cursor: pointer;
   font-size: 0.75rem;

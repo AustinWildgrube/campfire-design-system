@@ -58,6 +58,7 @@ import { UsiOptionComponent } from './option/option.component';
           class="usi-input-group__suffix usi-input-group__suffix--password"
           (click)="usiSelectService.showOptions = false"
           [icon]="['fal', 'angle-up']"
+          aria-label="Close options"
         ></fa-icon>
 
         <fa-icon
@@ -65,6 +66,7 @@ import { UsiOptionComponent } from './option/option.component';
           class="usi-input-group__suffix usi-input-group__suffix--password"
           (click)="usiSelectService.showOptions = true"
           [icon]="['fal', 'angle-down']"
+          aria-label="Open options"
         ></fa-icon>
 
         <label [id]="uid" class="usi-input-group__label">{{ usiLabel }} <span *ngIf="usiRequired">*</span></label>
@@ -247,7 +249,6 @@ export class UsiSelectComponent<T = unknown> extends UsiInputHarnessComponent im
 
     this.options?.forEach((option: UsiOptionComponent) => {
       if (option.content?.nativeElement.textContent?.toLowerCase().includes(query.toLowerCase())) {
-        console.log(option.content?.nativeElement.textContent);
         option.content?.nativeElement.classList.remove('usi-select__option--hidden');
       } else {
         option.content?.nativeElement.classList.add('usi-select__option--hidden');

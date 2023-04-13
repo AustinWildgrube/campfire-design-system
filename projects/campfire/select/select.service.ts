@@ -9,6 +9,7 @@ export class UsiSelectService<T = unknown> implements OnDestroy {
   activeFocus: any = 0;
   showOptions: boolean = false;
   showSelectedOnly: boolean = false;
+  isMultiselect: boolean = false;
   formControlValueCopy: FormControl = new FormControl();
   unsubscribe = new Subject<boolean>();
 
@@ -56,7 +57,7 @@ export class UsiSelectService<T = unknown> implements OnDestroy {
    */
   public isValueIncluded(value: T): boolean {
     if (this.formControlValueCopy.value) {
-      return this.formControlValueCopy.value === value;
+      return this.formControlValueCopy.value.includes(value);
     }
 
     return false;

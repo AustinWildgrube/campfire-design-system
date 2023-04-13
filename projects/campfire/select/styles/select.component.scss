@@ -81,7 +81,9 @@
   font-size: .875rem;
   margin: 4px 0;
   padding: 8px 12px;
+  position: relative;
   user-select: none;
+  z-index: 2;
 
   &:hover:not(.usi-select__option--active):not(.usi-select__option--disabled):not(.usi-select__option--controls) {
     background-color: var(--select-options-background-color--hover);
@@ -111,4 +113,8 @@
 
 .usi-select__option--hidden {
   display: none;
+}
+
+.usi-select__option-checkbox {
+  pointer-events: none;
 }

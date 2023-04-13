@@ -1,17 +1,20 @@
-import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
 
 @Component({
   selector: 'usi-multiselect',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div
       class="usi-select"
-      (usiClickOutside)="usiSelectService.showOptions = false"
+      (usiClickOutside)="usiSelectService.showOptions = false; usiSelectService.activeFocus = null"
+      (keyup)="onKeyUp($event)"
+      [attr.aria-activedescendant]="usiSelectService.activeFocus"
       [attr.aria-expanded]="usiSelectService.showOptions"
       [attr.aria-labelledby]="uid"
+      aria-haspopup="listbox"
+      aria-controls="listbox"
       role="listbox"
     >
       <div class="usi-input-group">
@@ -23,10 +26,9 @@ import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
           }"
           (click)="usiSelectService.showOptions = !usiSelectService.showOptions"
           (keyup)="searchOptions($any($event).target.value)"
-          (keyup.enter)="showOptionList()"
           [value]="!isEmpty && formControlValue.value ? formControlValue.value.length + ' Selected' : ''"
           [placeholder]="usiPlaceholder"
-          [disabled]="usiDisabled == true"
+          [disabled]="usiDisabled"
           [attr.aria-labelledby]="uid"
           readonly
         />
@@ -36,6 +38,7 @@ import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
           class="usi-input-group__suffix usi-input-group__suffix--password"
           (click)="usiSelectService.showOptions = false"
           [icon]="['fal', 'angle-up']"
+          aria-label="Close options"
         ></fa-icon>
 
         <fa-icon
@@ -43,6 +46,7 @@ import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
           class="usi-input-group__suffix usi-input-group__suffix--password"
           (click)="usiSelectService.showOptions = true"
           [icon]="['fal', 'angle-down']"
+          aria-label="Open options"
         ></fa-icon>
 
         <label [id]="uid" class="usi-input-group__label">{{ usiLabel }} <span *ngIf="usiRequired">*</span></label>
@@ -51,47 +55,23 @@ import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
           {{ usiHint }}
         </span>
 
-        <div *ngIf="(usiError && formControlValue.touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
+        <div *ngIf="(hasError && formControlValue.touched) || usiForceError" class="usi-input-group__hint usi-input-group__hint--error">
           <ng-container *ngTemplateOutlet="usiError">{{ usiError }}</ng-container>
         </div>
       </div>
 
-      <ul *ngIf="usiSelectService.showOptions && usiData" class="usi-select__options" role="group">
+      <ul *ngIf="usiSelectService.showOptions" id="listbox" class="usi-select__options" role="listbox">
         <li *ngIf="usiSearchable" class="usi-select__option--search usi-select__option--controls">
-          <fa-icon class="usi-input-group__prefix usi-input-group__prefix--multiselect" [icon]="['fal', 'magnifying-glass']"></fa-icon>
+          <fa-icon class="usi-input-group__prefix usi-input-group__prefix--multiselect" [icon]="['fal', 'magnifying-glass']" aria-hidden="true"></fa-icon>
           <input class="usi-select__search" (keyup)="searchOptions($any($event).target.value)" placeholder="Search" type="text" />
         </li>
 
         <li class="usi-select__option usi-select__option--controls">
-          <label (usiChange)="showSelectedOnly($event)" usi-checkbox>Show Selected Only</label>
-          <span class="usi-select__clear-all" (click)="clearAll()">Clear All</span>
+          <usi-checkbox (usiChange)="showSelectedOnly($event)">Show Selected Only</usi-checkbox>
+          <button class="usi-select__clear-all" (click)="clearAll()">Clear All</button>
         </li>
 
-        <li *ngIf="manipulatedData.size === 0" class="usi-select__no-result">{{ usiNoResultMessage }}</li>
-
-        <ng-container *ngFor="let options of manipulatedData | keyvalue: asIsOrder">
-          <li *ngIf="options.key !== undefined" class="usi-select__group-label">{{ options.key }}</li>
-          <li *ngIf="manipulatedData.size > 1 && options.key === undefined" class="usi-select__group-divider"></li>
-
-          <ng-container *ngFor="let option of options.value; let i = index">
-            <usi-option [usiValue]="option.value" [usiDisabled]="option.disabled" usiMultiselect>
-              {{ option.label }}
-            </usi-option>
-          </ng-container>
-        </ng-container>
-      </ul>
-
-      <ul *ngIf="usiSelectService.showOptions && !usiData" class="usi-select__options" role="group">
-        <li *ngIf="usiSearchable" class="usi-select__option--search usi-select__option--controls">
-          <fa-icon class="usi-input-group__prefix usi-input-group__prefix--multiselect" [icon]="['fal', 'magnifying-glass']"></fa-icon>
-          <input class="usi-select__search" (keyup)="searchOptions($any($event).target.value)" placeholder="Search" type="text" />
-        </li>
-
-        <li class="usi-select__option usi-select__option--controls">
-          <label (usiChange)="showSelectedOnly($event)" usi-checkbox>Show Selected Only</label>
-          <span class="usi-select__clear-all" (click)="clearAll()">Clear All</span>
-        </li>
-
+        <li *ngIf="hiddenOptions === options?.length" class="usi-select__no-result">{{ usiNoResultMessage }}</li>
         <ng-content></ng-content>
       </ul>
     </div>
@@ -107,6 +87,11 @@ import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
   ],
 })
 export class UsiMultiselectComponent extends UsiSelectComponent {
+  override ngOnInit() {
+    super.ngOnInit();
+    this.usiSelectService.isMultiselect = true;
+  }
+
   /**
    * Only show the selected values when event is true
    * @param { boolean } event | whether to show selected only or not
@@ -114,17 +99,7 @@ export class UsiMultiselectComponent extends UsiSelectComponent {
    */
   public showSelectedOnly(event: boolean): void {
     this.usiSelectService.showSelectedOnly = event;
-
-    if (event) {
-      this.manipulatedData.clear();
-      // this.manipulatedData.set(undefined, this.usiSelectService.chosenValues.value);
-    } else {
-      if (this.usiData) {
-        this.groupedData = this.groupBy(this.usiData, (data) => data.group);
-      }
-
-      this.manipulatedData = this.groupedData;
-    }
+    this.searchOptions('');
   }
 
   /**
@@ -132,7 +107,8 @@ export class UsiMultiselectComponent extends UsiSelectComponent {
    * @return
    */
   public clearAll(): void {
-    this.writeValue([]);
+    this.formControlValue.setValue([]);
     this.showSelectedOnly(false);
+    this.searchOptions('');
   }
 }
