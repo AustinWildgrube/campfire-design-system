@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroupDirective, Validators } from '@angular/forms';
+import { ControlValueAccessor, FormControl, FormGroupDirective } from '@angular/forms';
 import { AutofillEvent, AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
 import { Subject, takeUntil } from 'rxjs';
@@ -7,6 +7,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
 import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
+import { cloneAbstractControl } from 'usi-campfire/utils/copy-control';
 
 @Directive({
   selector: 'usi-input-harness',
@@ -75,41 +76,21 @@ export class UsiInputHarnessComponent<T = unknown> implements AfterViewInit, Con
       this.formControlValue.setValue(this.usiValue);
       this.checkValidations();
     }
-
-    if (this.usiDisabled) {
-      this.formControlValue.disable();
-    }
-
-    if (this.usiRequired) {
-      this.formControlValue.setValidators(Validators.required);
-    }
-
-    if (this.usiForceError) {
-      this.formControlValue.setErrors({ usiForceError: true });
-
-      if (this.formControlName) {
-        this.parentFormGroup.control.controls[this.formControlName].setErrors({ usiForceError: true });
-      }
-    }
   }
 
   ngAfterViewInit(): void {
     this.formControlValue.markAsUntouched();
 
     if (this.formControlName) {
-      // copy errors from parent form control to mark input as invalid
-      this.parentFormGroup.valueChanges?.pipe(takeUntil(this.unsubscribe)).subscribe(() => {
-        this.checkValidations();
-      });
+      this.formControlValue = cloneAbstractControl(this.parentFormGroup.control.controls[this.formControlName]) as FormControl;
+      this.cdr.detectChanges();
 
       if (this.parentFormGroup.control.controls[this.formControlName].hasError('required')) {
         this.usiRequired = true;
-        this.formControlValue.setValidators(Validators.required);
       }
 
       if (this.parentFormGroup.control.controls[this.formControlName].disabled) {
         this.usiDisabled = true;
-        this.formControlValue.disable();
       }
     }
 
