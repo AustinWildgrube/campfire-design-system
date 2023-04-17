@@ -10,6 +10,7 @@
 .usi-time-group__input {
   border: none;
   box-sizing: border-box;
+  color: var(--time-picker-text-color);
   height: 21px;
   text-align: center;
   width: 32px;
@@ -18,7 +19,7 @@
 .usi-time-group__input::-webkit-outer-spin-button,
 .usi-time-group__input::-webkit-inner-spin-button {
   margin: 0;
-  -webkit-appearance:none;
+  -webkit-appearance: none;
 }
 
 .usi-time-group__input[type=number] {
@@ -53,10 +54,10 @@
 
 .usi-time__meridiem {
   align-items: center;
-  border: 1px solid #D8D9DA;
+  border: 1px solid var(--time-picker-border-color);
   border-radius: 3px;
   box-sizing: border-box;
-  color: #292829;
+  color: var(--time-picker-text-color);
   display: flex;
   font-size: 0.875rem;
   height: 21px;

@@ -53,6 +53,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
             *ngIf="!usiTwentyFourHour"
             class="usi-time__meridiem"
             [formControl]="formControlValueMeridiem"
+            [readonly]="!usiManualEntry"
             (keyup)="formatMeridiem($event)"
             placeholder="--"
             maxlength="2"
@@ -162,11 +163,11 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
 
   override ngOnInit() {
     if (this.formControlName) {
-        const defaultControl = this.parentFormGroup.form.controls[this.formControlName];
-        if (typeof defaultControl.value !== 'string') return;
+      const defaultControl = this.parentFormGroup.form.controls[this.formControlName];
+      if (typeof defaultControl.value !== 'string') return;
 
-        this.selectInterval(defaultControl.value)
-        defaultControl.setValue(this.formatTimeForOutput());
+      this.selectInterval(defaultControl.value);
+      defaultControl.setValue(this.formatTimeForOutput());
     }
 
     if (this.usiValue) {
@@ -265,7 +266,7 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
    * A then AM is selected, but if the user presses the letter P it will switch over to PM
    * @param { Event } event | the keyboard event that occurred
    */
-  public formatMeridiem(event: any): void {
+  public formatMeridiem(event: KeyboardEvent): void {
     if (this.formControlValueMeridiem.value?.length === 2 && event.code === 'KeyM') {
       return;
     }
@@ -350,7 +351,7 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
    * We set the hour and minutes value to output to the form.
    * @return
    */
-  public formatTimeForOutput(): { hours: string; minutes: string } {
+  public formatTimeForOutput(): { hours: number; minutes: number } {
     let outputHours = this.formControlValueHours.value;
     if (this.formControlValueMeridiem.value === 'PM' && this.formControlValueHours.value !== '12') {
       outputHours = parseInt(this.formControlValueHours.value) + 12;
@@ -361,9 +362,9 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
     }
 
     return {
-      hours: outputHours.toString(),
-      minutes: this.formControlValueMinutes.value,
-    }
+      hours: parseInt(outputHours),
+      minutes: parseInt(this.formControlValueMinutes.value),
+    };
   }
 
   /**
@@ -381,7 +382,7 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
    * @return
    */
   public override registerOnChange(fn: any): void {
-    this.formControlValue.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe((newValue: any) => {
+    this.formControlValue.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe((newValue: string | Object) => {
       if (!newValue || typeof newValue !== 'string') return;
 
       // If the value is a string we know it was programmatically set since we

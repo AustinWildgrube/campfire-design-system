@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { UsiUtilsModule } from 'usi-campfire/utils';
-import { UsiTimePickerComponent } from './time-picker.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { UsiTimePickerComponent } from './time-picker.component';
+import { UsiUtilsModule } from 'usi-campfire/utils';
 
 @NgModule({
   declarations: [UsiTimePickerComponent],
-  imports: [CommonModule, UsiUtilsModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, UsiUtilsModule],
   exports: [UsiTimePickerComponent],
 })
 export class UsiTimePickerModule {}
