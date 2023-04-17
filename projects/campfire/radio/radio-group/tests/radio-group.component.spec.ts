@@ -8,10 +8,10 @@ import { UsiRadioModule } from '../../radio.module';
 
 @Component({
   template: `
-    <usi-radio-group [usiDisabled]="usiDisabled" [usiDirection]="usiDirection">
-      <label usiValue="one" usi-radio>One</label>
-      <label usiValue="two" usi-radio>Two</label>
-      <label usiValue="three" usi-radio>Three</label>
+    <usi-radio-group [usiDisabled]="usiDisabled" [usiDirection]="usiDirection" [usiName]="usiName">
+      <usi-radio usiValue="one">One</usi-radio>
+      <usi-radio usiValue="two">Two</usi-radio>
+      <usi-radio usiValue="three">Three</usi-radio>
     </usi-radio-group>
   `,
 })
@@ -34,6 +34,8 @@ describe('UsiRadioGroupComponent', () => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
+    component.usiName = 'test';
+
     fixture.detectChanges();
   });
 
@@ -58,5 +60,22 @@ describe('UsiRadioGroupComponent', () => {
     fixture.detectChanges();
 
     expect(radioGroup.nativeElement.classList).toContain('usi-radio-group--vertical');
+  });
+
+  it('should have a name', () => {
+    const radioButtons = debugElement.queryAll(By.css('.usi-radio-button__input'));
+    expect(radioButtons[0].nativeElement.getAttribute('name')).toBe('test');
+  });
+
+  it('should have a unique name if one is not provided', () => {
+    fixture = TestBed.createComponent(TestComponent);
+    component = fixture.componentInstance;
+    debugElement = fixture.debugElement;
+
+    component.usiName = undefined;
+    fixture.detectChanges();
+
+    const radioButtons = debugElement.queryAll(By.css('.usi-radio-button__input'));
+    expect(radioButtons[0].nativeElement.getAttribute('name')).toContain('usi_');
   });
 });

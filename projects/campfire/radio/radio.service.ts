@@ -5,6 +5,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class UsiRadioService<T = unknown> {
   selected = new BehaviorSubject<T>(null as unknown as T);
   disabled = new BehaviorSubject<boolean>(false);
+  name = new BehaviorSubject<string>('');
   unsubscribe = new Subject<boolean>();
 
   radioButtonArray: { id: string; value: T }[] = [];
@@ -21,9 +22,8 @@ export class UsiRadioService<T = unknown> {
    * To satisfy W3 we need to handle keyboard events
    * https://www.w3.org/WAI/ARIA/apg/patterns/radio
    * @param { KeyboardEvent } event | The keyboard event
-   * @param { T } usiValue | The value of the radio button
    */
-  public onKeyUp(event: KeyboardEvent, usiValue: T): void {
+  public onKeyUp(event: KeyboardEvent): void {
     const radioButtons = document.querySelectorAll<HTMLSpanElement>('.usi-radio-button');
     if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
       this.activeButton < radioButtons.length - 1 ? this.activeButton++ : (this.activeButton = 0);

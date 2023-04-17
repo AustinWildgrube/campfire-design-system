@@ -1,10 +1,10 @@
-import {Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import { Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { takeUntil } from 'rxjs';
 
 import { UsiRadioService } from '../radio.service';
 
-import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-radio-group',
@@ -13,7 +13,6 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
       class="usi-radio-group"
       [ngClass]="{ 'usi-radio-group--vertical': usiDirection === 'vertical' }"
       [attr.aria-activedescendant]="usiRadioService.radioButtonArray[usiRadioService.activeButton].id"
-      [tabindex]="usiDisabled ? -1 : 0"
       role="radiogroup"
     >
       <ng-content></ng-content>
@@ -37,11 +36,20 @@ export class UsiRadioGroupComponent<T = unknown> implements ControlValueAccessor
   @Input()
   usiDirection?: 'vertical' | 'horizontal' = 'horizontal';
 
+  @Input()
+  usiName?: string;
+
   constructor(public usiRadioService: UsiRadioService<T>) {}
 
   ngOnInit(): void {
     if (this.usiDisabled) {
       this.usiRadioService.disabled.next(!!this.usiDisabled);
+    }
+
+    if (this.usiName) {
+      this.usiRadioService.name.next(this.usiName);
+    } else {
+      this.usiRadioService.name.next(UniqueId());
     }
 
     this.usiRadioService.selected.pipe(takeUntil(this.usiRadioService.unsubscribe)).subscribe((value: T) => {

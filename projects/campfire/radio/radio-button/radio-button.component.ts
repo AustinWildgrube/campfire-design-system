@@ -7,12 +7,12 @@ import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 import { takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'label[usi-radio]',
+  selector: 'usi-radio',
   template: `
     <li
       class="usi-radio-button"
       (click)="markValueAsChecked(usiValue)"
-      (keyup)="usiRadioService.onKeyUp($event, usiValue)"
+      (keyup)="usiRadioService.onKeyUp($event)"
       [attr.aria-checked]="usiRadioService.selected.value === usiValue"
       [tabindex]="usiDisabled ? -1 : 0"
       role="radio"
@@ -22,14 +22,15 @@ import { takeUntil } from 'rxjs';
         [ngClass]="{ 'usi-radio-button__input--checked': usiRadioService.selected.value === usiValue }"
         [formControl]="formControlValue"
         [checked]="usiRadioService.selected.value === usiValue"
+        [attr.name]="usiRadioService.name.value"
         [attr.aria-labelledby]="uid"
         type="radio"
         tabindex="-1"
       />
 
-      <span [id]="uid" class="usi-radio-button__label" [ngClass]="{ 'usi-radio-button--disabled': usiDisabled }">
+      <label [id]="uid" class="usi-radio-button__label" [ngClass]="{ 'usi-radio-button--disabled': usiDisabled }">
         <ng-content></ng-content>
-      </span>
+      </label>
     </li>
   `,
   styleUrls: ['./styles/radio-button.component.scss'],

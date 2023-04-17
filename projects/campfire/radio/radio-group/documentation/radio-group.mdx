@@ -3,28 +3,26 @@ import { UsiRadioModule } from 'usi-campfire/radio';
 ```
 
 # Radio Buttons
-Radio buttons are useful for when you want users to see all available options and the list of options is small. For
-mutually exclusive options, consider a checkbox or toggle switch. With radio buttons only one option can be selected at
-a time. When using radio buttons it is best to keep the number of options to a maximum of six.
+Radio buttons are useful when you want users to see all available options and the list of options is small. For mutually exclusive options, consider a checkbox
+or toggle switch. With radio buttons, only one option can be selected at a time. When using radio buttons, it is best to keep the number of options to a
+maximum of six.
 
-Radio buttons should **always** be used within a group. The group syntax is very similar to that of a solo radio button
-with the exception that a group is formed using the `<usi-radio-group>` element. Campfire radio buttons are called via the
-`usi-radio` directive on a label. They then can have custom attributes that may be used along with it. The standard
-radio button is called as:
+Radio buttons should **always** be used within a group. The group syntax is very similar to that of a solo radio button, with the exception that a group is
+formed using the `<usi-radio-group>` element. Campfire radio buttons are called via the `<usi-radio>` tag. They can then have custom attributes that may be
+used along with them.
 
 ```html
-<label ngModel usi-radio>Radio Button Text</label>
+<usi-radio>Radio Button Text</usi-radio>
 
 <usi-radio-group>
-  <label usiValue="one" usi-radio>Option One</label>
-  <label usiValue="two" usi-radio>Option Two</label>
-  <label usiValue="three" usi-radio>Option Three</label>
+  <usi-radio usiValue="one">Option One</usi-radio>
+  <usi-radio usiValue="two">Option Two</usi-radio>
+  <usi-radio usiValue="three">Option Three</usi-radio>
 </usi-radio-group>
 ```
 
 ## Radio Buttons in Forms
-Radio buttons will almost always be used within forms. Campfire radio buttons can be used in reactive forms as well as in
-template driven forms via the methods below.
+Radio buttons will almost always be used within forms. Campfire radio buttons can be used in reactive as well as template-driven forms via the methods below.
 
 ```ts
 radioNgModel: string = 'two';
@@ -39,83 +37,82 @@ constructor(private formBuilder: FormBuilder) {
 
 ```html
 <usi-radio-group [(ngModel)]="radioNgModel">
-  <label usiValue="one" usi-radio>Option One</label>
-  <label usiValue="two" usi-radio>Option Two</label>
-  <label usiValue="three" usi-radio>Option Three</label>
+  <usi-radio usiValue="one">Option One</usi-radio>
+  <usi-radio usiValue="two">Option Two</usi-radio>
+  <usi-radio usiValue="three">Option Three</usi-radio>
 </usi-radio-group>
 
 <form [formGroup]="radioFormGroup">
   <usi-radio-group formControlName="controlOne">
-    <label usiValue="one" usi-radio>Option One</label>
-    <label usiValue="two" usi-radio>Option Two</label>
-    <label usiValue="three" usi-radio>Option Three</label>
+    <usi-radio usiValue="one">Option One</usi-radio>
+    <usi-radio usiValue="two">Option Two</usi-radio>
+    <usi-radio usiValue="three">Option Three</usi-radio>
   </usi-radio-group>
 </form>
 ```
 
 ## Radio Button Values
-Radio buttons are given a value by using `usiValue` attribute.
+Radio buttons are given a value by using the `usiValue` attribute. This value is required and will be used to determine which radio button is selected. An error
+will be thrown if a radio button is not given a value.
 
-> Exclusively for **singular** radio buttons
+> Can **only** be used on the `<usi-radio>` element
 
 ```html
-<label usiValue="one" usi-radio>Option One</label>
+<usi-radio usiValue="one">Option One</usi-radio>
 ```
 
 ## Custom Radio Button Names
-`usiName` can be used to bind all input[type="radio"] to the same group. It is usually used to let the
-browser see your `usi-radio-group` as a real "group" and keep the default behavior. For example, using left/right
-keyboard arrow to change your selection that in the same `usi-radio-group`. This is done by default using 5 random
-alphanumeric characters, but sometimes it is beneficial to know the name before the group is loaded to the DOM.
+`usiName` can be used to bind all input[type="radio"] to the same group. It is usually used to let the browser see your `usi-radio-group` as a real "group" and
+keep the default behavior. For example, using left or right keyboard arrows to change your selection within the same `usi-radio-group`. This is done by default
+using a UUID, but sometimes it is beneficial to know the name before the group is loaded into the DOM.
 
 > Exclusively for **groups**
 
 ```html
 <usi-radio-group usiName="custom-name">
-  <label usiValue="one" usi-radio>Option One</label>
-  <label usiValue="two" usi-radio>Option Two</label>
-  <label usiValue="three" usi-radio>Option Three</label>
+  <usi-radio usiValue="one">Option One</usi-radio>
+  <usi-radio usiValue="two">Option Two</usi-radio>
+  <usi-radio usiValue="three">Option Three</usi-radio>
 </usi-radio-group>
 ```
 
 ## Vertical Radio Button Groups
-Radio buttons can be placed in a vertical group by adding the `usiDirection` attribute to the `<usi-radio-group>` element.
-This can occasionally make the distinction between choices that much easier to read.
+Radio buttons can be placed in a vertical group by adding the `usiDirection` attribute to the `<usi-radio-group>` element. This can occasionally make the
+distinction between choices that much easier to read.
 
 > Exclusively for **groups**
 
 ```html
 <usi-radio-group usiDirection="vertical">
-  <label usiValue="one" usi-radio>Option One</label>
-  <label usiValue="two" usi-radio>Option Two</label>
-  <label usiValue="three" usi-radio>Option Three</label>
+  <usi-radio usiValue="one">Option One</usi-radio>
+  <usi-radio usiValue="two">Option Two</usi-radio>
+  <usi-radio usiValue="three">Option Three</usi-radio>
 </usi-radio-group>
 ```
 
 ## Disabled Radio Buttons
-Radio buttons may be disabled to indicate to a user that the choice set is unavailable. It should be clear to the user
-why a radio button is disabled, and users should be directed how enable the choice set if that is possible.
+Radio buttons may be disabled to indicate to a user that the choice set is unavailable. It should be clear to the user why a radio button is disabled, and
+users should be directed on how to enable the choice set if that is possible.
 
-`usiDisabled` can be called on the group if all radio buttons are to be disabled. In this event a message should be
-displayed to the user as to why they are all disabled.
+`usiDisabled` can be called on the group if all radio buttons are to be disabled. In this event, a message should be displayed to the user explaining why they
+are all disabled.
 
 ```html
-<label ngModel usiDisabled usi-radio>Radio Button Text</label>
+<usi-radio usiDisabled>Radio Button Text</usi-radio>
 
 <usi-radio-group usiDisabled>
-  <label usiValue="one" usi-radio>Option One</label>
-  <label usiValue="two" usi-radio>Option Two</label>
-  <label usiValue="three" usi-radio>Option Three</label>
+  <usi-radio usiValue="one">Option One</usi-radio>
+  <usi-radio usiValue="two">Option Two</usi-radio>
+  <usi-radio usiValue="three">Option Three</usi-radio>
 </usi-radio-group>
 ```
 
 ## Radio Button Customization
-Campfire radio buttons were made to be easily customizable. Styling a radio button is as simple as just overriding our
-CSS variables in the root selector. The list of overridable variables are as follows:
+Campfire radio buttons were made to be easily customizable. Styling a radio button is as simple as just overriding our CSS variables in the root selector. The
+list of overridable variables is as follows:
 
 ```css
 :root {
-  // Radio buttons
   --radio-border-color: var(--gray);
   --radio-label-text-color: var(--black);
 
@@ -124,6 +121,7 @@ CSS variables in the root selector. The list of overridable variables are as fol
 
   --radio-border-color--checked--disabled: var(--gray);
   --radio-background-color--checked--disabled: var(--gray);
+  --radio-border-color--checked--hover: var(--black);
 
   --radio-border-color--hover: var(--primary);
 

@@ -10,7 +10,7 @@ import { UsiRadioGroupComponent } from '../../radio-group/radio-group.component'
 @Component({
   template: `
     <usi-radio-group>
-      <label usiValue="Radio Button One" usi-radio>Radio Button</label>
+      <usi-radio usiValue="Radio Button One">Radio Button</usi-radio>
     </usi-radio-group>
   `,
 })

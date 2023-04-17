@@ -156,7 +156,7 @@ export interface MobileMenuLayout {
 
           <div class="usi-mobile-menu__section">
             <usi-radio-group class="usi-mobile-menu__languages" usiDirection="vertical" [(ngModel)]="selectedLanguage" (ngModelChange)="changeLanguage($event)">
-              <label *ngFor="let language of languages" [usiValue]="language.value" [usiChecked]="language.selected" usi-radio>{{ language.label }}</label>
+              <usi-radio *ngFor="let language of languages" [usiValue]="language.value">{{ language.label }}</usi-radio>
             </usi-radio-group>
           </div>
         </div>
@@ -188,7 +188,7 @@ export interface MobileMenuLayout {
           <span class="usi-mobile-menu__link"><fa-icon class="usi-mobile-menu__link-icon" [icon]="['fal', 'gear']"></fa-icon>Settings</span>
 
           <div class="usi-mobile-menu__section">
-            <label class="usi-mobile-menu__toggle" [(ngModel)]="darkMode" (ngModelChange)="toggleDarkMode($event)" usi-switch>Dark Mode</label>
+            <usi-switch class="usi-mobile-menu__toggle" [(ngModel)]="darkMode" (ngModelChange)="toggleDarkMode($event)">Dark Mode</usi-switch>
           </div>
         </div>
       </div>
