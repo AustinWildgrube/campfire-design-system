@@ -1,5 +1,6 @@
-import {ChangeDetectorRef, Component, ElementRef, forwardRef, HostBinding, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { takeUntil } from 'rxjs';
 
 import { UsiRadioService } from '../radio.service';
 
@@ -7,7 +8,17 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 
 @Component({
   selector: 'usi-radio-group',
-  template: ` <ng-content></ng-content> `,
+  template: `
+    <ul
+      class="usi-radio-group"
+      [ngClass]="{ 'usi-radio-group--vertical': usiDirection === 'vertical' }"
+      [attr.aria-activedescendant]="usiRadioService.radioButtonArray[usiRadioService.activeButton].id"
+      [tabindex]="usiDisabled ? -1 : 0"
+      role="radiogroup"
+    >
+      <ng-content></ng-content>
+    </ul>
+  `,
   styleUrls: ['./styles/radio-group.component.scss'],
   providers: [
     UsiRadioService,
@@ -18,12 +29,7 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
     },
   ],
 })
-export class UsiRadioGroupComponent implements ControlValueAccessor, OnChanges, OnInit {
-  @HostBinding('class.usi-radio-group') true = true;
-
-  @Input()
-  usiName: string | null = null;
-
+export class UsiRadioGroupComponent<T = unknown> implements ControlValueAccessor, OnInit, OnChanges {
   @Input()
   @InputBoolean()
   usiDisabled?: BooleanInput;
@@ -31,47 +37,33 @@ export class UsiRadioGroupComponent implements ControlValueAccessor, OnChanges, 
   @Input()
   usiDirection?: 'vertical' | 'horizontal' = 'horizontal';
 
-  @HostBinding('class.usi-radio-button--vertical')
-  public get isVertical(): boolean {
-    return this.usiDirection === 'vertical';
-  }
-
-  private value: any = null;
-
-  constructor(private elementRef: ElementRef, private cdr: ChangeDetectorRef, private usiRadioService: UsiRadioService) {}
+  constructor(public usiRadioService: UsiRadioService<T>) {}
 
   ngOnInit(): void {
-    this.usiRadioService.selected.subscribe((value) => {
-      if (this.value !== value) {
-        this.value = value;
-        this.onChange(this.value);
-      }
-    });
+    if (this.usiDisabled) {
+      this.usiRadioService.disabled.next(!!this.usiDisabled);
+    }
 
-    this.usiRadioService.setDisabled(this.usiDisabled);
+    this.usiRadioService.selected.pipe(takeUntil(this.usiRadioService.unsubscribe)).subscribe((value: T) => {
+      this.onChange(value);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { usiDisabled, usiName } = changes;
+    const { usiDisabled } = changes;
 
     if (usiDisabled) {
-      this.usiRadioService.setDisabled(this.usiDisabled);
-    }
-
-    if (usiName) {
-      this.usiRadioService.setName(this.usiName!);
+      this.usiRadioService.disabled.next(!!usiDisabled.currentValue);
     }
   }
 
   /**
    * Write form value to the DOM element (model => view)
-   * @param { boolean } value | if the radio button is true or false
+   * @param { boolean } value | The value of the radio button
    * @return
    */
-  public writeValue(value: boolean): void {
-    this.value = value;
-    this.usiRadioService.select(value);
-    this.cdr.markForCheck();
+  public writeValue(value: T): void {
+    this.usiRadioService.selected.next(value);
   }
 
   /**

@@ -1,35 +1,37 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
-
-import { BooleanInput } from 'usi-campfire/utils';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable()
-export class UsiRadioService {
-  name = new ReplaySubject<string>(1);
-  selected = new ReplaySubject<any>(1);
-  disabled = new ReplaySubject<BooleanInput>(1);
+export class UsiRadioService<T = unknown> {
+  selected = new BehaviorSubject<T>(null as unknown as T);
+  disabled = new BehaviorSubject<boolean>(false);
+  unsubscribe = new Subject<boolean>();
 
-  /**
-   * Emits to each radio button if the radio group  has been selected.
-   * @return
-   */
-  public select(value: any): void {
-    this.selected.next(value);
+  radioButtonArray: { id: string; value: T }[] = [];
+  activeButton: number = 0;
+
+  constructor() {}
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next(true);
+    this.unsubscribe.complete();
   }
 
   /**
-   * Emits to each radio button if the radio group has been disabled.
-   * @return
+   * To satisfy W3 we need to handle keyboard events
+   * https://www.w3.org/WAI/ARIA/apg/patterns/radio
+   * @param { KeyboardEvent } event | The keyboard event
+   * @param { T } usiValue | The value of the radio button
    */
-  public setDisabled(value: BooleanInput): void {
-    this.disabled.next(value);
-  }
+  public onKeyUp(event: KeyboardEvent, usiValue: T): void {
+    const radioButtons = document.querySelectorAll<HTMLSpanElement>('.usi-radio-button');
+    if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+      this.activeButton < radioButtons.length - 1 ? this.activeButton++ : (this.activeButton = 0);
+    } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+      this.activeButton > 0 ? this.activeButton-- : (this.activeButton = radioButtons.length - 1);
+    }
 
-  /**
-   * Sets the name of each radio in a radio group.
-   * @return
-   */
-  public setName(value: string): void {
-    this.name.next(value);
+    radioButtons[this.activeButton].focus();
+    this.selected.next(this.radioButtonArray[this.activeButton].value);
   }
 }

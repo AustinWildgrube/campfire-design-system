@@ -52,6 +52,10 @@
   &.usi-radio-button__input--checked:not(:disabled) {
     border-color: var(--radio-border-color--checked);
 
+    &:hover {
+      border-color: var(--radio-border-color--checked--hover);
+    }
+
     &:before {
       background-color: var(--radio-background-color--checked);
       border-radius: 50%;

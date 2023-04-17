@@ -2,12 +2,17 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { UsiRadioButtonComponent } from '../radio-button.component';
-import { UsiRadioService } from '../../radio.service';
 import { UsiRadioModule } from '../../radio.module';
+import { UsiRadioService } from '../../radio.service';
+import { UsiRadioButtonComponent } from '../radio-button.component';
+import { UsiRadioGroupComponent } from '../../radio-group/radio-group.component';
 
 @Component({
-  template: ` <label usi-radio ngModel>Radio Button</label> `,
+  template: `
+    <usi-radio-group>
+      <label usiValue="Radio Button One" usi-radio>Radio Button</label>
+    </usi-radio-group>
+  `,
 })
 class TestComponent extends UsiRadioButtonComponent {}
 
@@ -18,7 +23,7 @@ describe('UsiRadioButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsiRadioButtonComponent, TestComponent],
+      declarations: [UsiRadioGroupComponent, UsiRadioButtonComponent, TestComponent],
       providers: [UsiRadioService],
       imports: [UsiRadioModule],
     }).compileComponents();
@@ -28,6 +33,8 @@ describe('UsiRadioButtonComponent', () => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
+
+    component.usiValue = 'test';
     fixture.detectChanges();
   });
 
@@ -40,13 +47,13 @@ describe('UsiRadioButtonComponent', () => {
     component.usiDisabled = true;
     fixture.detectChanges();
 
-    expect(component.usiDisabled).toBeTruthy();
+    expect(By.css('.usi-radio-button--disabled')).toBeTruthy();
   });
 
-  it('should have a value', () => {
-    component.usiValue = 'test';
+  it('should error if no value is present', () => {
+    component.usiValue = null;
     fixture.detectChanges();
 
-    expect(component.usiValue).toBe('test');
+    expect(() => component.ngOnInit()).toThrowError('UsiRadioButtonComponent: A radio button must have a value.');
   });
 });

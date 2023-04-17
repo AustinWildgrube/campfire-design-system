@@ -8,7 +8,7 @@ import { UsiRadioModule } from '../../radio.module';
 
 @Component({
   template: `
-    <usi-radio-group [usiName]="usiName" [usiDisabled]="usiDisabled" [usiDirection]="usiDirection">
+    <usi-radio-group [usiDisabled]="usiDisabled" [usiDirection]="usiDirection">
       <label usiValue="one" usi-radio>One</label>
       <label usiValue="two" usi-radio>Two</label>
       <label usiValue="three" usi-radio>Three</label>
@@ -42,26 +42,21 @@ describe('UsiRadioGroupComponent', () => {
     expect(By.css('.usi-radio-group')).toBeTruthy();
   });
 
-  it('should have a name', () => {
-    component.usiName = 'test';
-    fixture.detectChanges();
-
-    expect(component.usiName).toBeTruthy();
-  });
-
   it('should disable radio button', () => {
     component.usiDisabled = true;
     fixture.detectChanges();
 
-    expect(component.usiDisabled).toBeTruthy();
+    const radioButtons = debugElement.queryAll(By.css('.usi-radio-button--disabled'));
+    expect(radioButtons.length).toBe(3);
   });
 
-  it('should have a default direction of horizontal', () => {
-    expect(component.usiDirection).toBe('horizontal');
+  it('should have a direction', () => {
+    const radioGroup = debugElement.query(By.css('.usi-radio-group'));
+    expect(radioGroup.nativeElement.classList).not.toContain('usi-radio-group--vertical');
 
     component.usiDirection = 'vertical';
     fixture.detectChanges();
 
-    expect(component.usiDirection).toBe('vertical');
+    expect(radioGroup.nativeElement.classList).toContain('usi-radio-group--vertical');
   });
 });

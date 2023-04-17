@@ -1,14 +1,17 @@
 @use '../../../campfire.css';
 
-:host.usi-radio-group {
+.usi-radio-group {
   display: flex;
+  margin: 0;
+  padding: 0;
+  width: min-content;
 
   ::ng-deep.usi-radio-button {
     margin-right: 1rem;
   }
 }
 
-:host.usi-radio-button--vertical {
+.usi-radio-group--vertical {
   flex-direction: column;
 
   ::ng-deep.usi-radio-button {
@@ -17,7 +20,7 @@
   }
 }
 
-:host.usi-radio-button--disabled {
+.usi-radio-button--disabled {
   ::ng-deep.usi-radio-button {
     color: #717073;
     cursor: not-allowed;

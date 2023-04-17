@@ -192,6 +192,7 @@
 
   --radio-border-color--checked--disabled: var(--gray);
   --radio-background-color--checked--disabled: var(--gray);
+  --radio-border-color--checked--hover: var(--black);
 
   --radio-border-color--hover: var(--primary);
 
