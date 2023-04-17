@@ -356,5 +356,9 @@
 
   --chip-background-color--selected: var(--primary);
   --chip-text-color--slected: var(--white);
+
+  /* Time Picker */
+  --time-picker-text-color: var(--black);
+  --time-picker-border-color: #D8D9DA;
 }
 
