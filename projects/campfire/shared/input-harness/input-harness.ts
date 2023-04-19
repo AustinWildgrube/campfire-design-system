@@ -1,12 +1,12 @@
 import { AfterViewInit, ChangeDetectorRef, Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroupDirective } from '@angular/forms';
+import { ControlValueAccessor, FormControl, FormGroupDirective, Validators } from '@angular/forms';
 import { AutofillEvent, AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
 import { Subject, takeUntil } from 'rxjs';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
-import { BooleanInput, cloneAbstractControl, InputBoolean, UniqueId } from 'usi-campfire/utils';
+import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
 
 @Directive({
   selector: 'usi-input-harness',
@@ -81,14 +81,14 @@ export class UsiInputHarnessComponent<T = unknown> implements AfterViewInit, Con
     this.formControlValue.markAsUntouched();
 
     if (this.formControlName) {
-      this.formControlValue = cloneAbstractControl(this.parentFormGroup.control.controls[this.formControlName]) as FormControl;
+      this.formControlValue = this.parentFormGroup.control.controls[this.formControlName] as FormControl;
       this.cdr.detectChanges();
 
-      if (this.parentFormGroup.control.controls[this.formControlName].hasError('required')) {
+      if (this.formControlValue.hasValidator(Validators.required)) {
         this.usiRequired = true;
       }
 
-      if (this.parentFormGroup.control.controls[this.formControlName].disabled) {
+      if (this.formControlValue.disabled) {
         this.usiDisabled = true;
       }
     }
@@ -175,7 +175,10 @@ export class UsiInputHarnessComponent<T = unknown> implements AfterViewInit, Con
    * @return
    */
   public writeValue(value: any): void {
-    this.formControlValue.setValue(value);
+    if (!this.formControlName) {
+      this.formControlValue.setValue(value);
+    }
+
     this.usiValue = value;
     this.checkValidations();
   }
