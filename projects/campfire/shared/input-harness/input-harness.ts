@@ -6,8 +6,7 @@ import { Subject, takeUntil } from 'rxjs';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 
-import { BooleanInput, InputBoolean, UniqueId } from 'usi-campfire/utils';
-import { cloneAbstractControl } from 'usi-campfire/utils/copy-control';
+import { BooleanInput, cloneAbstractControl, InputBoolean, UniqueId } from 'usi-campfire/utils';
 
 @Directive({
   selector: 'usi-input-harness',
