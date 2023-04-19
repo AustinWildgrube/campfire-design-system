@@ -28,7 +28,7 @@ available in the `<usi-date-picker>` component. This includes the following attr
   * `usiLabel` - The label text of the select component.
   * `usiDisabled` - Whether the select component is disabled.
   * `usiRequired` - Whether the select component is required.
-  * `usiError` - The error message to display when the select component is invalid.
+  * `usiError` - The error message to display when the datepicker component is invalid.
   * `usiForceError` - Whether to display the error message even when the select component is valid.
   * `usiHint` - The hint text to display below the select component.
 
@@ -54,10 +54,10 @@ There are two different formatting options. The first, being `usiDateFormat` is 
 ```
 
 ## Selection Modes
-The `<usi-date-picker>` component has three different selection modes: `single`, `multiple`, and `range`. The first is the default mode, which is single day
-selection. This allows the user to choose one day after which will close the date picker. If the user opens the date picker again and chooses a different date,
-the value will also change. The second mode is a multi-day selection, which allows the user to choose multiple days. The selection of dates will be output in an
-array. The third mode is range selection. This allows the user to choose a range of dates. The selection of dates will be output in an array, with the first
+The `<usi-date-picker>` component has three different selection modes: `single`, `multiple`, and `range`. The first is the default mode, which is single-day
+selection. This allows the user to choose one day after which to close the date picker. If the user opens the date picker again and chooses a different date,
+the value will also change. The second mode is a multi-day selection, which allows the user to choose multiple days. The selection of dates will be output in
+an array. The third mode is range selection. This allows the user to choose a range of dates. The selection of dates will be output in an array, with the first
 value being the start date and the second value being the end date.
 
 ```html
@@ -127,17 +127,17 @@ can either take the English lowercase name of the day or the number of the day. 
 ```
 
 ## Start View
-By default, the date picker will start on the day view with the current month and year selected. This can be changed by setting the `usiView` attribute. This
-will open the calendar to the selected view **only** on the first open. After the first open, the calendar will open to the last view that was selected by the
-user. The values for this attribute are `day`, `month`, and `year`.
+By default, the date picker will start in the day view with the current month and year selected. This can be changed by setting the `usiView` attribute. This
+will open the calendar to the selected view **only** on the first open. After the first time opening it, the calendar will open to the last view that was
+selected by the user. The values for this attribute are `day`, `month`, and `year`.
 
 ```html
 <usi-date-picker usiView="month"></usi-date-picker>
 ```
 
 ## Customization
-The date picker was made to be easily customizable. Styling the date picker is as simple as just adding a class onto the tag or overriding our CSS variables in
-the root selector. The list of overridable variables are as follows:
+The date picker was made to be easily customizable. Styling the date picker is as simple as just adding a class to the tag or overriding our CSS variables in
+the root selector. The list of overridable variables is as follows:
 
 ```css
 :root {

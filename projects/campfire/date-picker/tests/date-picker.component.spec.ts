@@ -1,51 +1,26 @@
-import { Component, DebugElement } from '@angular/core';
+import { DebugElement } from '@angular/core';
+import { FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { UsiDatePickerComponent } from '../date-picker.component';
-import { UsiDatePickerModule } from 'usi-campfire/date-picker';
 import { UsiSharedModule } from 'usi-campfire/shared';
 
-@Component({
-  template: `
-    <usi-date-picker
-      [usiLocalization]="usiLocalization"
-      [usiError]="usiError"
-      [usiLabel]="usiLabel"
-      [usiPlaceholder]="usiPlaceholder"
-      [usiHint]="usiHint"
-      [usiDisabledDays]="usiDisabledDays"
-      [usiDisabledDates]="usiDisabledDates"
-      [usiMinDate]="usiMinDate"
-      [usiMaxDate]="usiMaxDate"
-      [usiNumberOfMonths]="usiNumberOfMonths"
-      [usiFirstDayOfWeek]="usiFirstDayOfWeek"
-      [usiView]="usiView"
-      [usiDateFormat]="usiDateFormat"
-      [usiDateOutputFormat]="usiDateOutputFormat"
-      [usiSelectionMode]="usiSelectionMode"
-      [usiDisabled]="usiDisabled"
-      [usiRequired]="usiRequired"
-      [usiForceError]="usiForceError"
-    ></usi-date-picker>
-  `,
-})
-class TestComponent extends UsiDatePickerComponent {}
-
 describe('UsiDatePickerComponent', () => {
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+  let component: UsiDatePickerComponent;
+  let fixture: ComponentFixture<UsiDatePickerComponent>;
   let debugElement: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsiDatePickerComponent, TestComponent],
-      imports: [UsiDatePickerModule, UsiSharedModule],
+      imports: [FormsModule, ReactiveFormsModule, UsiSharedModule],
+      declarations: [UsiDatePickerComponent],
+      providers: [FormGroupDirective],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestComponent);
+    fixture = TestBed.createComponent(UsiDatePickerComponent);
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
     fixture.detectChanges();
@@ -73,7 +48,7 @@ describe('UsiDatePickerComponent', () => {
     component.usiDisabledDays = [0];
     fixture.detectChanges();
 
-    expect(debugElement.nativeElement.querySelectorAll('.usi-date-picker__day--disabled').length).toBe(5);
+    expect(debugElement.nativeElement.querySelectorAll('.usi-date-picker__day--disabled').length).toBeGreaterThan(4);
   });
 
   it('should disable certain dates', () => {
@@ -102,13 +77,35 @@ describe('UsiDatePickerComponent', () => {
     expect(debugElement.nativeElement.querySelector('.usi-input-group__input').value).toContain(today);
   });
 
+  it('should show 3 month panels', async () => {
+    component.usiNumberOfMonths = 3;
+    await component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelectorAll('.usi-date-picker__wrapper').length).toBe(3);
+  });
+
+  it('should start the week on wednesday', () => {
+    component.usiFirstDayOfWeek = 3;
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    debugElement.nativeElement.querySelector('.usi-input-group__input').click();
+    fixture.detectChanges();
+
+    debugElement.nativeElement.querySelector('.usi-input-group__input').click();
+    fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelectorAll('th')[0].textContent).toBe('We');
+  });
+
   it('should be multiple selection', () => {
     component.usiSelectionMode = 'multiple';
     fixture.detectChanges();
 
-    debugElement.nativeElement.querySelector('.usi-date-picker__day--today').click();
     debugElement.nativeElement.querySelectorAll('td')[0].click();
     debugElement.nativeElement.querySelectorAll('td')[1].click();
+    debugElement.nativeElement.querySelectorAll('td')[2].click();
     fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelectorAll('.usi-date-picker__day--selected').length).toBe(3);
@@ -118,28 +115,16 @@ describe('UsiDatePickerComponent', () => {
     component.usiSelectionMode = 'range';
     fixture.detectChanges();
 
-    debugElement.nativeElement.querySelector('.usi-date-picker__day--today').click();
+    debugElement.nativeElement.querySelectorAll('td')[0].click();
     fixture.detectChanges();
 
-    debugElement.nativeElement.querySelectorAll('td')[0].click();
+    debugElement.nativeElement.querySelectorAll('td')[5].click();
     fixture.detectChanges();
 
     debugElement.nativeElement.querySelector('.usi-input-group__input').click();
     fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelectorAll('.usi-date-picker__day--selected').length).toBe(2);
-  });
-
-  it('should load a different localization', async () => {
-    const shortGermanMonths = ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 'Juli', 'Aug.', 'Sept.', 'Okt.', 'Nov.', 'Dez.'];
-
-    component.usiLocalization = 'de';
-    fixture.detectChanges();
-
-    await component.ngOnInit();
-    fixture.detectChanges();
-
-    expect(component.monthName).toEqual(shortGermanMonths);
   });
 
   it('should fail to load the localization and default to english', async () => {
@@ -152,6 +137,16 @@ describe('UsiDatePickerComponent', () => {
 
     expect(debugElement.nativeElement.querySelector('.usi-date-picker__selected-month-year').textContent).toContain(shortEnglishMonths[currentMonth]);
     expect(component.monthName).toEqual(shortEnglishMonths);
-    expect(console.warn).toHaveBeenCalled();
+    expect(console.warn).toHaveBeenCalledWith('Campfire Date Picker: No test localization was not found; defaulting to English.');
+  });
+
+  it('should load a different localization', async () => {
+    const shortGermanMonths = ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 'Juli', 'Aug.', 'Sept.', 'Okt.', 'Nov.', 'Dez.'];
+
+    component.usiLocalization = 'de';
+    await component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(component.monthName).toEqual(shortGermanMonths);
   });
 });

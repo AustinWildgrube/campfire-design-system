@@ -15,7 +15,13 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
 @Component({
   selector: 'usi-date-picker',
   template: `
-    <div class="usi-date-picker" (usiClickOutside)="showOptions = false" [attr.aria-expanded]="showOptions" [attr.aria-labelledby]="uid">
+    <div
+      class="usi-date-picker"
+      (usiClickOutside)="showOptions = false"
+      (keyup.escape)="showOptions = false"
+      [attr.aria-expanded]="showOptions"
+      [attr.aria-labelledby]="uid"
+    >
       <div class="usi-input-group">
         <fa-icon
           class="usi-input-group__suffix"
@@ -31,6 +37,8 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
             'usi-input-group__input--filled': value.length !== 0
           }"
           (click)="showOptions = !showOptions"
+          (keyup.space)="showOptions = !showOptions"
+          (keyup.enter)="showOptions = !showOptions"
           (input)="onChange($any($event).target.value)"
           [value]="value"
           [placeholder]="usiPlaceholder"
@@ -68,7 +76,12 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
       >
         <div class="usi-date-picker__wrapper" *ngFor="let month of months; let i = index">
           <div class="usi-date-picker__header">
-            <button class="usi-date-picker__selected-month-year" (click)="changeCalendarView('month'); $event.stopPropagation()">
+            <button
+              class="usi-date-picker__selected-month-year"
+              (click)="changeCalendarView('month'); $event.stopPropagation()"
+              (keyup.enter)="changeCalendarView('month'); $event.stopPropagation()"
+              (keyup.space)="changeCalendarView('month'); $event.stopPropagation()"
+            >
               {{ monthName[months[i].month] }} {{ months[i]['year'] }}
               <fa-icon class="usi-date-picker__icons usi-date-picker__icons--down" [icon]="['far', 'angle-down']"></fa-icon>
             </button>
@@ -79,8 +92,8 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
                 class="usi-date-picker__icons usi-date-picker__icons--left"
                 [icon]="['fal', 'chevron-left']"
                 (click)="decreaseMonth(); $event.stopPropagation()"
-                (keydown.enter)="decreaseMonth(); $event.stopPropagation()"
-                (keydown.space)="decreaseMonth(); $event.stopPropagation()"
+                (keyup.enter)="decreaseMonth(); $event.stopPropagation()"
+                (keyup.space)="decreaseMonth(); $event.stopPropagation()"
                 aria-label="Previous month"
                 tabindex="0"
               ></fa-icon>
@@ -90,8 +103,8 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
                 class="usi-date-picker__icons usi-date-picker__icons--right"
                 [icon]="['fal', 'chevron-right']"
                 (click)="increaseMonth(); $event.stopPropagation()"
-                (keydown.enter)="increaseMonth(); $event.stopPropagation()"
-                (keydown.space)="increaseMonth(); $event.stopPropagation()"
+                (keyup.enter)="increaseMonth(); $event.stopPropagation()"
+                (keyup.space)="increaseMonth(); $event.stopPropagation()"
                 aria-label="Next month"
                 tabindex="0"
               ></fa-icon>
@@ -110,8 +123,11 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
                 <tr *ngFor="let week of month.dates">
                   <td
                     *ngFor="let date of week; let j = index"
+                    class="usi-date-picker__day"
                     [ngClass]="{
-                      'usi-date-picker__day--other-month': date.otherMonth || date.beforeToday,
+                      'usi-date-picker__day--other-month': date.otherMonth,
+                      'usi-date-picker__day--before-today': date.beforeToday,
+                      'usi-date-picker__day--today-wrapper': date.today,
 
                       'usi-date-picker__day--range':
                         isInMultiRange(getFormattedDate(date)) &&
@@ -164,10 +180,9 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
                     }"
                     (click)="selectDate(date)"
                     (mouseenter)="hoveredDate = getFormattedDate(date)"
-                    (keydown.space)="selectDate(date)"
-                    (keydown.enter)="selectDate(date)"
-                    [attr.aria-selected]="value.includes(getFormattedDate(date))"
+                    (keyup)="onKeyUp($event, date)"
                     [tabindex]="isDateDisabled(date.day, date.month, date.year) ? -1 : 0"
+                    [attr.aria-selected]="value.includes(getFormattedDate(date))"
                   >
                     <span
                       [ngClass]="{
@@ -188,7 +203,12 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
 
       <div *ngIf="showOptions && view === 'month'" class="usi-date-picker__calendar">
         <div class="usi-date-picker__header usi-date-picker__header--months">
-          <button class="usi-date-picker__selected-month-year" (click)="changeCalendarView('year'); $event.stopPropagation()">
+          <button
+            class="usi-date-picker__selected-month-year"
+            (click)="changeCalendarView('year'); $event.stopPropagation()"
+            (keyup.enter)="changeCalendarView('year'); $event.stopPropagation()"
+            (keyup.space)="changeCalendarView('year'); $event.stopPropagation()"
+          >
             {{ months[0]['year'] }}
             <fa-icon class="usi-date-picker__icons usi-date-picker__icons--down" [icon]="['far', 'angle-down']"></fa-icon>
           </button>
@@ -198,8 +218,8 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
               class="usi-date-picker__icons usi-date-picker__icons--left"
               [icon]="['fal', 'chevron-left']"
               (click)="decreaseYear(1); $event.stopPropagation()"
-              (keydown.space)="decreaseYear(1); $event.stopPropagation()"
-              (keydown.enter)="decreaseYear(1); $event.stopPropagation()"
+              (keyup.space)="decreaseYear(1); $event.stopPropagation()"
+              (keyup.enter)="decreaseYear(1); $event.stopPropagation()"
               aria-label="Previous year"
               tabindex="0"
             ></fa-icon>
@@ -208,8 +228,8 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
               class="usi-date-picker__icons usi-date-picker__icons--right"
               [icon]="['fal', 'chevron-right']"
               (click)="increaseYear(1); $event.stopPropagation()"
-              (keydown.enter)="increaseYear(1); $event.stopPropagation()"
-              (keydown.space)="increaseYear(1); $event.stopPropagation()"
+              (keyup.enter)="increaseYear(1); $event.stopPropagation()"
+              (keyup.space)="increaseYear(1); $event.stopPropagation()"
               aria-label="Next year"
               tabindex="0"
             ></fa-icon>
@@ -232,18 +252,17 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
 
       <div *ngIf="showOptions && view === 'year'" class="usi-date-picker__calendar">
         <div class="usi-date-picker__header usi-date-picker__header--months">
-          <button class="usi-date-picker__selected-month-year">
+          <span class="usi-date-picker__selected-month-year">
             {{ months[0]['year'] - (months[0]['year'] % 12) }} - {{ months[0]['year'] - (months[0]['year'] % 12) + 11 }}
-            <fa-icon class="usi-date-picker__icons usi-date-picker__icons--down" [icon]="['far', 'angle-down']"></fa-icon>
-          </button>
+          </span>
 
           <div>
             <fa-icon
               class="usi-date-picker__icons usi-date-picker__icons--left"
               [icon]="['fal', 'chevron-left']"
               (click)="decreaseYear(12); $event.stopPropagation()"
-              (keydown.enter)="decreaseYear(12); $event.stopPropagation()"
-              (keydown.space)="decreaseYear(12); $event.stopPropagation()"
+              (keyup.enter)="decreaseYear(12); $event.stopPropagation()"
+              (keyup.space)="decreaseYear(12); $event.stopPropagation()"
               aria-label="Previous 12 years"
               tabindex="0"
             ></fa-icon>
@@ -252,8 +271,8 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
               class="usi-date-picker__icons usi-date-picker__icons--right"
               [icon]="['fal', 'chevron-right']"
               (click)="increaseYear(12); $event.stopPropagation()"
-              (keydown.enter)="increaseYear(12); $event.stopPropagation()"
-              (keydown.space)="increaseYear(12); $event.stopPropagation()"
+              (keyup.enter)="increaseYear(12); $event.stopPropagation()"
+              (keyup.space)="increaseYear(12); $event.stopPropagation()"
               aria-label="Next 12 years"
               tabindex="0"
             ></fa-icon>
@@ -325,6 +344,7 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
   selectedMonth: number = dayjs().month();
   selectedYear: number = dayjs().year();
   showOptions: boolean = false;
+  matchedDay: HTMLElement | undefined;
 
   view: 'day' | 'month' | 'year' = 'day';
   narrowDaysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
@@ -354,7 +374,7 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
     }
 
     if (this.usiView) {
-      this.view = this.usiView;
+      this.changeCalendarView(this.usiView);
     }
 
     // Get the initial month to show
@@ -442,6 +462,21 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
    */
   public changeCalendarView(view: 'day' | 'month' | 'year'): void {
     this.view = view;
+
+    setTimeout(() => {
+      if (view === 'day') {
+        let selectedDay: HTMLButtonElement | null = document.querySelector('.usi-date-picker__day--selected');
+        selectedDay?.focus();
+
+        if (!selectedDay) {
+          selectedDay = document.querySelector('.usi-date-picker__day--today-wrapper');
+          selectedDay?.focus();
+        }
+      } else {
+        const selectedMonthYear: HTMLButtonElement | null = document.querySelector('.usi-date-picker__months-years--selected');
+        selectedMonthYear?.focus();
+      }
+    });
   }
 
   /**
@@ -695,6 +730,91 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
   }
 
   /**
+   * Handles our keyboard navigation in accordance to the W3 specifications.
+   * @param { KeyboardEvent } event | The keyboard event we are handling
+   * @param { UsiDate } date | The date we are handling
+   * @return
+   */
+  public onKeyUp(event: KeyboardEvent, date: UsiDate): void {
+    let days = Array.from(document.querySelectorAll('.usi-date-picker__day:not(.usi-date-picker__day--other-month)')) as HTMLElement[];
+
+    switch (event.key) {
+      case 'ArrowUp':
+        if (date.day <= 7) {
+          this.decreaseMonth();
+
+          setTimeout(() => {
+            days = Array.from(document.querySelectorAll('.usi-date-picker__day:not(.usi-date-picker__day--other-month)')) as HTMLElement[];
+
+            let remaining = 7 - date.day;
+            this.matchedDay = days.find(
+              (day: HTMLElement) => day.textContent?.trim() === (this.getDaysCountInPrevMonth(date.month, date.year) - remaining).toString()
+            );
+            this.matchedDay?.focus();
+          }, 100);
+
+          return;
+        }
+
+        this.matchedDay = days.find((day: HTMLElement) => day.textContent?.trim() === (date.day - 7).toString().trim());
+        this.matchedDay?.focus();
+        break;
+      case 'ArrowDown':
+        if (date.day >= this.getDaysCountInNextMonth(date.month, date.year) - 7) {
+          this.increaseMonth();
+
+          setTimeout(() => {
+            days = Array.from(document.querySelectorAll('.usi-date-picker__day:not(.usi-date-picker__day--other-month)')) as HTMLElement[];
+
+            let remaining = this.getDaysCountInNextMonth(date.month, date.year) - date.day;
+            this.matchedDay = days.find((day: HTMLElement) => day.textContent?.trim() === remaining.toString());
+            this.matchedDay?.focus();
+          }, 100);
+
+          return;
+        }
+
+        this.matchedDay = days.find((day: HTMLElement) => day.textContent?.trim() === (date.day + 7).toString().trim());
+        this.matchedDay?.focus();
+        break;
+      case 'ArrowLeft':
+        if (date.day === 1) {
+          this.decreaseMonth();
+
+          setTimeout(() => {
+            days = Array.from(document.querySelectorAll('.usi-date-picker__day:not(.usi-date-picker__day--other-month)')) as HTMLElement[];
+            this.matchedDay = days.find((day: HTMLElement) => day.textContent?.trim() === this.getDaysCountInPrevMonth(date.month, date.year).toString());
+            this.matchedDay?.focus();
+          }, 100);
+
+          return;
+        }
+
+        this.matchedDay = days.find((day: HTMLElement) => day.textContent?.trim() === (date.day - 1).toString().trim());
+        this.matchedDay?.focus();
+        break;
+      case 'ArrowRight':
+        if (this.getDaysCountInMonth(date.month, date.year) === date.day) {
+          this.increaseMonth();
+
+          setTimeout(() => {
+            days = Array.from(document.querySelectorAll('.usi-date-picker__day:not(.usi-date-picker__day--other-month)')) as HTMLElement[];
+            this.matchedDay = days.find((day: HTMLElement) => day.textContent?.trim() === '1');
+            this.matchedDay?.focus();
+          }, 100);
+
+          return;
+        }
+
+        this.matchedDay = days.find((day: HTMLElement) => day.textContent?.trim() === (date.day + 1).toString().trim());
+        this.matchedDay?.focus();
+        break;
+      default:
+        break;
+    }
+  }
+
+  /**
    * Since some countries use a date system that starts with
    * Monday we need to be able to dynamically create our weekdays
    * @private
@@ -751,7 +871,7 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
             day: dayNo,
             month: month,
             year: year,
-            beforeToday: dayNo < today.getDate(),
+            beforeToday: new Date(year, month, dayNo) < today,
             today: this.isToday(today, dayNo, month, year),
           });
 
@@ -776,7 +896,7 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
               day: dayNo,
               month: month,
               year: year,
-              beforeToday: dayNo < today.getDate(),
+              beforeToday: new Date(year, month, dayNo) < today,
               today: this.isToday(today, dayNo, month, year),
             });
           }
@@ -821,6 +941,18 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
   private getDaysCountInPrevMonth(month: number, year: number): number {
     let prev = this.getPreviousMonthAndYear(month, year);
     return this.getDaysCountInMonth(prev.month, prev.year);
+  }
+
+  /**
+   * We need to get the next month's day count to know what day the
+   * last day of the month is.
+   * @param { number } month | The month to get the days count for
+   * @param { number } year | The year to get the days count for
+   * @private { number } The number of days in the month
+   */
+  private getDaysCountInNextMonth(month: number, year: number): number {
+    let next = this.getNextMonthAndYear(month, year);
+    return this.getDaysCountInMonth(next.month, next.year);
   }
 
   /**

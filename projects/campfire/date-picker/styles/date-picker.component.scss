@@ -273,6 +273,11 @@
   color: var(--date-picker-data-text-color--other-month) !important;
 }
 
+.usi-date-picker__day--before-today,
+.usi-date-picker__day--today-wrapper {
+  color: var(--date-picker-data-text-color--other-month) !important;
+}
+
 .usi-date-picker__day--today:not(.usi-date-picker__day--selected) {
   border-radius: 50% !important;
   border: .75px solid var(--date-picker-data-border-color--today);
@@ -292,6 +297,7 @@
   color: var(--date-picker-data-text-color);
   cursor: pointer;
   display: inline-flex;
+  font-family: var(--font-family);
   font-size: 1rem;
   height: 36px;
   margin-left: 1px;
