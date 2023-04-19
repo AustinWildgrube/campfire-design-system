@@ -33,7 +33,11 @@ beneficial to allow them to resize the textarea.
 
 ## Auto-resizing
 Occasionally, it is best to allow the textarea to be autosized. While doing so, a minimum and maximum number of rows can be specified. If neither of these are
-specified, then the textarea will resize to an infinite number of rows.
+specified, then the textarea will resize to an infinite number of rows. To use this feature, the utils module will need to be imported.
+
+```ts
+import { UsiUtilsModule } from 'usi-campfire/utils';
+```
 
 ```html
 <usi-textarea usiAutosize></usi-textarea>

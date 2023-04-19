@@ -21,6 +21,9 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
       (keyup.escape)="showOptions = false"
       [attr.aria-expanded]="showOptions"
       [attr.aria-labelledby]="uid"
+      aria-autocomplete="none"
+      aria-haspopup="dialog"
+      role="combobox"
     >
       <div class="usi-input-group">
         <fa-icon
@@ -28,6 +31,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
           [ngClass]="{ 'usi-input-group__suffix--error': hasError || usiForceError }"
           [icon]="['fal', 'calendar-day']"
           [attr.aria-label]="usiValue ? 'Change date, ' + value : 'Choose date'"
+          role="button"
         ></fa-icon>
 
         <input
@@ -95,6 +99,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
                 (keyup.enter)="decreaseMonth(); $event.stopPropagation()"
                 (keyup.space)="decreaseMonth(); $event.stopPropagation()"
                 aria-label="Previous month"
+                role="button"
                 tabindex="0"
               ></fa-icon>
 
@@ -106,6 +111,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
                 (keyup.enter)="increaseMonth(); $event.stopPropagation()"
                 (keyup.space)="increaseMonth(); $event.stopPropagation()"
                 aria-label="Next month"
+                role="button"
                 tabindex="0"
               ></fa-icon>
             </div>
@@ -221,6 +227,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
               (keyup.space)="decreaseYear(1); $event.stopPropagation()"
               (keyup.enter)="decreaseYear(1); $event.stopPropagation()"
               aria-label="Previous year"
+              role="button"
               tabindex="0"
             ></fa-icon>
 
@@ -231,6 +238,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
               (keyup.enter)="increaseYear(1); $event.stopPropagation()"
               (keyup.space)="increaseYear(1); $event.stopPropagation()"
               aria-label="Next year"
+              role="button"
               tabindex="0"
             ></fa-icon>
           </div>
@@ -264,6 +272,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
               (keyup.enter)="decreaseYear(12); $event.stopPropagation()"
               (keyup.space)="decreaseYear(12); $event.stopPropagation()"
               aria-label="Previous 12 years"
+              role="button"
               tabindex="0"
             ></fa-icon>
 
@@ -274,6 +283,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
               (keyup.enter)="increaseYear(12); $event.stopPropagation()"
               (keyup.space)="increaseYear(12); $event.stopPropagation()"
               aria-label="Next 12 years"
+              role="button"
               tabindex="0"
             ></fa-icon>
           </div>

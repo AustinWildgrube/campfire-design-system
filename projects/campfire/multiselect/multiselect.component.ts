@@ -39,6 +39,7 @@ import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
           (click)="usiSelectService.showOptions = false"
           [icon]="['fal', 'angle-up']"
           aria-label="Close options"
+          role="button"
         ></fa-icon>
 
         <fa-icon
@@ -47,6 +48,7 @@ import { UsiSelectComponent, UsiSelectService } from 'usi-campfire/select';
           (click)="usiSelectService.showOptions = true"
           [icon]="['fal', 'angle-down']"
           aria-label="Open options"
+          role="button"
         ></fa-icon>
 
         <label [id]="uid" class="usi-input-group__label">{{ usiLabel }} <span *ngIf="usiRequired">*</span></label>

@@ -49,11 +49,6 @@ export class UsiTooltipComponent {
   @InputBoolean()
   usiMultiline?: BooleanInput = false;
 
-  @HostBinding('class.usi-tooltip__text--multiline')
-  public get isMultiline(): boolean {
-    return this.usiMultiline == true;
-  }
-
   tooltip: HTMLLabelElement | null = null;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
@@ -96,6 +91,10 @@ export class UsiTooltipComponent {
 
     this.renderer.addClass(this.tooltip, 'usi-tooltip__text');
     this.renderer.addClass(this.tooltip, `usi-tooltip__text--${this.usiPlacement}`);
+
+    if (this.usiMultiline) {
+      this.renderer.addClass(this.tooltip, 'usi-tooltip__text--multiline');
+    }
 
     this.renderer.setAttribute(this.tooltip, 'id', UniqueId());
     this.renderer.setAttribute(this.tooltip, 'role', 'tooltip');

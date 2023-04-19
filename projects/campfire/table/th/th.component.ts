@@ -15,6 +15,7 @@ import { UsiTableService } from '../table.service';
       (keyup.enter)="sort()"
       (keyup.space)="sort()"
       aria-label="Sort ascending"
+      role="button"
       tabindex="0"
     ></fa-icon>
 
@@ -26,6 +27,7 @@ import { UsiTableService } from '../table.service';
       (keyup.enter)="sort()"
       (keyup.space)="sort()"
       aria-label="Sort descending"
+      role="button"
       tabindex="0"
     ></fa-icon>
 
@@ -37,6 +39,7 @@ import { UsiTableService } from '../table.service';
       (keyup.enter)="sort()"
       (keyup.space)="sort()"
       aria-label="Sort back to original order"
+      role="button"
       tabindex="0"
     ></fa-icon>
   `,

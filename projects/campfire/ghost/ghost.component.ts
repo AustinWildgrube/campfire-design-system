@@ -22,6 +22,7 @@ import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
       [style.height.px]="usiHeight"
       [style.width.px]="usiWidth"
       aria-label="Loading"
+      role="status"
     ></div>
   `,
   styleUrls: ['./styles/ghost.component.scss'],
