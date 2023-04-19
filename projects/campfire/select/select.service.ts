@@ -57,7 +57,11 @@ export class UsiSelectService<T = unknown> implements OnDestroy {
    */
   public isValueIncluded(value: T): boolean {
     if (this.formControlValueCopy.value) {
-      return this.formControlValueCopy.value.includes(value);
+      if (this.isMultiselect) {
+        return this.formControlValueCopy.value.includes(value);
+      }
+
+      return this.formControlValueCopy.value === value;
     }
 
     return false;

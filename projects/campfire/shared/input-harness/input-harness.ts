@@ -212,12 +212,13 @@ export class UsiInputHarnessComponent<T = unknown> implements AfterViewInit, Con
 
     this.hasError = this.formControlValue.invalid && (this.formControlValue.dirty || this.formControlValue.touched || this.parentFormGroup.submitted);
 
+    console.log(this.usiValue);
     if (Array.isArray(this.usiValue)) {
       this.isEmpty = this.usiValue.length === 0;
     }
 
-    if (typeof this.usiValue === 'string') {
-      this.isEmpty = this.usiValue === '';
+    if (typeof this.usiValue === 'string' || typeof this.usiValue === 'number') {
+      this.isEmpty = this.usiValue === '' || this.usiValue === undefined;
     }
   }
 }
