@@ -294,11 +294,11 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
     const stringMinutes = this.formControlValueMinutes.value?.toString();
     const stringHours = this.formControlValueHours.value?.toString();
 
-    if (control === 'minutes') {
+    if (control === 'minutes' && stringMinutes) {
       this.formControlValueMinutes.setValue(stringMinutes.padStart(2, '0'));
     }
 
-    if (control === 'hours') {
+    if (control === 'hours' && stringHours) {
       this.formControlValueHours.setValue(stringHours.padStart(2, '0'));
 
       if (stringHours === '0') {
