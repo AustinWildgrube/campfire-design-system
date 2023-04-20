@@ -51,7 +51,7 @@ interface Pagination {
   styleUrls: ['./styles/table.component.scss'],
   providers: [UsiTableService],
 })
-export class UsiTableComponent<T> implements AfterViewChecked, OnChanges, OnInit {
+export class UsiTableComponent<T extends object> implements AfterViewChecked, OnChanges, OnInit {
   @Input()
   @InputBoolean()
   usiHeadless?: BooleanInput;
