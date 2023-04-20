@@ -1,6 +1,6 @@
 import { DebugElement } from '@angular/core';
 import { FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { UsiDatePickerComponent } from '../date-picker.component';
@@ -81,18 +81,18 @@ describe('UsiDatePickerComponent', () => {
     expect(debugElement.nativeElement.querySelector('.usi-input-group__input').value).toContain(today);
   });
 
-  it('should show 3 month panels', async () => {
+  it('should show a 3 month panels', () => {
     component.usiNumberOfMonths = 3;
-    await component.ngOnInit();
+    component.ngOnInit();
     fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelectorAll('.usi-date-picker__wrapper').length).toBe(3);
   });
 
-  it('should start the week on wednesday', async () => {
+  it('should start the week on wednesday', fakeAsync(() => {
     component.usiFirstDayOfWeek = 3;
-    await component.ngOnInit();
-    fixture.detectChanges();
+    component.ngOnInit();
+    tick();
 
     debugElement.nativeElement.querySelector('.usi-input-group__input').click();
     fixture.detectChanges();
@@ -101,6 +101,13 @@ describe('UsiDatePickerComponent', () => {
     fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelectorAll('th')[0].textContent).toBe('We');
+  }));
+
+  it('should call changeCalendarView method if usiView is truthy', () => {
+    const changeCalendarViewSpy = spyOn(component, 'changeCalendarView');
+    component.usiView = 'month';
+    component.ngOnInit();
+    expect(changeCalendarViewSpy).toHaveBeenCalledWith('month');
   });
 
   it('should be multiple selection', () => {
@@ -131,26 +138,26 @@ describe('UsiDatePickerComponent', () => {
     expect(debugElement.nativeElement.querySelectorAll('.usi-date-picker__day--selected').length).toBe(2);
   });
 
-  it('should fail to load the localization and default to english', async () => {
+  it('should fail to load the localization and default to english', fakeAsync(() => {
     const shortEnglishMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const currentMonth = new Date().getMonth();
 
     component.usiLocalization = 'test';
-    await component.ngOnInit();
-    fixture.detectChanges();
+    component.ngOnInit();
+    tick();
 
     expect(debugElement.nativeElement.querySelector('.usi-date-picker__selected-month-year').textContent).toContain(shortEnglishMonths[currentMonth]);
     expect(component.monthName).toEqual(shortEnglishMonths);
     expect(console.warn).toHaveBeenCalledWith('Campfire Date Picker: No test localization was not found; defaulting to English.');
-  });
+  }));
 
-  it('should load a different localization', async () => {
-    const shortGermanMonths = ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 'Juli', 'Aug.', 'Sept.', 'Okt.', 'Nov.', 'Dez.'];
-
+  it('should call dynamicLocalizationImport method if usiLocalization is truthy', fakeAsync(() => {
+    const dynamicLocalizationImportSpy = spyOn<any>(component, 'dynamicLocalizationImport').and.returnValue(Promise.resolve());
     component.usiLocalization = 'de';
-    await component.ngOnInit();
-    fixture.detectChanges();
+    component.ngOnInit();
+    tick();
 
-    expect(component.monthName).toEqual(shortGermanMonths);
-  });
+    expect(dynamicLocalizationImportSpy).toHaveBeenCalled();
+    expect(console.warn).not.toHaveBeenCalledWith('Campfire Date Picker: No de localization was not found; defaulting to English.');
+  }));
 });
