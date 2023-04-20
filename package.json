@@ -1,6 +1,6 @@
 {
   "name": "usi-campfire",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "description": "Campfire - Ungerboeck's first design system!",
   "author": "Austin Wildgrube <austin.wildgrube@ungerboeck.com>",
   "scripts": {
@@ -8,17 +8,17 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test campfire",
-    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "ng run campfire:storybook",
     "build-storybook": "ng run campfire:build-storybook",
-    "build_lib": "ng build campfire",
-    "npm_pack": "cd dist/usi-campfire && npm pack",
-    "package": "npm run build_lib && npm run npm_pack",
+    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "pretty": "prettier --write \"./**/*.{ts,tsx,js,jsx,json}\"",
     "format:fix": "pretty-quick --staged",
     "precommit": "run-s format:fix lint",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "test": "ng test campfire",
+    "build_lib": "ng build campfire",
+    "npm_pack": "cd dist/usi-campfire && npm pack",
+    "package": "npm run test && npm run build_lib && npm run npm_pack"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +32,7 @@
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
     "@fortawesome/angular-fontawesome": "^0.10.2",
+    "@fortawesome/fontawesome-common-types": "^6.4.0",
     "@fortawesome/fontawesome-pro": "^6.1.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",

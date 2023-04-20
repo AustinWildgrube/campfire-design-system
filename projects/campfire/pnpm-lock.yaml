@@ -1,0 +1,21 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@fortawesome/fontawesome-common-types': ^6.4.0
+  tslib: ^2.4.0
+
+dependencies:
+  '@fortawesome/fontawesome-common-types': 6.4.0
+  tslib: 2.5.0
+
+packages:
+
+  /@fortawesome/fontawesome-common-types/6.4.0:
+    resolution: {integrity: sha512-HNii132xfomg5QVZw0HwXXpN22s7VBHQBv9CeOu9tfJnhsWQNd2lmTNi8CSrnw5B+5YOmzu1UoPAyxaXsJ6RgQ==, tarball: '@fortawesome/fontawesome-common-types/-/6.4.0/fontawesome-common-types-6.4.0.tgz'}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dev: false
+
+  /tslib/2.5.0:
+    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+    dev: false
