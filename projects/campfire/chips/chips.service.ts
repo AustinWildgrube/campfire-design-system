@@ -64,10 +64,10 @@ export class UsiChipsService<T> {
 
   /**
    * Emits to each radio button if the radio group  has been selected.
-   * @param { boolean } value | The value we want to emit to the radio group
+   * @param { generic } value | The value we want to emit to the radio group
    * @return
    */
-  public select(value: any): void {
+  public select(value: T): void {
     if (this.isMultiple.value) {
       const currentValue = this.selected.value;
       this.selected.next([...currentValue, value]);

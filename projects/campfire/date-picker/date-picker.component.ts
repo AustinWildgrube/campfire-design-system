@@ -184,7 +184,7 @@ import { UsiInputHarnessComponent } from 'usi-campfire/shared';
                         ((hoveredDate === getFormattedDate(date) && !isHoverBeforeSelectedDate()) ||
                           (this.value[0] === getFormattedDate(date) && isHoverBeforeSelectedDate()))
                     }"
-                    (click)="selectDate(date)"
+                    (click)="selectDate(date); $event.stopPropagation()"
                     (mouseenter)="hoveredDate = getFormattedDate(date)"
                     (keyup)="onKeyUp($event, date)"
                     [tabindex]="isDateDisabled(date.day, date.month, date.year) ? -1 : 0"

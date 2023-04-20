@@ -23,12 +23,16 @@ describe('UsiDatePickerComponent', () => {
     fixture = TestBed.createComponent(UsiDatePickerComponent);
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
-    fixture.detectChanges();
 
     spyOn(console, 'warn');
 
     debugElement.nativeElement.querySelector('.usi-input-group__input').click();
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    debugElement.nativeElement.querySelector('.usi-date-picker').remove();
+    fixture.destroy();
   });
 
   it('should create a datepicker', () => {
@@ -60,7 +64,7 @@ describe('UsiDatePickerComponent', () => {
 
   it('should have a minimum and maximum date', () => {
     component.usiMinDate = new Date(new Date().setDate(new Date().getDate() - 1));
-    component.usiMinDate = new Date(new Date().setDate(new Date().getDate() + 1));
+    component.usiMaxDate = new Date(new Date().setDate(new Date().getDate() + 1));
     fixture.detectChanges();
 
     expect(debugElement.nativeElement.querySelectorAll('.usi-date-picker__day--disabled').length).toBeGreaterThan(3);
@@ -85,9 +89,9 @@ describe('UsiDatePickerComponent', () => {
     expect(debugElement.nativeElement.querySelectorAll('.usi-date-picker__wrapper').length).toBe(3);
   });
 
-  it('should start the week on wednesday', () => {
+  it('should start the week on wednesday', async () => {
     component.usiFirstDayOfWeek = 3;
-    component.ngOnInit();
+    await component.ngOnInit();
     fixture.detectChanges();
 
     debugElement.nativeElement.querySelector('.usi-input-group__input').click();
