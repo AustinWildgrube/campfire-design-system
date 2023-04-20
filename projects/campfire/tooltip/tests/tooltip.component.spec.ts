@@ -5,7 +5,7 @@ import { UsiTooltipComponent } from '../tooltip.component';
 
 @Component({
   template: `
-    <usi-tooltip usiLabel="Test" [usiPlacement]="usiPlacement">
+    <usi-tooltip usiLabel="Test" [usiPlacement]="usiPlacement" usiMultiline>
       <button id="test">Button</button>
     </usi-tooltip>
   `,
@@ -141,11 +141,10 @@ describe('TooltipComponent', () => {
   }));
 
   it('should be a multiline label', fakeAsync(() => {
-    component.usiMultiline = true;
     component.usiLabel = 'This is a very long tooltip that should wrap to multiple lines.';
 
     fixture.detectChanges();
-    expect(fixture.nativeElement.className).toContain('usi-tooltip__text--multiline');
+    expect(document.querySelector('.usi-tooltip__text--multiline')).toBeTruthy();
   }));
 
   it('should be offset', fakeAsync(() => {
