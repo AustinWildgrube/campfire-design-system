@@ -20,7 +20,7 @@ class TestComponent extends UsiTimePickerComponent {
 
   patchTime(): void {
     this.form.patchValue({
-      time: '21:32',
+      time: { hours: 21, minutes: 32 },
     });
   }
 }

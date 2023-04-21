@@ -164,7 +164,9 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
   override ngOnInit() {
     if (this.formControlName) {
       const defaultControl = this.parentFormGroup.form.controls[this.formControlName];
-      if (typeof defaultControl.value !== 'string') return;
+      if (typeof defaultControl.value !== 'string') {
+        defaultControl.setValue(this.parseObjectTime(defaultControl.value));
+      }
 
       this.selectInterval(defaultControl.value);
       defaultControl.setValue(this.formatTimeForOutput());
@@ -379,12 +381,29 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
   }
 
   /**
+   * If our time is given to us in object time we want to convert it to the right format.
+   * @param { hours: number, minutes: number } value | The object we are parsing
+   */
+  public parseObjectTime(value: { hours: number; minutes: number }): string {
+    const hours = value.hours.toString().padStart(2, '0');
+    const minutes = value.minutes.toString().padStart(2, '0');
+    const stringTime = `${hours}:${minutes}`;
+    this.selectInterval(stringTime);
+
+    return stringTime;
+  }
+
+  /**
    * Since we need to format our time before we display we need to
    * overwrite the Angular writeValue function.
    * @param { string | object } value | The new value to write to the form
    */
   public override writeValue(value: string | Object): void {
-    if (!value || typeof value !== 'string') return;
+    if (!value) return;
+
+    if (typeof value !== 'string') {
+      value = this.parseObjectTime(value as { hours: number; minutes: number });
+    }
 
     if (!this.formControlName) {
       this.formControlValue.setValue(value);
@@ -395,7 +414,7 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
 
     // If the value is a string we know it was programmatically set since we
     // format our value as an object for output.
-    this.selectInterval(value);
+    this.selectInterval(value as string);
   }
 
   /**
@@ -405,11 +424,15 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
    */
   public override registerOnChange(fn: any): void {
     this.formControlValue.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe((newValue: string | Object) => {
-      if (!newValue || typeof newValue !== 'string') return;
+      if (!newValue) return;
+
+      if (typeof newValue !== 'string') {
+        newValue = this.parseObjectTime(newValue as { hours: number; minutes: number });
+      }
 
       // If the value is a string we know it was programmatically set since we
       // format our value as an object for output.
-      this.selectInterval(newValue);
+      this.selectInterval(newValue as string);
     });
 
     this.onChange = fn;
