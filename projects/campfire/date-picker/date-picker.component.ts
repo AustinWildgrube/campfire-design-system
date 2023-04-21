@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, forwardRef, Input, OnInit, Vi
 import { FormGroupDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
+import { takeUntil } from 'rxjs/operators';
 
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
@@ -634,7 +635,7 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
     switch (this.usiSelectionMode) {
       case 'single':
         this.value = this.getFormattedDate(date);
-        this.writeValue(dayjs(this.value).format(this.usiDateOutputFormat));
+        this.onChange(dayjs(this.value).format(this.usiDateOutputFormat));
         this.showOptions = false;
 
         if (this.dateInput) {
@@ -655,7 +656,7 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
             outputDates.push(dayjs(date).format(this.usiDateOutputFormat));
           });
 
-          this.writeValue(outputDates);
+          this.onChange(outputDates);
 
           if (this.dateInput) {
             this.dateInput.nativeElement.value = this.value;
@@ -677,7 +678,7 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
             outputDatesRange.push(dayjs(date).format(this.usiDateOutputFormat));
           });
 
-          this.writeValue(outputDatesRange);
+          this.onChange(outputDatesRange);
 
           if (this.value.length === 2) {
             this.showOptions = false;
@@ -726,7 +727,29 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
 
     this.usiValue = value;
     this.checkValidations();
+    this.formatProvidedDate(value);
+  }
 
+  /**
+   * We need to register an onChange function since we need to overwrite the Angular onChange function
+   * @param { (value: any) => void } fn | The function to overwrite with
+   * @return
+   */
+  public override registerOnChange(fn: any): void {
+    this.formControlValue.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe((newValue: string | Object) => {
+      if (!newValue) return;
+      this.formatProvidedDate(newValue);
+    });
+
+    this.onChange = fn;
+  }
+
+  /**
+   * When we are provided a value through a form control we need to format it
+   * so that it can be displayed in the date picker
+   * @param { string | object } value | The value we are formatting
+   */
+  public formatProvidedDate(value: string | object): void {
     const dates = Array.isArray(value) ? value : [value];
     this.value = dates.map((singleDate: string) => {
       const parsedDate = new Date(singleDate);
