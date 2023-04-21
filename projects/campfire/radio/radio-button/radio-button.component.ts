@@ -55,7 +55,7 @@ export class UsiRadioButtonComponent<T = unknown> implements OnChanges {
   }
 
   ngOnInit(): void {
-    if (!this.usiValue) {
+    if (this.usiValue === null || this.usiValue === undefined) {
       throw new Error('UsiRadioButtonComponent: A radio button must have a value.');
     }
 
