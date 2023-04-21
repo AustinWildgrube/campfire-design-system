@@ -258,6 +258,8 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
     this.formControlValueMinutes.setValue(minutes);
     this.formControlValueMeridiem.setValue(ampm);
 
+    this.formatTime('hours');
+    this.formatTime('minutes');
     this.sendFormattedTimeToOnChange();
   }
 
@@ -374,6 +376,26 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
   public sendFormattedTimeToOnChange(): void {
     this.onChange(this.formatTimeForOutput());
     this.onTouched();
+  }
+
+  /**
+   * Since we need to format our time before we display we need to
+   * overwrite the Angular writeValue function.
+   * @param { string | object } value | The new value to write to the form
+   */
+  public override writeValue(value: string | Object): void {
+    if (!value || typeof value !== 'string') return;
+
+    if (!this.formControlName) {
+      this.formControlValue.setValue(value);
+    }
+
+    this.usiValue = value;
+    this.checkValidations();
+
+    // If the value is a string we know it was programmatically set since we
+    // format our value as an object for output.
+    this.selectInterval(value);
   }
 
   /**

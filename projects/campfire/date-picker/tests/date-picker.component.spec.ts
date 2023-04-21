@@ -1,10 +1,29 @@
-import { DebugElement } from '@angular/core';
-import { FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, DebugElement } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { UsiDatePickerComponent } from '../date-picker.component';
 import { UsiSharedModule } from 'usi-campfire/shared';
+
+@Component({
+  template: `
+    <form [formGroup]="form">
+      <usi-date-picker usiLabel="Label" formControlName="date"></usi-date-picker>
+    </form>
+  `,
+})
+class TestComponent extends UsiDatePickerComponent {
+  form = new FormGroup({
+    date: new FormControl('2023-04-21T18:23:53.811Z'),
+  });
+
+  patchDate(): void {
+    this.form.patchValue({
+      date: '2023-06-26T18:23:53.811Z',
+    });
+  }
+}
 
 describe('UsiDatePickerComponent', () => {
   let component: UsiDatePickerComponent;
@@ -160,4 +179,40 @@ describe('UsiDatePickerComponent', () => {
     expect(dynamicLocalizationImportSpy).toHaveBeenCalled();
     expect(console.warn).not.toHaveBeenCalledWith('Campfire Date Picker: No de localization was not found; defaulting to English.');
   }));
+});
+
+describe('Date Picker in a Form', () => {
+  let component: TestComponent;
+  let fixture: ComponentFixture<TestComponent>;
+  let debugElement: DebugElement;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [FormsModule, ReactiveFormsModule, UsiSharedModule],
+      declarations: [UsiDatePickerComponent, TestComponent],
+      providers: [FormGroupDirective],
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TestComponent);
+    component = fixture.componentInstance;
+    debugElement = fixture.debugElement;
+
+    fixture.detectChanges();
+  });
+
+  it('should create a datepicker', () => {
+    expect(component).toBeTruthy();
+    expect(debugElement.nativeElement.querySelector('.usi-date-picker')).toBeTruthy();
+  });
+
+  it('should have a default form value and then patch to a new value', () => {
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__input').value).toBe('04/21/2023');
+
+    component.patchDate();
+    fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelector('.usi-input-group__input').value).toBe('06/26/2023');
+  });
 });

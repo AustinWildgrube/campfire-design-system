@@ -1,9 +1,29 @@
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { UsiTimePickerComponent } from '../time-picker.component';
+import { UsiSharedModule } from 'usi-campfire/shared';
+
+@Component({
+  template: `
+    <form [formGroup]="form">
+      <usi-time-selector usiLabel="Label" formControlName="time"></usi-time-selector>
+    </form>
+  `,
+})
+class TestComponent extends UsiTimePickerComponent {
+  form = new FormGroup({
+    time: new FormControl('04:00'),
+  });
+
+  patchTime(): void {
+    this.form.patchValue({
+      time: '21:32',
+    });
+  }
+}
 
 describe('UsiTimePickerComponent', () => {
   let component: UsiTimePickerComponent;
@@ -89,5 +109,45 @@ describe('UsiTimePickerComponent', () => {
 
     const timeInput = debugElement.query(By.css('.usi-time-group__input--minutes'));
     expect(timeInput.nativeElement.getAttribute('readonly')).toBe('');
+  });
+});
+
+describe('Time Picker in a Form', () => {
+  let component: TestComponent;
+  let fixture: ComponentFixture<TestComponent>;
+  let debugElement: DebugElement;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [FormsModule, ReactiveFormsModule, UsiSharedModule],
+      declarations: [UsiTimePickerComponent, TestComponent],
+      providers: [FormGroupDirective],
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TestComponent);
+    component = fixture.componentInstance;
+    debugElement = fixture.debugElement;
+
+    fixture.detectChanges();
+  });
+
+  it('should create a timepicker', () => {
+    expect(component).toBeTruthy();
+    expect(debugElement.nativeElement.querySelector('.usi-time')).toBeTruthy();
+  });
+
+  it('should have a default form value and then patch to a new value', () => {
+    expect(debugElement.nativeElement.querySelectorAll('.usi-time-group__input')[0].value).toBe('04');
+    expect(debugElement.nativeElement.querySelector('.usi-time-group__input--minutes').value).toBe('00');
+    expect(debugElement.nativeElement.querySelector('.usi-time__meridiem').value).toBe('AM');
+
+    component.patchTime();
+    fixture.detectChanges();
+
+    expect(debugElement.nativeElement.querySelectorAll('.usi-time-group__input')[0].value).toBe('09');
+    expect(debugElement.nativeElement.querySelector('.usi-time-group__input--minutes').value).toBe('32');
+    expect(debugElement.nativeElement.querySelector('.usi-time__meridiem').value).toBe('PM');
   });
 });

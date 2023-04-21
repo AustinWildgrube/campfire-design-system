@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, ElementRef, forwardRef, Input, OnInit, Vi
 import { FormGroupDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
-import { takeUntil } from 'rxjs/operators';
 
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
@@ -391,32 +390,6 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
     const date = new Date();
     this.createMonths(date.getMonth(), date.getFullYear());
     this.createWeekDays();
-
-    // Format changes made to the form value and display them.
-    this.formControlValue.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe((newValue: string | string[]) => {
-      if (!newValue) return;
-
-      const dates = Array.isArray(newValue) ? newValue : [newValue];
-      this.value = dates.map((singleDate: string) => {
-        const parsedDate = new Date(singleDate);
-        const parsedYear = parsedDate.getFullYear();
-        const parsedMonth = parsedDate.getMonth();
-        const parsedDay = parsedDate.getDate();
-
-        this.selectedYear = parsedYear;
-        this.selectedMonth = parsedMonth;
-
-        this.createMonths(parsedMonth, parsedYear);
-        this.createWeekDays();
-
-        return this.getFormattedDate({
-          day: parsedDay,
-          month: parsedMonth,
-          year: parsedYear,
-          today: this.isToday(date, parsedDay, parsedMonth, parsedYear),
-        });
-      });
-    });
   }
 
   /**
@@ -737,6 +710,43 @@ export class UsiDatePickerComponent extends UsiInputHarnessComponent implements 
    */
   public selectYear(year: number): void {
     this.selectedYear = year;
+  }
+
+  /**
+   * Since we need to format our date before we display we need to
+   * overwrite the Angular writeValue function.
+   * @param { string | object } value | The new value to write to the form
+   */
+  public override writeValue(value: any): void {
+    if (!value) return;
+
+    if (!this.formControlName) {
+      this.formControlValue.setValue(value);
+    }
+
+    this.usiValue = value;
+    this.checkValidations();
+
+    const dates = Array.isArray(value) ? value : [value];
+    this.value = dates.map((singleDate: string) => {
+      const parsedDate = new Date(singleDate);
+      const parsedYear = parsedDate.getFullYear();
+      const parsedMonth = parsedDate.getMonth();
+      const parsedDay = parsedDate.getDate();
+
+      this.selectedYear = parsedYear;
+      this.selectedMonth = parsedMonth;
+
+      this.createMonths(parsedMonth, parsedYear);
+      this.createWeekDays();
+
+      return this.getFormattedDate({
+        day: parsedDay,
+        month: parsedMonth,
+        year: parsedYear,
+        today: this.isToday(new Date(), parsedDay, parsedMonth, parsedYear),
+      });
+    });
   }
 
   /**
