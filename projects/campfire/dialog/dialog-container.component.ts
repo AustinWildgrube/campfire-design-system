@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
 
 import { UsiModal } from 'usi-campfire/utils';
 import { UsiModalsService } from 'usi-campfire/modals';
 import { NotificationEvent, NotificationEventType, UsiNotificationComponentContainer } from 'usi-campfire/notifications';
-import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'usi-dialog-container',

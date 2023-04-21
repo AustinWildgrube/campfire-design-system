@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 

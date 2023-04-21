@@ -14,8 +14,8 @@ import {
 import { FormGroupDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
-
-import { map, merge, Observable, takeUntil } from 'rxjs';
+import { merge, Observable } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { UsiInputHarnessComponent } from 'usi-campfire/shared';
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';

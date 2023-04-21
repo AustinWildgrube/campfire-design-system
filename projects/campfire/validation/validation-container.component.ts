@@ -4,7 +4,7 @@ import { UsiModalsService } from 'usi-campfire/modals';
 import { UsiModal } from 'usi-campfire/utils';
 import { UsiNotificationComponentContainer } from 'usi-campfire/notifications';
 import { NotificationEvent, NotificationEventType } from 'usi-campfire/notifications';
-import { takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'usi-dialog-container',

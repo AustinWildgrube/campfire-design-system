@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { UsiToastService } from './toast.service';
 

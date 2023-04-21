@@ -2,7 +2,8 @@ import { AfterViewInit, ChangeDetectorRef, Directive, ElementRef, Input, OnChang
 import { ControlValueAccessor, FormControl, FormGroupDirective, Validators } from '@angular/forms';
 import { AutofillEvent, AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { IconName } from '@fortawesome/pro-light-svg-icons';
 

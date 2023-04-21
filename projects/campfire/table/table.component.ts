@@ -1,9 +1,9 @@
 import { AfterViewChecked, Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
 
 import { UsiTableService } from './table.service';
 
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
-import { takeUntil } from 'rxjs';
 
 interface Pagination {
   totalItems: number;

@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, forwardRef, Input, OnInit, Vi
 import { FormGroupDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { Platform } from '@angular/cdk/platform';
-import { takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';

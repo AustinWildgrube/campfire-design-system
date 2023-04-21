@@ -1,6 +1,6 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { BooleanInput, InputBoolean } from 'usi-campfire/utils';
 import { UsiInputHarnessComponent } from 'usi-campfire/shared';
