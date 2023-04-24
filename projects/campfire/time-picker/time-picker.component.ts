@@ -164,12 +164,14 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
   override ngOnInit() {
     if (this.formControlName) {
       const defaultControl = this.parentFormGroup.form.controls[this.formControlName];
-      if (typeof defaultControl.value !== 'string') {
-        defaultControl.setValue(this.parseObjectTime(defaultControl.value));
-      }
+      if (defaultControl.value) {
+        if (typeof defaultControl.value !== 'string') {
+          defaultControl.setValue(this.parseObjectTime(defaultControl.value));
+        }
 
-      this.selectInterval(defaultControl.value);
-      defaultControl.setValue(this.formatTimeForOutput());
+        this.selectInterval(defaultControl.value);
+        defaultControl.setValue(this.formatTimeForOutput());
+      }
     }
 
     if (this.usiValue) {
@@ -239,6 +241,8 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
    * @return
    */
   public selectInterval(value: string): void {
+    if (!value) return;
+
     const [time, period] = value.split(/(?=[AP]M)/);
     const [hours, minutes] = time.split(':');
 

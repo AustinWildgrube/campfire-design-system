@@ -57,7 +57,7 @@ export class UsiOptionComponent<T = unknown> implements OnInit {
   constructor(private cdr: ChangeDetectorRef, public usiSelectService: UsiSelectService) {}
 
   ngOnInit(): void {
-    if (!this.usiValue) {
+    if (this.usiValue === null || this.usiValue === undefined) {
       throw new Error('UsiOptionComponent: A select option must have a value.');
     }
   }

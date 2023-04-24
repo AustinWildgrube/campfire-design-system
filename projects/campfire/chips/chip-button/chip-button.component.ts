@@ -36,7 +36,7 @@ export class UsiChipButtonComponent<T = unknown> implements OnInit {
   constructor(private usiChipsService: UsiChipsService<T>) {}
 
   ngOnInit(): void {
-    if (!this.usiValue) {
+    if (this.usiValue === null || this.usiValue === undefined) {
       throw new Error('UsiChipComponent: Each chip must have a value.');
     }
 
