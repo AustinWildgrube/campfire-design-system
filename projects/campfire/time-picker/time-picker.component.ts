@@ -162,20 +162,14 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
   formControlValueMeridiem: FormControl = new FormControl();
 
   override ngOnInit() {
-    if (this.formControlName) {
-      const defaultControl = this.parentFormGroup.form.controls[this.formControlName];
-      if (defaultControl.value) {
-        if (typeof defaultControl.value !== 'string') {
-          defaultControl.setValue(this.parseObjectTime(defaultControl.value));
-        }
-
-        this.selectInterval(defaultControl.value);
-        defaultControl.setValue(this.formatTimeForOutput());
-      }
-    }
-
     if (this.usiValue) {
-      this.selectInterval(this.usiValue as string);
+      if (typeof this.usiValue === 'object') {
+        this.usiValue = this.parseObjectTime(this.usiValue as { hours: number; minutes: number });
+      }
+
+      if (typeof this.usiValue === 'string') {
+        this.selectInterval(this.usiValue);
+      }
     }
 
     if (this.usiInterval) {
@@ -241,8 +235,6 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
    * @return
    */
   public selectInterval(value: string): void {
-    if (!value) return;
-
     const [time, period] = value.split(/(?=[AP]M)/);
     const [hours, minutes] = time.split(':');
 
@@ -409,16 +401,14 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
       value = this.parseObjectTime(value as { hours: number; minutes: number });
     }
 
-    if (!this.formControlName) {
-      this.formControlValue.setValue(value);
-    }
-
     this.usiValue = value;
     this.checkValidations();
 
     // If the value is a string we know it was programmatically set since we
     // format our value as an object for output.
-    this.selectInterval(value as string);
+    if (typeof value === 'string') {
+      this.selectInterval(value);
+    }
   }
 
   /**
@@ -430,13 +420,13 @@ export class UsiTimePickerComponent extends UsiInputHarnessComponent implements 
     this.formControlValue.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe((newValue: string | Object) => {
       if (!newValue) return;
 
-      if (typeof newValue !== 'string') {
+      if (typeof newValue === 'object') {
         newValue = this.parseObjectTime(newValue as { hours: number; minutes: number });
       }
 
-      // If the value is a string we know it was programmatically set since we
-      // format our value as an object for output.
-      this.selectInterval(newValue as string);
+      if (typeof newValue === 'string') {
+        this.selectInterval(newValue);
+      }
     });
 
     this.onChange = fn;
