@@ -1,4 +1,5 @@
 import {
+  AfterContentInit,
   AfterViewInit,
   ChangeDetectorRef,
   Component,
@@ -96,7 +97,7 @@ import { UsiOptionComponent } from './option/option.component';
     UsiSelectService,
   ],
 })
-export class UsiSelectComponent<T = unknown> extends UsiInputHarnessComponent implements AfterViewInit, OnInit {
+export class UsiSelectComponent<T = unknown> extends UsiInputHarnessComponent implements AfterContentInit, AfterViewInit, OnInit {
   @ContentChildren(UsiOptionComponent) options: QueryList<UsiOptionComponent> | undefined;
 
   @Input()
@@ -135,13 +136,8 @@ export class UsiSelectComponent<T = unknown> extends UsiInputHarnessComponent im
   }
 
   override ngAfterViewInit() {
-    // Initial value
-    if (this.formControlValue.value) {
-      this.getLabelByValue(this.formControlValue.value);
-    }
-
     // Subscribe to form control changes so we can get a label
-    this.formControlValue.valueChanges.pipe(takeUntil(this.usiSelectService.unsubscribe)).subscribe((value: T | T[]) => {
+    this.usiSelectService.formControlValueCopy.valueChanges.pipe(takeUntil(this.usiSelectService.unsubscribe)).subscribe((value: T | T[]) => {
       this.getLabelByValue(value);
       this.searchOptions('');
     });
@@ -154,6 +150,15 @@ export class UsiSelectComponent<T = unknown> extends UsiInputHarnessComponent im
     // Only emit a change on user input
     this.combinedSelections?.pipe(takeUntil(this.usiSelectService.unsubscribe)).subscribe(() => {
       this.usiSelectionChange.emit(this.formControlValue.value);
+    });
+  }
+
+  public ngAfterContentInit(): void {
+    // We need this to be async so the options can be rendered before we try to get the label
+    setTimeout(() => {
+      if (this.formControlValue.value) {
+        this.getLabelByValue(this.formControlValue.value);
+      }
     });
   }
 
@@ -256,6 +261,17 @@ export class UsiSelectComponent<T = unknown> extends UsiInputHarnessComponent im
     });
 
     this.hiddenOptions = document.querySelectorAll('.usi-select__option--hidden').length;
+  }
+
+  /**
+   * Write form value to the DOM element (model => view)
+   * @param { any } value | the value to write
+   * @return
+   */
+  public override writeValue(value: any) {
+    super.writeValue(value);
+    this.usiSelectService.formControlValueCopy.setValue(value);
+    this.getLabelByValue(value);
   }
 
   /**

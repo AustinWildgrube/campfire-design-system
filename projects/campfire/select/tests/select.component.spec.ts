@@ -1,14 +1,19 @@
 import { Component, DebugElement, EventEmitter, NO_ERRORS_SCHEMA, Output } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { FormGroupDirective } from '@angular/forms';
+import { FormGroupDirective, FormsModule } from '@angular/forms';
 
 import { UsiSelectComponent } from '../select.component';
 import { UsiOptionComponent } from '../option/option.component';
 
 @Component({
   template: `
-    <usi-select [usiNoResultMessage]="usiNoResultMessage" [usiSearchable]="usiSearchable" (usiSelectionChange)="onSelectionChange($event)">
+    <usi-select
+      [(ngModel)]="selectedValue"
+      [usiNoResultMessage]="usiNoResultMessage"
+      [usiSearchable]="usiSearchable"
+      (usiSelectionChange)="onSelectionChange($event)"
+    >
       <usi-option [usiValue]="1">Option 1</usi-option>
       <usi-option [usiValue]="2">Option 2</usi-option>
       <usi-option [usiValue]="3" usiDisabled>Option 3</usi-option>
@@ -17,6 +22,7 @@ import { UsiOptionComponent } from '../option/option.component';
 })
 class TestComponent extends UsiSelectComponent {
   @Output() selectionChange = new EventEmitter<any>();
+  selectedValue = 2;
 
   onSelectionChange(event: any) {
     this.selectionChange.emit(event);
@@ -30,6 +36,7 @@ describe('UsiSelectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [UsiSelectComponent, UsiOptionComponent, TestComponent],
       providers: [FormGroupDirective],
       schemas: [NO_ERRORS_SCHEMA],
@@ -105,4 +112,10 @@ describe('UsiSelectComponent', () => {
 
     expect(spy).toHaveBeenCalled();
   }));
+
+  // it('should have a default value', () => {
+  //   const select = debugElement.query(By.css('.usi-input-group__input'));
+  //   fixture.detectChanges();
+  //   expect(select.nativeElement.textContent).toBe('Option 2');
+  // });
 });

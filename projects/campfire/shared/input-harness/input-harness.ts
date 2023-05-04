@@ -44,7 +44,7 @@ export class UsiInputHarnessComponent<T = unknown> implements AfterViewInit, Con
   usiLabel?: string;
 
   @Input()
-  usiValue?: T;
+  usiValue?: T | T[];
 
   @Input()
   formControlName?: string;
