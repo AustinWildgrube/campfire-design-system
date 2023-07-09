@@ -1,6 +1,6 @@
 # Campfire Design System
 
-Campfire is [Ungerboeck's](https://www.ungerboeck.com) design language. It creates consistent user experiences within our products. Campfire's UI styles, patterns,
+Campfire is a design language. It creates consistent user experiences within our products. Campfire's UI styles, patterns,
 components, and other assets are all reusable. By creating these pre-produced elements,  we can put more emphasis on use cases and business
 needs. Campfire is flexible and is meant to help transform into a custom solution.
 
@@ -62,7 +62,7 @@ After cloning `usi-campfire` and running `npm install` to install its dependenci
 After the steps above have been completed please follow the list below.
 
 1. Fork the repository of `usi-campfire`. The latter steps must be done on the forked repository
-2. On main: `git remote add upstream https://github.com/ungerboecksoftware/campfire-design-system.git`
+2. On main: `git remote add upstream https://github.com/AustinWildgrube/campfire-design-system.git`
 3. On main: `git pull upstream main`
 4. Checkout to the feature branch (for example, if the branch is called docs-fix): `git checkout docs-fix`
 5. On docs-fix rebase on main: `git rebase origin/main`
@@ -159,7 +159,7 @@ reference GitHub issues that this commit **Closes**.
 ## Release
 Perform the following steps to **release** a **new version**:
 * Bump the version in `package.json`
-* Update the [change log](https://ux.ungerboeck.com/?path=/story/changelog--page)
+* Update the [change log](https://ui.wldgrb.com/?path=/story/changelog--page)
 * Merge release branch into `origin/main`
 * [Release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) the new version in the [usi-campfire
-  ](https://github.com/ungerboecksoftware/campfire-design-system) repo.
+  ](https://github.com/AustinWildgrube/campfire-design-system) repo.

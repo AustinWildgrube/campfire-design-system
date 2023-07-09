@@ -1,8 +1,8 @@
 {
   "name": "usi-campfire",
   "version": "2.0.6",
-  "description": "Campfire - Ungerboeck's first design system!",
-  "author": "Austin Wildgrube <austin.wildgrube@ungerboeck.com>",
+  "description": "A beautiful and accessible open source Angular UI library - let's gather round the campfire and sing a campfire song!",
+  "author": "Austin Wildgrube <austinwildgrube@gmail.com>",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

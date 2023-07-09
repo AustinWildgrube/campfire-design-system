@@ -125,7 +125,7 @@ LoggedIn.args = {
   usiAuth: {
     initials: 'HS',
     name: 'Harry Styles',
-    company: 'Ungerboeck',
+    company: 'Enfront',
     loginLink: '/login',
     registerLink: '/register',
   },
@@ -254,7 +254,7 @@ LoggedOut.args = {
   usiAuth: {
     initials: 'HS',
     name: 'Harry Styles',
-    company: 'Ungerboeck',
+    company: 'Enfront',
     loginLink: '/login',
     registerLink: '/register',
   },

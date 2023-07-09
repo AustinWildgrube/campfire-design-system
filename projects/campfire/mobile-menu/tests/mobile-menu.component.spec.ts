@@ -15,7 +15,7 @@ class TestComponent extends UsiMobileMenuComponent {
   auth: MobileMenuAuth = {
     initials: 'HS',
     name: 'Harry Styles',
-    company: 'Ungerboeck',
+    company: 'Enfront',
     loginLink: '/login',
     registerLink: '/register',
   };
@@ -112,7 +112,7 @@ describe('UsiMobileMenuComponent', () => {
     service.toggleAuth(true);
     fixture.detectChanges();
 
-    expect(debugElement.nativeElement.querySelector('.usi-mobile-menu__company').textContent).toBe('Ungerboeck');
+    expect(debugElement.nativeElement.querySelector('.usi-mobile-menu__company').textContent).toBe('Enfront');
     expect(debugElement.nativeElement.querySelectorAll('.usi-mobile-menu__link')[0].textContent).toBe('Logged Link');
     expect(debugElement.nativeElement.querySelectorAll('.usi-mobile-menu__link')[1].textContent).toBe('All Link');
   });
